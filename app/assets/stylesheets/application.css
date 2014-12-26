@@ -77,8 +77,7 @@ nav{
 	width:1600px;height:100%;
 }
 	.main .contentHolder{
-		position:relative;margin:0 auto;
-		width:1040px;min-height:100%;
+		padding-left: 60px;
 	}
 	.main .contentHolder .list{
 		position:relative;
@@ -216,8 +215,7 @@ nav{
 
 /*HOME*/
 .home_moduleHolder{
-	position:relative;margin:0 auto;
-	width:80%;min-height:100%;
+	padding-left: 60px;
 }
 .home_mainModule{
 	position:relative;display:inline-block;vertical-align:top;margin-top:20px;
