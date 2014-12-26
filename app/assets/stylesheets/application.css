@@ -50,27 +50,28 @@ body{
 	position:relative;
 	width:100%;
 }
-	.nav h1{
-		width:100%;display:block;text-align:center;margin-top:22px;
-		font-size:11px;font-weight:normal;
+	.nav li{
+		display:block;
+		margin:22px 0 0 10px;
+		font-size:75%;
+		color: #999999;
 	}
-nav{
-	position:relative;display:block;
-	width:100%;height:72px;
-	color:#777770;
-}
-	nav:hover{
-		cursor:pointer;
-		color:#999990;
+	.nav a{
+		color: #ffffff;
+		text-decoration:none;
+	}
+	.nav a:hover, li:hover{
+		color: #dddddd;
 /*			-moz-box-shadow:      inset 0 0 7px #000000;
 		-webkit-box-shadow:   inset 0 0 7px #000000;
 		box-shadow:           inset 0 0 7px #000000; */
 	}
-.navIcon{
-	position:relative;display:block;left:38px;top:16px;
+	.nav i{
+	left:38px;top:16px;
 	width:24px;height:24px;
+	padding-right: 10px;
 	background-size:100%;
-}
+	}
 
 .main{
 	position:relative;top:0;left:96px;
