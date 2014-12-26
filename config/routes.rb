@@ -7,6 +7,10 @@ Rails.application.routes.draw do
 
   root to: 'staticpage#home'
 
+  get '/jobs',  to: 'staticpage#jobs'
+  get '/home',     to: 'staticpage#home'
+  get '/events',     to: 'staticpage#event'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

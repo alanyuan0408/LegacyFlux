@@ -9,31 +9,32 @@
 <body>
 	<div class="mainMenu">
 		<div class="nav">
-			<a href="index.html"><nav id="home"><div class='navIcon' style="background-image:url('images/icons/home.png')"></div><h1>HOME</h1></nav></a>
-			<nav id="home"><div class='navIcon' style="background-image:url('images/icons/global.png')"></div><h1>LANDING</h1></nav>
-			<a href="jobs.html"><nav id="jobs"><div class='navIcon' style="background-image:url('images/icons/discover.png')"></div><h1>JOBS</h1></nav></a>
-			<nav id="jobs"><div class='navIcon' style="background-image:url('images/icons/research.png')"></div><h1>RESEARCH</h1></nav>
-			<a href="events.html"><nav id="jobs"><div class='navIcon' style="background-image:url('images/icons/events.png')"></div><h1>EVENTS</h1></nav></a>
-			<a href="candidates.html"><nav id="setting"><div class='navIcon' style="background-image:url('images/icons/users.png')"></div><h1>CANDIDATES</h1></nav></a>
-			<nav id="setting"><div class='navIcon' style="background-image:url('images/icons/edit.png')"></div><h1>POST</h1></nav>
-			<nav id="myAccount"><div class='navIcon' style="background-image:url('images/icons/account.png')"></div><h1>MY ACCOUNT</h1></nav>
-			<nav id="setting"><div class='navIcon' style="background-image:url('images/icons/setting.png')"></div><h1>SETTING</h1></nav>
-			<nav id="logout"><div class='navIcon' style="background-image:url('images/icons/logout.png')"></div><h1>LOGOUT</h1></nav>
-			</div>
-		</div>
+			<ul class="nav">
 
-		<%= yield %>
+				<li><%= link_to "<i class='icon-addtolist'></i> HOME".html_safe,
+				"/home" %></li>
+
+				<li><%= link_to "<i class='icon-addtolist'></i> JOBS".html_safe,
+				"/jobs" %></li>
+
+				<li><nav id="home"><i class='icon-addtolist'></i>RESEARCH</nav></li>
+
+				<li><%= link_to "<i class='icon-addtolist'></i> EVENTS".html_safe,
+				"/events" %></li>
+
+				<li><nav id="home"><i class='icon-addtolist'></i>CANDIDATES</nav></li>
+
+				<li><nav id="home"><i class='icon-addtolist'></i>POST</nav></li>
+
+				<li><nav id="home"><i class='icon-addtolist'></i>MY ACCOUNT</nav></li>
+
+				<li><nav id="home"><i class='icon-addtolist'></i>LOGOUT</nav></li>S
+			</ul>
+		</div>
+	</div>
+
+	<%= yield %>
 
 </body>
-<script>
-	$(document).on('page:load', function(){
-		var w = window.innerWidth;
-		var h = window.innerHeight;
-		var w_MENU = 96;
-		var w_MAIN = w - w_MENU;
-		var w_CONTENT = 1200;
-		var margin_LISTPANEL = (w_MAIN - w_CONTENT)/2;
-		$(".listPanel").css("margin-right",margin_LISTPANEL + "px");
-	})
-</script>
+
 </html>
