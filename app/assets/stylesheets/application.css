@@ -77,42 +77,44 @@ body{
 	}
 
 .main{
-	position:relative;top:0;left:96px;
-	height:100%;
+	margin-left: 160px;
+	padding-top: 16px;
 }
 	.main .contentHolder{
-		padding: 10px 0 0 60px;
+		padding-top: 10px;
 	}
 	.main .contentHolder .list{
 		float: left;
 		width:720px;
-		padding-top:36px;
 		background-color:white;
+		padding-right: 10px;
 /*			-moz-box-shadow:      0 0 5px #999990;
 		-webkit-box-shadow:   0 0 5px #999990;
 		box-shadow:           0 0 5px #999990; */
 	}
 	.main .listPanel{
 		float: left;
-		width:480px;height:75%;
+		width:350px;height:75%;
 		background-color:#333330;
+		font-size:60%;
 /*			-moz-box-shadow:      0 0 7px #333330;
 		-webkit-box-shadow:   0 0 7px #333330;
 		box-shadow:           0 0 7px #333330; */
 	}
 	.main .listPanel .listPanelJobDescription{
+		padding-right: 24px;
 	}
 	.main .listPanel .listPanelJobDescription h1{
 		position:relative;display:inline;left:20px;
-		font-size:18px;color:#E1E1E0;font-weight:normal;
+		color:#E1E1E0;font-weight:normal;
 	}
 	.main .listPanel .listPanelJobDescription h2{
 		position:relative;display:inline;left:20px;margin-right:20px;
-		font-size:15px;color:#999990;font-weight:normal;
+		color:#999990;font-weight:normal;
 	}
 	.main .listPanel .listPanelJobDescription p{
 		position:relative;margin:0 20px 0 20px;
-		font-size:15px;color:#CCCCC0;font-weight:normal;
+		font-size:12px;color:#CCCCC0;font-weight:normal;
 	}
 	.main .listPanel .listPanelJobDescription .smallIcon{
 		position:relative;display:inline-block;vertical-align:middle;left:20px;
@@ -156,13 +158,12 @@ body{
 	border-radius:3px;
 }
 .main .contentHolder .jobCard .jobCardHead{
-	position:absolute;top:-36px;
-	width:100%;height:36px;
+	width:100%;height:24px;
 }
 .main .contentHolder .jobCard .jobCardHead h1{
-	position:relative;text-align:right;top:8px;
-	width:95%;
-	font-size:13px;color:#555550;font-weight:normal;
+	position:relative;text-align:right;top:4px;
+	width:95%; font-size: 72%;
+	color:#555550;font-weight:normal;
 }
 .main .contentHolder .jobCard .companyInfo{
 	position:relative;display:inline-block;vertical-align:top;margin-right:-3px;
@@ -194,33 +195,34 @@ body{
 }
 .main .contentHolder .jobCard .companyJobs .location h3{
 	position:relative;display:inline;
-	font-size:13px;color:#999990;font-weight:normal;
+	color:#999990;font-weight:normal;
 }
 
 .main .contentHolder .jobCard .companyJob{
 	position:relative;display:block;
 	width:100%;height:72px;
+	font-size:48%;
 }
 .main .contentHolder .jobCard .companyJob:hover{
 	background-color:#FAFAFA;
 }
 .main .contentHolder .jobCard .companyJob h1{
 	position:relative;margin-left:20px;top:10px;
-	font-size:15px;color:#555550;font-weight:bold;
+	color:#555550;font-weight:bold;
 }.main .contentHolder .jobCard .companyJob h1:hover{
-	cursor:pointer;color:#8897A8;
+	color:#8897A8;
 }
 .main .contentHolder .jobCard .companyJob h2{
 	position:relative;margin-left:20px;top:10px;
-	font-size:12px;color:#555550;font-weight:normal;
+	color:#555550;font-weight:normal;
 }
 
 /*HOME*/
 .home_moduleHolder{
-	padding-left: 60px;
+	font-size: 50%;
 }
 .home_mainModule{
-	position:relative;display:inline-block;vertical-align:top;margin-top:20px;
+	position:relative;display:inline-block;vertical-align:top;
 	min-width:720px;
 }
 .home_greetingModule{
@@ -234,7 +236,7 @@ body{
 }
 .home_greetingModule h1{
 	position:relative;margin-left:20px;
-	font-size:22px;color:white;font-weight:bold;
+	color:white;font-weight:bold;
 }
 
 .new_opportunities{
@@ -266,11 +268,11 @@ body{
 }
 .new_opportunities .item h1{
 	position:relative;
-	font-size:15px;color:#555550;font-weight:bold;
+	color:#555550;font-weight:bold;
 }
 .new_opportunities .item h2{
 	position:relative;display:inline-block;
-	font-size:13px;color:#555550;font-weight:normal;
+	color:#555550;font-weight:normal;
 }
 .new_opportunities .item .smallIcon{
 	position:relative;display:inline-block;top:2px;
@@ -348,7 +350,7 @@ body{
 }
 
 .upcomingEventList{
-	position:relative;display:inline-block;vertical-align:top;margin:10px 0 0 5px;
+	position:relative;display:inline-block;vertical-align:top;margin:0 0 0 5px;
 	padding: 0px 25px 0px 0px;
 	min-height:50%;
 	background-color:#333330;
@@ -368,11 +370,11 @@ body{
 }
 .eventListItem h1{
 	position:relative;left:10px;
-	font-size:16px;color:#C6C6C1;font-weight:bold;
+	color:#C6C6C1;font-weight:bold;
 }
 .eventListItem h2{
 	position:relative;display:inline-block;vertical-align:top;left:8px;
-	font-size:14px;color:#999990;font-weight:normal;
+	fcolor:#999990;font-weight:normal;
 }
 .eventListItem .smallIcon{
 	position:relative;display:inline-block;vertical-align:middle;top:-3px;left:10px;
@@ -485,5 +487,5 @@ body{
 }
 .candidate .candidateSocialProfile .save h1{
 	position:relative;top:7px;
-	font-size:14px;color:#E0E0DF;font-weight:normal;
+	color:#E0E0DF;font-weight:normal;
 }
