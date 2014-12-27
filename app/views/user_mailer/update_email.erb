@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h2>Hello, <%= @user.name %></h2>
+    <p>Web Club Automated Email System. The content is generated based on your settings</p>
+    <br>
+    <p>To modify your settings, login to www.uoftweb.com</p>
+    <br>
+    <p>Please email the site admin at alan.yuan@mail.utoronto.ca for any complaints</p>
+    
+    <br>
+
+    <% if @user.news %>
+
+      <h2>Club Meetings</h2>
+
+      <% @clubPosts.each do |post| %>
+        <h4><%= post.title %></h4>
+        <p style="white-space:pre-wrap;"><%= post.information %></p>
+      <% end %>
+      <br>
+
+    <% else %>
+      <%= i = 1 %>
+    <% end %>
+
+    <% if @user.yncn_events %>
+
+      <h2>YNCN Event Post</h2>
+
+      <% @YNCNPosts.each do |post| %>
+        <h4><%= post.title %></h4>
+        <p><%= post.contact %></p>
+        <p style="white-space:pre-wrap;"><%= post.information %></p>
+      <% end %>
+      <br>
+
+    <% else %>
+      <%= i = 1 %>
+    <% end %>
+
+    <p>Thanks, <br>
+    Web Development Club</p>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello, <%= @user.name %></h1>
+    <p>
+      You have successfully signed up with the Web Development Club's Mailing System.
+      <br> 
+    </p>
+
+    <a href ="<%= url_for controller: "users", action: "confirmation_token", email_confirmation_token: @user.email_confirmation_token,  host: "uoftweb.com" %>">Click here to confirm your email</a>
+
+    <br>
+
+    
+  </body>
+</html>
