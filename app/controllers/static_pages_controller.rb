@@ -1,9 +1,15 @@
 class StaticPagesController < ApplicationController
 
-  helper_method :login_method
+  helper_method :login_method, :current_user
+
+  def current_user
+    @current_user ||= User.find_by_remember_token(cookies[:remember_token])
+  end
 
   def login_method
     #helper method to find the cookie login or the user + set the name on the template
+
+    current_user
 
     if signed_in?
       sign_in(@current_user)
@@ -64,6 +70,7 @@ class StaticPagesController < ApplicationController
   end
 
   def useraccount
+    current_user
 
     if signed_in?
       sign_in(@current_user)
