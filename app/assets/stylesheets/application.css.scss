@@ -14,6 +14,7 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap";
 
 *{
 	padding: 0;
@@ -33,22 +34,12 @@ body{
 	background-color:#e1e1e1;
 	font-family: 'Roboto', sans-serif;
 	font-weight: 500;
-/*	-moz-box-shadow:      inset 0 0 10px #000000;
-	-webkit-box-shadow:   inset 0 0 10px #000000;
-	box-shadow:           inset 0 0 10px #000000; */
 }
 #logo{
 	position:fixed;top:0;left:0;
 	width:96px;height:96px;
-/*		-moz-box-shadow:      0 0 10px #000000;
-	-webkit-box-shadow:   0 0 10px #000000;
-	box-shadow:           0 0 10px #000000; */
 }
 	#logo:hover{
-/*			cursor:pointer;
-		-moz-box-shadow:      0 0 14px #000000;
-		-webkit-box-shadow:   0 0 14px #000000;
-		box-shadow:           0 0 14px #000000;  */
 	}
 
 .nav{
@@ -77,9 +68,6 @@ body{
 	}
 .nav a:hover, a:active{
 		color: #ff2222;
-/*			-moz-box-shadow:      inset 0 0 7px #000000;
-		-webkit-box-shadow:   inset 0 0 7px #000000;
-		box-shadow:           inset 0 0 7px #000000; */
 	}
 	.nav i{
 	padding-right: 10px;
@@ -98,67 +86,6 @@ body{
 		max-width:1140px;
 		min-width:710px;
 		background-color:white;
-/*			-moz-box-shadow:      0 0 5px #999990;
-		-webkit-box-shadow:   0 0 5px #999990;
-		box-shadow:           0 0 5px #999990; */
-	}
-	.main .listPanel{
-		float: left;
-		width:350px;height:75%;
-		background-color:#333330;
-		font-size:60%;
-/*			-moz-box-shadow:      0 0 7px #333330;
-		-webkit-box-shadow:   0 0 7px #333330;
-		box-shadow:           0 0 7px #333330; */
-	}
-	.main .listPanel .listPanelJobDescription{
-		padding-right: 24px;
-	}
-	.main .listPanel .listPanelJobDescription h1{
-		position:relative;display:inline;left:20px;
-		color:#E1E1E0;font-weight:normal;
-	}
-	.main .listPanel .listPanelJobDescription h2{
-		position:relative;display:inline;left:20px;margin-right:20px;
-		color:#999990;font-weight:normal;
-	}
-	.main .listPanel .listPanelJobDescription p{
-		position:relative;margin:0 20px 0 20px;
-		font-size:12px;color:#CCCCC0;font-weight:normal;
-	}
-	.main .listPanel .listPanelJobDescription .smallIcon{
-		position:relative;display:inline-block;vertical-align:middle;left:20px;
-		width:12px;height:12px;
-	}
-	.main .listPanel .listPanelJobDescription .smallIcon img{
-		width:100%;height:100%;
-	}
-	.main .listPanel .listPanelProceed{
-		position:absolute;bottom:0;
-		width:100%;height:54px;
-		border-top:#555550 dashed 1px;
-	}
-	.main .listPanel .listPanelProceed .buttonHolder{
-		position:relative;display:inline-block;float:right;margin-top:12px;
-		width:64px;height:32px;
-	}
-	.main .listPanel .listPanelProceed .buttonHolder button{
-		position:relative;display:inline-block;margin-top:5px;margin-left:5px;
-		padding:2px 10px 2px 10px;
-		border-radius:3px;
-		border:#99AFC5 solid 1px;
-		background-color:#335F8B;
-		font-size:12px;color:white;font-weight:normal;
-/*			-moz-box-shadow:      0 0 7px #222220;
-		-webkit-box-shadow:   0 0 7px #222220;
-		box-shadow:           0 0 7px #222220; */
-	}
-	.main .listPanel .listPanelProceed .buttonHolder button:hover{
-		cursor:pointer;
-		background-color:#2E567D;
-/*		-moz-box-shadow:      0 0 2px #222220;
-		-webkit-box-shadow:   0 0 2px #222220;
-		box-shadow:           0 0 2px #222220; */
 	}
 
 .main .contentHolder .jobCard{
@@ -245,9 +172,6 @@ body{
 	width: 100%;
 	display: inline-flex;
 	overflow: hidden;
-/*	-moz-box-shadow:      0 0 7px #777770;
-	-webkit-box-shadow:   0 0 7px #777770;
-	box-shadow:           0 0 7px #777770; */
 }
 
 .loginform label{
@@ -293,16 +217,10 @@ body{
 	width:49%;min-height:120px;
 	background-color:white;
 	border-radius:0px;
-/*	-moz-box-shadow:      0 0 5px #777770;
-	-webkit-box-shadow:   0 0 5px #777770;
-	box-shadow:           0 0 5px #777770;  */
 }
 .new_opportunities .head{
 	position:relative;
 	width:100%;height:36px;
-/*	-moz-box-shadow:      0 0 5px #777770;
-	-webkit-box-shadow:   0 0 5px #777770;
-	box-shadow:           0 0 5px #777770; */
 }
 .new_opportunities .head h1{
 	position:relative;top:10px;left:10px;
@@ -333,9 +251,6 @@ body{
 	position:relative;display:block;height:50px;margin-top:415px;
 	border:#B2C0CE solid 1px;
 	border-radius:5px;
-/*	-moz-box-shadow:      0 0 7px #777770;
-	-webkit-box-shadow:   0 0 7px #777770;
-	box-shadow:           0 0 7px #777770; */
 }
 .home_calendar .calendarBox{
 	position:relative;display:inline-block;margin-right:-2px;
@@ -367,9 +282,6 @@ body{
 	position:relative;display:block;height:50px;margin-top:-1px;
 	border:#B2C0CE solid 1px;
 	border-radius:5px;
-/*	-moz-box-shadow:      0 0 5px #777770;
-	-webkit-box-shadow:   0 0 5px #777770;
-	box-shadow:           0 0 5px #777770; */
 }
 .week_calendar .calendarBox{
 	position:relative;display:inline-block;margin-right:-2px;
@@ -402,9 +314,6 @@ body{
 	padding: 0px 25px 0px 0px;
 	min-height:50%;
 	background-color:#333330;
-/*	-moz-box-shadow:      0 0 7px #777770;
-	-webkit-box-shadow:   0 0 7px #777770;
-	box-shadow:           0 0 7px #777770; */
 }
 .eventListItem{
 	position:relative;display:block;
@@ -438,10 +347,6 @@ body{
 	position:relative;
 	width:300px;height:100%;
 	background-color:#333330;
-
-/*	-moz-box-shadow:      0 0 7px #555550;
-	-webkit-box-shadow:   0 0 7px #555550;
-	box-shadow:           0 0 7px #555550; */
 }
 .divider{
 	position:fixed;margin-left:46%;
@@ -454,9 +359,6 @@ body{
 	width:97%;height:120px;
 	border-radius:5px;
 	background-color:#333330;
-/*	-moz-box-shadow:      0 0 5px #777770;
-	-webkit-box-shadow:   0 0 5px #777770;
-	box-shadow:           0 0 5px #777770; */
 }
 .filterPanel form{
 	position:relative;
@@ -487,9 +389,6 @@ body{
 	position:relative;display:inline-block;vertical-align:top;margin-right:10px;margin-top:10px;
 	width:300px;height:120px;
 	border-radius:3px;
-/*	-moz-box-shadow:      0 0 5px #777770;
-	-webkit-box-shadow:   0 0 5px #777770;
-	box-shadow:           0 0 5px #777770; */
 	background-color:#F9F9F8;
 }
 
@@ -497,9 +396,6 @@ body{
 	position:absolute;top:10px;left:10px;
 	width:60px;height:60px;
 	border-radius:3px;
-/*	-moz-box-shadow:      0 0 3px #999990;
-	-webkit-box-shadow:   0 0 3px #999990;
-	box-shadow:           0 0 3px #999990; */
 }
 .candidate .candidateBasicInfo{
 	position:relative;display:block;margin-left:100px;
