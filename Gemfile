@@ -51,3 +51,6 @@ gem 'omniauth-facebook'
 
 #meta-tag gem
 gem 'meta-tags'
+
+#bootstrap... for now
+gem 'bootstrap-sass', '~> 2.3.2'
