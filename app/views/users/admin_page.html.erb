@@ -1,0 +1,263 @@
+<script type="text/javascript">$(initSummernote);</script>
+
+<style>
+    .css_text {
+        width: 85%;
+    }
+
+    .hidden_class {
+        display: none;
+    }
+</style>
+
+<script>
+    var top_element = 0
+    var bottom_element = <%= @users.length %> * 2;
+    var iterator_start = 0;
+    var iterator_end = 21;
+    var page_number = 1;
+
+    function navdirection(direction){
+        if (document.getElementById("studentTab").className == "active"){
+            var jobPosts = document.getElementById("jobPosts").childNodes;
+        } else {
+            var jobPosts = document.getElementById("creatorPost").childNodes;
+        }
+            
+        if (direction == 1 && iterator_end < bottom_element){
+            iterator_start += 20;
+            iterator_end += 20;
+            page_number += 1;
+            document.getElementById("pagenumber").innerHTML = page_number
+        } else if (direction == 0 && iterator_start > top_element){
+            iterator_start -= 20;
+            iterator_end -= 20;
+            page_number -= 1;
+            document.getElementById("pagenumber").innerHTML = page_number
+        } else {
+            console.log("Do nothing");
+        }
+                        
+        for (i=0; i<jobPosts.length; i++){
+            if (i > iterator_start && i < iterator_end) {
+                jobPosts[i].className = ""
+            } else {
+                jobPosts[i].className = "hidden_class";
+            }
+        }
+
+    }
+
+    function initialize(){
+
+        var jobPosts = document.getElementById("jobPosts").childNodes;
+
+        var top_element = 0;
+        var bottom_element = 21;
+        var initalized = 0;
+        console.log("loaded");
+
+        for (i=0; i<jobPosts.length; i++){
+
+            if (i > top_element && i < bottom_element) {
+                jobPosts[i].className = ""
+            } else {
+                jobPosts[i].className = "hidden_class";
+            }
+        }
+
+        $("a").click(function(){
+
+            console.log($(this).attr('id'));
+
+            var jobPosting = document.getElementById("posts").childNodes;
+
+            for(i=0; i<jobPosting.length; i++){
+                if (jobPosting[i].className == "selected"){
+                    jobPosting[i].className = "hidden_class";
+                }
+
+                if (jobPosting[i].id == $(this).attr('id')){
+                    jobPosting[i].className = "selected";
+                }
+
+            }
+
+        });
+
+    }
+
+    $(document).ready(initialize);
+    $(document).on('page:load', initialize);
+
+</script>
+
+
+ <div class="span5">
+
+    <div class="panel">
+        <div class="panel-header bg-lightBlue fg-white">
+            Hello Admin
+        </div>  
+    
+        <div class="panel-content">
+            The number of confirmed users is <%= @confirmed_users %>
+
+            <br><br>
+            <%= button_to "Sign Out", '/signout', {:class => "large"} %>
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="tabbable"> <!-- Only required for left/right tabs -->
+      <ul class="nav nav-tabs">
+        <li id="studentTab" class="active"><a href="#tab1" data-toggle="tab">Students</a></li>
+        <li id="creatorTab"><a href="#tab2" data-toggle="tab">Creators</a></li>
+        <li id="postTab"><a href="#tab3" data-toggle="tab">Posts</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
+            <div class="panel-content">
+                <ul id="jobPosts" class="nav nav-tabs nav-stacked" onload="initialize()">
+
+                    <% @users.each do |post| %>
+                        <% if !post.admin %>
+                            <li><a id="<%= post.id %>"><%= post.name %></a></li>
+                        <% end %>
+                    <% end %>
+
+                </ul>
+            </div>
+        </div>
+        <div class="tab-pane" id="tab2">
+            <div class="panel-content">
+                <ul id="creatorPost" class="nav nav-tabs nav-stacked">
+
+                    <% @creators.each do |post| %>
+                        <% if !post.admin %>
+                            <li><a id="<%= post.id %>" ><%= post.name %></a></li>
+                        <% end %>
+                    <% end %>
+
+                </ul>
+            </div>
+        </div>
+        <div class="tab-pane" id="tab3">
+            <div class="panel-content">
+                <ul id="feedbankPost" class="nav nav-tabs nav-stacked">
+
+                    <% @user_posts.each do |post| %>
+                        <% if !post.approval_status %>
+                            <li><a id="<%= post.item_id %>" ><%= post.item_title %></a></li>
+                        <% end %>
+                    <% end %>
+
+                </ul>
+            </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="span1 offset1">
+            <button id="prev" class="btn" onclick="navdirection(0)">Prev</button>
+        </div>
+
+        <div id= "pagenumber" class="span1" style="text-align:right">1</div>
+
+        <div class="span1 offset1">
+            <button id="next" class="btn" onclick="navdirection(1)">Next</button>
+        </div>
+    </div>
+       
+</div>
+
+<div class="span5">
+
+    <div class="panel">
+        <div class="panel-header">
+            Selected Item
+        </div>
+
+        <div class="panel-content" id= "posts" >
+            <% @users.each do |post| %>
+                <% if !post.admin %>
+                    <div id="<%= post.id %>" class="hidden_class">
+                        <p><b>Name: <%= post.name %></b></p>
+                        <p>Email: <%= post.email %></p>
+
+                        <p>Email Freq: <%= post.email_frequency %></p>
+                        <p>Web News: <%= post.news %></p>
+                        <p>Research: <%= post.research %></p>
+                        <p>Jobs: <%= post.jobs %></p>
+                        <p>Events: <%= post.events %></p>
+                        <p>Expo Ticket: <%= post.expo_ticket %></p>
+                        <p>Next Send: <%= post.nextsend %></p>
+                        <p>Email Conf: <%= post.email_confirmation_token %></p>
+                        <p><%= link_to "delete", post, method: :delete %></p>
+                        <br>
+                    </div>
+                <% end %>
+            <% end %>
+
+            <% @creators.each do |post| %>
+                <% if !post.admin %>
+                    <div id="<%= post.id %>" class="hidden_class">
+                        <p><b>Name: <%= post.name %></b></p>
+                        <p>Email: <%= post.email %></p>
+                        
+                        <p>Organization: <%= post.organization %></p>
+                        <p><b>Approval Message:</b></p>
+                        <p><%= post.approval_message %></p>
+                        <p><%= link_to "delete", post, method: :delete %></p>
+                        <br>
+
+                        <% if post.sent_approval && !post.content_approved %>
+                            <br>
+                            <%= form_for post, :url => url_for(:controller => "users", 
+                                :action => "approve_creator", :id => post.id) do |f|%>
+
+                                <%= f.submit "Approve Creator", class: "large" %>
+                            <% end %>
+                        <% end %>
+                    </div>
+                <% end %>
+
+            <% end %>
+
+            <% @user_posts.each do |post| %>
+                <div id="<%= post.item_id %>" class="hidden_class">
+                    <p><b>Item Title: <%= post.item_title %></b></p>
+                    <p>URL: <%= post.item_url %></p>
+
+                    <p>Date: <%= post.item_date %></p>
+                    <p>User ID: <%= post.user_id %></p>
+                    <p>Column Type: <%= post.column_type %></p>
+                    <p>Text: <%= post.item_text %></p>
+                    <p>Approval Status: <%= post.approval_status %></p>
+
+                    <br>
+
+                    <%= form_for post, :url => url_for(:controller => "feedbanks", 
+                            :action => "approve_content", :id => post.id) do |f|%>
+
+                        <%= f.submit "Approve Post", class: "large" %>
+                    <% end %>
+
+                    <%= form_for post, :url => url_for(:controller => "feedbanks", 
+                            :action => "disapprove_content", :id => post.id) do |f|%>
+
+                        <%= f.submit "Delete Post", class: "large" %>
+                    <% end %>
+                </div>
+            <% end %>
+
+        </div>
+
+             
+    </div>
+</div>
