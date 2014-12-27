@@ -87,6 +87,7 @@ body{
 		float: left;
 		width:720px;
 		background-color:white;
+		padding-right: 10px;
 /*			-moz-box-shadow:      0 0 5px #999990;
 		-webkit-box-shadow:   0 0 5px #999990;
 		box-shadow:           0 0 5px #999990; */
@@ -100,6 +101,7 @@ body{
 		box-shadow:           0 0 7px #333330; */
 	}
 	.main .listPanel .listPanelJobDescription{
+		padding-right: 36px;
 	}
 	.main .listPanel .listPanelJobDescription h1{
 		position:relative;display:inline;left:20px;
