@@ -1,0 +1,2 @@
+class FeedbanksController < ApplicationController
+end
