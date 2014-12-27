@@ -2,6 +2,9 @@
 We have three main branches.
 ## Branch: master ##
 Master branch deals with things that are app related. If the commit is too large, always take the safe route and branch from master please.
+
+* **IMPORTANT!**: if we have production push, it should be based on separate production branch. **NEVER assume master = production. *Master is HEAD.* **
+
 ## Branch: CSS ##
 CSS branch deals with asset/stylesheets and some partials related to this. Subbranches from this focus on different problems.
 
