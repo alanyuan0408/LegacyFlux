@@ -47,7 +47,18 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #FB_auth
+gem 'devise'
+gem 'omniauth'
 gem 'omniauth-facebook'
+
+#No strong parameter on user now, so, this will have to do
+gem 'protected_attributes'
+
+#certified gem for SSL regarding FB auth
+gem 'certified'
 
 #meta-tag gem
 gem 'meta-tags'
+
+#bootstrap... for now
+gem 'bootstrap-sass', '~> 2.3.2'
