@@ -48,3 +48,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #FB_auth
 gem 'omniauth-facebook'
+
+#meta-tag gem
+gem 'meta-tags'
