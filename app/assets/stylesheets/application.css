@@ -232,6 +232,7 @@ body{
 	font-size: 75%;
 	max-width:1140px;
 	min-width:720px;
+	padding-top: 10px;
 }
 .home_mainModule{
 	max-width:1140px;
@@ -239,6 +240,7 @@ body{
 }
 .home_greetingModule{
 	padding-top:20px;height:55px;
+	margin-bottom: 10px;
 	border:#B2C0CE solid 1px;
 	width: 100%;
 	display: inline-flex;
