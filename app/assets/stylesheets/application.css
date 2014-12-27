@@ -84,10 +84,9 @@ body{
 		padding-top: 10px;
 	}
 	.main .contentHolder .list{
-		float: left;
-		width:720px;
+		max-width:1180px;
+		min-width:720px;
 		background-color:white;
-		padding-right: 10px;
 /*			-moz-box-shadow:      0 0 5px #999990;
 		-webkit-box-shadow:   0 0 5px #999990;
 		box-shadow:           0 0 5px #999990; */
@@ -179,7 +178,7 @@ body{
 
 .main .contentHolder .jobCard .companyJobs{
 	position:relative;display:inline-block;vertical-align:top;margin-right:-3px;
-	width:600px;min-height:120px;
+	min-width:600px; max-width: 1060px; min-height:120px;
 }
 .main .contentHolder .jobCard .companyJobs .location{
 	position:absolute;top:0;right:0;
@@ -222,7 +221,7 @@ body{
 	font-size: 50%;
 }
 .home_mainModule{
-	position:relative;display:inline-block;vertical-align:top;
+	max-width:1180px;
 	min-width:720px;
 }
 .home_greetingModule{
