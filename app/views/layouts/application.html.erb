@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>UofT Web Development Club</title>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:900,500,700' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -11,24 +12,21 @@
 		<div class="nav">
 			<ul class="nav">
 
-				<li><%= link_to "<i class='icon-addtolist'></i>HOME".html_safe,
-				"/home" %></li>
+				<li><nav id="home"><%= link_to "<i class='icon-addtolist'></i>HOME".html_safe, "/home" %></nav></li>
 
-				<li><%= link_to "<i class='icon-addtolist'></i>JOBS".html_safe,
-				"/jobs" %></li>
+				<li><nav id="home"><%= link_to "<i class='icon-addtolist'></i>JOBS".html_safe, "/jobs" %></nav></li>
 
-				<li><nav id="home"><i class='icon-addtolist'></i>RESEARCH</nav></li>
+				<li><nav id="home"><a href="#"><i class='icon-addtolist'></i>RESEARCH</a></nav></li>
 
-				<li><%= link_to "<i class='icon-addtolist'></i>EVENTS".html_safe,
-				"/events" %></li>
+				<li><nav id="home"><%= link_to "<i class='icon-addtolist'></i>EVENTS".html_safe, "/events" %></li>
 
-				<li><nav id="home"><i class='icon-addtolist'></i>CANDIDATES</nav></li>
+				<li><nav id="home"><a href="#"><i class='icon-addtolist'></i>CANDIDATES</a></nav></li>
 
-				<li><nav id="home"><i class='icon-addtolist'></i>POST</nav></li>
+				<li><nav id="home"><a href="#"><i class='icon-addtolist'></i>POST</a></nav></li>
 
-				<li><nav id="home"><i class='icon-addtolist'></i>MY ACCOUNT</nav></li>
+				<li><nav id="home"><a href="#"><i class='icon-addtolist'></i>MY ACCOUNT</a></nav></li>
 
-				<li><nav id="home"><i class='icon-addtolist'></i>LOGOUT</nav></li>
+				<li><nav id="home"><a href="#"><i class='icon-addtolist'></i>LOGOUT</a></nav></li>
 			</ul>
 		</div>
 	</div>
