@@ -77,8 +77,7 @@ body{
 	}
 
 .main{
-	position:relative;top:0;left:96px;
-	height:100%;
+	margin-left: 160px;
 }
 	.main .contentHolder{
 		padding: 10px 0 0 60px;
@@ -217,7 +216,6 @@ body{
 
 /*HOME*/
 .home_moduleHolder{
-	padding-left: 60px;
 }
 .home_mainModule{
 	position:relative;display:inline-block;vertical-align:top;margin-top:20px;
