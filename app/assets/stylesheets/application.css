@@ -237,17 +237,18 @@ body{
 	min-width:720px;
 }
 .home_greetingModule{
-	padding-top:20px;height:50px;
-	background-color:#14395E;
+	padding-top:10px;height:60px;
 	border:#B2C0CE solid 1px;
-	border-radius:5px;
 /*	-moz-box-shadow:      0 0 7px #777770;
 	-webkit-box-shadow:   0 0 7px #777770;
 	box-shadow:           0 0 7px #777770; */
 }
-.home_greetingModule h1{
+.home_greetingModule p{
 	position:relative;margin-left:20px;
-	color:white;font-weight:bold;
+	color:dddddd;
+	font-family: 'Roboto', Arial, Helvetica, sans-serif;
+	font-size: 300%;
+	font-weight: 900;
 }
 
 .new_opportunities{
