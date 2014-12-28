@@ -8,30 +8,8 @@
 </head>
 <body>
 	<div class="mainMenu">
-		<div class="nav">
-			<ul class="nav">
-
-				<li><nav id="home"><%= link_to "<i class='icon-homealt'></i>HOME".html_safe, "/home" %></nav></li>
-
-				<li><nav id="home"><%= link_to "<i class='icon-briefcasethree'></i>JOBS".html_safe, "/jobs" %></nav></li>
-
-				<li><nav id="home"><a href="#"><i class='icon-lab-flask'></i>RESEARCH</a></nav></li>
-
-				<li><nav id="home"><%= link_to "<i class='icon-microphone'></i>EVENTS".html_safe, "/event" %></nav></li>
-
-				<li><nav id="home"><%= link_to "<i class='icon-microphone'></i>NEWS".html_safe, "/news" %></nav></li>
-
-				<li><nav id="home"><a href="#"><i class='icon-pen'></i>POST</a></nav></li>
-
-				<li><nav id="home"><%= link_to "<i class='icon-briefcasethree'></i>MY ACCOUNT".html_safe, "/useraccount" %></nav></li>
-
-				<li><nav id="home"><a href="#"><i class='icon-exit'></i>LOGOUT</a></nav></li>
-			</ul>
-		</div>
+		<%= render 'layouts/navigation' %>
 	</div>
-
 	<%= yield %>
-
 </body>
-
 </html>
