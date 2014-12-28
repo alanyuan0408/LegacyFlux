@@ -47,7 +47,7 @@ class StaticPagesController < ApplicationController
     login_method
 
     @currentPage = {:news => "active"};
-    @jobPosts = Feedbank.where(:column_type => 3).order("item_date desc")
+    @news = Feedbank.where(:column_type => 1).order("item_date desc").page(params[:page]).per(10)
     #1 is Jobs, #2 is Events, #3 is News, #4 is Research
 
   end
@@ -56,7 +56,7 @@ class StaticPagesController < ApplicationController
     login_method
 
     @currentPage = {:events => "active"};
-    @jobPosts = Feedbank.where(:column_type => 2).order("item_date desc")
+    @events = Feedbank.where(:column_type => 2).order("item_date desc").page(params[:page]).per(10)
     #1 is Jobs, #2 is Events, #3 is News, #4 is Research
 
   end
@@ -65,7 +65,7 @@ class StaticPagesController < ApplicationController
     login_method
 
     @currentPage = {:jobs => "active"};
-    @jobPosts = Feedbank.where(:column_type => [1,4]).order("item_date desc")
+    @jobs = Feedbank.where(:column_type => 3).order("item_date desc").page(params[:page]).per(10)
     #1 is Jobs, #2 is Events, #3 is News, #4 is Research
   end
 
