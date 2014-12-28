@@ -9,14 +9,21 @@
             Here are all the News Updates, reminders submitted by the department and various Computer Science Leaders. <br>
         </div>
     </div>
+
 	<div class="list">
             <h1>News</h1>
 <% @news.each do |news| %>
 <div class="listitem">
 <h2><%= news.item_title %></h2>
-  <%= news.item_text.html_safe %>
+  <%= simple_format(Sanitize.fragment(news.item_text, Sanitize::Config.merge(Sanitize::Config::BASIC,
+  :elements        => %w[
+  a abbr b blockquote cite code dd dfn dl dt em i kbd li mark ol p pre
+  q s samp small strike strong sub sup time u ul var
+])).gsub(/^[\s]*$\n/, "").strip) %>
 </div>
 <% end %>
 <%= paginate @news %>
 <%= page_entries_info @news %>
 	</div>
+	
+	

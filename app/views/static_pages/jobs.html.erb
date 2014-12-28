@@ -5,7 +5,11 @@
 <% @jobs.each do |jobs| %>
 <div class="listitem">
 <h2><%= jobs.item_title %></h2>
-  <%= jobs.item_text.html_safe %>
+  <%= simple_format(Sanitize.fragment(jobs.item_text, Sanitize::Config.merge(Sanitize::Config::BASIC,
+  :elements        => %w[
+  a abbr b blockquote cite code dd dfn dl dt em i kbd li mark ol p pre
+  q s samp small strike strong sub sup time u ul var
+])).gsub(/^[\s]*$\n/, "").strip) %>
 </div>
 <% end %>
 <%= paginate @jobs %>

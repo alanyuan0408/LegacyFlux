@@ -80,9 +80,18 @@ body{
 	max-width:1140px;
 	min-width:710px;
 }
-.main .contentHolder .list{
 
-	background-color:white;
+.list{
+	padding: 1em;
+}
+
+.listitem{
+	margin: 2em 1em 1em 2em;
+}
+
+.listitem br{
+	display: block;
+	margin: 0.5em;
 }
 
 .main .contentHolder .jobCard{

@@ -65,6 +65,9 @@ gem 'bootstrap-sass', '~> 2.3.2'
 #pagination!
 gem 'kaminari'
 
+#sanitization!
+gem 'sanitize'
+
 #production gems for Heroku, especially pg
 group :production do
   gem 'pg',             '0.17.1'
