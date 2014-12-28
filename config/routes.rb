@@ -26,7 +26,8 @@ Rails.application.routes.draw do
   get '/home',      to: 'static_pages#home'
   get '/event',      to: 'static_pages#events'
   get '/news',      to: 'static_pages#news'
-
+  get '/research',      to: 'static_pages#research'
+  
   get '/register_expo', to: 'users#register_expo'
   get '/unregister_expo', to: 'users#unregister_expo'
 

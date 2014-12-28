@@ -42,7 +42,16 @@ class StaticPagesController < ApplicationController
     @currentPage = {:entrepreneur => "active"};
     @number_of_participants = User.where(:expo_ticket => true).length;
   end
+  
+  def research
+    login_method
 
+    @currentPage = {:news => "active"};
+    @research = Feedbank.where(:column_type => 4).order("item_date desc").page(params[:page]).per(10)
+    #1 is Jobs, #2 is Events, #3 is News, #4 is Research
+
+  end
+  
   def news
     login_method
 
