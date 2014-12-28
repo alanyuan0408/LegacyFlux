@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>UofT Web Development Club</title>
-  <%= render 'layouts/cssHook' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-	<div class="mainMenu">
-		<%= render 'layouts/navigation' %>
-	</div>
-	<%= yield %>
-</body>
+	<head>
+	  <title>UofT Web Development Club</title>
+	  <%= render 'layouts/cssHook' %>
+	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  <%= csrf_meta_tags %>
+	</head>
+	<body>
+		<div class="mainMenu">
+			<%= render 'layouts/navigation' %>
+		</div>
+		<div class="content">
+			<%= yield %>
+		</div>
+	</body>
 </html>
