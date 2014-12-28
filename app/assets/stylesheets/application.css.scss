@@ -73,19 +73,17 @@ body{
 	margin-top: 15px;
 	}
 
-.main{
+.content{
 	margin-left: 200px;
-	padding-top: 16px;
+	padding-top: 24px;
+	font-size: 75%;
+	max-width:1140px;
+	min-width:710px;
 }
-	.main .contentHolder{
-		padding-top: 10px;
-		font-size: 75%;
-	}
-	.main .contentHolder .list{
-		max-width:1140px;
-		min-width:710px;
-		background-color:white;
-	}
+.main .contentHolder .list{
+
+	background-color:white;
+}
 
 .main .contentHolder .jobCard{
 	position:relative;margin-bottom:36px;
@@ -153,17 +151,6 @@ body{
 	color:#555550;font-weight:normal;
 }
 
-/*HOME*/
-.home_moduleHolder{
-	font-size: 75%;
-	max-width:1140px;
-	min-width:720px;
-	padding-top: 10px;
-}
-.home_mainModule{
-	max-width:1140px;
-	min-width:720px;
-}
 .home_greetingModule{
 	padding-top:20px;height:55px;
 	margin-bottom: 10px;
