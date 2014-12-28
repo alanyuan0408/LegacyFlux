@@ -1,0 +1,11 @@
+<h1>Research</h1>
+<div class="list">
+<% @research.each do |research| %>
+<div class="listitem">
+<h2><%= research.item_title %></h2>
+  <%= research.item_text.html_safe %>
+</div>
+<% end %>
+<%= paginate @research %>
+<%= page_entries_info @research %>
+</div>
