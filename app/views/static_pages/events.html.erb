@@ -1,15 +1,4 @@
 <h1>Events</h1>
 <div class="list">
-<% @events.each do |events| %>
-<div class="listitem">
-<h2><%= events.item_title %></h2>
-  <%= simple_format(Sanitize.fragment(events.item_text, Sanitize::Config.merge(Sanitize::Config::BASIC,
-  :elements        => %w[
-  a abbr b blockquote cite code dd dfn dl dt em i kbd li mark ol p pre
-  q s samp small strike strong sub sup time u ul var
-])).gsub(/^[\s]*$\n/, "").strip) %>
-</div>
-<% end %>
-<%= paginate @events %>
-<%= page_entries_info @events %>
+<%= render "pagination", :items => @events %>
 </div>

@@ -1,17 +1,4 @@
-
-	            Here are all the News Updates, reminders submitted by the department and various Computer Science Leaders. <br>
-<div class="list">
 <h1>Jobs</h1>
-<% @jobs.each do |jobs| %>
-<div class="listitem">
-<h2><%= jobs.item_title %></h2>
-  <%= simple_format(Sanitize.fragment(jobs.item_text, Sanitize::Config.merge(Sanitize::Config::BASIC,
-  :elements        => %w[
-  a abbr b blockquote cite code dd dfn dl dt em i kbd li mark ol p pre
-  q s samp small strike strong sub sup time u ul var
-])).gsub(/^[\s]*$\n/, "").strip) %>
-</div>
-<% end %>
-<%= paginate @jobs %>
-<%= page_entries_info @jobs %>
+<div class="list">
+<%= render "pagination", :items => @jobs %>
 </div>
