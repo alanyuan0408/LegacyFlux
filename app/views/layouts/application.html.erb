@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	  <title>UofT Web Development Club</title>
-	  <%= render 'layouts/cssHook' %>
-	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-	  <%= csrf_meta_tags %>
+	<title>UofT Web Development Club</title>
+	<%= render 'layouts/cssHook' %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
 	</head>
 	<body>
-		<div class="mainMenu">
-			<%= render 'layouts/navigation' %>
-		</div>
-		<div class="content">
-			<div class="home_mainModule greeting">
-				<%= render 'layouts/greetingModule' %>
+	<div class="wrapper">
+	<div class="userModule">
+		<%= render 'layouts/greetingModule' %>
+	</div>
+		<div class="fixedWrapper">
+			<div class="mainMenu">
+				<%= render 'layouts/navigation' %>
 			</div>
-			<%= yield %>
+			<div class="content">
+				<%= yield %>
+			</div>
 		</div>
+	</div>
+	<div class="footer">
+		<%= render 'layouts/footer' %>
+	</div>
 	</body>
 </html>

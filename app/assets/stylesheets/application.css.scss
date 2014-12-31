@@ -19,21 +19,54 @@
 	padding: 0;
 	margin: 0;
 }
-body{
-	font-size: 100%;
-	font-family: Arial, Helvetica, sans-serif;
+
+
+html{
+	height: 100%;
+	overflow: auto;
 }
 
+body{
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	overflow-y: scroll; 
+	font-size: 100%;
+	font-family: Arial, Helvetica, sans-serif;
+	overflow: auto;
+}
+
+.wrapper{
+	min-height:100%;
+	margin: 0 auto;
+ 	margin-bottom: -40px;
+	overflow: auto;
+}
+.wrapper:after {
+  content: "";
+  display: block;
+  height: 40px;
+}
+.fixedWrapper{
+	width: 960px;
+	margin: 0 auto;
+}
 .mainMenu{
-	position:fixed;left:0;
-	width:180px;
+	float: left;
+	width:160px;
 	margin: 0;
 	padding: 15px 0 0 0;
 	height:100%;
-	background-color:#e1e1e1;
 	font-family: 'Roboto', sans-serif;
 	font-weight: 500;
 }
+
+.footer{
+	clear:both;
+	background-color: #eeeeee;
+	height: 40px;
+}
+
 #logo{
 	position:fixed;top:0;left:0;
 	width:96px;height:96px;
@@ -74,24 +107,16 @@ body{
 	}
 
 .content{
-	margin-left: 200px;
-	padding-top: 24px;
+	padding-top: 1.5em;
 	font-size: 75%;
-	max-width:1140px;
-	min-width:710px;
+	margin-left: 160px;
 }
 
 .list{
-	padding: 1em;
 }
 
 .listitem{
-	margin: 2em 1em 1em 2em;
-}
-
-.listitem br{
-	display: block;
-	margin: 0.5em;
+	margin-top: 1em;
 }
 
 .main .contentHolder .jobCard{
@@ -160,13 +185,14 @@ body{
 	color:#555550;font-weight:normal;
 }
 
-.home_greetingModule{
-	padding-top:20px;height:55px;
+.userModule{
+	padding-top: 1em;	
+	height:55px;
 	margin-bottom: 10px;
-	border:#B2C0CE solid 1px;
 	width: 100%;
 	display: inline-flex;
 	overflow: hidden;
+	background-color: #eeeeee;
 }
 
 .loginform label{
@@ -201,7 +227,7 @@ body{
 	width:90px;
 	border-radius: 0px;
 }
-.home_greetingModule p{
+.userModule p{
 	position:relative;margin-left:20px;
 	color: #111111;
 	font-family: 'Roboto', Arial, Helvetica, sans-serif;
