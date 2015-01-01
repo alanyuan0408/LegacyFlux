@@ -7,6 +7,16 @@
 		<li><%= link_to "<i class='icon-microphone'></i>NEWS".html_safe, "/news" %></li>
 		<li><a href="#"><i class='icon-pen'></i>POST</a></li>
 		<li><%= link_to "<i class='icon-briefcasethree'></i>MY ACCOUNT".html_safe, "/useraccount" %></li>
-		<li><a href="#"><i class='icon-exit'></i>LOGOUT</a></li>
+
+		<% if user_signed_in? %>
+			<li>
+				<%= link_to("<i class='icon-exit'></i>LOGOUT".html_safe, destroy_user_session_path, :method => :delete) %>
+			</li>
+		<% else %>
+		 	<li>
+		 		<%= link_to("<i class='icon-enter'></i>LOGIN".html_safe, new_user_session_path) %>  
+		 	</li>
+		<% end %>
+
 	</ul>
 </nav>
