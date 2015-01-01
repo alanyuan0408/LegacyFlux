@@ -38,13 +38,13 @@ body{
 .wrapper{
 	min-height:100%;
 	margin: 0 auto;
- 	margin-bottom: -40px;
+ 	margin-bottom: -36px;
 	overflow: auto;
 }
 .wrapper:after {
   content: "";
   display: block;
-  height: 40px;
+  height: 36px;
 }
 .fixedWrapper{
 	width: 960px;
@@ -63,7 +63,7 @@ body{
 .footer{
 	clear:both;
 	background-color: #eeeeee;
-	height: 28px;
+	height: 24px;
 	text-align: center;
 	font-size: 75%;
 	padding-top: 12px;
@@ -188,13 +188,24 @@ body{
 }
 
 .userModule{
-	padding-top: 1em;	
-	height:55px;
-	margin-bottom: 10px;
 	width: 100%;
-	display: inline-flex;
-	overflow: hidden;
+	pading-top: 0.5em;
+	display: inline-block;
 	background-color: #eeeeee;
+}
+
+.logo{
+	float:left;
+	padding-left: 0.5em;
+	color: #111111;
+	font-family: 'Roboto', Arial, Helvetica, sans-serif;
+	font-size: 200%;
+	font-weight: 900;
+}
+
+.loginform{
+	float:right;
+	padding-right: 0.5em;
 }
 
 .loginform label{
@@ -228,13 +239,6 @@ body{
 	color: #000000;
 	width:90px;
 	border-radius: 0px;
-}
-.userModule p{
-	position:relative;margin-left:20px;
-	color: #111111;
-	font-family: 'Roboto', Arial, Helvetica, sans-serif;
-	font-size: 200%;
-	font-weight: 900;
 }
 
 .new_opportunities{
