@@ -84,14 +84,13 @@ body{
 	}
 	.nav li{
 		display:block;
-		margin:0px 0 0 10px;
+		margin:0px 0 0.5em 0px;
 		font-size:90%;
 		color: #999999;
 	}
 	.nav a:link, a:visited{
 		display:block;
-		margin-left: -20px;
-		padding: 10px 10px 10px 30px;
+		padding: 0;
 		color: #191919;
 		width:150px;
 		text-decoration:none;
