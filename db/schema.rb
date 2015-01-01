@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150101001140) do
+ActiveRecord::Schema.define(version: 20150101222541) do
+
+  create_table "account_settings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "approval_message"
+    t.boolean  "account_selected", default: false
+    t.boolean  "content_creator",  default: false
+    t.boolean  "student_account",  default: false
+    t.boolean  "content_approved", default: false
+    t.boolean  "sent_approval",    default: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "account_settings", ["user_id"], name: "index_account_settings_on_user_id"
 
   create_table "feedbanks", force: :cascade do |t|
     t.string   "item_id"
@@ -25,6 +39,21 @@ ActiveRecord::Schema.define(version: 20150101001140) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
   end
+
+  create_table "mail_settings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "email_frequency", default: 7
+    t.boolean  "news",            default: true
+    t.boolean  "research",        default: true
+    t.boolean  "jobs",            default: true
+    t.boolean  "events",          default: true
+    t.boolean  "expo_ticket",     default: false
+    t.datetime "nextsend"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "mail_settings", ["user_id"], name: "index_mail_settings_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
