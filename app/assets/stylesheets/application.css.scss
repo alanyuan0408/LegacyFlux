@@ -88,6 +88,7 @@ body{
 		text-decoration:none;
 		text-transform: uppercase;
 		display:block;
+		border-right: 1px solid #eeeeee;
 	}			
 	.nav a:link, a:visited{
 		color: #191919;
@@ -146,8 +147,10 @@ body{
 }
 
 .loginform input#session_id, input#session_password{
-	border: 0px;
 	font-family: 'Roboto', Arial, Helvetica, sans-serif;
+	border: 0px;
+	border-top: 1px solid #eeeeee;
+	border-bottom: 1px solid #eeeeee;
 	font-size: 200%;
 	font-weight: 900;
 	color: #dd0000;
@@ -157,7 +160,7 @@ body{
 }
 .loginform input.btn.btn-primary{
 	border: 0px;
-	background: #e1e1e1;
+	background: #eeeeee;
 	font-family: 'Roboto', Arial, Helvetica, sans-serif;
 	font-size: 200%;
 	font-weight: 900;
