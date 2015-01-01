@@ -82,17 +82,20 @@ body{
 	}
 	.nav li{
 		display:block;
-		margin:0em 0px 0.9em 0px;
 		font-size:90%;
 		color: #999999;
 	}
-	.nav a:link, a:visited{
-		display:block;
-		padding: 0;
-		color: #191919;
+	.nav a{
+		padding:0.5em 0em 0.5em 1em;
+		margin-left: -1em;
 		width:150px;
 		text-decoration:none;
 		text-transform: uppercase;
+		display:block;
+	}			
+	.nav a:link, a:visited{
+		color: #191919;
+
 	}
 .nav a:hover, a:active{
 		color: #ff2222;
