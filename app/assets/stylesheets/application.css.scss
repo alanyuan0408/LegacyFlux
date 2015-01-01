@@ -54,7 +54,7 @@ body{
 	float: left;
 	width:160px;
 	margin: 0;
-	padding: 15px 0 0 0;
+	padding: 1em 0 0 0;
 	height:100%;
 	font-family: 'Roboto', sans-serif;
 	font-weight: 500;
@@ -74,17 +74,15 @@ body{
 	}
 
 .nav{
-	position:relative;
 	width:100%;
 }
 	.nav ul{
 	overflow: hidden;
 	list-style-type: none;
-	padding-top:10px;
 	}
 	.nav li{
 		display:block;
-		margin:0px 0 0.5em 0px;
+		margin:0em 0px 0.9em 0px;
 		font-size:90%;
 		color: #999999;
 	}
