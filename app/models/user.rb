@@ -1,13 +1,13 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :password, :password_confirmation, :email_frequency, :news, :research, :jobs, :events, :expo_ticket, :approval_message, :organization, :email_confirmation_token, :confirmationMail
-  has_secure_password
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+  attr_accessible :name, :email_frequency, :news, :research, :jobs, :events, :expo_ticket, :approval_message, :organization
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :name,  presence: true
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: true
-  validates :password, presence: true, length: { minimum: 6 }, on: :create
-  validates :password_confirmation, presence: true, on: :create
   validates :email_frequency, presence: true, :numericality => {:only_integer => true, :greater_than_or_equal_to => 1, :less_than_or_equal_to => 7 }
 
   before_save { |user| user.email = email.downcase }
