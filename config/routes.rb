@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   resources :users
   resources :feedbanks
-  resources :sessions, only: [:new, :create, :destroy]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.  get "home" => "static_pages#home"
@@ -15,9 +14,9 @@ Rails.application.routes.draw do
     # You can have the root of your site routed with "root"
   root to: 'static_pages#home'
 
+  get '/home', to: 'static_pages#home'
+
   get '/signup', to: 'users#new'
-  get '/signin', to: 'sessions#new'
-  get '/signout', to: 'sessions#destroy'
   get '/update', to: 'users#edit'
 
   get '/developer',  to: 'static_pages#developer'
@@ -48,6 +47,7 @@ Rails.application.routes.draw do
   get "/feedcreate" => 'feedbanks#create'
   get "/feedapprove" => 'feedbanks#approve_content'
   get "/feeddisapprove" => 'feedbanks#disapprove_content'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
