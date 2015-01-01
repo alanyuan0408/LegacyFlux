@@ -39,36 +39,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def create
-    @currentPage = {:useraccount => "active"};
-  	@user = User.new(params[:user])
-    @user_name = "Account Login"
-
-  	if @user.save
-  		#Handle a successful save.
-
-      sign_in @user
-  		redirect_to @user
-  	else 
-      @currentPage = {:usererror => "true"};
-  		render 'new'
-  	end
-  end
-
-
-  def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = "User destroyed."
-    @admin_user = User.find_by_name("Admin");
-    redirect_to @admin_user 
-  end
-
-  def new
-    @currentPage = {:useraccount => "active"};
-  	@user = User.new
-    @user_name = "Account login"
-  end
-
   def edit
     @currentPage = {:useraccount => "active"};
     @user = User.find_by_id(session[:remember_token])
