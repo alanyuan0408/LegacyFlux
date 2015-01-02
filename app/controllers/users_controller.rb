@@ -51,15 +51,11 @@ class UsersController < ApplicationController
   def update
 
     if @user.update_attributes(params[:user])
-        if @user.content_creator
-          @user.update_attribute(:sent_approval, true);
-        end
-        sign_in @user
-        redirect_to @user
+        redirect_to @current_user
     else
-      @currentPage[:usererror] = "true"
       render 'edit'
     end
+
   end
 
   def register_expo
@@ -79,45 +75,35 @@ class UsersController < ApplicationController
   end 
 
   def student_account
-    @user = User.find_by_id(session[:remember_token])
-    @user.update_attribute(:student_account, true);
-    @user.update_attribute(:account_selected, true);
-    @currentPage = {:useraccount => "active"};
-    @user_name = @user.name
-    redirect_to @user
+    @current_user.account_setting.update_attribute(:student_account, true);
+    @current_user.account_setting.update_attribute(:account_selected, true);
+
+    redirect_to @current_user
   end
 
   def creator_account
-    @user = User.find_by_id(session[:remember_token])
-    @user.update_attribute(:content_creator, true);
-    @user.update_attribute(:account_selected, true);
-    @currentPage = {:useraccount => "active"};
-    @user_name = @user.name
-    redirect_to @user
+    @current_user.account_setting.update_attribute(:content_creator, true);
+    @current_user.account_setting.update_attribute(:account_selected, true);
+
+    redirect_to @current_user
   end
 
   def request_creator
-    @user = User.find_by_id(session[:remember_token])
-    @user.update_attribute(:sent_approval, true);
-    @user.update_attribute(:content_creator, true);
-    @user.update_attribute(:organization, params[:organization]);
-    @user.update_attribute(:approval_message, params[:approval_message]);
+    @current_user.account_setting.update_attribute(:sent_approval, true);
+    @current_user.update_attribute(:organization, params[:organization]);
+    @current_user.account_setting.update_attribute(:approval_message, params[:approval_message]);
 
-    @currentPage = {:useraccount => "active"};
-    @user_name = @user.name
-    redirect_to @user
+    redirect_to @current_user
   end
 
   def approve_creator 
     @user = User.find(params[:id])
-    @user.update_attribute(:content_approved, true);
+    @user.account_setting.update_attribute(:content_approved, true);
 
-    @admin_user = User.find_by_name("Admin");
-    redirect_to @admin_user 
+    redirect_to @current_user
   end
 
   def change_password
-    
     
   end
 
