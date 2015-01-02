@@ -1,20 +1,6 @@
 <div class="span9 offset1">
 
-	<style>
-		.css_text{
-			width: 85%;
-		}
-
-		.full_width {
-			width: 95%;
-		}
-
-		.title_width {
-			width: 50%;
-		}
-	</style>
-		
-	<h2>Welcome <%= @user.name %></h2>
+	<h2>Welcome <%= @current_user.name %></h2>
 
 	<br>
 
@@ -30,7 +16,7 @@
 	  <div class="tab-content">
 	    <div class="tab-pane active" id="tab1">
 
-	      <% if @user.email_confirmation_token != "confirmed" %>
+	      <% if @current_user.confirmation_token != nil %>
 				<div class="alert alert-error">
 					Emails will only be sent after you confirm your email.
 				</div>
@@ -38,32 +24,32 @@
 
 			<h4>Here are your Mailing Settings</h4>
 
-			<p>Your Email will be sent in a frequency of <%= @user.email_frequency %> days</p>
+			<p>Your Email will be sent in a frequency of <%= @email_setting.email_frequency %> days</p>
 
 			<br>
 
-			<% if @user.news %>
+			<% if @email_setting.news %>
 				<p><i class='icon-checkmark'></i>  Your Email <b>will</b> include News Updates</p>
 			<% else %> 
 				<p><i class='icon-cancel-2'></i>  Your Email <b>will not</b> include News Updates</p>
 			<% end %>
 			<br>
 
-			<% if @user.research %>
+			<% if @email_setting.research %>
 				<p><i class='icon-checkmark'></i>  Your Email <b>will</b> include Research Opportunities</p>
 			<% else %> 
 				<p><i class='icon-cancel-2'></i>  Your Email <b>will not</b> include Research Opportunities</p>
 			<% end %>
 			<br>
 
-			<% if @user.jobs %>
+			<% if @email_setting.jobs %>
 				<p><i class='icon-checkmark'></i>  Your Email <b>will</b> include Job Updates</p>
 			<% else %> 
 				<p><i class='icon-cancel-2'></i>  Your Email <b>will not</b> include Job Updates</p>
 			<% end %>
 			<br>
 
-			<% if @user.events %>
+			<% if @email_setting.events %>
 				<p><i class='icon-checkmark'></i>  Your Email <b>will</b> include Events</p>
 			<% else %> 
 				<p><i class='icon-cancel-2'></i>  Your Email <b>will not</b> include Events</p>
@@ -75,7 +61,7 @@
 	    </div>
 
 	    <div class="tab-pane" id="tab2">
-	      <% if !@user.content_creator %>
+	      <% if !@account_setting.content_creator %>
 
 	      <div class="span6">
 		                    
@@ -84,11 +70,11 @@
 		            <br>
 		            <p>Please send a message indiciating your request for the admin to approve</p>
 		            <br>
-		            <%= form_for @user, :url => url_for(:controller => "users", 
+		            <%= form_for @current_user, :url => url_for(:controller => "users", 
                                 :action => "request_creator") do |f| %>
 
 		                <%= f.label :name %>
-		                <%= f.text_field :name, :value => @user.name, :class => "css_text" %>
+		                <%= f.text_field :name, :value => @current_user.name, :class => "css_text" %>
 
 		                <%= f.label :organization %>
 		                <%= f.text_field :organization, placeholder: "organization", :class => "css_text" %>
@@ -111,11 +97,11 @@
 
 				    <div class="panel">
 				        <div class="panel-header bg-lightBlue fg-white">
-				            Hello <%= @user.name %>
+				            Hello <%= @current_user.name %>
 				        </div>  
 				                    
 				        <div class="panel-content">
-				            <% if @user.content_approved %>
+				            <% if @account_setting.content_approved %>
 				            	<p>You're account has approved by the admin.</p><br>
 
 				                <%= form_for :feedbank, :url => '/feedbanks#create' do |f| %> 
@@ -126,7 +112,7 @@
 				                    <%= f.label :item_url, "Item URL [Optional]" %>
 				                    <%= f.text_field :item_url, :size=>"150", :class => "title_width", placeholder: "Url to the Post"  %>
 
-				                    <%= f.hidden_field :user_id, :value => @user.id %>
+				                    <%= f.hidden_field :user_id, :value => @current_user.id %>
 				                    <%= f.hidden_field :item_date, :value => Time.current %>
 				                    <%= f.hidden_field :approval_status, :value => "false" %>
 

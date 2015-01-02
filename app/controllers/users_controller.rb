@@ -8,6 +8,9 @@ class UsersController < ApplicationController
 
       @feedbank_posts = Feedbank.where(user_id: @current_user.id)
 
+      @email_setting = @current_user.email_setting
+      @account_setting = @current_user.account_setting
+
       if @current_user.admin
 
         @user_posts = Feedbank.where(approval_status: false).all
