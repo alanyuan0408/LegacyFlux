@@ -1,17 +1,14 @@
 class FeedbanksController < ApplicationController
 
 	def index
-		@currentPage = {:useraccount => "active"};
-		@user_name = "Account Login"
 		@feedbanks = Feedbank.all
 	end
 
-	 def create
-  		@Feedbank = Feedbank.new(params[:feedbank])
-  		@user = User.find_by_id(session[:remember_token])
+	def create
+  	@Feedbank = Feedbank.new(params[:feedbank])
 
-  		@Feedbank.save
-  		redirect_to @user
+  	@Feedbank.save
+  	redirect_to current_user
   end
 
   def show
