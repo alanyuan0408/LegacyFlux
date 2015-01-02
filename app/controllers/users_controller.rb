@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
 
   def show
-    @currentPage = {:useraccount => "active"};
 
-    if User.exists?(params[:id])
+    if used_signed_in?
       @user = User.find(params[:id])
       @user_name = @user.name
       @feedbank_posts = Feedbank.where(user_id: @user.id)

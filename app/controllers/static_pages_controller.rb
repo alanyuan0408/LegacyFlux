@@ -1,30 +1,7 @@
 class StaticPagesController < ApplicationController
 
-  helper_method :login_method, :current_user
-
-
-  def login_method
-    #helper method to find the cookie login or the user + set the name on the template
-
-    current_user
-
-    if signed_in?
-      sign_in(@current_user)
-    end
-
-    if session[:remember_token] && User.exists?(:id => session[:remember_token])
-      @user = User.find(session[:remember_token])
-      @user_name = @user.name
-    else
-      @user_name = "Account Login"
-    end
-  end
-
   def home
-    login_method
-
-    @currentPage = {:home => "active"};
-    @number_of_users = User.all.length;
+    @currentUser = current_user
   end
 
   def developer
