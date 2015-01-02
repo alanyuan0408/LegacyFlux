@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get '/developer',  to: 'static_pages#developer'
   get '/jobs',     to: 'static_pages#jobs'
   get '/useraccount',   to: 'static_pages#useraccount'
-  get '/entrepreneur', to: 'static_pages#entrepreneur'
+  get '/expo', to: 'static_pages#expo'
   get '/home',      to: 'static_pages#home'
   get '/event',      to: 'static_pages#events'
   get '/news',      to: 'static_pages#news'
@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
   get '/student_account', to: 'users#student_account'
   get '/creator_account', to: 'users#creator_account'
+  get '/user_info', to: 'users#show'
 
   get '/approve', to: 'users#approve_creator'
   get '/request', to: 'users#request_creator'
