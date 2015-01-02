@@ -1,0 +1,3 @@
+class AccountSettingsController < ApplicationController
+
+end

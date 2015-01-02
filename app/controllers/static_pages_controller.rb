@@ -9,6 +9,14 @@ class StaticPagesController < ApplicationController
   end
 
   def expo
+
+    if user_signed_in?
+      @current_user = current_user;
+      @account_setting = @current_user.mail_settings.expo_ticket;
+    else 
+      @expo_ticket = "false"
+    end
+
     @number_of_participants = User.where(:expo_ticket => true).length;
   end
   

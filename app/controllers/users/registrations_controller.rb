@@ -12,12 +12,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     build_resource(sign_up_params)
 
+ #   mail_setting.create(nextsend: Time.now + 7.days, user_id: resource.id)
+ #   account_setting.create(approval_message: "", user_id: resource.id)
+
     resource_saved = resource.save
     yield resource if block_given?
     if resource_saved
-
-      resource.mail_setting.create(nextsend: Time.now + 7.days)
-      resource.account_setting.create(approval_message: "")
 
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_flashing_format?

@@ -39,7 +39,6 @@ Rails.application.routes.draw do
   get "/404" => 'users#permissiondenied'
   get "/500" => 'users#permissiondenied'
 
-  get "/feedbanks" => 'feedbanks#show'
   get "/feedcreate" => 'feedbanks#create'
   get "/feedapprove" => 'feedbanks#approve_content'
   get "/feeddisapprove" => 'feedbanks#disapprove_content'
