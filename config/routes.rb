@@ -14,9 +14,6 @@ Rails.application.routes.draw do
     # You can have the root of your site routed with "root"
   root to: 'static_pages#home'
 
-  get '/home', to: 'static_pages#home'
-
-  get '/signup', to: 'users#new'
   get '/update', to: 'users#edit'
 
   get '/developer',  to: 'static_pages#developer'
@@ -37,8 +34,6 @@ Rails.application.routes.draw do
   get '/approve', to: 'users#approve_creator'
   get '/request', to: 'users#request_creator'
   get '/certify', to: 'users#certify'
-
-  get '/confirmation_token', to: 'users#confirmation_token'
   
   get "/404" => 'users#permissiondenied'
   get "/500" => 'users#permissiondenied'
