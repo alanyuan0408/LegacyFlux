@@ -25,8 +25,8 @@ Rails.application.routes.draw do
   get '/news',      to: 'static_pages#news'
   get '/research',      to: 'static_pages#research'
   
-  get '/register_expo', to: 'users#register_expo'
-  get '/unregister_expo', to: 'users#unregister_expo'
+  post '/register_expo', to: 'users#register_expo'
+  post '/unregister_expo', to: 'users#unregister_expo'
 
   get '/student_account', to: 'users#student_account'
   get '/creator_account', to: 'users#creator_account'

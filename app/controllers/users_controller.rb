@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :find_user
+
   def show
 
     if user_signed_in?
@@ -61,23 +63,19 @@ class UsersController < ApplicationController
   end
 
   def register_expo
-    @current_user = current_user;
-    @user = @current_user.account_setting.find(1);
-    @user.update_attribute(:expo_ticket, true);
-    @registration = "true";
+    @current_user.mail_setting.update_attribute(:expo_ticket, true);
+    @account_setting = "true";
 
-    @number_of_participants = User.where(:expo_ticket => true).length;
-    render 'static_pages/entrepreneur'
+    @number_of_participants = MailSetting.where(:expo_ticket => true).length;
+    render 'static_pages/expo'
   end 
 
   def unregister_expo
-    @current_user = current_user;
-    @user = @current_user.account_setting.find(1);
-    @user.update_attribute(:expo_ticket, false);
-    @registration = "false";
+    @current_user.mail_setting.update_attribute(:expo_ticket, false);
+    @account_setting = "false";
 
-    @number_of_participants = User.where(:expo_ticket => true).length;
-    render 'static_pages/entrepreneur'
+    @number_of_participants = MailSetting.where(:expo_ticket => true).length;
+    render 'static_pages/expo'
   end 
 
   def student_account
@@ -96,20 +94,6 @@ class UsersController < ApplicationController
     @currentPage = {:useraccount => "active"};
     @user_name = @user.name
     redirect_to @user
-  end
-
-  def confirmation_token
-    @user = User.find_by_email_confirmation_token(params[:email_confirmation_token]);
-
-    if @user.blank?
-      render 'permissiondenied'
-    else 
-      sign_in @user
-      @currentPage = {:useraccount => "active"};
-      @user_name = @user.name
-      @user.update_column(:email_confirmation_token, "confirmed")
-      render 'users/confirmMail'
-    end 
   end
 
   def request_creator
@@ -133,8 +117,14 @@ class UsersController < ApplicationController
   end
 
   def change_password
-    @user = User.find([params[:id]])
+    
     
   end
+
+  private 
+
+    def find_user
+      @current_user = current_user
+    end
 
 end

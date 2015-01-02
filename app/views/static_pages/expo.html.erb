@@ -52,9 +52,7 @@
 
             <% if user_signed_in? %>
 
-              <%= @account_setting %>
-
-              <% if @registration %>
+              <% if !@account_setting %>
                   <p>Register for the Expo</p>
                   <%= button_to "Register", '/register_expo', {:class => "large"} %>
               <% else %>
