@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   has_one :mail_setting
   has_one :account_setting
 
+  attr_accessible :email, :password, :password_confirmation, :name
+
   validates :name,  presence: true
 
 end

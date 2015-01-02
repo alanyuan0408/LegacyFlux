@@ -39,6 +39,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def index
+
+  end
+
   def edit
     @currentPage = {:useraccount => "active"};
     @user = User.find_by_id(session[:remember_token])
