@@ -1,24 +1,10 @@
 <nav>
 	<ul class="nav">
-		<li><%= link_to "<i class='icon-homealt'></i>HOME".html_safe, "/home" %></li>
 		<li><%= link_to "<i class='icon-microphone'></i>DEVELOPER".html_safe, "/developer" %></li>
+		<li><%= link_to "<i class='icon-microphone'></i>EXPO".html_safe, "/expo" %></li>
 		<li><%= link_to "<i class='icon-briefcasethree'></i>JOBS".html_safe, "/jobs" %></li>
 		<li><%= link_to "<i class='icon-lab-flask'></i>RESEARCH".html_safe, "/research" %></li>
 		<li><%= link_to "<i class='icon-microphone'></i>EVENTS".html_safe, "/event" %></li>
 		<li><%= link_to "<i class='icon-microphone'></i>NEWS".html_safe, "/news" %></li>
-		<li><%= link_to "<i class='icon-microphone'></i>EXPO".html_safe, "/expo" %></li>
-		<li><a href="https://www.facebook.com/pages/Uoft-Web-Development-Club/571896212842252"><i class='icon-pen'></i>FACEBOOK</a></li>
-		<li><%= link_to "<i class='icon-briefcasethree'></i>MY ACCOUNT".html_safe, "/useraccount" %></li>
-
-		<% if user_signed_in? %>
-			<li>
-				<%= link_to("<i class='icon-exit'></i>LOGOUT".html_safe, destroy_user_session_path, :method => :delete) %>
-			</li>
-		<% else %>
-		 	<li>
-		 		<%= link_to("<i class='icon-enter'></i>LOGIN".html_safe, new_user_session_path) %>  
-		 	</li>
-		<% end %>
-
 	</ul>
 </nav>
