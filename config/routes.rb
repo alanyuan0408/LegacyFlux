@@ -28,8 +28,8 @@ Rails.application.routes.draw do
   post '/register_expo', to: 'users#register_expo'
   post '/unregister_expo', to: 'users#unregister_expo'
 
-  get '/student_account', to: 'users#student_account'
-  get '/creator_account', to: 'users#creator_account'
+  post '/student_account', to: 'users#student_account'
+  post '/creator_account', to: 'users#creator_account'
   get '/user_info', to: 'users#show'
 
   get '/approve', to: 'users#approve_creator'

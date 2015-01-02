@@ -5,39 +5,34 @@ class UsersController < ApplicationController
   def show
 
     if user_signed_in?
-      @user = User.find(params[:id])
-      @user_name = @user.name
-      @feedbank_posts = Feedbank.where(user_id: @user.id)
 
-      if @user.admin && current_user.remember_token == @user.remember_token
-        @post_request = User.where(sent_approval: true).where(content_approved: false).all
-        @users = User.where(student_account: true).order("created_at desc")
-        @creators = User.where(content_creator: true).order("created_at desc")
-        @confirmed_users = User.where(email_confirmation_token: "confirmed").length
+      @feedbank_posts = Feedbank.where(user_id: @current_user.id)
+
+      if @current_user.admin
 
         @user_posts = Feedbank.where(approval_status: false).all
         render 'admin_page'
 
-      elsif (!@user.account_selected) && current_user.remember_token == @user.remember_token
+      elsif @current_user.account_setting.student_account
+        #render the student page [Default Page]
+
+      elsif !@current_user.account_setting.account_selected
         render 'account_select'
 
-      elsif !@user.student_account && @user.content_creator && (!@user.sent_approval) && current_user.remember_token == @user.remember_token
+      elsif (!@current_user.account_setting.sent_approval)
         render 'approve_creator'
 
-      elsif !@user.student_account &&  @user.content_creator && @user.sent_approval && current_user.remember_token == @user.remember_token
+      elsif @current_user.account_setting.sent_approval 
         render 'content_page'
 
-      elsif @user.student_account && current_user.remember_token == @user.remember_token
-          #render the student page
       else
-        @user = User.find(params[:id])
-        @user_name = "Account Login"
         render 'permissiondenied'
       end
+
     else
-      @user_name = "Account Login"
       render 'permissiondenied'
     end
+
   end
 
   def index
