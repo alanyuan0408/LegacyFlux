@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
 
   def show
-    @currentPage = {:useraccount => "active"};
 
-    if User.exists?(params[:id])
+    if user_signed_in?
       @user = User.find(params[:id])
       @user_name = @user.name
       @feedbank_posts = Feedbank.where(user_id: @user.id)
@@ -39,16 +38,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def index
+
+  end
+
   def edit
-    @currentPage = {:useraccount => "active"};
-    @user = User.find_by_id(session[:remember_token])
-    @user_name = @user.name
+
   end
 
   def update
-    @currentPage = {:useraccount => "active"};
-    @user = User.find_by_id(session[:remember_token])
-    @user_name = @user.name
 
     if @user.update_attributes(params[:user])
         if @user.content_creator
