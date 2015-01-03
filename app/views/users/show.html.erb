@@ -71,10 +71,10 @@
 		        <div class="panel-content">
 		            <h4>Request for Content Creator </h4>
 		            <br>
-		            <p>Please send a message indiciating your request for the admin to approve</p>
+		            <p>Please send a message indiciating your reason for the admin to approve your account</p>
 		            <br>
 		            <%= form_for @current_user, :url => url_for(:controller => "users", 
-                                :action => "request_creator") do |f| %>
+                            :action => "request_creator"), :method => :POST do |f| %>
 
 		                <%= f.label :name %>
 		                <%= f.text_field :name, :value => @current_user.name, :class => "css_text" %>
@@ -193,8 +193,5 @@
 
 	  </div>
 	</div>
-
-
-	<%= button_to "Sign Out", '/signout', {:class => "large"} %>
 
 </div>

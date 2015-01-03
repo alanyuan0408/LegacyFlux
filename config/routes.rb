@@ -25,7 +25,8 @@ Rails.application.routes.draw do
   get '/event',      to: 'static_pages#events'
   get '/news',      to: 'static_pages#news'
   get '/research',      to: 'static_pages#research'
-  
+  post '/request', to: 'users#request_creator'
+
   post '/register_expo', to: 'users#register_expo'
   post '/unregister_expo', to: 'users#unregister_expo'
 
