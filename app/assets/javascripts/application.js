@@ -11,7 +11,5 @@
 // about supported directives.
 //
 //= require jquery
-//= require form_slider
-//= require jquery_ujs
 //= require turbolinks
 //= require_tree .
