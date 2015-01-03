@@ -67,6 +67,11 @@ gem 'kaminari'
 #sanitization!
 gem 'sanitize'
 
+#WYSIWYG + file upload
+gem 'ckeditor'
+gem 'carrierwave'
+gem 'mini_magick'
+
 #production gems for Heroku, especially pg
 group :production do
   gem 'pg',             '0.17.1'
