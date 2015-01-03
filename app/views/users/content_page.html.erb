@@ -19,7 +19,7 @@ $(initSummernote)</script>
 
 <div class="span9 offset1">
 
-    <h2>Welcome <%= @user.name %></h2>
+    <h2>Welcome <%= @current_user.name %></h2>
 
     <br>
 
@@ -37,11 +37,11 @@ $(initSummernote)</script>
 
                     <div class="panel">
                         <div class="panel-header bg-lightBlue fg-white">
-                            Hello <%= @user.name %>
+                            Hello <%= @current_user.name %>
                         </div>  
                                     
                         <div class="panel-content">
-                            <% if @user.content_approved %>
+
                             	<p>You're account has approved by the admin.</p><br>
 
                                     <%= form_for :feedbank, :url => '/feedbanks#create' do |f| %> 
@@ -52,7 +52,7 @@ $(initSummernote)</script>
                                         <%= f.label :item_url %>
                                         <%= f.text_field :item_url, :size=>"150", :class => "title_width", placeholder: "Url to the Post"  %>
 
-                                        <%= f.hidden_field :user_id, :value => @user.id %>
+                                        <%= f.hidden_field :user_id, :value => @current_user.id %>
                                         <%= f.hidden_field :item_date, :value => Time.current %>
                                         <%= f.hidden_field :approval_status, :value => "false" %>
 
@@ -75,21 +75,7 @@ $(initSummernote)</script>
                                         <br>
 
                                     <% end %>
-                                <% elsif %>
-                            	You're request for a content creator account is pending. Your current posts will be posted on the boards when your approval has been approved by the admin.
 
-                                <br><br>
-
-                                <div class="alert alert-error">
-                                    Content Creators may only make posts after the Admin has approved their Account.
-                                </div>
-
-                            <% end %>
-                            
-                            <br><br>
-
-
-                			<%= button_to "Sign Out", '/signout', {:class => "large"} %>
 
                         </div>
                     </div>

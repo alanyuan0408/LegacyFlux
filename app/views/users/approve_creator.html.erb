@@ -11,28 +11,33 @@
             Request Content Creator Account
         </div>  
                     
-        <div class="panel-content">
-            Thank you for signing up for a content creator account. To activiate the posting functionally of your account, we ask you to please send the admin a personalized message about who you are and the organization you represent. This is intended to protect our system from spam.<br><br>
+                <div class="panel-content">
+                    <h4>Request for Content Creator </h4>
+                    <br>
+                    <p>Please send a message indiciating your reason for the admin to approve your account</p>
+                    <br>
+                    <%= form_for @current_user, :url => url_for(:controller => "users", 
+                            :action => "request_creator"), :method => :POST do |f| %>
 
-            Thank you for your cooperation. We hope to have your approval verified in one business day.
-            <br><br>
-            <%= form_for(@current_user) do |f| %>
+                        <%= f.label :name %>
+                        <%= f.text_field :name, :value => @current_user.name, :class => "css_text" %>
 
-                <%= f.label :name %>
-                <%= f.text_field :name, :value => @current_user.name, :class => "css_text" %>
+                        <%= f.label :organization %>
+                        <%= f.text_field :organization, placeholder: "organization", :class => "css_text" %>
 
-                <%= f.label :organization %>
-                <%= f.text_field :organization, placeholder: "organization", :class => "css_text" %>
+                        <%= f.fields_for :account_setting do |account_form| %>
 
-                <%= f.label :approval_message, "Message to Admin" %>
-                <%= f.text_area :approval_message, :rows => "6", placeholder: "Message for Administrators", :class => "css_text"  %>
+                            <%= account_form.label :approval_message, "Message to Admin" %>
+                            <%= account_form.text_area :approval_message, :rows => "6", placeholder: "Message for Administrators", :class => "css_text"  %>
 
-                <br><br>
+                         <% end %>
 
-                <%= f.submit "Request Account", class: "large" %>
-            <% end %>
+                        <br><br>
 
-        </div>
+                        <%= f.submit "Request Account", class: "large" %>
+                    <% end %>
+
+                </div>
     </div>
 
     <br>          
