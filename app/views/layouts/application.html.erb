@@ -8,13 +8,11 @@
 	</head>
 	<body>
 	<div class="wrapper">
-	<div class="userModule">
-		<%= render 'layouts/greetingModule' %>
+	<div class="topwrap">
+		<%= render 'layouts/topModule' %>
+		<%= render 'layouts/secondModule' %>
 	</div>
 		<div class="fixedWrapper">
-			<div class="mainMenu">
-				<%= render 'layouts/navigation' %>
-			</div>
 			<div class="content">
 				<%= yield %>
 			</div>
