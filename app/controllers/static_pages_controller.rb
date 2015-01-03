@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
 
   def home
-    @currentUser = current_user
+    
   end
 
   def developer
@@ -9,7 +9,15 @@ class StaticPagesController < ApplicationController
   end
 
   def expo
-    @number_of_participants = User.where(:expo_ticket => true).length;
+
+    if user_signed_in?
+      @current_user = current_user;
+      @account_setting = @current_user.mail_setting.expo_ticket;
+    else 
+      @expo_ticket = "false"
+    end
+
+    @number_of_participants = MailSetting.where(:expo_ticket => true).length;
   end
   
   def research

@@ -8,12 +8,11 @@ class FeedbanksController < ApplicationController
   	@Feedbank = Feedbank.new(params[:feedbank])
 
   	@Feedbank.save
-  	redirect_to current_user
+    @current_user = current_user
+  	redirect_to @current_user
   end
 
   def show
-    @currentPage = {:useraccount => "active"};
-    @user_name = "Account Login"
     @feedbanks = Feedbank.all
   end 
 

@@ -50,9 +50,9 @@
             <h5><i class="icon-newspaper"></i> Registered Participants:</h5>
             <%= @number_of_participants %> <br><br>
 
-            <% if @user %>
+            <% if user_signed_in? %>
 
-              <% if !@user.expo_ticket %>
+              <% if !@account_setting %>
                   <p>Register for the Expo</p>
                   <%= button_to "Register", '/register_expo', {:class => "large"} %>
               <% else %>

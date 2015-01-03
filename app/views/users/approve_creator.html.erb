@@ -16,10 +16,10 @@
 
             Thank you for your cooperation. We hope to have your approval verified in one business day.
             <br><br>
-            <%= form_for(@user) do |f| %>
+            <%= form_for(@current_user) do |f| %>
 
                 <%= f.label :name %>
-                <%= f.text_field :name, :value => @user.name, :class => "css_text" %>
+                <%= f.text_field :name, :value => @current_user.name, :class => "css_text" %>
 
                 <%= f.label :organization %>
                 <%= f.text_field :organization, placeholder: "organization", :class => "css_text" %>
