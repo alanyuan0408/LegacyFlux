@@ -7,27 +7,29 @@
 
 	<h4>Modifiy your selections</h4>
 
-	<%= render :partial => "shared/error_messages" if @currentPage[:usererror] == "true" %>
+	<%= form_for(@current_user) do |f| %>
 
-	<%= form_for(@user) do |f| %>
+		 <%= f.fields_for :mail_setting do |account_form| %>
 
-		<%= f.label :news, "Web Club Newsletter" %>
-		<%= f.check_box :news %>
+			<%= account_form.label :news, "News Items" %>
+			<%= account_form.check_box :news %>
 
-		<%= f.label :research, "Research Offers" %>
-		<%= f.check_box :research %>
+			<%= account_form.label :research, "Research Offers" %>
+			<%= account_form.check_box :research %>
 
-		<%= f.label :jobs, "Job Offers" %>
-		<%= f.check_box :jobs %>
+			<%= account_form.label :jobs, "Job Offers" %>
+			<%= account_form.check_box :jobs %>
 
-		<%= f.label :events, "Events" %>
-		<%= f.check_box :events %>
+			<%= account_form.label :events, "Events" %>
+			<%= account_form.check_box :events %>
 
-		<div style="width:40%">
+			<div style="width:40%">
 
-			<%= f.label :email_frequency, "Days between emails [1-7]" %>
-			<%= f.text_field :email_frequency %>
-		</div>
+				<%= account_form.label :email_frequency, "Days between emails [1-7]" %>
+				<%= account_form.text_field :email_frequency %>
+			</div>
+
+		<% end %>
 
 		<br>
 		<br>

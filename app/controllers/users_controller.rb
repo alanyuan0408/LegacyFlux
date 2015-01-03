@@ -1,140 +1,134 @@
 class UsersController < ApplicationController
 
+  before_action :find_user
+
   def show
-    @currentPage = {:useraccount => "active"};
 
-    if User.exists?(params[:id])
-      @user = User.find(params[:id])
-      @user_name = @user.name
-      @feedbank_posts = Feedbank.where(user_id: @user.id)
+    if user_signed_in?
 
-      if @user.admin && current_user.remember_token == @user.remember_token
-        @post_request = User.where(sent_approval: true).where(content_approved: false).all
-        @users = User.where(student_account: true).order("created_at desc")
-        @creators = User.where(content_creator: true).order("created_at desc")
-        @confirmed_users = User.where(email_confirmation_token: "confirmed").length
+      @feedbank_posts = Feedbank.where(user_id: @current_user.id)
+
+      @mail_setting = @current_user.mail_setting
+      @account_setting = @current_user.account_setting
+
+      if @current_user.admin
 
         @user_posts = Feedbank.where(approval_status: false).all
         render 'admin_page'
 
-      elsif (!@user.account_selected) && current_user.remember_token == @user.remember_token
+      elsif @current_user.account_setting.student_account
+        #render the student page [Default Page]
+
+      elsif !@current_user.account_setting.account_selected
         render 'account_select'
 
-      elsif !@user.student_account && @user.content_creator && (!@user.sent_approval) && current_user.remember_token == @user.remember_token
+      elsif (!@current_user.account_setting.sent_approval)
         render 'approve_creator'
 
-      elsif !@user.student_account &&  @user.content_creator && @user.sent_approval && current_user.remember_token == @user.remember_token
+      elsif @current_user.account_setting.sent_approval 
         render 'content_page'
 
-      elsif @user.student_account && current_user.remember_token == @user.remember_token
-          #render the student page
       else
-        @user = User.find(params[:id])
-        @user_name = "Account Login"
         render 'permissiondenied'
       end
+
     else
-      @user_name = "Account Login"
       render 'permissiondenied'
     end
+
+  end
+
+  def index
+
   end
 
   def edit
-    @currentPage = {:useraccount => "active"};
-    @user = User.find_by_id(session[:remember_token])
-    @user_name = @user.name
+
   end
 
   def update
-    @currentPage = {:useraccount => "active"};
-    @user = User.find_by_id(session[:remember_token])
-    @user_name = @user.name
 
-    if @user.update_attributes(params[:user])
-        if @user.content_creator
-          @user.update_attribute(:sent_approval, true);
-        end
-        sign_in @user
-        redirect_to @user
+    param = params[:user][:mail_setting_attributes]
+
+    #Update User Settings [No Mass- Assignment]
+    @current_user.mail_setting.update_attribute(:news, 
+      param[:news])
+    @current_user.mail_setting.update_attribute(:research, 
+      param[:research])
+    @current_user.mail_setting.update_attribute(:jobs, 
+      param[:jobs])
+    @current_user.mail_setting.update_attribute(:events, 
+      param[:events])
+
+    if (param[:email_frequency].to_i < 1)
+      email_frequency = 1
+    elsif (param[:email_frequency].to_i > 7)
+      email_frequency = 7
     else
-      @currentPage[:usererror] = "true"
-      render 'edit'
+      email_frequency = param[:email_frequency].to_i
     end
+
+    @current_user.mail_setting.update_attribute(:email_frequency, 
+        email_frequency)
+
+    redirect_to @current_user
+
   end
 
   def register_expo
-    @user = User.find_by_id(session[:remember_token])
-    @user.update_attribute(:expo_ticket, true);
-    @currentPage = {:entrepreneur => "active"};
-    @user_name = @user.name
-    @number_of_participants = User.where(:expo_ticket => true).length;
-    render 'static_pages/entrepreneur'
+    @current_user.mail_setting.update_attribute(:expo_ticket, true);
+    @account_setting = "true";
+
+    @number_of_participants = MailSetting.where(:expo_ticket => true).length;
+    render 'static_pages/expo'
   end 
 
   def unregister_expo
-    @user = User.find_by_id(session[:remember_token])
-    @user.update_attribute(:expo_ticket, false);
-    @currentPage = {:entrepreneur => "active"};
-    @user_name = @user.name
-    @number_of_participants = User.where(:expo_ticket => true).length;
-    render 'static_pages/entrepreneur'
+    @current_user.mail_setting.update_attribute(:expo_ticket, false);
+    @account_setting = "false";
+
+    @number_of_participants = MailSetting.where(:expo_ticket => true).length;
+    render 'static_pages/expo'
   end 
 
   def student_account
-    @user = User.find_by_id(session[:remember_token])
-    @user.update_attribute(:student_account, true);
-    @user.update_attribute(:account_selected, true);
-    @currentPage = {:useraccount => "active"};
-    @user_name = @user.name
-    redirect_to @user
+    @current_user.account_setting.update_attribute(:student_account, true);
+    @current_user.account_setting.update_attribute(:account_selected, true);
+
+    redirect_to @current_user
   end
 
   def creator_account
-    @user = User.find_by_id(session[:remember_token])
-    @user.update_attribute(:content_creator, true);
-    @user.update_attribute(:account_selected, true);
-    @currentPage = {:useraccount => "active"};
-    @user_name = @user.name
-    redirect_to @user
-  end
+    @current_user.account_setting.update_attribute(:content_creator, true);
+    @current_user.account_setting.update_attribute(:account_selected, true);
 
-  def confirmation_token
-    @user = User.find_by_email_confirmation_token(params[:email_confirmation_token]);
-
-    if @user.blank?
-      render 'permissiondenied'
-    else 
-      sign_in @user
-      @currentPage = {:useraccount => "active"};
-      @user_name = @user.name
-      @user.update_column(:email_confirmation_token, "confirmed")
-      render 'users/confirmMail'
-    end 
+    redirect_to @current_user
   end
 
   def request_creator
-    @user = User.find_by_id(session[:remember_token])
-    @user.update_attribute(:sent_approval, true);
-    @user.update_attribute(:content_creator, true);
-    @user.update_attribute(:organization, params[:organization]);
-    @user.update_attribute(:approval_message, params[:approval_message]);
+    @current_user.account_setting.update_attribute(:sent_approval, true);
+    @current_user.update_attribute(:organization, params[:organization]);
+    @current_user.account_setting.update_attribute(:approval_message, 
+                params[:approval_message]);
 
-    @currentPage = {:useraccount => "active"};
-    @user_name = @user.name
-    redirect_to @user
+    redirect_to @current_user
   end
 
   def approve_creator 
     @user = User.find(params[:id])
-    @user.update_attribute(:content_approved, true);
+    @user.account_setting.update_attribute(:content_approved, true);
 
-    @admin_user = User.find_by_name("Admin");
-    redirect_to @admin_user 
+    redirect_to @current_user
   end
 
   def change_password
-    @user = User.find([params[:id]])
     
   end
+
+  private 
+
+    def find_user
+      @current_user = current_user
+    end
 
 end

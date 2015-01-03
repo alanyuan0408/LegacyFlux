@@ -3,44 +3,43 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  attr_accessible :name, :email_frequency, :news, :research, :jobs, :events, :expo_ticket, :approval_message, :organization
 
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  has_one :mail_setting, dependent: :destroy
+  accepts_nested_attributes_for :mail_setting
+  has_one :account_setting, dependent: :destroy
+  accepts_nested_attributes_for :account_setting
+
+  attr_accessible :email, :password, :password_confirmation, :name
+
+  before_save :create_dependencies
 
   validates :name,  presence: true
-  validates :email_frequency, presence: true, :numericality => {:only_integer => true, :greater_than_or_equal_to => 1, :less_than_or_equal_to => 7 }
+  alias :devise_valid_password? :valid_password?
 
-  before_save { |user| user.email = email.downcase }
-  before_save :create_remember_token #create an admin user
-
-  after_commit :send_confirmation_email, on: :create
-
-  private 
-
-  def create_remember_token
-
-    if (!self.account_created)
-      self.remember_token = SecureRandom.urlsafe_base64
-      self.nextsend = Time.now + self.email_frequency.days
-      self.account_created = true
+  def valid_password?(password)
+    begin
+      super(password)
+    rescue BCrypt::Errors::InvalidHash
+      return false unless BCrypt::Password.new(password) == encrypted_password
+      logger.info "User #{email} is using the old password hashing method, updating attribute."
+      self.password = password
+      true
     end
-
-    if self.name == "Admin" && self.email = "alan.yuan@mail.utoronto.ca"
-      self.admin = "true"
-    end
-
   end
 
-  def send_confirmation_email
-      if self.confirmationMail == "true"
-        #Nothing
-      else
-         self.confirmationMail = "true"
-          # send user email of confirmation if they haven't confirmed their email yet
-         self.update_column(:email_confirmation_token, SecureRandom.urlsafe_base64)
-         
-         UserMailer.welcome_email(self).deliver
-      end
-  end
+  private
 
+    def create_dependencies
+      #Setup the Mail_setting and account_setting dependencies
+        @account_setting = AccountSetting.new
+        @account_setting.approval_message = ""
+        @account_setting.user_id = self.id
+        @account_setting.save
+
+        @mail_setting = MailSetting.new
+        @mail_setting.nextsend = Time.now + 7.days
+        @mail_setting.user_id = self.id
+        @mail_setting.save
+    end
+ 
 end

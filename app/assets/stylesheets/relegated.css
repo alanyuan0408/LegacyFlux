@@ -1,0 +1,295 @@
+/*
+.main .contentHolder .jobCard{
+	position:relative;margin-bottom:36px;
+	width:100%;min-height:120px;
+	border-bottom:#ECECE6 solid 1px;
+	border-radius:3px;
+}
+.main .contentHolder .jobCard .jobCardHead{
+	width:100%;height:24px;
+}
+.main .contentHolder .jobCard .jobCardHead h1{
+	position:relative;text-align:right;top:4px;
+	width:95%; font-size: 72%;
+	color:#555550;font-weight:normal;
+}
+.main .contentHolder .jobCard .companyInfo{
+	position:relative;display:inline-block;vertical-align:top;margin-right:-3px;
+	width:120px;height:120px;
+}
+.main .contentHolder .jobCard .companyInfo .companyLogo{
+	width:100%;
+}
+.main .contentHolder .jobCard .companyInfo .companyLogo img{
+	position:relative;margin:20px 0 0 10%;
+	width:80%;
+}
+
+.main .contentHolder .jobCard .companyJobs{
+	position:relative;display:inline-block;vertical-align:top;margin-right:-3px;
+	min-width:600px; max-width: 1060px; min-height:120px;
+}
+.main .contentHolder .jobCard .companyJobs .location{
+	position:absolute;top:0;right:0;
+	width:200px;
+	padding:10px 0 0 0;
+}
+.main .contentHolder .jobCard .companyJobs .location span{
+	position:relative;display:inline-block;vertical-align:middle;margin-left:20px;
+	width:12px;height:12px;
+}
+.main .contentHolder .jobCard .companyJobs .location span img{
+	width:100%;height:100%;
+}
+.main .contentHolder .jobCard .companyJobs .location h3{
+	position:relative;display:inline;
+	color:#999990;font-weight:normal;
+}
+
+.main .contentHolder .jobCard .companyJob{
+	position:relative;display:block;
+	width:100%;height:72px;
+	font-size:48%;
+}
+.main .contentHolder .jobCard .companyJob:hover{
+	background-color:#FAFAFA;
+}
+.main .contentHolder .jobCard .companyJob h1{
+	position:relative;margin-left:20px;top:10px;
+	color:#555550;font-weight:bold;
+}.main .contentHolder .jobCard .companyJob h1:hover{
+	color:#8897A8;
+}
+.main .contentHolder .jobCard .companyJob h2{
+	position:relative;margin-left:20px;top:10px;
+	color:#555550;font-weight:normal;
+}
+
+#logo{
+	position:fixed;top:0;left:0;
+	width:96px;height:96px;
+}
+	#logo:hover{
+	}
+
+
+.new_opportunities{
+	position:relative;margin-top:20px;
+	width:49%;min-height:120px;
+	background-color:white;
+	border-radius:0px;
+}
+.new_opportunities .head{
+	position:relative;
+	width:100%;height:36px;
+}
+.new_opportunities .head h1{
+	position:relative;top:10px;left:10px;
+	font-size:16px;color:#999990;font-weight:normal;
+}
+.new_opportunities .item{
+	position:relative;
+	width:94%;min-height:48px;
+	padding:5px 3% 5px 3%;
+	border-bottom:#E0E0D1 solid 1px;
+}
+.new_opportunities .item h1{
+	position:relative;
+	color:#555550;font-weight:bold;
+}
+.new_opportunities .item h2{
+	position:relative;display:inline-block;
+	color:#555550;font-weight:normal;
+}
+.new_opportunities .item .smallIcon{
+	position:relative;display:inline-block;top:2px;
+	width:12px;height:12px;
+}
+.new_opportunities .item .smallIcon img{
+	width:100%;height:100%;
+}
+.home_calendar{
+	position:relative;display:block;height:50px;margin-top:415px;
+	border:#B2C0CE solid 1px;
+	border-radius:5px;
+}
+.home_calendar .calendarBox{
+	position:relative;display:inline-block;margin-right:-2px;
+	width:12%;height:100%;
+	background-color:white;
+	color:#ECEEEE;
+}.home_calendar .calendarBox:hover{
+	cursor:pointer;
+	background-color:#EEF0F0;
+	color:#D4D6D6;
+}
+.home_calendar .weekHead{
+	background-color:#333330;
+	border-top-left-radius:5px;
+	width:14%;
+	border-bottom-left-radius:5px;
+}
+.home_calendar .weekHead:hover{
+	cursor:pointer;
+	background-color:#333330;
+}
+.home_calendar .calendarBox .dayWatermark{
+	position:absolute;top:0;right:0;
+	padding:3px;
+	font-size:20px;font-weight:bold;
+}
+
+.week_calendar{
+	position:relative;display:block;height:50px;margin-top:-1px;
+	border:#B2C0CE solid 1px;
+	border-radius:5px;
+}
+.week_calendar .calendarBox{
+	position:relative;display:inline-block;margin-right:-2px;
+	width:12%;height:100%;
+	background-color:white;
+	color:#ECEEEE;
+}.week_calendar .calendarBox:hover{
+	cursor:pointer;
+	background-color:#EEF0F0;
+	color:#D4D6D6;
+}
+.week_calendar .weekHead{
+	background-color:#333330;
+	border-top-left-radius:5px;
+	width:14%;
+	border-bottom-left-radius:5px;
+}
+.week_calendar .weekHead:hover{
+	cursor:pointer;
+	background-color:#333330;
+}
+.week_calendar .calendarBox .dayWatermark{
+	position:absolute;top:0;right:0;
+	padding:3px;
+	font-size:20px;font-weight:bold;
+}
+
+.upcomingEventList{
+	position:relative;display:inline-block;vertical-align:top;margin:0 0 0 5px;
+	padding: 0px 25px 0px 0px;
+	min-height:50%;
+	background-color:#333330;
+}
+.eventListItem{
+	position:relative;display:block;
+	padding:10px 0 10px 0px;
+	width:100%;min-height:72px;
+	border-bottom:#555550 dashed 1px;
+}
+.eventListItem:hover{
+	cursor:pointer;
+	background-color:#2E2E2B;
+}
+.eventListItem h1{
+	position:relative;left:10px;
+	color:#C6C6C1;font-weight:bold;
+}
+.eventListItem h2{
+	position:relative;display:inline-block;vertical-align:top;left:8px;
+	fcolor:#999990;font-weight:normal;
+}
+.eventListItem .smallIcon{
+	position:relative;display:inline-block;vertical-align:middle;top:-3px;left:10px;
+	width:12px;height:12px;
+}
+.eventListItem .smallIcon img{
+	width:100%;height:100%;
+}
+
+
+.cover{
+	position:relative;
+	width:300px;height:100%;
+	background-color:#333330;
+}
+.divider{
+	position:fixed;margin-left:46%;
+	width:6%;height:100%;
+}
+
+.filterPanel{
+	position:relative;margin-top:20px;
+	width:97%;height:120px;
+	border-radius:5px;
+	background-color:#333330;
+}
+.filterPanel form{
+	position:relative;
+	width:100%;height:100%;
+}
+.filterPanel form .inputHolder{
+	position:relative;display:inline-block;
+	width:300px;height:100%;
+}
+.filterPanel form label{
+	position:relative;left:20px;
+	font-size:16px;color:#999990;font-weight:normal;
+}
+.filterPanel form .textInput{
+	position:relative;margin-top:5px;
+	width:200px;height:32px;
+	border-radius:3px;
+	border:#767676 solid 2px;
+	background-color:#ECECEC;
+	border:none;
+}
+.candidatesContainer{
+	position:relative;margin-top:20px;
+	width:100%;min-height:120px;
+	padding-bottom:120px;
+}
+.candidate{
+	position:relative;display:inline-block;vertical-align:top;margin-right:10px;margin-top:10px;
+	width:300px;height:120px;
+	border-radius:3px;
+	background-color:#F9F9F8;
+}
+
+.candidate .candidatesProfileImage{
+	position:absolute;top:10px;left:10px;
+	width:60px;height:60px;
+	border-radius:3px;
+}
+.candidate .candidateBasicInfo{
+	position:relative;display:block;margin-left:100px;
+	width:200px;height:84px;
+}
+.candidate .candidateBasicInfo h1{
+	position:relative;top:10px;
+	font-size:14px;color:#333330;font-weight:normal;
+}
+.candidate .candidateSocialProfile{
+	position:absolute;bottom:0;
+	width:100%;height:32px;
+	background-color:#555550;
+	border-bottom-left-radius:3px;
+	border-bottom-right-radius:3px;
+}
+.candidate .candidateSocialProfile .buttonHolder{
+	position:relative;display:inline-block;vertical-align:top;
+	padding:0 5px 0 5px;
+	width:24px;height:100%;
+}
+.candidate .candidateSocialProfile .buttonHolder img{
+	position:relative;top:6px;left:2px;
+	width:20px;height:20px;
+}
+.candidate .candidateSocialProfile .buttonHolder:hover{
+	cursor:pointer;
+	background-color:#444440;
+}
+.candidate .candidateSocialProfile .save{
+	padding:0 10px 0 10px;
+	border-bottom-right-radius:3px;
+}
+.candidate .candidateSocialProfile .save h1{
+	position:relative;top:7px;
+	color:#E0E0DF;font-weight:normal;
+}
+*/

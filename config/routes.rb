@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { :registration => "registrations" }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   resources :users
   resources :feedbanks
-  resources :sessions, only: [:new, :create, :destroy]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.  get "home" => "static_pages#home"
@@ -15,39 +14,35 @@ Rails.application.routes.draw do
     # You can have the root of your site routed with "root"
   root to: 'static_pages#home'
 
-  get '/signup', to: 'users#new'
-  get '/signin', to: 'sessions#new'
-  get '/signout', to: 'sessions#destroy'
-  get '/update', to: 'users#edit'
+  post '/update', to: 'users#edit'
 
   get '/developer',  to: 'static_pages#developer'
   get '/jobs',     to: 'static_pages#jobs'
   get '/useraccount',   to: 'static_pages#useraccount'
-  get '/entrepreneur', to: 'static_pages#entrepreneur'
+  get '/expo', to: 'static_pages#expo'
   get '/home',      to: 'static_pages#home'
   get '/event',      to: 'static_pages#events'
   get '/news',      to: 'static_pages#news'
   get '/research',      to: 'static_pages#research'
   
-  get '/register_expo', to: 'users#register_expo'
-  get '/unregister_expo', to: 'users#unregister_expo'
+  post '/register_expo', to: 'users#register_expo'
+  post '/unregister_expo', to: 'users#unregister_expo'
 
-  get '/student_account', to: 'users#student_account'
-  get '/creator_account', to: 'users#creator_account'
+  match '/student_account', to: 'users#student_account', via: [:get, :post]
+  match '/creator_account', to: 'users#creator_account', via: [:get, :post]
+  get '/user_info', to: 'users#show'
 
   get '/approve', to: 'users#approve_creator'
   get '/request', to: 'users#request_creator'
   get '/certify', to: 'users#certify'
-
-  get '/confirmation_token', to: 'users#confirmation_token'
   
   get "/404" => 'users#permissiondenied'
   get "/500" => 'users#permissiondenied'
 
-  get "/feedbanks" => 'feedbanks#show'
   get "/feedcreate" => 'feedbanks#create'
   get "/feedapprove" => 'feedbanks#approve_content'
   get "/feeddisapprove" => 'feedbanks#disapprove_content'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
