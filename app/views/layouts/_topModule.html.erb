@@ -3,7 +3,7 @@
 <div class="loginform">
 		<% if user_signed_in? %>
 				<%= link_to "MY ACCOUNT".html_safe, "/useraccount" %> ::
-				<%= link_to("LOGOUT".html_safe, destroy_user_session_path, :method => :delete) %>
+				<%= link_to('LOGOUT', destroy_user_session_path, :method => :delete) %>
 		<% else %>
 		 		<%= link_to("LOGIN".html_safe, new_user_session_path) %>  
 		<% end %>
