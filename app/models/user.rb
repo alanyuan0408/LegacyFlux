@@ -5,7 +5,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one :mail_setting, dependent: :destroy
+  accepts_nested_attributes_for :mail_setting
   has_one :account_setting, dependent: :destroy
+  accepts_nested_attributes_for :account_setting
 
   attr_accessible :email, :password, :password_confirmation, :name
 

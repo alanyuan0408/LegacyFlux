@@ -27,32 +27,32 @@
 
 			<h4>Here are your Mailing Settings</h4>
 
-			<p>Your Email will be sent in a frequency of <%= @email_setting.email_frequency %> days</p>
+			<p>Your Email will be sent in a frequency of <%= @mail_setting.email_frequency %> days</p>
 
 			<br>
 
-			<% if @email_setting.news %>
+			<% if @mail_setting.news %>
 				<p><i class='icon-checkmark'></i>  Your Email <b>will</b> include News Updates</p>
 			<% else %> 
 				<p><i class='icon-cancel-2'></i>  Your Email <b>will not</b> include News Updates</p>
 			<% end %>
 			<br>
 
-			<% if @email_setting.research %>
+			<% if @mail_setting.research %>
 				<p><i class='icon-checkmark'></i>  Your Email <b>will</b> include Research Opportunities</p>
 			<% else %> 
 				<p><i class='icon-cancel-2'></i>  Your Email <b>will not</b> include Research Opportunities</p>
 			<% end %>
 			<br>
 
-			<% if @email_setting.jobs %>
+			<% if @mail_setting.jobs %>
 				<p><i class='icon-checkmark'></i>  Your Email <b>will</b> include Job Updates</p>
 			<% else %> 
 				<p><i class='icon-cancel-2'></i>  Your Email <b>will not</b> include Job Updates</p>
 			<% end %>
 			<br>
 
-			<% if @email_setting.events %>
+			<% if @mail_setting.events %>
 				<p><i class='icon-checkmark'></i>  Your Email <b>will</b> include Events</p>
 			<% else %> 
 				<p><i class='icon-cancel-2'></i>  Your Email <b>will not</b> include Events</p>
@@ -82,8 +82,12 @@
 		                <%= f.label :organization %>
 		                <%= f.text_field :organization, placeholder: "organization", :class => "css_text" %>
 
-		                <%= f.label :approval_message, "Message to Admin" %>
-		                <%= f.text_area :approval_message, :rows => "6", placeholder: "Message for Administrators", :class => "css_text"  %>
+		                <%= f.fields_for :account_setting do |account_form| %>
+
+			                <%= account_form.label :approval_message, "Message to Admin" %>
+			                <%= account_form.text_area :approval_message, :rows => "6", placeholder: "Message for Administrators", :class => "css_text"  %>
+
+			             <% end %>
 
 		                <br><br>
 
@@ -104,8 +108,7 @@
 				        </div>  
 				                    
 				        <div class="panel-content">
-				            <% if @account_setting.content_approved %>
-				            	<p>You're account has approved by the admin.</p><br>
+
 
 				                <%= form_for :feedbank, :url => '/feedbanks#create' do |f| %> 
 
@@ -138,17 +141,7 @@
 
 				                    <%= f.submit "Add New Post", class: "large" %>
 
-				            <% end %>
-				            <% elsif %>
-				            	You're request for a content creator account is pending. Your current posts will be posted on the boards when your approval has been approved by the admin.
-
-				                <br><br>
-
-				                <div class="alert alert-error">
-				                    Content Creators may only make posts after the Admin has approved their Account.
-				                </div>
-
-				            <% end %>
+				            	<% end %>
 
 				        </div>
 				    </div>

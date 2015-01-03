@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
       @feedbank_posts = Feedbank.where(user_id: @current_user.id)
 
-      @email_setting = @current_user.email_setting
+      @mail_setting = @current_user.mail_setting
       @account_setting = @current_user.account_setting
 
       if @current_user.admin
@@ -48,11 +48,30 @@ class UsersController < ApplicationController
 
   def update
 
-    if @user.update_attributes(params[:user])
-        redirect_to @current_user
+    param = params[:user][:mail_setting_attributes]
+
+    #Update User Settings [No Mass- Assignment]
+    @current_user.mail_setting.update_attribute(:news, 
+      param[:news])
+    @current_user.mail_setting.update_attribute(:research, 
+      param[:research])
+    @current_user.mail_setting.update_attribute(:jobs, 
+      param[:jobs])
+    @current_user.mail_setting.update_attribute(:events, 
+      param[:events])
+
+    if (param[:email_frequency].to_i < 1)
+      email_frequency = 1
+    elsif (param[:email_frequency].to_i > 7)
+      email_frequency = 7
     else
-      render 'edit'
+      email_frequency = param[:email_frequency].to_i
     end
+
+    @current_user.mail_setting.update_attribute(:email_frequency, 
+        email_frequency)
+
+    redirect_to @current_user
 
   end
 
@@ -89,7 +108,8 @@ class UsersController < ApplicationController
   def request_creator
     @current_user.account_setting.update_attribute(:sent_approval, true);
     @current_user.update_attribute(:organization, params[:organization]);
-    @current_user.account_setting.update_attribute(:approval_message, params[:approval_message]);
+    @current_user.account_setting.update_attribute(:approval_message, 
+                params[:approval_message]);
 
     redirect_to @current_user
   end
