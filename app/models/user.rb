@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :name
 
-  after_commit :send_confirmation_email
+  after_commit :send_confirmation_email, on: :create
 
   validates :name,  presence: true
   alias :devise_valid_password? :valid_password?
@@ -33,6 +33,8 @@ class User < ActiveRecord::Base
     if self.confirmationMail == "true"
       #Nothing/ Prevent Double Send
     else
+      self.update_column(:email_confirmation_token, SecureRandom.urlsafe_base64)
+      self.update_column(:confirmationMail, "true")
       #Create the Dependencies
       self.account_setting = AccountSetting.new
       self.account_setting.update_column(:approval_message, "")
@@ -45,8 +47,7 @@ class User < ActiveRecord::Base
       self.mail_setting.save
 
       # send user email of confirmation if they haven't confirmed their email yet
-      self.update_column(:email_confirmation_token, SecureRandom.urlsafe_base64)
-      self.update_column(:confirmationMail, "true")
+
          
       UserMailer.welcome_email(self).deliver
     end
