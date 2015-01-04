@@ -11,7 +11,6 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :name
 
-  before_save :create_dependencies, on: :create
   after_commit :send_confirmation_email
 
   validates :name,  presence: true
@@ -30,26 +29,24 @@ class User < ActiveRecord::Base
 
   private
 
-  def create_dependencies
-    #Setup the Mail_setting and account_setting dependencies
-      @account_setting = AccountSetting.new
-      @account_setting.approval_message = ""
-      @account_setting.user_id = self.id
-      @account_setting.save
-
-      @mail_setting = MailSetting.new
-      @mail_setting.nextsend = Time.now + 7.days
-      @mail_setting.user_id = self.id
-      @mail_setting.save
-  end
-
   def send_confirmation_email
     if self.confirmationMail == "true"
       #Nothing/ Prevent Double Send
     else
-      self.confirmationMail = "true"
+      #Create the Dependencies
+      self.account_setting = AccountSetting.new
+      self.account_setting.update_column(:approval_message, "")
+      self.account_setting.update_column(:user_id, self.id)
+      self.account_setting.save
+
+      self.mail_setting = MailSetting.new
+      self.mail_setting.update_column(:nextsend, Time.now + 7.days)
+      self.mail_setting.update_column(:user_id, self.id)
+      self.mail_setting.save
+
       # send user email of confirmation if they haven't confirmed their email yet
       self.update_column(:email_confirmation_token, SecureRandom.urlsafe_base64)
+      self.update_column(:confirmationMail, "true")
          
       UserMailer.welcome_email(self).deliver
     end

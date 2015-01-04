@@ -44,37 +44,38 @@ $(initSummernote)</script>
 
                             	<p>You're account has approved by the admin.</p><br>
 
-                                    <%= form_for :feedbank, :url => '/feedbanks#create' do |f| %> 
+                                <%= form_for :feedbank, :url => '/feedbanks#create' do |f| %> 
 
-                                        <%= f.label :item_title %>
-                                        <%= f.text_field :item_title, placeholder: "Title of Post", :class => "title_width"  %>
+                                    <%= f.label :item_title %>
+                                    <%= f.text_field :item_title, placeholder: "Title of Post", :class => "title_width"  %>
 
-                                        <%= f.label :item_url %>
-                                        <%= f.text_field :item_url, :size=>"150", :class => "title_width", placeholder: "Url to the Post"  %>
+                                    <%= f.label :item_url, "Item URL [Optional]" %>
+                                    <%= f.text_field :item_url, :size=>"150", :class => "title_width", placeholder: "Url to the Post"  %>
 
-                                        <%= f.hidden_field :user_id, :value => @current_user.id %>
-                                        <%= f.hidden_field :item_date, :value => Time.current %>
-                                        <%= f.hidden_field :approval_status, :value => "false" %>
+                                    <%= f.hidden_field :user_id, :value => @current_user.id %>
+                                    <%= f.hidden_field :item_date, :value => Time.current %>
+                                    <%= f.hidden_field :approval_status, :value => "false" %>
 
-                                        <%= f.label :column_type, "Post Type" %>
 
-                                        <%= f.select(:column_type, [["Job Post", 1], ["Event Post", 2], ["News Update", 3], ["Research", 4]]) %>
+                                    <%= f.label :column_type, "Post Type" %>
 
-                                        <!-- #1 is Jobs, #2 is Events, #3 is News, #4 is Research
-                                                        -->
-                                        <br>
-                                        <br>
+                                    <%= f.select(:column_type, [["Job Post", 1], ["Event Post", 2], ["News Update", 3],
+                                        ["Research", 4]]) %>
 
-                                        <%= f.label :item_text %>
-                                        <%= f.text_area :item_text, :rows => "6", placeholder: "Event Message", :class => "full_width", input_html: { class: 'summernote', id: "jobInfoInput"} %>
+                                    <!-- #1 is Jobs, #2 is Events, #3 is News, #4 is Research
+                                        -->
 
-                                        <br><br>
+                                    <br>
+                                    <br>
 
-                                        <%= f.submit "Add New Post", class: "large" %>
+                                    <%= f.label :item_text %>
+                                    <%= f.text_area :item_text, :rows => "6", placeholder: "Event Message", :class => "full_width", input_html: { class: 'summernote', id: "jobInfoInput"} %>
 
-                                        <br>
+                                    <br><br>
 
-                                    <% end %>
+                                    <%= f.submit "Add New Post", class: "large" %>
+
+                                <% end %>
 
 
                         </div>

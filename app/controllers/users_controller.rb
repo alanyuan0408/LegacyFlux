@@ -131,9 +131,7 @@ class UsersController < ApplicationController
     if @user.blank?
       render 'permissiondenied'
     else 
-      sign_in @user
-      @currentPage = {:useraccount => "active"};
-      @user_name = @user.name
+
       @user.update_column(:email_confirmation_token, nil)
       render 'users/confirmMail'
     end 
