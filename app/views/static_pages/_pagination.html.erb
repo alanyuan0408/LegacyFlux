@@ -3,6 +3,7 @@
 <% items.each do |items| %>
 <div class="listitem">
 <h2><%= items.item_title %></h2>
+<div class="listinner">
 <span class="date"><%=items.item_date %></span>
   <%= simple_format(Sanitize.fragment(items.item_text, Sanitize::Config.merge(Sanitize::Config::BASIC,
   :elements        => %w[
@@ -10,6 +11,7 @@
   q s samp small strike strong sub sup time u ul var
 ])).gsub(/^[\s]*$\n/, "").strip) %>
 <%= link_to "link to external resource", items.item_url %>
+</div>
 </div>
 <% end %>
 
