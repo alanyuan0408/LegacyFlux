@@ -45,6 +45,8 @@ Rails.application.routes.draw do
   get "/feedapprove" => 'feedbanks#approve_content'
   get "/feeddisapprove" => 'feedbanks#disapprove_content'
 
+  match '/confirmation_token', to: 'users#confirmation_token', via: [:get, :post]
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
