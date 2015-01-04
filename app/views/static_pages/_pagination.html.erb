@@ -3,8 +3,8 @@
 <% items.each do |items| %>
 <div class="listitem">
 <h2><%= items.item_title %></h2>
-<div class="listinner">
 <span class="date"><%=items.item_date %></span>
+<div class="listinner">
   <%= simple_format(Sanitize.fragment(items.item_text, Sanitize::Config.merge(Sanitize::Config::BASIC,
   :elements        => %w[
   a abbr b blockquote cite code dd dfn dl dt em i kbd li mark ol p pre
