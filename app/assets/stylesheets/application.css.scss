@@ -126,7 +126,7 @@ a{
 }
 
 .list .date{
-	float: right;
+	text-align: right;
 	width: 100%;
 	color: #aaaaaa;
 }
@@ -146,6 +146,7 @@ a{
 
 .listitem{
 	margin-top: 1em;
+	padding: 0.5em;
 }
 .topwrap
 	{
