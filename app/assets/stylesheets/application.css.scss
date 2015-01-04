@@ -127,10 +127,21 @@ a{
 
 .list .date{
 	float: right;
+	width: 100%;
+	color: #aaaaaa;
 }
 
 .list .pages{
 	text-align: center;
+}
+
+.list .pages a, a:link, a:visited{
+	color: #04689b;
+}
+
+
+.list .pageInfo{
+	visibility: hidden
 }
 
 .listitem{
