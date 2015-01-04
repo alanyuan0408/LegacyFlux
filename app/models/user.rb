@@ -11,8 +11,8 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :name
 
-  before_save :create_dependencies
-  after_commit :send_confirmation_email, on: :create
+  before_save :create_dependencies, on: :create
+  after_commit :send_confirmation_email
 
   validates :name,  presence: true
   alias :devise_valid_password? :valid_password?
