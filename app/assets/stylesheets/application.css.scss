@@ -118,7 +118,7 @@ padding: 4px 12px;
 height: 20px;
 	}
 
-	.list .page a:hover{
+	.list .page a:hover, .first a:hover, .last a:hover, .prev a:hover, .next a:hover{
 	background-color: #e1e1e1;
 	color: #000000;
 	}
