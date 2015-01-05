@@ -75,40 +75,6 @@ a{
 .footer a{
 	color: #ffffff;
 }
-/*
-.nav{
-	width:100%;
-}
-	.nav ul{
-	overflow: hidden;
-	list-style-type: none;
-	}
-	.nav li{
-		display:block;
-		font-size:90%;
-		color: #999999;
-	}
-	.nav a{
-		padding:0.5em 0em 0.5em 1em;
-		margin-left: -1em;
-		width:150px;
-		text-decoration:none;
-		text-transform: uppercase;
-		display:block;
-		border-right: 1px solid #eeeeee;
-	}			
-	.nav a:link, a:visited{
-		color: #191919;
-
-	}
-.nav a:hover, a:active{
-		color: #ff2222;
-	}
-	.nav i{
-	padding-right: 10px;
-	margin-top: 15px;
-	}
-*/
 
 .content{
 	padding-top: 1.5em;
@@ -132,11 +98,26 @@ a{
 
 .list .pages{
 	text-align: center;
+	font-size: 0;
 }
 
-.list .pages a, a:link, a:visited{
-	color: #04689b;
+.list .page, .list .page.current{
+	text-decoration: none;
+	text-align: center;
 }
+
+.list .page a, .list .pages a:link, .list .pages a:visited{
+	color: #04689b;
+	font-size: 12px;
+	line-height: 20px;
+font-size: 12px;
+line-height: 20px;
+background-color: #ffffff;
+border: 1px solid #dddddd;
+margin-right: -1px;
+padding: 4px 12px;
+height: 20px;
+	}
 
 
 .list .pageInfo{
