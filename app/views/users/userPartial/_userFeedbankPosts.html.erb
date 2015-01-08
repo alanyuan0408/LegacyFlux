@@ -8,20 +8,20 @@
     var top_element = 0
     var bottom_element = <%= @feedbank_posts.length %> * 2;
     var iterator_start = 0;
-    var iterator_end = 11;
+    var iterator_end = 21;
     var page_number = 1;
     function navdirection(direction){
 
         var jobPosts = document.getElementById("jobPosts").childNodes;
 
         if (direction == 1 && iterator_end < bottom_element){
-            iterator_start += 5;
-            iterator_end += 5;
+            iterator_start += 10;
+            iterator_end += 10;
             page_number += 1;
             document.getElementById("pagenumber").innerHTML = page_number
         } else if (direction == 0 && iterator_start > top_element){
-            iterator_start -= 5;
-            iterator_end -= 5;
+            iterator_start -= 10;
+            iterator_end -= 10;
             page_number -= 1;
             document.getElementById("pagenumber").innerHTML = page_number
         } else {
@@ -39,7 +39,7 @@
     function initialize(){
         var jobPosts = document.getElementById("jobPosts").childNodes;
         var top_element = 0;
-        var bottom_element = 11;
+        var bottom_element = 21;
         var initalized = 0;
         console.log("loaded");
         console.log(document.getElementById("jobPosts").childNodes);
@@ -75,19 +75,24 @@
 <div class="row">
 
 	<div class="col-xs-6">
+		<div class="row" style="height:20px"></div>
+
+		<div class="text-center">
+			<div class="btn-group">
+  			<button type="button" class="btn btn-default" onclick="navdirection(0)">Prev</button>
+ 			<button type="button" class="btn btn-default disabled" id="pagenumber">1</button>
+  			<button type="button" class="btn btn-default" onclick="navdirection(1)">Next</button>
+			</div>
+		</div>
+
+		<div class="row" style="height:5px"></div>
+
 		<ul id="jobPosts" class="nav nav-tabs nav-stacked" onload="initialize()">
 	        <% @feedbank_posts.each do |post| %>
 	            <li><a id="<%= post.id %>"><%= post.item_title %></a></li>
 	        <% end %>
 	    </ul>
 
-	    <div class="row" style="height:40px"></div>
-
-	    <div class="btn-group">
-  			<button type="button" class="btn btn-default" onclick="navdirection(0)">Prev</button>
- 			<button type="button" class="btn btn-default disabled" id="pagenumber">1</button>
-  			<button type="button" class="btn btn-default" onclick="navdirection(1)">Next</button>
-		</div>
 	</div>
 
 	<div class="col-xs-6">
@@ -96,12 +101,14 @@
 				<div id="<%= post.id %>" class="hidden_class">
 				    <p><b>Item Title: <%= post.item_title %></b></p>
 				    <p>URL: <%= post.item_url %></p>
-
-				    <p>Date: <%= post.item_date %></p>
-				    <p>Text: <%= post.item_text %></p>
 				    <p>Approval Status: <%= post.approval_status %></p>
 
+				    <p>Date: <%= post.item_date %></p>
 				    <hr>
+				    <p>Text:</p>
+				    <p><%= post.item_text %></p>
+				    
+				    
 				</div>
 			<% end %>
 		</div>
