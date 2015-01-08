@@ -1,17 +1,27 @@
+<h4>Add New Post</h4>
+
+<p>We warmly welcome any Job Offers, Research Offers, Event Posts and News Updates that may be relevant to the Computer Science Department. Your post must first be verified by the Administrator before it is listed on our site or sent with the email</p>
+
 <%= form_for :feedbank, :url => '/feedbanks#create' do |f| %> 
 
     <%= f.label :item_title %>
-    <%= f.text_field :item_title, placeholder: "Title of Post", :class => "title_width"  %>
+    <br>
+    <%= f.text_field :item_title, placeholder: "Title of Post", :size=>"50"  %>
+
+    <br> <br>
 
     <%= f.label :item_url, "Item URL [Optional]" %>
-    <%= f.text_field :item_url, :size=>"150", :class => "title_width", placeholder: "Url to the Post"  %>
+    <br>
+    <%= f.text_field :item_url, :size=>"50", :class => "title_width", placeholder: "Url to the Post"  %>
+
+    <br><br>
 
     <%= f.hidden_field :user_id, :value => @current_user.id %>
     <%= f.hidden_field :item_date, :value => Time.current %>
     <%= f.hidden_field :approval_status, :value => "false" %>
 
     <%= f.label :column_type, "Post Type" %>
-
+    <br>
     <%= f.select(:column_type, [["Job Post", 1], ["Event Post", 2], ["News Update", 3],
                                         ["Research", 4]]) %>
 
@@ -21,7 +31,8 @@
     <br>
 
     <%= f.label :item_text %>
-    <%= f.text_area :item_text, :rows => "6", placeholder: "Event Message", :class => "full_width" %>
+    <br>
+    <%= f.text_area :item_text, placeholder: "Message", :size=>"80x7"%>
 
     <br><br>
 

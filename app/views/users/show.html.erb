@@ -38,7 +38,7 @@
         <div class="tabbable"> <!-- Only required for left/right tabs -->
           <ul class="nav nav-tabs" role="tablist">
             <li class="active"><a href="#tab1" data-toggle="tab">Mail Settings</a></li>
-            <li><a href="#tab2" data-toggle="tab">Content Creator</a></li>
+            <li><a href="#tab2" data-toggle="tab">Post Content</a></li>
             <li><a href="#tab5" data-toggle="tab">Your Posts</a></li>
             <li><a href="#tab3" data-toggle="tab">Administrator</a></li>
             <li><a href="#tab4" data-toggle="tab">NewsLetter Generator</a></li>
@@ -51,8 +51,7 @@
             </div>
 
             <div class="tab-pane" id="tab2">
-              <h3>Content Creator<h3>
-              <hr>
+              <%= render :partial => "users/userPartial/userFeedbank" %>
             </div>
 
             <div class="tab-pane" id="tab3">
