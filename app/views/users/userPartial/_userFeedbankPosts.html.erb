@@ -1,3 +1,113 @@
-<h3>Your Posts </h3><hr>
+<style>
+    .hidden_class {
+        display: none !important;
+    }
+</style>
 
-<%= render "pagination", :items => @feedbank_posts %>
+<script>
+    var top_element = 0
+    var bottom_element = <%= @feedbank_posts.length %> * 2;
+    var iterator_start = 0;
+    var iterator_end = 11;
+    var page_number = 1;
+    function navdirection(direction){
+
+        var jobPosts = document.getElementById("jobPosts").childNodes;
+
+        if (direction == 1 && iterator_end < bottom_element){
+            iterator_start += 5;
+            iterator_end += 5;
+            page_number += 1;
+            document.getElementById("pagenumber").innerHTML = page_number
+        } else if (direction == 0 && iterator_start > top_element){
+            iterator_start -= 5;
+            iterator_end -= 5;
+            page_number -= 1;
+            document.getElementById("pagenumber").innerHTML = page_number
+        } else {
+            console.log("Do nothing");
+        }
+                        
+        for (i=0; i<jobPosts.length; i++){
+            if (i > iterator_start && i < iterator_end) {
+                jobPosts[i].className = ""
+            } else {
+                jobPosts[i].className = "hidden_class";
+            }
+        }
+    }
+    function initialize(){
+        var jobPosts = document.getElementById("jobPosts").childNodes;
+        var top_element = 0;
+        var bottom_element = 11;
+        var initalized = 0;
+        console.log("loaded");
+        console.log(document.getElementById("jobPosts").childNodes);
+
+        for (i=0; i<jobPosts.length; i++){
+            if (i > top_element && i < bottom_element) {
+                jobPosts[i].className = ""
+            } else {
+                jobPosts[i].className = "hidden_class";
+            }
+        }
+
+        $("a").click(function(){
+            console.log($(this).attr('id'));
+            var jobPosting = document.getElementById("posts").childNodes;
+            for(i=0; i<jobPosting.length; i++){
+                if (jobPosting[i].className == "selected"){
+                    jobPosting[i].className = "hidden_class";
+                }
+                if (jobPosting[i].id == $(this).attr('id')){
+                    jobPosting[i].className = "selected";
+                }
+            }
+        });
+    }
+    $(document).ready(initialize);
+    $(document).on('page:load', initialize);
+
+</script>
+
+<h4>Current Posts</h4>
+
+<div class="row">
+
+	<div class="col-xs-6">
+		<ul id="jobPosts" class="nav nav-tabs nav-stacked" onload="initialize()">
+	        <% @feedbank_posts.each do |post| %>
+	            <li><a id="<%= post.id %>"><%= post.item_title %></a></li>
+	        <% end %>
+	    </ul>
+
+	    <div class="row" style="height:40px"></div>
+
+	    <div class="btn-group">
+  			<button type="button" class="btn btn-default" onclick="navdirection(0)">Prev</button>
+ 			<button type="button" class="btn btn-default disabled" id="pagenumber">1</button>
+  			<button type="button" class="btn btn-default" onclick="navdirection(1)">Next</button>
+		</div>
+	</div>
+
+	<div class="col-xs-6">
+		<div class="panel-content" id= "posts" >
+			<% @feedbank_posts.each do |post| %>
+				<div id="<%= post.id %>" class="hidden_class">
+				    <p><b>Item Title: <%= post.item_title %></b></p>
+				    <p>URL: <%= post.item_url %></p>
+
+				    <p>Date: <%= post.item_date %></p>
+				    <p>Text: <%= post.item_text %></p>
+				    <p>Approval Status: <%= post.approval_status %></p>
+
+				    <hr>
+				</div>
+			<% end %>
+		</div>
+
+	</div>
+</div>
+
+
+
