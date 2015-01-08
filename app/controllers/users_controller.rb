@@ -16,20 +16,8 @@ class UsersController < ApplicationController
         @user_posts = Feedbank.where(approval_status: false).all
         render 'admin_page'
 
-      elsif @current_user.account_setting.student_account
-        #render the student page [Default Page]
-
-      elsif !@current_user.account_setting.account_selected
-        render 'account_select'
-
-      elsif (!@current_user.account_setting.sent_approval)
-        render 'approve_creator'
-
-      elsif @current_user.account_setting.sent_approval 
-        render 'content_page'
-
       else
-        render 'permissiondenied'
+        #Render the User Page
       end
 
     else
