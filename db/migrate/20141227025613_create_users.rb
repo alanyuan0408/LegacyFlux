@@ -2,9 +2,8 @@ class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
       t.string :name
-      t.boolean :admin, :default => false 
-      t.boolean :news_admin, :default => false 
-      t.string :organization, :default => ""
+  	  t.boolean :users, :confirmationMail, :default => false
+      t.string :users, :email_confirmation_token
 
       t.timestamps null: false
     end

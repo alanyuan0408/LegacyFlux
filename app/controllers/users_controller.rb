@@ -59,6 +59,8 @@ class UsersController < ApplicationController
     @current_user.mail_setting.update_attribute(:email_frequency, 
         email_frequency)
 
+    @current_user.mail_setting.update_attribute(:nextsend, Time.now + email_frequency.days)
+
     redirect_to @current_user
 
   end
@@ -109,9 +111,6 @@ class UsersController < ApplicationController
     redirect_to @current_user
   end
 
-  def change_password
-    
-  end
 
    def confirmation_token
     @user = User.find_by_email_confirmation_token(params[:email_confirmation_token]);

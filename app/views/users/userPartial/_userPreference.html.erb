@@ -5,36 +5,38 @@
 <br>
 
 <% if @mail_setting.news %>
-	<p><i class='icon-checkmark'></i>  Your Email <b>will</b> include News Updates</p>
+	<p><i class='glyphicon glyphicon-ok'></i>  Your Email <b>will</b> include News Updates</p>
 <% else %> 
-	<p><i class='icon-cancel-2'></i>  Your Email <b>will not</b> include News Updates</p>
+	<p><i class='glyphicon glyphicon-remove'></i>  Your Email <b>will not</b> include News Updates</p>
 <% end %>
 			
 <br>
 
 <% if @mail_setting.research %>
-	<p><i class='icon-checkmark'></i>  Your Email <b>will</b> include Research Opportunities</p>
+	<p><i class='glyphicon glyphicon-ok'></i>  Your Email <b>will</b> include Research Opportunities</p>
 <% else %> 
-	<p><i class='icon-cancel-2'></i>  Your Email <b>will not</b> include Research Opportunities</p>
+	<p><i class='glyphicon glyphicon-remove'></i>  Your Email <b>will not</b> include Research Opportunities</p>
 <% end %>
 
 <br>
 
 <% if @mail_setting.jobs %>
-	<p><i class='icon-checkmark'></i>  Your Email <b>will</b> include Job Updates</p>
+	<p><i class='glyphicon glyphicon-ok'></i>  Your Email <b>will</b> include Job Updates</p>
 <% else %> 
-	<p><i class='icon-cancel-2'></i>  Your Email <b>will not</b> include Job Updates</p>
+	<p><i class='glyphicon glyphicon-remove'></i>  Your Email <b>will not</b> include Job Updates</p>
 <% end %>
 
 <br>
 
 <% if @mail_setting.events %>
-	<p><i class='icon-checkmark'></i>  Your Email <b>will</b> include Events</p>
+	<p><i class='glyphicon glyphicon-ok'></i>  Your Email <b>will</b> include Events</p>
 <% else %> 
-	<p><i class='icon-cancel-2'></i>  Your Email <b>will not</b> include Events</p>
+	<p><i class='glyphicon glyphicon-remove'></i>  Your Email <b>will not</b> include Events</p>
 <% end %>
 
 <br>
 
+<p><i class='glyphicon glyphicon-send'></i><b>	Next Email:</b> <%= @mail_setting.nextsend %></p>
+<br>
+
 	<%= button_to "Update Settings", '/update', {:class => "large"} %>
-</div>

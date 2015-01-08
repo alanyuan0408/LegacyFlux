@@ -1,14 +1,79 @@
-<div class="tabbable"> <!-- Only required for left/right tabs -->
-  <ul class="nav nav-tabs">
-    <li class="active"><a href="#tab1" data-toggle="tab">Section 1</a></li>
-    <li><a href="#tab2" data-toggle="tab">Section 2</a></li>
-  </ul>
-  <div class="tab-content">
-    <div class="tab-pane active" id="tab1">
-      <p>I'm in Section 1.</p>
+<div class="container">
+
+  <div class="row" style="height:20px"></div>
+  <!-- Provide some top header -->
+
+  <div class="row">
+    <div class="col-md-4">
+
+        <div class="thumbnail">
+
+            <div class="caption">
+              <h3><%= @current_user.name %></h3>
+              <hr>
+              <h4>Account Summary</h4>
+
+              <p><span class="glyphicon glyphicon-envelope"> <%= @current_user.email %></span></p>
+              <p><span class="glyphicon glyphicon-ok"> Subscribed to Weekly Email</span></p>
+              <p><span class="glyphicon glyphicon-ok"> Content Creator</span></p>
+              <p><span class="glyphicon glyphicon-ok"> Administrator</span></p>
+              <p><span class="glyphicon glyphicon-ok"> Newsletter</span></p>
+              <hr>
+
+              
+              <% if @current_user.email_confirmation_token != nil %>
+                <div class="alert alert-danger" role="alert">
+                    <p href="#" class="alert-link">You will not recieve any emails until
+                      you confirm your email</p>
+                </div>
+              <% end %>
+            </div>
+
+        </div>
     </div>
-    <div class="tab-pane" id="tab2">
-      <p>Howdy, I'm in Section 2.</p>
+
+
+    <!-- Larger tab -->
+    <div class="col-md-8">
+        <div class="tabbable"> <!-- Only required for left/right tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#tab1" data-toggle="tab">Mail Settings</a></li>
+            <li><a href="#tab2" data-toggle="tab">Content Creator</a></li>
+            <li><a href="#tab5" data-toggle="tab">Your Posts</a></li>
+            <li><a href="#tab3" data-toggle="tab">Administrator</a></li>
+            <li><a href="#tab4" data-toggle="tab">NewsLetter Generator</a></li>
+            <li><a href="#tab5" data-toggle="tab">Information</a></li>
+          </ul>
+
+          <div class="tab-content">
+            <div class="tab-pane active" id="tab1">
+              <%= render :partial => "users/userPartial/userPreference" %>
+            </div>
+
+            <div class="tab-pane" id="tab2">
+              <h3>Content Creator<h3>
+              <hr>
+            </div>
+
+            <div class="tab-pane" id="tab3">
+              <h3>Administrator Panel<h3>
+              <hr>
+            </div>
+
+            <div class="tab-pane" id="tab4">
+              <h3>NewsLetter Generator<h3>
+              <hr>
+            </div>
+
+            <div class="tab-pane" id="tab5">
+              <h3>Information<h3>
+              <hr>
+            </div>
+
+          </div>
+        </div>
     </div>
+
   </div>
 </div>
+
