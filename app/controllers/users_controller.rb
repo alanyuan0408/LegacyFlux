@@ -6,19 +6,12 @@ class UsersController < ApplicationController
 
     if user_signed_in?
 
-      @feedbank_posts = Feedbank.where(user_id: @current_user.id)
+      @feedbank_posts = Feedbank.where(user_id: @current_user.id).order("item_date desc").page(params[:page]).per(1)
 
       @mail_setting = @current_user.mail_setting
       @account_setting = @current_user.account_setting
 
-      if @current_user.admin
-
-        @user_posts = Feedbank.where(approval_status: false).all
-        render 'admin_page'
-
-      else
-        #Render the User Page
-      end
+      #Render the User Page
 
     else
       render 'permissiondenied'
