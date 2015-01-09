@@ -1,40 +1,40 @@
-<div class="span9 offset1">
-
-	<h2>Update your Profile</h2>
-	<p>Updating the content and frequency of your emails will assist us in delivering the neccessary content to your mailbox as well as reducing unneccessary posts and spam.</p>
-
-	<br>
-
-	<h4>Modifiy your selections</h4>
+<h4>Modifiy your selections</h4>
 
 	<%= form_for(@current_user) do |f| %>
 
 		 <%= f.fields_for :mail_setting do |account_form| %>
 
 			<%= account_form.label :news, "News Items" %>
+			<br>
 			<%= account_form.check_box :news %>
+			<br>
 
 			<%= account_form.label :research, "Research Offers" %>
+			<br>
 			<%= account_form.check_box :research %>
+			<br>
 
 			<%= account_form.label :jobs, "Job Offers" %>
+			<br>
 			<%= account_form.check_box :jobs %>
+			<br>
 
 			<%= account_form.label :events, "Events" %>
+			<br>
 			<%= account_form.check_box :events %>
+			<br>
 
 			<div style="width:40%">
 
 				<%= account_form.label :email_frequency, "Days between emails [1-7]" %>
+				<br>
 				<%= account_form.text_field :email_frequency %>
 			</div>
 
 		<% end %>
 
 		<br>
-		<br>
-
-		<%= f.submit "Save changes", class: "large" %>
+		<%= f.submit "Save changes", class: "btn btn-default btn-med" %>
 		
 	<% end %>
 

@@ -13,11 +13,11 @@
               <hr>
               <h4>Account Summary</h4>
 
-              <p><span class="glyphicon glyphicon-envelope"> <%= @current_user.email %></span></p>
-              <p><span class="glyphicon glyphicon-ok"> Subscribed to Weekly Email</span></p>
-              <p><span class="glyphicon glyphicon-ok"> Content Creator</span></p>
-              <p><span class="glyphicon glyphicon-ok"> Administrator</span></p>
-              <p><span class="glyphicon glyphicon-ok"> Newsletter</span></p>
+              <p><span class="glyphicon glyphicon-envelope"></span> <%= @current_user.email %></p>
+              <p><span class="glyphicon glyphicon-ok"></span> Subscribed to Weekly Email</p>
+              <p><span class="glyphicon glyphicon-ok"></span> Content Creator</p>
+              <p><span class="glyphicon glyphicon-ok"></span> Administrator</p>
+              <p><span class="glyphicon glyphicon-ok"></span> Newsletter</p>
               <hr>
 
               
@@ -40,9 +40,8 @@
             <li class="active"><a href="#tab1" data-toggle="tab">Mail Settings</a></li>
             <li><a href="#tab2" data-toggle="tab">Post Content</a></li>
             <li><a href="#tab3" data-toggle="tab">Your Posts</a></li>
-            <li><a href="#tab4" data-toggle="tab">Administrator</a></li>
-            <li><a href="#tab5" data-toggle="tab">NewsLetter Generator</a></li>
-            <li><a href="#tab6" data-toggle="tab">Information</a></li>
+            <li><a href="#tab4" data-toggle="tab">NewsLetter Generator</a></li>
+            <li><a href="#tab5" data-toggle="tab">Information</a></li>
           </ul>
 
           <div class="tab-content">
@@ -59,17 +58,11 @@
             </div>
 
             <div class="tab-pane" id="tab4">
-              <h3>NewsLetter Generator<h3>
-              <hr>
+              <%= render :partial => "users/userPartial/userInformation" %>
             </div>
 
 
             <div class="tab-pane" id="tab5">
-              <h3>Information<h3>
-              <hr>
-            </div>
-
-            <div class="tab-pane" id="tab6">
               <h3>Information<h3>
               <hr>
             </div>

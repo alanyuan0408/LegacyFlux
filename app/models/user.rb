@@ -37,7 +37,6 @@ class User < ActiveRecord::Base
       self.update_column(:confirmationMail, "true")
       #Create the Dependencies
       self.account_setting = AccountSetting.new
-      self.account_setting.update_column(:approval_message, "")
       self.account_setting.update_column(:user_id, self.id)
       self.account_setting.save
 
