@@ -32,9 +32,9 @@
 
     <%= f.label :item_text %>
     <br>
-
-    <%= f.text_area :item_text, placeholder: " Message", :size=>"80x7"%>
-
+<div data-no-turbolink>
+    <%= f.text_area :item_text, :class => 'ckeditor', :ckeditor => {:uiColor => '#AADC6E', :toolbar => 'mini'} %>
+</div>
     <br><br>
 
     <%= f.submit "Add New Post", class: "btn btn-default btn-med" %>
