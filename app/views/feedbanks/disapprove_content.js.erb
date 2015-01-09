@@ -1,2 +1,2 @@
-$('#' + '<%= escape_javascript(@feedbank.item_id) %>').remove();
-$('#' + '<%= escape_javascript(@feedbank.item_id) %>').remove();
+$('#itemPosts2').find("#" + "<%= @feedbank.item_id %>").remove()
+$('#posts2').find("#" + "<%= @feedbank.item_id %>").remove() 

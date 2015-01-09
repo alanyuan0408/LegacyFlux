@@ -6,6 +6,7 @@ class FeedbanksController < ApplicationController
 
 	def create
   	@Feedbank = Feedbank.new(params[:feedbank])
+    @Feedbank.update_attribute(:item_id, SecureRandom.urlsafe_base64)
 
   	@Feedbank.save
     @current_user = current_user

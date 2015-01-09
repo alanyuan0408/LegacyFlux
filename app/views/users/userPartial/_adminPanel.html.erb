@@ -37,6 +37,7 @@
         }
     }
     function initialize2(){
+
         var jobPosts = document.getElementById("itemPosts2").childNodes;
         var top_element = 0;
         var bottom_element = 21;
@@ -52,7 +53,7 @@
             }
         }
 
-        $("a").click(function(){
+        $("li").click(function(){
             console.log($(this).attr('id'));
             var jobPosting = document.getElementById("posts2").childNodes;
             for(i=0; i<jobPosting.length; i++){
@@ -90,7 +91,7 @@
 
 		<ul id="itemPosts2" class="nav nav-tabs nav-stacked" onload="initialize()">
 	        <% @unconfirmed_posts.each do |post| %>
-	            <li><a id="<%= post.item_id %>"><%= post.item_title %></a></li>
+	            <li id="<%= post.item_id %>"><a><%= post.item_title %></a></li>
 	        <% end %>
 	    </ul>
 
