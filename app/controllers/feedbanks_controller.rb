@@ -18,18 +18,22 @@ class FeedbanksController < ApplicationController
 
   def approve_content
     @feedbank  = Feedbank.find(params[:id])
-    @feedbank.update_attribute(:approval_status, "true");
+    @feedbank.update_attribute(:approval_status, 'true');
 
-    @current_user = current_user
-    redirect_to @current_user
+    respond_to do |format|
+      format.js
+    end
+
   end 
 
   def disapprove_content
     @feedbank  = Feedbank.find(params[:id])
-    @feedbank.update_attribute(:approval_status, "false");
+    @feedbank.update_attribute(:approval_status, 'false');
 
-    @current_user = current_user
-    redirect_to @current_userr 
+    respond_to do |format|
+      format.js
+    end
+
   end 
 
 end
