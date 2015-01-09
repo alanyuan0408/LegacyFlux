@@ -20,7 +20,7 @@
 
     <%= f.hidden_field :user_id, :value => @current_user.id %>
     <%= f.hidden_field :item_date, :value => Time.current %>
-    <%= f.hidden_field :approval_status, :value => "false" %>
+    <%= f.hidden_field :approval_status, :value => :false %>
 
     <%= f.label :column_type, " Post Type" %>
     <br>

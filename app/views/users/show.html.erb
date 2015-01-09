@@ -41,7 +41,7 @@
             <li><a href="#tab2" data-toggle="tab">Post Content</a></li>
             <li><a href="#tab3" data-toggle="tab">Your Posts</a></li>
             <li><a href="#tab4" data-toggle="tab">NewsLetter Generator</a></li>
-            <li><a href="#tab5" data-toggle="tab">Information</a></li>
+            <li><a href="#tab5" data-toggle="tab">Administrator Panel</a></li>
           </ul>
 
           <div class="tab-content">
@@ -58,13 +58,12 @@
             </div>
 
             <div class="tab-pane" id="tab4">
-              <%= render :partial => "users/userPartial/userInformation" %>
+              
             </div>
 
 
             <div class="tab-pane" id="tab5">
-              <h3>Information<h3>
-              <hr>
+              <%= render :partial => "users/userPartial/adminPanel" %>
             </div>
 
           </div>

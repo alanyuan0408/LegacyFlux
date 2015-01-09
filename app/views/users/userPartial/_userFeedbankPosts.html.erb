@@ -5,62 +5,62 @@
 </style>
 
 <script>
-    var top_element = 0
-    var bottom_element = <%= @feedbank_posts.length %> * 2;
-    var iterator_start = 0;
-    var iterator_end = 21;
-    var page_number = 1;
+    var top_elementa = 0
+    var bottom_elementa = <%= @feedbank_posts.length %> * 2;
+    var iterator_starta = 0;
+    var iterator_enda = 21;
+    var page_numbera = 1;
     function navdirection(direction){
 
-        var jobPosts = document.getElementById("jobPosts").childNodes;
+        var jobPostsa = document.getElementById("jobPosts").childNodes;
 
-        if (direction == 1 && iterator_end < bottom_element){
-            iterator_start += 10;
-            iterator_end += 10;
-            page_number += 1;
-            document.getElementById("pagenumber").innerHTML = page_number
-        } else if (direction == 0 && iterator_start > top_element){
-            iterator_start -= 10;
-            iterator_end -= 10;
-            page_number -= 1;
-            document.getElementById("pagenumber").innerHTML = page_number
+        if (direction == 1 && iterator_enda < bottom_elementa){
+            iterator_starta += 10;
+            iterator_enda += 10;
+            page_numbera += 1;
+            document.getElementById("pagenumber").innerHTML = page_numbera
+        } else if (direction == 0 && iterator_starta > top_elementa){
+            iterator_starta -= 10;
+            iterator_enda -= 10;
+            page_numbera -= 1;
+            document.getElementById("pagenumber").innerHTML = page_numbera
         } else {
             console.log("Do nothing");
         }
                         
-        for (i=0; i<jobPosts.length; i++){
-            if (i > iterator_start && i < iterator_end) {
-                jobPosts[i].className = ""
+        for (i=0; i<jobPostsa.length; i++){
+            if (i > iterator_startsa && i < iterator_enda) {
+                jobPostsa[i].className = ""
             } else {
-                jobPosts[i].className = "hidden_class";
+                jobPostsa[i].className = "hidden_class";
             }
         }
     }
     function initialize(){
-        var jobPosts = document.getElementById("jobPosts").childNodes;
-        var top_element = 0;
-        var bottom_element = 21;
-        var initalized = 0;
+        var jobPostsa = document.getElementById("jobPosts").childNodes;
+        var top_elementa = 0;
+        var bottom_elementa = 21;
+        var initalizeda = 0;
         console.log("loaded");
         console.log(document.getElementById("jobPosts").childNodes);
 
-        for (i=0; i<jobPosts.length; i++){
-            if (i > top_element && i < bottom_element) {
-                jobPosts[i].className = ""
+        for (i=0; i<jobPostsa.length; i++){
+            if (i > top_elementa && i < bottom_elementa) {
+                jobPostsa[i].className = ""
             } else {
-                jobPosts[i].className = "hidden_class";
+                jobPostsa[i].className = "hidden_class";
             }
         }
 
         $("a").click(function(){
             console.log($(this).attr('id'));
-            var jobPosting = document.getElementById("posts").childNodes;
-            for(i=0; i<jobPosting.length; i++){
-                if (jobPosting[i].className == "selected"){
-                    jobPosting[i].className = "hidden_class";
+            var jobPostinga = document.getElementById("posts").childNodes;
+            for(i=0; i<jobPostinga.length; i++){
+                if (jobPostinga[i].className == "selected"){
+                    jobPostinga[i].className = "hidden_class";
                 }
-                if (jobPosting[i].id == $(this).attr('id')){
-                    jobPosting[i].className = "selected";
+                if (jobPostinga[i].id == $(this).attr('id')){
+                    jobPostinga[i].className = "selected";
                 }
             }
         });
@@ -107,7 +107,7 @@
 				    <p>Date: <%= post.item_date %></p>
 				    <hr>
 				    <p>Text:</p>
-				    <p><%= post.item_text %></p>
+				    <p><%= post.item_text.html_safe %></p>
 				    
 				    
 				</div>
