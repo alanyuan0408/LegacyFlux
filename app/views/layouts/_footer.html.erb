@@ -1,1 +1,11 @@
 <a href="https://www.facebook.com/pages/Uoft-Web-Development-Club/571896212842252" target="_blank">Follow us on Facebook</a>
+<script type="text/javascript">
+  $(document).ready(function() {
+      if ($('textarea.ckeditor').length > 0) {
+          var data = $('textarea.ckeditor');
+          $.each(data, function(i) {
+              CKEDITOR.replace(data[i].id);
+          });
+      }
+  });
+</script>

@@ -4,9 +4,10 @@
 	<title>UofT Web Development Club</title>
 	<%= render 'layouts/cssHook' %>
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'ckeditor/ckeditor.js' %>
 	<%= csrf_meta_tags %>
 	</head>
-	<body>
+	<body<% if content_for?(:body_attributes) %><%= yield(:body_attributes) %><% end %>>
 	<div class="wrapper">
 	<div class="topwrap">
 		<%= render 'layouts/topModule' %>
