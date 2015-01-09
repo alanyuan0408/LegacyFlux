@@ -5,7 +5,6 @@ class CreateAccountSettings < ActiveRecord::Migration
 
     	t.belongs_to :user, index: true
 
-    	t.boolean :content_creator, :default => false
     	t.boolean :student_account, :default => false
       t.boolean :admin, :default => false 
       t.boolean :news_admin, :default => false 
