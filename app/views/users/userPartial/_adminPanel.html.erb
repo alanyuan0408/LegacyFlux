@@ -10,9 +10,9 @@
     var iterator_start = 0;
     var iterator_end = 21;
     var page_number = 1;
-    function navdirection(direction){
+    function navdirection2(direction){
 
-        var jobPosts = document.getElementById("itemPosts").childNodes;
+        var jobPosts = document.getElementById("itemPosts2").childNodes;
 
         if (direction == 1 && iterator_end < bottom_element){
             iterator_start += 10;
@@ -36,13 +36,13 @@
             }
         }
     }
-    function initialize(){
-        var jobPosts = document.getElementById("jobPosts").childNodes;
+    function initialize2(){
+        var jobPosts = document.getElementById("itemPosts2").childNodes;
         var top_element = 0;
         var bottom_element = 21;
         var initalized = 0;
         console.log("loaded");
-        console.log(document.getElementById("jobPosts").childNodes);
+        console.log(document.getElementById("itemPosts2").childNodes);
 
         for (i=0; i<jobPosts.length; i++){
             if (i > top_element && i < bottom_element) {
@@ -65,8 +65,8 @@
             }
         });
     }
-    $(document).ready(initialize);
-    $(document).on('page:load', initialize);
+    $(document).ready(initialize2);
+    $(document).on('page:load', initialize2);
 
 </script>
 
@@ -79,16 +79,16 @@
 
 		<div class="text-center">
 			<div class="btn-group">
-  			<button type="button" class="btn btn-default" onclick="navdirection(0)">Prev</button>
+  			<button type="button" class="btn btn-default" onclick="navdirection2(0)">Prev</button>
  			<button type="button" class="btn btn-default disabled" id="pagenumber2">1</button>
-  			<button type="button" class="btn btn-default" onclick="navdirection(1)">Next</button>
+  			<button type="button" class="btn btn-default" onclick="navdirection2(1)">Next</button>
 			</div>
 		</div>
 
 		<div class="row" style="height:5px"></div>
 
 
-		<ul id="itemPosts" class="nav nav-tabs nav-stacked" onload="initialize()">
+		<ul id="itemPosts2" class="nav nav-tabs nav-stacked" onload="initialize()">
 	        <% @unconfirmed_posts.each do |post| %>
 	            <li><a id="<%= post.id %>"><%= post.item_title %></a></li>
 	        <% end %>
@@ -109,6 +109,19 @@
 				    <p>Text:</p>
 				    <p><%= post.item_text.html_safe %></p>
 				    
+                    <%= form_for post, :url => url_for(:controller => "feedbanks", 
+                            :action => "approve_content", :id => post.id) do |f|%>
+
+                        <%= f.submit "Approve Post", class: "btn btn-default" %>
+                    <% end %>
+
+                    <br>
+
+                    <%= form_for post, :url => url_for(:controller => "feedbanks", 
+                            :action => "disapprove_content", :id => post.id) do |f|%>
+
+                        <%= f.submit "Disapprove Post", class: "btn btn-default" %>
+                    <% end %>
 				    
 				</div>
 			<% end %>

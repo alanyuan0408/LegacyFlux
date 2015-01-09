@@ -42,8 +42,8 @@ Rails.application.routes.draw do
   get "/500" => 'users#permissiondenied'
 
   get "/feedcreate" => 'feedbanks#create'
-  get "/feedapprove" => 'feedbanks#approve_content'
-  get "/feeddisapprove" => 'feedbanks#disapprove_content'
+  patch "/feedapprove" => 'feedbanks#approve_content'
+  patch "/feeddisapprove" => 'feedbanks#disapprove_content'
 
   match '/confirmation_token', to: 'users#confirmation_token', via: [:get, :post]
 
