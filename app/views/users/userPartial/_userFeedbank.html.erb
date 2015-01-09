@@ -1,7 +1,9 @@
+<% content_for(:body_attributes) do %> data-no-turbolink="true"<% end %>
+
 <h4>Add New Post</h4>
 
 <p>We warmly welcome any Job Offers, Research Offers, Event Posts and News Updates that may be relevant to the Computer Science Department. Your post will be listed as soon as it is approved by the DCS administrator.</p>
-
+<div id="noturbolink" data-no-turbolink>
 <%= form_for :feedbank, :url => '/feedbanks#create' do |f| %> 
 
     <%= f.label :item_title %>
@@ -32,15 +34,15 @@
 
     <%= f.label :item_text %>
     <br>
-<div data-no-turbolink>
+
     <%= f.text_area :item_text, :class => 'ckeditor', :ckeditor => {:uiColor => '#AADC6E', :toolbar => 'mini'} %>
-</div>
+
     <br><br>
 
     <%= f.submit "Add New Post", class: "btn btn-default btn-med" %>
 
 <% end %>
-
+</div>
 <br>
 <br>
 
