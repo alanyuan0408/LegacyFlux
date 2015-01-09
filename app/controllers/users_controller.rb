@@ -24,11 +24,15 @@ class UsersController < ApplicationController
 
   end
 
-  def edit
+  def save_setting
+
+    respond_to do |format|
+      format.js
+    end
 
   end
 
-  def update
+  def modify
 
     param = params[:user][:mail_setting_attributes]
 
@@ -55,7 +59,11 @@ class UsersController < ApplicationController
 
     @current_user.mail_setting.update_attribute(:nextsend, Time.now + email_frequency.days)
 
-    redirect_to @current_user
+    @mail_setting = @current_user.mail_setting
+
+    respond_to do |format|
+      format.js
+    end
 
   end
 

@@ -39,4 +39,8 @@
 <p><i class='glyphicon glyphicon-send'></i><b>	Next Email:</b> <%= @mail_setting.nextsend %></p>
 <br>
 
-	<%= button_to "Update Settings", '/update', {:class => "btn btn-default btn-med"} %>
+<%= form_for @current_user, :url => url_for(:controller => "users", 
+        :action => "change"), :remote => true do |f|%>
+
+    <%= f.submit "Update Settings", class: "btn btn-default btn-med" %>
+<% end %>

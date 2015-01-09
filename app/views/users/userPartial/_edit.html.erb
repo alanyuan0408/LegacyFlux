@@ -1,6 +1,7 @@
 <h4>Modifiy your selections</h4>
 
-	<%= form_for(@current_user) do |f| %>
+	<%= form_for @current_user, :url => url_for(:controller => "users", 
+        :action => "modify"), :remote => true do |f| %>
 
 		 <%= f.fields_for :mail_setting do |account_form| %>
 

@@ -15,7 +15,8 @@ Rails.application.routes.draw do
     # You can have the root of your site routed with "root"
   root to: 'static_pages#home'
 
-  post '/update', to: 'users#edit'
+  patch '/update', to: 'users#change'
+  patch '/savechange', to: 'users#modify'
 
   get '/developer',  to: 'static_pages#developer'
   get '/jobs',     to: 'static_pages#jobs'
