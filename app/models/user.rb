@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :mail_setting
   has_one :account_setting, dependent: :destroy
   accepts_nested_attributes_for :account_setting
+  has_one :news_letter_mail, dependent: :destroy
+  accepts_nested_attributes_for :news_letter_mail
 
   attr_accessible :email, :password, :password_confirmation, :name
 
@@ -45,9 +47,9 @@ class User < ActiveRecord::Base
       self.mail_setting.update_column(:user_id, self.id)
       self.mail_setting.save
 
-      # send user email of confirmation if they haven't confirmed their email yet
+      #IMPORTANT! ONLY USED DURING TESTING STAGE
 
-         
+      # send user email of confirmation if they haven't confirmed their email yet
       UserMailer.welcome_email(self).deliver
     end
   end

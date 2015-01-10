@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150104024942) do
+ActiveRecord::Schema.define(version: 20150110055354) do
 
   create_table "account_settings", force: :cascade do |t|
     t.integer  "user_id"
@@ -70,6 +70,24 @@ ActiveRecord::Schema.define(version: 20150104024942) do
   end
 
   add_index "mail_settings", ["user_id"], name: "index_mail_settings_on_user_id"
+
+  create_table "news_letter_entries", force: :cascade do |t|
+    t.integer  "news_letter_mails_id"
+    t.string   "entry_title"
+    t.text     "entry_text"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "news_letter_entries", ["news_letter_mails_id"], name: "index_news_letter_entries_on_news_letter_mails_id"
+
+  create_table "news_letter_mails", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "news_letter_mails", ["user_id"], name: "index_news_letter_mails_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

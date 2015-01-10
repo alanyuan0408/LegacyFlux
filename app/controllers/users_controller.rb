@@ -9,6 +9,8 @@ class UsersController < ApplicationController
       @feedbank_posts = Feedbank.where(user_id: @current_user.id).order("item_date desc")
       @unconfirmed_posts = Feedbank.where(approval_status: false).order("item_date desc")
 
+      @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).order("item_date desc")
+
       @mail_setting = @current_user.mail_setting
       @account_setting = @current_user.account_setting
 
