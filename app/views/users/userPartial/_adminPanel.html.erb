@@ -108,7 +108,7 @@
 				    <p>Date: <%= post.item_date %></p>
 				    <hr>
 				    <p>Text:</p>
-				    <p><%= post.item_text.html_safe %></p>
+				    <p><%= Sanitize.fragment(post.item_text).html_safe %></p>
 				    
                     <%= form_for post, :url => url_for(:controller => "feedbanks", 
                         :action => "approve_content", :id => post.id), :remote => true do |f|%>
