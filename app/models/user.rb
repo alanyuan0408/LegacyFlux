@@ -47,7 +47,9 @@ class User < ActiveRecord::Base
       self.mail_setting.update_column(:user_id, self.id)
       self.mail_setting.save
 
-      #IMPORTANT! ONLY USED DURING TESTING STAGE
+      #IMPORTANT! ONLY USED DURING TESTING STAGE// SEED IT FOR THE RELEASE
+      self.news_letter_mail = NewsLetterMail.new
+      self.news_letter_mail.save
 
       # send user email of confirmation if they haven't confirmed their email yet
       UserMailer.welcome_email(self).deliver

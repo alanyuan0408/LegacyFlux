@@ -108,13 +108,19 @@ class UsersController < ApplicationController
     redirect_to @current_user
   end
 
-  def approve_creator 
-    @user = User.find(params[:id])
-    @user.account_setting.update_attribute(:content_approved, true);
+  def add_newsItem
+    @feedbank = Feedbank.find(params[:id])
 
-    redirect_to @current_user
+    puts @current_user.news_letter_mail.inspect
+
+    @newPost = @current_user.news_letter_mail.news_letter_entries.new
+
+    @newPost.update_attribute(:entry_title, @feedbank.item_title)
+    @newPost.update_attribute(:entry_text, @feedbank.item_text)
+    @newPost.update_attribute(:item_id, @feedbank.item_id)
+    @newPost.save
+
   end
-
 
    def confirmation_token
     @user = User.find_by_email_confirmation_token(params[:email_confirmation_token]);
@@ -132,6 +138,10 @@ class UsersController < ApplicationController
 
     def find_user
       @current_user = current_user
+    end
+
+    def news_entry_params
+      params.required(:person).permit(:name, :age)
     end
 
 end
