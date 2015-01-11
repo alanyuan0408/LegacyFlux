@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   patch '/update', to: 'users#change'
   patch '/savechange', to: 'users#modify'
   patch '/addNewsItem', to: 'users#add_newsItem'
+  patch '/removeNewsItem', to: 'users#remove_newsItem'
 
   get '/developer',  to: 'static_pages#developer'
   get '/jobs',     to: 'static_pages#jobs'

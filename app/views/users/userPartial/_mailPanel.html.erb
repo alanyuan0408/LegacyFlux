@@ -90,37 +90,19 @@
 
 
 		<ul id="itemPosts3" class="nav nav-tabs nav-stacked" onload="initialize()">
-	        <% @mail_posts.each do |post| %>
-	            <li id="<%= post.item_id %>"><a><%= post.item_title %></a></li>
-	        <% end %>
+
+            <%= render :partial => "users/userPartial/mailPosts" %>
+
 	    </ul>
 
 	</div>
 
 	<div class="col-xs-6">
 		<div class="panel-content" id= "posts3" >
-			<% @mail_posts.each do |post| %>
-				<div id="<%= post.item_id %>" class="hidden_class" >
-				    <p><b>Item Title: <%= post.item_title %></b></p>
-				    <p>URL: <%= post.item_url %></p>
-				    <p>Approval Status: <%= post.approval_status %></p>
 
-				    <p>Date: <%= post.item_date %></p>
-				    <hr>
-				    <p>Text:</p>
+            <%= render :partial => "users/userPartial/mailPostsInfo" %>
 
-				    <p><%= Sanitize.fragment(post.item_text) %></p>
-				    
-                    <%= form_for @current_user, :url => url_for(:controller => "users", 
-                        :action => "add_newsItem", :id => post.id), :remote => true do |f|%>
-
-                        <%= f.submit "Add to NewsLetter", class: "btn btn-default" %>
-                    <% end %>
-				    
-				</div>
-			<% end %>
 		</div>
-
 	</div>
 </div>
 

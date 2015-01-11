@@ -120,6 +120,25 @@ class UsersController < ApplicationController
     @newPost.update_attribute(:item_id, @feedbank.item_id)
     @newPost.save
 
+    @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).order("item_date desc")
+
+    respond_to do |format|
+      format.js
+    end
+
+  end
+
+  def remove_newsItem
+    @newPost = @current_user.news_letter_mail.news_letter_entries.
+                        find_by(item_id: params[:item_id])
+    @newPost.destroy
+
+    @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).order("item_date desc")
+
+    respond_to do |format|
+      format.js
+    end
+
   end
 
    def confirmation_token
