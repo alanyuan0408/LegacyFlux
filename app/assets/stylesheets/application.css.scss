@@ -36,10 +36,16 @@ body{
 	overflow-y: scroll; 
 	font-size: 160%;
 	font-family: Verdana, Geneva, Helvetica, sans-serif;
+
 }
-a{
+a, a:hover, a:focus, a:visited{
 	text-decoration:none;
 }
+
+.logo a:hover, .logo a:focus{
+	 color: #04689b;
+}
+
 .wrapper{
 	min-height:100%;
 	margin: 0 auto;
@@ -73,10 +79,16 @@ a{
 	text-align: center;
 	font-size: 75%;
 	padding-top: 12px;
+	line-height: 100%;
+	box-sizing: content-box;
 }
 
-.footer a{
+.footer a, .footer a:focus, .footer a:visited{
 	color: #ffffff;
+}
+
+.footer a:hover, a:active{
+    color: #7A991A;
 }
 /*
 .nav{
@@ -100,11 +112,11 @@ a{
 		display:block;
 		border-right: 1px solid #eeeeee;
 	}			
-	.nav a:link, a:visited{
+	.nav a:link, .nav a:visited{
 		color: #191919;
 
 	}
-.nav a:hover, a:active{
+.nav a:hover, .nav a:active{
 		color: #ff2222;
 	}
 	.nav i{
@@ -137,10 +149,13 @@ a{
 	text-align: center;
 }
 
-.list .pages a, a:link, a:visited{
+.list .pages a, .list a:link, .list a:visited{
 	color: #04689b;
 }
 
+.list .pages a:hover, a:active{
+    color: #7A991A;
+}
 
 .list .pageInfo{
 	visibility: hidden;

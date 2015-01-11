@@ -108,8 +108,8 @@
 				    <p>Date: <%= post.item_date %></p>
 				    <hr>
 				    <p>Text:</p>
-				    <p><%= post.item_text.html_safe %></p>
-                    <hr>
+
+				    <p><%= Sanitize.fragment(post.item_text) %></p>
 				    
                     <%= form_for @current_user, :url => url_for(:controller => "users", 
                         :action => "add_newsItem", :id => post.id), :remote => true do |f|%>
