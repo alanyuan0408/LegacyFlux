@@ -18,15 +18,19 @@
               <p><span class="glyphicon glyphicon-ok"></span> Confirmed Email</p>
               <p><span class="glyphicon glyphicon-ok"></span> Administrator</p>
               <p><span class="glyphicon glyphicon-ok"></span> Newsletter</p>
-              <hr>
-
               
               <% if @current_user.email_confirmation_token != nil %>
+              <hr>
                 <div class="alert alert-danger" role="alert">
                     <p href="#" class="alert-link">You will not recieve any emails until
                       you confirm your email</p>
                 </div>
               <% end %>
+
+              <div id="generateMail">
+                <%= render :partial => "users/userPartial/createNewsLetter" %>
+              </div>
+
             </div>
 
         </div>
