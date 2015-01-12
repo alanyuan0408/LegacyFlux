@@ -32,67 +32,23 @@ BA 4252 / 4254 / 4256<br>
 <h2 style="color:#182E64">In this Edition </h2>
 <ul>	
 
-<li>IBM Watson meets the Business of Software: heading to NYC! </li>
-<li>Graduate Skills Seminar Series 2014-5 </li>
-<li>Technologies for Aging Gracefully Lab internships: due 31 Dec 2014 </li>
-<li>Waterfront International Quantathon: registration deadline 23 Jan 2015 </li>
-<li>Windward International Collegiate Programming Championship: due 31 Jan 2015 </li>
-<li>TD Lime Connect 2015 Scholarship for Students with Disabilities: due 14 Feb 2015 </li>
-<li>SCORE 2016 Contest: due 15 Nov 2015 (but applications accepted starting in Jan) </li>
-<li>Good2Talk: a free mental health resource for university students </li>
+ <% @current_user.news_letter_mail.news_letter_entries.all.each do |entry| %>
+      <li><%= entry.entry_title %></li>
+ <% end %>
 
 </ul>
 
+<% @current_user.news_letter_mail.news_letter_entries.all.each do |entry| %>
 <hr style="border:0; color:#F7941E; background-color:#F7941E; height:2px; width:100%">
-<h3 id="x_ibmwatsonmeetsthebusinessofsoftware:headingtonyc">IBM Watson meets the Business of Software: heading to NYC! </h3>
-<p>5 student teams have been working hard all semester taking part in the IBM Watson Cognitive Computing Competition. Under the tutelage of Steve Engels, Mario Grech, and Helen Kontozopoulos, these teams have produced some stellar business ideas and applications based on IBM Watson. The team named Ross was deemed the winner at the UofT, but the other four teams made it a difficult choice, and we're proud of all 19 students. </p>
-<p>The invitation-only competition among 10 universities includes Carnegie Mellon University, the University of California at Berkeley, and Stanford University. The computer science department at the University of Toronto was the only one outside of the US to be invited to participate. Each team puts together a business plan and a prototype of an application using IBM Watson. </p>
-<p>In mid January, the top team from each university will be flow to NYC to compete for a $100,000 US prize for the best business proposal for the IBM Watson platform. Best of luck to the Ross team! </p>
-<hr style="border:0; color:#F7941E; background-color:#F7941E; height:2px; width:100%">
-<h3 id="x_graduateskillsseminarseries2014-5">Graduate Skills Seminar Series 2014-5 </h3>
-<p>The <a href="http://www.cs.toronto.edu/~sme/grad-skills/" target="_blank">graduate skills seminars</a> are designed to help students in DCS to develop the skills needed for a successful time in grad school and beyond. Undergrads are welcome! </p>
-<p>These seminars are held Tuesday mornings at 11am in BA 1170. To see the winter schedule, visit <a href="http://www.cs.toronto.edu/~sme/grad-skills/" target="_blank">the grad skills webpage</a>. </p>
-<hr style="border:0; color:#F7941E; background-color:#F7941E; height:2px; width:100%">
-<h3 id="x_technologiesforaginggracefullylabinternshipapplications:due31dec2014">Technologies for Aging Gracefully Lab internship applications: due 31 Dec 2014 </h3>
-<p>Computer Science's <a href="http://taglab.utoronto.ca" target="_blank">Technologies for Aging Gracefully Lab (TAGlab)</a> seeks outstanding talent looking for an innovative and rewarding environment for summer 2015 internships. Last summer TAGlab had 7 summer interns; this coming summer we will bring on 5-10 interns. </p>
-<p>Working at the intersection of interactive technologies and ageing, TAGlab designs aids, systems, and experiences that support ageing throughout the life course with the goal of fostering community, identity, autonomy, and safety for our users. </p>
-<p>We are comprised of computer scientists, social scientists, designers, and health care professionals. Together, we conduct in-depth research on the social contexts of ageing, using social science methods to develop rich understandings of how we age, the factors that affect that process, and how technological advances can be used to improve quality of life. We then conceive, design, develop, deploy, test, and where possible commercialize innovative technologies. </p>
-<p>A detailed list of our publications and current projects is found at the <a href="http://taglab.utoronto.ca" target="_blank">TAGLab website</a>. </p>
-<p>Upcoming projects will likely focus on (depending in part on available talent and in part upon funding): </p>
-<ul>
-<li>Technologies to address social isolation and loneliness </li><li>Novel eBook technologies for reading together </li><li>Software for enabling online randomized controlled trials </li><li>Worldwide construction of family multimedia histories </li><li>Trust and selective disclosure in sensitive information health sites </li><li>Novel environments for collaborative gaming with social interaction </li><li>Making the internet more secure for seniors. </li></ul>
-<p>Students interested should send an application comprising a resume and/or CV (stressing work and independent project challenges and achievements), and a copy of your electronic transcript, to TAGlab's Assistant Director, <a href="mailto:annette.mayer@utoronto.ca" target="_blank">annette.mayer@utoronto.ca</a>, by 31 December 2014. The resume and/or CV should include the names and contact info for at least 2 and preferably 3 references, possibly personal references but preferably professional references. </p>
-<hr style="border:0; color:#F7941E; background-color:#F7941E; height:2px; width:100%">
-<h3 id="x_waterfrontinternationalquantathon:due23jan2015">Waterfront International Quantathon: due 23 Jan 2015 </h3>
-<p>Calling all UofT students in Finance, Computer Science and Statistics. <a href="http://www.wil.com/" target="_blank">Waterfront International Ltd. (WIL)</a> is giving you the opportunity to participate in an exciting and unique competition. Be part of an interdisciplinary team of three, and put your collective minds together to collaborate and solve a real-world quantitative finance problem. </p>
-<p>Employing computer science, statistics and finance skills, participants will back test their ideas and develop tools to create an automated trading strategy. The winning team will require exemplary expertise in each of the respective three fields. </p>
-<p><a href="http://quantathon.ca/register-now/" target="_blank">REGISTER NOW</a> for <a href="http://quantathon.ca" target="_blank">the Quantathon</a>. </p>
-<hr style="border:0; color:#F7941E; background-color:#F7941E; height:2px; width:100%">
-<h3 id="x_windwardinternationalcollegiateprogrammingchampionship:due31jan2015">Windward International Collegiate Programming Championship: due 31 Jan 2015 </h3>
-<p>Our school is taking part in <a href="http://codewar.windward.net/Default.aspx" target="_blank">Code Wars</a>, the team programming contest that emphasizes strategy and problem solving rather than simply coding. </p>
-<p>Code Wars is open to all students, and it's purposefully designed so advanced classes are not an overwhelming advantage. Yes, first-year students can compete with grad students. <a href="http://blogs.windward.net/davidt/2012/11/22/so-whats-it-like-participating-in-the-windward-code-war/" target="_blank">Check out what a blast teams have had in the past.</a> </p>
-<p>Along with the glory of competing for the title of Code Wars Champ, you can also win some cool prizes, like IntelliJ and ReSharper licenses. Plus, Code Wars is a significant plus when applying for jobs. </p>
-<p>Head on over to <a href="http://codewar.windward.net" target="_blank">codewar.windward.net</a> to learn more and sign up. </p>
-<hr style="border:0; color:#F7941E; background-color:#F7941E; height:2px; width:100%">
-<h3 id="x_tdlimeconnect2015scholarshipforstudentswithdisabilities:due14feb2015">TD Lime Connect 2015 Scholarship for Students with Disabilities: due 14 Feb 2015 </h3>
-<p>Do you want to work for a top financial services company and have an exciting career in finance, securities (capital markets) or information technology? Here's a chance to do both. The <a href="http://www.limeconnect.com/opportunities/page/td-bank-group-lime-connect-canada-scholarship-program" target="_blank">TD Bank Group Lime Connect Canada Scholarship Program</a> provides recipients with a $2500 scholarship and a paid 2015 summer internship with TD, a company that places emphasis on opportunity, leadership and the value of a diverse workforce. </p>
-<hr style="border:0; color:#F7941E; background-color:#F7941E; height:2px; width:100%">
-<h3 id="x_score2016contest:due15nov2015butapplicationsacceptedstartinginjan">SCORE 2016 Contest: due 15 Nov 2015 (but applications accepted starting in Jan) </h3>
-<p>The <a href="http://score-contest.org/2016/" target="_blank">2016 Student Contest on Software Engineering (SCORE)</a> is a contest where student teams from around the world demonstrate their software engineering skills in developing a project. SCORE is designed so that course projects can be utilized as SCORE submissions. </p>
-<p>SCORE is a worldwide competition for undergraduate and master's level students. It emphasizes the engineering aspects of software development, not limited to programming. Student teams participating in the contest will complete a full-lifecycle software project on a selected project topic. </p>
-<p>The timeframe for project completion is flexible. Check out the <a href="http://score-contest.org/2016/dates.php" target="_blank">SCORE Timeline</a> for more details. </p>
-<hr style="border:0; color:#F7941E; background-color:#F7941E; height:2px; width:100%">
-<h3 id="x_good2talk:afreementalhealthresourceforuniversitystudents">Good2Talk: a free mental health resource for university students </h3>
-<p><a href="http://www.good2talk.ca" target="_blank">Good2Talk</a> is a free-to-use, publicly funded, confidential and anonymous helpline providing professional counselling and information and referrals for mental health, addictions and well-being to post-secondary students in Ontario, 24/7/365. </p>
-<p>Good2Talk serves students at Ontario's publicly-funded colleges and universities, with a primary focus on those aged 17 to 25. Students can call Good2Talk for support on a wide range of issues. </p>
-<p>Check out the <a href="http://www.good2talk.ca" target="_blank">Good2Talk website</a> for more information, or call them at 1-866-925-5454 24 hours a day 7 days a week. </p>
+	<h3><%= entry.entry_title %></h3>
+    <%= entry.entry_text.html_safe %>
+<% end %>
+
+<!-- Footer of the Email -->
 <hr style="border:0; color:#F7941E; background-color:#F7941E; height:5px; width:100%">
 <table style="border-collapse:separate; border-spacing:10px">
 <tbody>
 <tr>
-
-
-<!-- Footer of the Email -->
 <td style="text-align:center; border-bottom-style:solid; border-bottom-color:#182E64; border-bottom-width:5px">
 <p><b>Career Centre Events and Postings</b> </p>
 <p>The Career Centre posts job openings, helps employers set up information sessions, and offers career-related training sessions. Sign up at <a href="http://www.careers.utoronto.ca" target="_blank">http://www.careers.utoronto.ca</a> </p>

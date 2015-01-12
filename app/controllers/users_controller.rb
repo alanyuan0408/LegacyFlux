@@ -6,6 +6,8 @@ class UsersController < ApplicationController
 
     if user_signed_in?
 
+      if 
+
       @feedbank_posts = Feedbank.where(user_id: @current_user.id).order("item_date desc")
       @unconfirmed_posts = Feedbank.where(approval_status: false).order("item_date desc")
 
@@ -115,8 +117,7 @@ class UsersController < ApplicationController
 
   def mail_delete_dependencies
 
-    @newsItems = NewsLetterEntry.where(news_letter_mail_id: 
-        @current_user.news_letter_mail.id)
+    @newsItems = @current_user.news_letter_mail.news_letter_entries.all
 
     @newsItems.each do |entry|
       entry.destroy
