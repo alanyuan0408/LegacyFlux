@@ -21,23 +21,22 @@ class StaticPagesController < ApplicationController
   end
   
   def research
-    @research = Feedbank.where(:column_type => 4).where(:approval_status => "true").order("item_date desc").page(params[:page]).per(10)
+    @research = Feedbank.where(:column_type => 4).where(:approval_status => true).order("item_date desc").page(params[:page]).per(10)
     #1 is Jobs, #2 is Events, #3 is News, #4 is Research
   end
   
   def news
-    @news = Feedbank.where(:column_type => 3).where(:approval_status => "true").order("item_date desc").page(params[:page]).per(10)
+    @news = Feedbank.where(:column_type => 3).where(:approval_status => true).order("item_date desc").page(params[:page]).per(10)
     #1 is Jobs, #2 is Events, #3 is News, #4 is Research
   end
 
   def events
-    @events = Feedbank.where(:column_type => 2).where(:approval_status => "true").(order("item_date desc").page(params[:page]).per(10)
+    @events = Feedbank.where(:column_type => 2).where(:approval_status => true).order("item_date desc").page(params[:page]).per(10)
     #1 is Jobs, #2 is Events, #3 is News, #4 is Research
-
   end
 
   def jobs
-    @jobs = Feedbank.where(:column_type => 1).where(:approval_status => "true").order("item_date desc").page(params[:page]).per(10)
+    @jobs = Feedbank.where(:column_type => 1).where(:approval_status => true).order("item_date desc").page(params[:page]).per(10)
     #1 is Jobs, #2 is Events, #3 is News, #4 is Research
   end
 

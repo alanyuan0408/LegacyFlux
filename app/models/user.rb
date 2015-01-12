@@ -37,6 +37,7 @@ class User < ActiveRecord::Base
     else
       self.update_column(:email_confirmation_token, SecureRandom.urlsafe_base64)
       self.update_column(:confirmationMail, "true")
+
       #Create the Dependencies
       self.account_setting = AccountSetting.new
       self.account_setting.update_column(:user_id, self.id)
