@@ -2,6 +2,10 @@
 
 <p>We warmly welcome any Job Offers, Research Offers, Event Posts and News Updates that may be relevant to the Computer Science Department. Your post will be listed as soon as it is approved by the DCS administrator.</p>
 
+<% if @current_user.account_setting.admin or @current_user.account_setting.news_admin %>
+    <p><b>Note:</b> As Admin, your posts will be automatically approved</p>
+<% end %>
+
 <%= form_for :feedbank, :url => '/feedbanks#create' do |f| %> 
 
     <%= f.label :item_title %>
@@ -18,8 +22,14 @@
     <br><br>
 
     <%= f.hidden_field :user_id, :value => @current_user.id %>
+
     <%= f.hidden_field :item_date, :value => Time.current %>
-    <%= f.hidden_field :approval_status, :value => :false %>
+
+    <% if @current_user.account_setting.admin or @current_user.account_setting.news_admin %>
+        <%= f.hidden_field :approval_status, :value => :true %>
+    <% else  %>
+        <%= f.hidden_field :approval_status, :value => :false %>
+    <% end %>
 
     <%= f.label :column_type, " Post Type" %>
     <br>
@@ -44,14 +54,8 @@
 <br>
 <br>
 
-<p><b>** Posting Categories **</b></p>
+<p><b>** General Guilelines **</b></p>
 
-<p><b>News:</b> Any news relevant to UofT Computer Science Students. Advertisement is not acceptable</p>
-
-<p><b>Job Post:</b> Any paid summer, full-time, part-time, PEY positions. Posts are more strictly inforced. Posts by small startups e.g. startups from the Next 36 incubators will be moved directly to the informal job post.</p>
-
-<p><b>Informal Job Post:</b> Contract positions, Looking for CoFounders, looking for Tutors, unpaid positions, e.t.c [Rules are relaxed compared to Job Posts]</p>
-
-<p><b>Event Post:</b> Any events relevant to UofT Computer Science Students</p>
-
-<p><b>Research Post:</b> Any posts from professors, graduate students or PHD candidates looking for research assistants. [Paid or Unpaid]</p>
+<p><b>Embeded HTML:</b> Please do not embed HTML. To prevent JS Injection, we will disable all HTML tags. Please use our own editor for styling</p>
+<br>
+<p><b>Startup Posting:</b> Please be as specific as possible about compensation and the nature of the position. If you are an undergraduate student looking for a cofounder, please indiciate that clearly</p>

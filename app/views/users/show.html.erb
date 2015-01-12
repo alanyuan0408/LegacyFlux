@@ -14,10 +14,18 @@
               <h4>Account Summary</h4>
 
               <p><span class="glyphicon glyphicon-envelope"></span> <%= @current_user.email %></p>
-              <p><span class="glyphicon glyphicon-ok"></span> Subscribed to Weekly Email</p>
-              <p><span class="glyphicon glyphicon-ok"></span> Confirmed Email</p>
-              <p><span class="glyphicon glyphicon-ok"></span> Administrator</p>
-              <p><span class="glyphicon glyphicon-ok"></span> Newsletter</p>
+
+              <% if @current_user.account_setting.student_account %>
+                <p><span class="glyphicon glyphicon-ok"></span> Subscribed to Weekly Email</p>
+              <% end %>
+
+              <% if @current_user.account_setting.admin %>
+                <p><span class="glyphicon glyphicon-ok"></span> Administrator</p>
+              <% end %>
+
+              <% if @current_user.account_setting.news_admin %>
+                <p><span class="glyphicon glyphicon-ok"></span> Newsletter</p>
+              <% end %>
               
               <% if @current_user.email_confirmation_token != nil %>
               <hr>
@@ -27,9 +35,11 @@
                 </div>
               <% end %>
 
-              <div id="generateMail">
-                <%= render :partial => "users/userPartial/createNewsLetter" %>
-              </div>
+              <% if @current_user.account_setting.news_admin %>
+                <div id="generateMail">
+                  <%= render :partial => "users/userPartial/createNewsLetter" %>
+                </div>
+              <% end %>
 
             </div>
 
@@ -44,8 +54,12 @@
             <li class="active"><a href="#tab1" data-toggle="tab">Mail Settings</a></li>
             <li><a href="#tab2" data-toggle="tab">Post Content</a></li>
             <li><a href="#tab3" data-toggle="tab">Your Posts</a></li>
-            <li><a href="#tab4" data-toggle="tab">NewsLetter Generator</a></li>
-            <li><a href="#tab5" data-toggle="tab">Administrator Panel</a></li>
+            <% if @current_user.account_setting.news_admin %>
+              <li><a href="#tab4" data-toggle="tab">NewsLetter Generator</a></li>
+            <% end %>
+            <% if @current_user.account_setting.admin %>
+              <li><a href="#tab5" data-toggle="tab">Administrator Panel</a></li>
+            <% end %>
           </ul>
 
           <div class="tab-content">
@@ -61,13 +75,17 @@
               <%= render :partial => "users/userPartial/userFeedbankPosts" %>
             </div>
 
-            <div class="tab-pane" id="tab4">
-               <%= render :partial => "users/userPartial/mailPanel" %>
-            </div>
+            <% if @current_user.account_setting.news_admin %>
+              <div class="tab-pane" id="tab4">
+                 <%= render :partial => "users/userPartial/mailPanel" %>
+              </div>
+            <% end %>
 
-            <div class="tab-pane" id="tab5">
-              <%= render :partial => "users/userPartial/adminPanel" %>
-            </div>
+            <% if @current_user.account_setting.news_admin %>
+              <div class="tab-pane" id="tab5">
+                <%= render :partial => "users/userPartial/adminPanel" %>
+              </div>
+            <% end %>
 
           </div>
         </div>

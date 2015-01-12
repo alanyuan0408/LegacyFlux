@@ -1,46 +1,60 @@
-<h4>Here are your Mailing Settings</h4>
+<% if @current_user.account_setting.student_account %>
 
-<p>Your Email will be sent in a frequency of <%= @mail_setting.email_frequency %> days</p>
+	<h4>Here are your Mailing Settings</h4>
 
-<br>
+	<p>Your Email will be sent in a frequency of <%= @mail_setting.email_frequency %> days</p>
 
-<% if @mail_setting.news %>
-	<p><i class='glyphicon glyphicon-ok'></i>  Your Email <b>will</b> include News Updates</p>
-<% else %> 
-	<p><i class='glyphicon glyphicon-remove'></i>  Your Email <b>will not</b> include News Updates</p>
-<% end %>
-			
-<br>
+	<br>
 
-<% if @mail_setting.research %>
-	<p><i class='glyphicon glyphicon-ok'></i>  Your Email <b>will</b> include Research Opportunities</p>
-<% else %> 
-	<p><i class='glyphicon glyphicon-remove'></i>  Your Email <b>will not</b> include Research Opportunities</p>
-<% end %>
+	<% if @mail_setting.news %>
+		<p><i class='glyphicon glyphicon-ok'></i>  Your Email <b>will</b> include News Updates</p>
+	<% else %> 
+		<p><i class='glyphicon glyphicon-remove'></i>  Your Email <b>will not</b> include News Updates</p>
+	<% end %>
+				
+	<br>
 
-<br>
+	<% if @mail_setting.research %>
+		<p><i class='glyphicon glyphicon-ok'></i>  Your Email <b>will</b> include Research Opportunities</p>
+	<% else %> 
+		<p><i class='glyphicon glyphicon-remove'></i>  Your Email <b>will not</b> include Research Opportunities</p>
+	<% end %>
 
-<% if @mail_setting.jobs %>
-	<p><i class='glyphicon glyphicon-ok'></i>  Your Email <b>will</b> include Job Updates</p>
-<% else %> 
-	<p><i class='glyphicon glyphicon-remove'></i>  Your Email <b>will not</b> include Job Updates</p>
-<% end %>
+	<br>
 
-<br>
+	<% if @mail_setting.jobs %>
+		<p><i class='glyphicon glyphicon-ok'></i>  Your Email <b>will</b> include Job Updates</p>
+	<% else %> 
+		<p><i class='glyphicon glyphicon-remove'></i>  Your Email <b>will not</b> include Job Updates</p>
+	<% end %>
 
-<% if @mail_setting.events %>
-	<p><i class='glyphicon glyphicon-ok'></i>  Your Email <b>will</b> include Events</p>
-<% else %> 
-	<p><i class='glyphicon glyphicon-remove'></i>  Your Email <b>will not</b> include Events</p>
-<% end %>
+	<br>
 
-<br>
+	<% if @mail_setting.events %>
+		<p><i class='glyphicon glyphicon-ok'></i>  Your Email <b>will</b> include Events</p>
+	<% else %> 
+		<p><i class='glyphicon glyphicon-remove'></i>  Your Email <b>will not</b> include Events</p>
+	<% end %>
 
-<p><i class='glyphicon glyphicon-send'></i><b>	Next Email:</b> <%= @mail_setting.nextsend %></p>
-<br>
+	<br>
 
-<%= form_for @current_user, :url => url_for(:controller => "users", 
-        :action => "change"), :remote => true do |f|%>
+	<p><i class='glyphicon glyphicon-send'></i><b>	Next Email:</b> <%= @mail_setting.nextsend %></p>
+	<br>
 
-    <%= f.submit "Update Settings", class: "btn btn-default btn-med" %>
+	<%= form_for @current_user, :url => url_for(:controller => "users", 
+	        :action => "change"), :remote => true do |f|%>
+
+	    <%= f.submit "Update Settings", class: "btn btn-default btn-med" %>
+	<% end %>
+
+<% else %>
+
+	<h4>Signup for Regular Email Updates</h4>
+
+	<p>If you would like our server to update your inbox with regular email updates, please activiate your Mailing account</p>
+
+	<br>
+
+	<%= button_to "Activiate Mailing Account", '/student_account', class: "btn btn-default btn-med" %>
+	
 <% end %>
