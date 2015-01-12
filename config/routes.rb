@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   match '/student_account', to: 'users#student_account', via: [:get, :post]
   match '/creator_account', to: 'users#creator_account', via: [:get, :post]
   get '/user_info', to: 'users#show'
-  post '/generate_newsletter', to: 'users#generate_newsLetter'
+  patch '/generate_newsletter', to: 'users#generate_newsLetter'
 
   get '/approve', to: 'users#approve_creator'
   get '/request', to: 'users#request_creator'

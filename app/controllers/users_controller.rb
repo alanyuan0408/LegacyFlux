@@ -111,6 +111,10 @@ class UsersController < ApplicationController
   def generate_newsLetter
     render :layout => false
 
+    @current_user.news_letter_mail.update_attribute(:intro_message, params[:user][:entry_text])
+
+    @current_user.save
+
   end
 
   def mail_delete_dependencies
