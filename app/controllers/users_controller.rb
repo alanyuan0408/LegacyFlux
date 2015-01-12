@@ -111,6 +111,10 @@ class UsersController < ApplicationController
   def generate_newsLetter
     render :layout => false
 
+    @current_user.news_letter_mail.update_attribute(:intro_message, params[:user][:entry_text])
+
+    @current_user.save
+
   end
 
   def mail_delete_dependencies
@@ -136,8 +140,8 @@ class UsersController < ApplicationController
 
     @newPost = @current_user.news_letter_mail.news_letter_entries.new
 
-    @newPost.update_attribute(:entry_title, @feedbank.item_title)
-    @newPost.update_attribute(:entry_text, @feedbank.item_text)
+    @newPost.update_attribute(:entry_title, params[:user][:entry_title])
+    @newPost.update_attribute(:entry_text, params[:user][:entry_text])
     @newPost.update_attribute(:item_id, @feedbank.item_id)
     @newPost.save
 

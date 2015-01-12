@@ -1,8 +1,18 @@
 <hr><h4>CS NewsLetter Generator</h4>
 
-<p>Mail Entries Selected: <%#= @current_user.news_letter_mail.news_letter_entries.count %>
+<p>Mail Entries Selected: <%= @current_user.news_letter_mail.news_letter_entries.count %>
 
-<%= button_to "Generate NewsLetter", '/generate_newsletter', class: "btn btn-default", :target => "_blank" %>
+<%= form_for @current_user, :url => url_for(:controller => "users", 
+	:action => "generate_newsLetter") do |f|%>
+
+	<%= f.label :entry_text, "Greeting Message:" %>
+	<br>
+	<%= f.text_area :entry_text, :size => "45x10", 
+	:value => @current_user.news_letter_mail.intro_message, :class => "form-control" %>
+	<br>
+	<%= f.submit "Generate NewsLetter", class: "btn btn-default" %>
+<% end %>
+
 <br>
 
 <%= form_for @current_user, :url => url_for(:controller => "users", 
