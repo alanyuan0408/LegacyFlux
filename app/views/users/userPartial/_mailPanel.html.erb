@@ -41,7 +41,7 @@
         var jobPostsb = document.getElementById("itemPosts3").childNodes;
         var top_elementb = 0;
         var bottom_elementb = 21;
-        var initalizedb = 0;
+
         console.log("loaded");
         console.log(document.getElementById("itemPosts3").childNodes);
 
@@ -52,6 +52,11 @@
                 jobPostsb[i].className = "hidden_class";
             }
         }
+
+        attach_li()
+    }
+
+    function attach_li(){
 
         $("li").click(function(){
             console.log($(this).attr('id'));
@@ -65,7 +70,9 @@
                 }
             }
         });
+
     }
+
     $(document).ready(initialize3);
     $(document).on('page:load', initialize3);
 
