@@ -6,8 +6,6 @@ class UsersController < ApplicationController
 
     if user_signed_in?
 
-      if 
-
       @feedbank_posts = Feedbank.where(user_id: @current_user.id).order("item_date desc")
       @unconfirmed_posts = Feedbank.where(approval_status: false).order("item_date desc")
 
@@ -138,8 +136,8 @@ class UsersController < ApplicationController
 
     @newPost = @current_user.news_letter_mail.news_letter_entries.new
 
-    @newPost.update_attribute(:entry_title, @feedbank.item_title)
-    @newPost.update_attribute(:entry_text, @feedbank.item_text)
+    @newPost.update_attribute(:entry_title, params[:user][:entry_title])
+    @newPost.update_attribute(:entry_text, params[:user][:entry_text])
     @newPost.update_attribute(:item_id, @feedbank.item_id)
     @newPost.save
 
