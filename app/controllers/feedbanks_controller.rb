@@ -29,7 +29,7 @@ class FeedbanksController < ApplicationController
 
   def disapprove_content
     @feedbank  = Feedbank.find(params[:id])
-    @feedbank.update_attribute(:approval_status, 'false');
+    @feedbank.destroy
 
     respond_to do |format|
       format.js
