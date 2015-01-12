@@ -177,7 +177,7 @@ class UsersController < ApplicationController
       render 'permissiondenied'
     else 
 
-      @user.update_column(:email_confirmation_token, nil)
+      @user.update_column(:email_confirmation_token, "confirmed")
       render 'users/confirmMail'
     end 
   end
