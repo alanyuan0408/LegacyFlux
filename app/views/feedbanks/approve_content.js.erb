@@ -1,0 +1,5 @@
+console.log("Hi Jackie")
+console.log("#" + "<%= escape_javascript(@feedbank.item_id) %>")
+
+$('#itemPosts2').find("#" + "<%= escape_javascript(@feedbank.item_id) %>").remove()
+$('#posts2').find("#" + "<%= escape_javascript(@feedbank.item_id) %>").remove() 

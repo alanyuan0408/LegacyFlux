@@ -6,6 +6,7 @@ class FeedbanksController < ApplicationController
 
 	def create
   	@Feedbank = Feedbank.new(params[:feedbank])
+    @Feedbank.update_attribute(:item_id, SecureRandom.urlsafe_base64)
 
   	@Feedbank.save
     @current_user = current_user
@@ -18,20 +19,22 @@ class FeedbanksController < ApplicationController
 
   def approve_content
     @feedbank  = Feedbank.find(params[:id])
-    @feedbank.update_attribute(:approval_status, "true");
+    @feedbank.update_attribute(:approval_status, 'true');
 
+    respond_to do |format|
+      format.js
+    end
 
-    @admin_user = User.find_by_name("Admin");
-    redirect_to @admin_user 
   end 
 
   def disapprove_content
     @feedbank  = Feedbank.find(params[:id])
-    @feedbank.destroy
+    @feedbank.update_attribute(:approval_status, 'false');
 
+    respond_to do |format|
+      format.js
+    end
 
-    @admin_user = User.find_by_name("Admin");
-    redirect_to @admin_user 
   end 
 
 end

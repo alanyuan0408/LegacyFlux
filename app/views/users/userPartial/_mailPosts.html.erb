@@ -1,0 +1,11 @@
+<% @mail_posts.each do |post| %>
+
+    <% if @current_user.news_letter_mail.news_letter_entries.
+        find_by(item_id: post.item_id) %>
+
+		<li id="<%= post.item_id %>"><a>
+        	<span class="glyphicon glyphicon-ok"></span><%= post.item_title %></a></li>
+    <% else %> 
+         <li id="<%= post.item_id %>"><a><%= post.item_title %></a></li>
+    <% end %>
+<% end %>

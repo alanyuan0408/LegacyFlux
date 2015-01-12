@@ -11,18 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150104024942) do
+ActiveRecord::Schema.define(version: 20150111202900) do
 
   create_table "account_settings", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "approval_message"
-    t.boolean  "account_selected", default: false
-    t.boolean  "content_creator",  default: false
-    t.boolean  "student_account",  default: false
-    t.boolean  "content_approved", default: false
-    t.boolean  "sent_approval",    default: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.boolean  "student_account", default: false
+    t.boolean  "admin",           default: false
+    t.boolean  "news_admin",      default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   add_index "account_settings", ["user_id"], name: "index_account_settings_on_user_id"
@@ -71,10 +68,30 @@ ActiveRecord::Schema.define(version: 20150104024942) do
 
   add_index "mail_settings", ["user_id"], name: "index_mail_settings_on_user_id"
 
+  create_table "news_letter_entries", force: :cascade do |t|
+    t.integer  "news_letter_mail_id"
+    t.string   "entry_title"
+    t.text     "entry_text"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "item_id"
+  end
+
+  add_index "news_letter_entries", ["news_letter_mail_id"], name: "index_news_letter_entries_on_news_letter_mail_id"
+
+  create_table "news_letter_mails", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "news_letter_mails", ["user_id"], name: "index_news_letter_mails_on_user_id"
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "admin"
-    t.string   "organization"
+    t.string   "users"
+    t.boolean  "confirmationMail",         default: false
+    t.string   "email_confirmation_token"
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
     t.string   "email",                    default: "",    null: false
@@ -87,15 +104,8 @@ ActiveRecord::Schema.define(version: 20150104024942) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
-    t.boolean  "confirmationMail",         default: false
-    t.string   "email_confirmation_token"
   end
 
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 

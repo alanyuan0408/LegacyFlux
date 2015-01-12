@@ -1,0 +1,135 @@
+<style>
+    .hidden_class {
+        display: none !important;
+    }
+</style>
+
+<script>
+    var top_element = 0
+    var bottom_element = <%= @unconfirmed_posts.length %> * 2;
+    var iterator_start = 0;
+    var iterator_end = 21;
+    var page_number = 1;
+    function navdirection2(direction){
+
+        var jobPosts = document.getElementById("itemPosts2").childNodes;
+
+        if (direction == 1 && iterator_end < bottom_element){
+            iterator_start += 10;
+            iterator_end += 10;
+            page_number += 1;
+            document.getElementById("pagenumber2").innerHTML = page_number
+        } else if (direction == 0 && iterator_start > top_element){
+            iterator_start -= 10;
+            iterator_end -= 10;
+            page_number -= 1;
+            document.getElementById("pagenumber2").innerHTML = page_number
+        } else {
+            console.log("Do nothing");
+        }
+                        
+        for (i=0; i<jobPosts.length; i++){
+            if (i > iterator_start && i < iterator_end) {
+                jobPosts[i].className = ""
+            } else {
+                jobPosts[i].className = "hidden_class";
+            }
+        }
+    }
+    function initialize2(){
+
+        var jobPosts = document.getElementById("itemPosts2").childNodes;
+        var top_element = 0;
+        var bottom_element = 21;
+        var initalized = 0;
+        console.log("loaded");
+        console.log(document.getElementById("itemPosts2").childNodes);
+
+        for (i=0; i<jobPosts.length; i++){
+            if (i > top_element && i < bottom_element) {
+                jobPosts[i].className = ""
+            } else {
+                jobPosts[i].className = "hidden_class";
+            }
+        }
+
+        $("li").click(function(){
+            console.log($(this).attr('id'));
+            var jobPosting = document.getElementById("posts2").childNodes;
+            for(i=0; i<jobPosting.length; i++){
+                if (jobPosting[i].className == "selected"){
+                    jobPosting[i].className = "hidden_class";
+                }
+                if (jobPosting[i].id == $(this).attr('id')){
+                    jobPosting[i].className = "selected";
+                }
+            }
+        });
+    }
+    $(document).ready(initialize2);
+    $(document).on('page:load', initialize2);
+
+</script>
+
+<h4>Unapproved Posts</h4>
+
+<div class="row">
+
+	<div class="col-xs-6">
+		<div class="row" style="height:20px"></div>
+
+		<div class="text-center">
+			<div class="btn-group">
+  			<button type="button" class="btn btn-default" onclick="navdirection2(0)">Prev</button>
+ 			<button type="button" class="btn btn-default disabled" id="pagenumber2">1</button>
+  			<button type="button" class="btn btn-default" onclick="navdirection2(1)">Next</button>
+			</div>
+		</div>
+
+		<div class="row" style="height:5px"></div>
+
+
+		<ul id="itemPosts2" class="nav nav-tabs nav-stacked" onload="initialize()">
+	        <% @unconfirmed_posts.each do |post| %>
+	            <li id="<%= post.item_id %>"><a><%= post.item_title %></a></li>
+	        <% end %>
+	    </ul>
+
+	</div>
+
+	<div class="col-xs-6">
+		<div class="panel-content" id= "posts2" >
+			<% @unconfirmed_posts.each do |post| %>
+				<div id="<%= post.item_id %>" class="hidden_class">
+				    <p><b>Item Title: <%= post.item_title %></b></p>
+				    <p>URL: <%= post.item_url %></p>
+				    <p>Approval Status: <%= post.approval_status %></p>
+
+				    <p>Date: <%= post.item_date %></p>
+				    <hr>
+				    <p>Text:</p>
+				    <p><%= Sanitize.fragment(post.item_text) %></p>
+				    
+                    <%= form_for post, :url => url_for(:controller => "feedbanks", 
+                        :action => "approve_content", :id => post.id), :remote => true do |f|%>
+
+                        <%= f.submit "Approve Post", class: "btn btn-default" %>
+                    <% end %>
+
+                    <br>
+
+                    <%= form_for post, :url => url_for(:controller => "feedbanks", 
+                        :action => "disapprove_content", :id => post.id), :remote => true do |f|%>
+
+                        <%= f.submit "Disapprove Post", class: "btn btn-default" %>
+                    <% end %>
+				    
+				</div>
+			<% end %>
+		</div>
+
+	</div>
+</div>
+
+
+

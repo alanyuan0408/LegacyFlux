@@ -1,0 +1,117 @@
+<style>
+    .hidden_class {
+        display: none !important;
+    }
+</style>
+
+<script>
+    var top_elementb = 0
+    var bottom_elementb = <%= @mail_posts.length %> * 2;
+    var iterator_startb = 0;
+    var iterator_endb = 21;
+    var page_numberb = 1;
+    function navdirection3(direction){
+
+        var jobPostsb = document.getElementById("itemPosts3").childNodes;
+
+        if (direction == 1 && iterator_endb < bottom_elementb){
+            iterator_startb += 10;
+            iterator_endb += 10;
+            page_numberb += 1;
+            document.getElementById("pagenumber3").innerHTML = page_numberb
+        } else if (direction == 0 && iterator_startb > top_elementb){
+            iterator_startb -= 10;
+            iterator_endb -= 10;
+            page_numberb -= 1;
+            document.getElementById("pagenumber3").innerHTML = page_numberb
+        } else {
+            console.log("Do nothing");
+        }
+                        
+        for (i=0; i<jobPostsb.length; i++){
+            if (i > iterator_startb && i < iterator_endb) {
+                jobPostsb[i].className = ""
+            } else {
+                jobPostsb[i].className = "hidden_class";
+            }
+        }
+    }
+    function initialize3(){
+
+        var jobPostsb = document.getElementById("itemPosts3").childNodes;
+        var top_elementb = 0;
+        var bottom_elementb = 21;
+
+        console.log("loaded");
+        console.log(document.getElementById("itemPosts3").childNodes);
+
+        for (i=0; i<jobPostsb.length; i++){
+            if (i > top_elementb && i < bottom_elementb) {
+                jobPostsb[i].className = ""
+            } else {
+                jobPostsb[i].className = "hidden_class";
+            }
+        }
+
+        attach_li()
+    }
+
+    function attach_li(){
+
+        $("li").click(function(){
+            console.log($(this).attr('id'));
+            var jobPostingb = document.getElementById("posts3").childNodes;
+            for(i=0; i<jobPostingb.length; i++){
+                if (jobPostingb[i].className == "selected"){
+                    jobPostingb[i].className = "hidden_class";
+                }
+                if (jobPostingb[i].id == $(this).attr('id')){
+                    jobPostingb[i].className = "selected";
+                }
+            }
+        });
+
+    }
+
+    $(document).ready(initialize3);
+    $(document).on('page:load', initialize3);
+
+</script>
+
+<h4>Posts from last 30 Days</h4>
+
+<div class="row">
+
+	<div class="col-xs-6">
+		<div class="row" style="height:20px"></div>
+
+		<div class="text-center">
+			<div class="btn-group">
+  			<button type="button" class="btn btn-default" onclick="navdirection3(0)">Prev</button>
+ 			<button type="button" class="btn btn-default disabled" id="pagenumber3">1</button>
+  			<button type="button" class="btn btn-default" onclick="navdirection3(1)">Next</button>
+			</div>
+		</div>
+
+		<div class="row" style="height:5px"></div>
+
+
+		<ul id="itemPosts3" class="nav nav-tabs nav-stacked" onload="initialize()">
+
+            <%= render :partial => "users/userPartial/mailPosts" %>
+
+	    </ul>
+
+	</div>
+
+	<div class="col-xs-6">
+		<div class="panel-content" id= "posts3" >
+
+            <%= render :partial => "users/userPartial/mailPostsInfo" %>
+
+		</div>
+	</div>
+</div>
+
+
+

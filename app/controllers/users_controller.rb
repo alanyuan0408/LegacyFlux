@@ -6,31 +6,15 @@ class UsersController < ApplicationController
 
     if user_signed_in?
 
-      @feedbank_posts = Feedbank.where(user_id: @current_user.id)
+      @feedbank_posts = Feedbank.where(user_id: @current_user.id).order("item_date desc")
+      @unconfirmed_posts = Feedbank.where(approval_status: false).order("item_date desc")
+
+      @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).order("item_date desc")
 
       @mail_setting = @current_user.mail_setting
       @account_setting = @current_user.account_setting
 
-      if @current_user.admin
-
-        @user_posts = Feedbank.where(approval_status: false).all
-        render 'admin_page'
-
-      elsif @current_user.account_setting.student_account
-        #render the student page [Default Page]
-
-      elsif !@current_user.account_setting.account_selected
-        render 'account_select'
-
-      elsif (!@current_user.account_setting.sent_approval)
-        render 'approve_creator'
-
-      elsif @current_user.account_setting.sent_approval 
-        render 'content_page'
-
-      else
-        render 'permissiondenied'
-      end
+      #Render the User Page
 
     else
       render 'permissiondenied'
@@ -42,11 +26,15 @@ class UsersController < ApplicationController
 
   end
 
-  def edit
+  def save_setting
+
+    respond_to do |format|
+      format.js
+    end
 
   end
 
-  def update
+  def modify
 
     param = params[:user][:mail_setting_attributes]
 
@@ -71,7 +59,13 @@ class UsersController < ApplicationController
     @current_user.mail_setting.update_attribute(:email_frequency, 
         email_frequency)
 
-    redirect_to @current_user
+    @current_user.mail_setting.update_attribute(:nextsend, Time.now + email_frequency.days)
+
+    @mail_setting = @current_user.mail_setting
+
+    respond_to do |format|
+      format.js
+    end
 
   end
 
@@ -114,15 +108,59 @@ class UsersController < ApplicationController
     redirect_to @current_user
   end
 
-  def approve_creator 
-    @user = User.find(params[:id])
-    @user.account_setting.update_attribute(:content_approved, true);
+  def generate_newsLetter
+    render :layout => false
 
-    redirect_to @current_user
   end
 
-  def change_password
-    
+  def mail_delete_dependencies
+
+    @newsItems = NewsLetterEntry.where(news_letter_mail_id: 
+        @current_user.news_letter_mail.id)
+
+    @newsItems.each do |entry|
+      entry.destroy
+    end
+
+    @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).order("item_date desc")
+
+    respond_to do |format|
+      format.js
+    end
+
+  end
+
+  def add_newsItem
+    @feedbank = Feedbank.find(params[:id])
+
+    puts @current_user.news_letter_mail.inspect
+
+    @newPost = @current_user.news_letter_mail.news_letter_entries.new
+
+    @newPost.update_attribute(:entry_title, @feedbank.item_title)
+    @newPost.update_attribute(:entry_text, @feedbank.item_text)
+    @newPost.update_attribute(:item_id, @feedbank.item_id)
+    @newPost.save
+
+    @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).order("item_date desc")
+
+    respond_to do |format|
+      format.js
+    end
+
+  end
+
+  def remove_newsItem
+    @newPost = @current_user.news_letter_mail.news_letter_entries.
+                        find_by(item_id: params[:item_id])
+    @newPost.destroy
+
+    @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).order("item_date desc")
+
+    respond_to do |format|
+      format.js
+    end
+
   end
 
    def confirmation_token
@@ -141,6 +179,10 @@ class UsersController < ApplicationController
 
     def find_user
       @current_user = current_user
+    end
+
+    def news_entry_params
+      params.required(:person).permit(:name, :age)
     end
 
 end

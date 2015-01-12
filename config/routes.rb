@@ -15,7 +15,11 @@ Rails.application.routes.draw do
     # You can have the root of your site routed with "root"
   root to: 'static_pages#home'
 
-  post '/update', to: 'users#edit'
+  patch '/update', to: 'users#change'
+  patch '/savechange', to: 'users#modify'
+  patch '/addNewsItem', to: 'users#add_newsItem'
+  patch '/removeNewsItem', to: 'users#remove_newsItem'
+  patch '/deleteNewsItem', to: 'users#mail_delete_dependencies'
 
   get '/developer',  to: 'static_pages#developer'
   get '/jobs',     to: 'static_pages#jobs'
@@ -25,7 +29,6 @@ Rails.application.routes.draw do
   get '/event',      to: 'static_pages#events'
   get '/news',      to: 'static_pages#news'
   get '/research',      to: 'static_pages#research'
-  post '/request', to: 'users#request_creator'
 
   post '/register_expo', to: 'users#register_expo'
   post '/unregister_expo', to: 'users#unregister_expo'
@@ -33,6 +36,7 @@ Rails.application.routes.draw do
   match '/student_account', to: 'users#student_account', via: [:get, :post]
   match '/creator_account', to: 'users#creator_account', via: [:get, :post]
   get '/user_info', to: 'users#show'
+  post '/generate_newsletter', to: 'users#generate_newsLetter'
 
   get '/approve', to: 'users#approve_creator'
   get '/request', to: 'users#request_creator'
@@ -42,8 +46,8 @@ Rails.application.routes.draw do
   get "/500" => 'users#permissiondenied'
 
   get "/feedcreate" => 'feedbanks#create'
-  get "/feedapprove" => 'feedbanks#approve_content'
-  get "/feeddisapprove" => 'feedbanks#disapprove_content'
+  patch "/feedapprove" => 'feedbanks#approve_content'
+  patch "/feeddisapprove" => 'feedbanks#disapprove_content'
 
   match '/confirmation_token', to: 'users#confirmation_token', via: [:get, :post]
 

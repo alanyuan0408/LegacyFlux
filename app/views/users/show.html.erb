@@ -1,197 +1,78 @@
-<div class="span9 offset1">
+<div class="container">
 
-	<h2>Welcome <%= @current_user.name %></h2>
+  <div class="row" style="height:20px"></div>
+  <!-- Provide some top header -->
 
-	<br>
+  <div class="row">
+    <div class="col-md-4">
 
-	<div class="tabbable">
+        <div class="thumbnail">
 
-	  <ul class="nav nav-tabs">
-	    <li class="active"><a href="#tab1" data-toggle="tab">Mailing Settings</a></li>
-	    <li><a href="#tab2" data-toggle="tab">Content Creator</a></li>
-	    <li><a href="#tab3" data-toggle="tab">Help Section</a></li>
-	    <li><a href="#tab4" data-toggle="tab">Your Posts</a></li>
-	  </ul>
+            <div class="caption">
+              <h3><%= @current_user.name %></h3>
+              <hr>
+              <h4>Account Summary</h4>
 
-	  <div class="tab-content">
-	    <div class="tab-pane active" id="tab1">
-
-
-		<!--
-	      <% if @current_user.confirmation_token != nil %>
-				<div class="alert alert-error">
-					Emails will only be sent after you confirm your email.
-				</div>
-			<% end %>
-		-->
-
-			<h4>Here are your Mailing Settings</h4>
-
-			<p>Your Email will be sent in a frequency of <%= @mail_setting.email_frequency %> days</p>
-
-			<br>
-
-			<% if @mail_setting.news %>
-				<p><i class='icon-checkmark'></i>  Your Email <b>will</b> include News Updates</p>
-			<% else %> 
-				<p><i class='icon-cancel-2'></i>  Your Email <b>will not</b> include News Updates</p>
-			<% end %>
-			<br>
-
-			<% if @mail_setting.research %>
-				<p><i class='icon-checkmark'></i>  Your Email <b>will</b> include Research Opportunities</p>
-			<% else %> 
-				<p><i class='icon-cancel-2'></i>  Your Email <b>will not</b> include Research Opportunities</p>
-			<% end %>
-			<br>
-
-			<% if @mail_setting.jobs %>
-				<p><i class='icon-checkmark'></i>  Your Email <b>will</b> include Job Updates</p>
-			<% else %> 
-				<p><i class='icon-cancel-2'></i>  Your Email <b>will not</b> include Job Updates</p>
-			<% end %>
-			<br>
-
-			<% if @mail_setting.events %>
-				<p><i class='icon-checkmark'></i>  Your Email <b>will</b> include Events</p>
-			<% else %> 
-				<p><i class='icon-cancel-2'></i>  Your Email <b>will not</b> include Events</p>
-			<% end %>
-
-			<br>
-
-			<%= button_to "Update Settings", '/update', {:class => "large"} %>
-	    </div>
-
-	    <div class="tab-pane" id="tab2">
-	      <% if !@account_setting.content_creator %>
-
-	      <div class="span6">
-		                    
-		        <div class="panel-content">
-		            <h4>Request for Content Creator </h4>
-		            <br>
-		            <p>Please send a message indiciating your reason for the admin to approve your account</p>
-		            <br>
-		            <%= form_for @current_user, :url => url_for(:controller => "users", 
-                            :action => "request_creator"), :method => :POST do |f| %>
-
-		                <%= f.label :name %>
-		                <%= f.text_field :name, :value => @current_user.name, :class => "css_text" %>
-
-		                <%= f.label :organization %>
-		                <%= f.text_field :organization, placeholder: "organization", :class => "css_text" %>
-
-		                <%= f.fields_for :account_setting do |account_form| %>
-
-			                <%= account_form.label :approval_message, "Message to Admin" %>
-			                <%= account_form.text_area :approval_message, :rows => "6", placeholder: "Message for Administrators", :class => "css_text"  %>
-
-			             <% end %>
-
-		                <br><br>
-
-		                <%= f.submit "Request Account", class: "large" %>
-		            <% end %>
-
-		        </div>
-
-		</div>
-
-
-	      <% else %>
-	      	 <div class="span9">
-
-				    <div class="panel">
-				        <div class="panel-header bg-lightBlue fg-white">
-				            Hello <%= @current_user.name %>
-				        </div>  
-				                    
-				        <div class="panel-content">
-
-
-				                <%= form_for :feedbank, :url => '/feedbanks#create' do |f| %> 
-
-				                    <%= f.label :item_title %>
-				                    <%= f.text_field :item_title, placeholder: "Title of Post", :class => "title_width"  %>
-
-				                    <%= f.label :item_url, "Item URL [Optional]" %>
-				                    <%= f.text_field :item_url, :size=>"150", :class => "title_width", placeholder: "Url to the Post"  %>
-
-				                    <%= f.hidden_field :user_id, :value => @current_user.id %>
-				                    <%= f.hidden_field :item_date, :value => Time.current %>
-				                    <%= f.hidden_field :approval_status, :value => "false" %>
-
-
-				                    <%= f.label :column_type, "Post Type" %>
-
-				                    <%= f.select(:column_type, [["Job Post", 1], ["Event Post", 2], ["News Update", 3],
-				                    	["Research", 4]]) %>
-
-				                    <!-- #1 is Jobs, #2 is Events, #3 is News, #4 is Research
-										-->
-
-				                    <br>
-				                    <br>
-
-				                    <%= f.label :item_text %>
-				                    <%= f.text_area :item_text, :rows => "6", placeholder: "Event Message", :class => "full_width", input_html: { class: 'summernote', id: "jobInfoInput"} %>
-
-				                    <br><br>
-
-				                    <%= f.submit "Add New Post", class: "large" %>
-
-				            	<% end %>
-
-				        </div>
-				    </div>
-
-				    <br>          
-				</div>
-
-	      <% end %>
-	    </div>
-
-	   	<div class="tab-pane" id="tab3">
-
-	   	  <h3>Help Section </h3><hr>
-	     	<h4>Customized Mailing</h4>
-
-			<p>The Web Development Club would like to keep you posted with new job offers, entrepreneurship events and research opportunities. We would like to give you the freedom to customize these settings to better fit your needs. We will mailing them into your inbox based on your settings.</p>
-			<hr>
-
-			<h4>Content Creator</h4>
-			<p>We apprepicate the continued support of the students as well as the student leaders in bringing many of these events to our attention. If you would like to post anything for other students to view, please request to become a Content Creator under the Content Creator Tab</p>
-
-			<hr>
-			<h4>Webpage Development</h4>
-			<p>The custom mailing system is currently designed for the Computer Science Department. I would like to personally expand a similar system for the engineering department as well as all other departments inside the University. If would like to make this a reality, please send me an email at alan.yuan@mail.utoronto.ca</p>
-			<br>
-
-	    </div>
-
-	   	<div class="tab-pane" id="tab4">
-
-	   	  <h3>Your Posts </h3><hr>
-
-	   	  	<% @feedbank_posts.each do |post| %>
-                <div id="<%= post.id %>" class="hidden_class">
-                    <p><b>Title: <%= post.item_title %></b></p>
-                    <p>URL: <%= post.item_url %></p>
-
-                    <p>Date: <%= post.item_date %></p>
-                    <p>User ID: <%= post.user_id%></p>
-                    <p>Column Type: <%= post.column_type %></p>
-                    <p>Text: <%= post.item_text %></p>
-                    <p>Post Approved: <%= post.approval_status %>
-
-                    <hr>
+              <p><span class="glyphicon glyphicon-envelope"></span> <%= @current_user.email %></p>
+              <p><span class="glyphicon glyphicon-ok"></span> Subscribed to Weekly Email</p>
+              <p><span class="glyphicon glyphicon-ok"></span> Confirmed Email</p>
+              <p><span class="glyphicon glyphicon-ok"></span> Administrator</p>
+              <p><span class="glyphicon glyphicon-ok"></span> Newsletter</p>
+              
+              <% if @current_user.email_confirmation_token != nil %>
+              <hr>
+                <div class="alert alert-danger" role="alert">
+                    <p href="#" class="alert-link">You will not recieve any emails until
+                      you confirm your email</p>
                 </div>
-            <% end %>
+              <% end %>
 
-	    </div>
+              <div id="generateMail">
+                <%= render :partial => "users/userPartial/createNewsLetter" %>
+              </div>
 
-	  </div>
-	</div>
+            </div>
 
+        </div>
+    </div>
+
+
+    <!-- Larger tab -->
+    <div class="col-md-8">
+        <div class="tabbable"> <!-- Only required for left/right tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#tab1" data-toggle="tab">Mail Settings</a></li>
+            <li><a href="#tab2" data-toggle="tab">Post Content</a></li>
+            <li><a href="#tab3" data-toggle="tab">Your Posts</a></li>
+            <li><a href="#tab4" data-toggle="tab">NewsLetter Generator</a></li>
+            <li><a href="#tab5" data-toggle="tab">Administrator Panel</a></li>
+          </ul>
+
+          <div class="tab-content">
+            <div class="tab-pane active" id="tab1">
+              <%= render :partial => "users/userPartial/userPreference" %>
+            </div>
+
+            <div class="tab-pane" id="tab2">
+              <%= render :partial => "users/userPartial/userFeedbank" %>
+            </div>
+
+            <div class="tab-pane" id="tab3">
+              <%= render :partial => "users/userPartial/userFeedbankPosts" %>
+            </div>
+
+            <div class="tab-pane" id="tab4">
+               <%= render :partial => "users/userPartial/mailPanel" %>
+            </div>
+
+            <div class="tab-pane" id="tab5">
+              <%= render :partial => "users/userPartial/adminPanel" %>
+            </div>
+
+          </div>
+        </div>
+    </div>
+
+  </div>
 </div>
+

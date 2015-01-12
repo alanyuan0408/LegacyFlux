@@ -1,0 +1,56 @@
+<h4>Add New Post</h4>
+
+<p>We warmly welcome any Job Offers, Research Offers, Event Posts and News Updates that may be relevant to the Computer Science Department. Your post will be listed as soon as it is approved by the DCS administrator.</p>
+
+<%= form_for :feedbank, :url => '/feedbanks#create' do |f| %> 
+
+    <%= f.label :item_title %>
+    <br>
+    <%= f.text_field :item_title, placeholder: " Title of Post", :size=>"50"  %>
+
+    <br> <br>
+
+    <%= f.label :item_url, " Item URL [Optional]" %>
+    <br>
+    <%= f.text_field :item_url, :size=>"50", :class => "title_width", placeholder: " Url to the Post"  %>
+
+    <br><br>
+
+    <%= f.hidden_field :user_id, :value => @current_user.id %>
+    <%= f.hidden_field :item_date, :value => Time.current %>
+    <%= f.hidden_field :approval_status, :value => :false %>
+
+    <%= f.label :column_type, " Post Type" %>
+    <br>
+    <%= f.select(:column_type, [["Job Post", 1], ["Event Post", 2], ["News Update", 3],
+                                        ["Research", 4], ["Informal Job Post", 5]]) %>
+
+    <!-- #1 is Jobs, #2 is Events, #3 is News, #4 is Research-->
+
+    <br>
+    <br>
+
+    <%= f.label :item_text %>
+    <br>
+
+    <%= f.cktext_area :item_text, :class => 'ckeditor' %>
+
+    <br><br>
+
+    <%= f.submit "Add New Post", class: "btn btn-default btn-med" %>
+
+<% end %>
+<br>
+<br>
+
+<p><b>** Posting Categories **</b></p>
+
+<p><b>News:</b> Any news relevant to UofT Computer Science Students. Advertisement is not acceptable</p>
+
+<p><b>Job Post:</b> Any paid summer, full-time, part-time, PEY positions. Posts are more strictly inforced. Posts by small startups e.g. startups from the Next 36 incubators will be moved directly to the informal job post.</p>
+
+<p><b>Informal Job Post:</b> Contract positions, Looking for CoFounders, looking for Tutors, unpaid positions, e.t.c [Rules are relaxed compared to Job Posts]</p>
+
+<p><b>Event Post:</b> Any events relevant to UofT Computer Science Students</p>
+
+<p><b>Research Post:</b> Any posts from professors, graduate students or PHD candidates looking for research assistants. [Paid or Unpaid]</p>

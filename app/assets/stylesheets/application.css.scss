@@ -11,9 +11,12 @@
  * file per style scope.
  *
  *= require webhostinghub-glyphs
- *= require_tree .
  *= require_self
  */
+
+ // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
 *{
 	padding: 0;
@@ -31,12 +34,18 @@ body{
 	padding: 0;
 	margin: 0;
 	overflow-y: scroll; 
-	font-size: 100%;
+	font-size: 160%;
 	font-family: Verdana, Geneva, Helvetica, sans-serif;
+
 }
-a{
+a, a:hover, a:focus, a:visited{
 	text-decoration:none;
 }
+
+.logo a:hover, .logo a:focus{
+	 color: #04689b;
+}
+
 .wrapper{
 	min-height:100%;
 	margin: 0 auto;
@@ -70,10 +79,16 @@ a{
 	text-align: center;
 	font-size: 75%;
 	padding-top: 12px;
+	line-height: 100%;
+	box-sizing: content-box;
 }
 
-.footer a{
+.footer a, .footer a:focus, .footer a:visited{
 	color: #ffffff;
+}
+
+.footer a:hover, a:active{
+    color: #7A991A;
 }
 
 .content{
@@ -118,10 +133,10 @@ padding: 4px 12px;
 height: 20px;
 	}
 
-	.list .page a:hover, .first a:hover, .last a:hover, .prev a:hover, .next a:hover{
+	.list .page a:hover, .list .page .first a:hover, .list .page .last a:hover, .list .page .prev a:hover, .list .page .next a:hover{
 	background-color: #e1e1e1;
 	color: #000000;
-	}
+}
 
 .list .pageInfo{
 	visibility: hidden;
@@ -235,4 +250,71 @@ height: 20px;
 	color: #000000;
 	width:90px;
 	border-radius: 0px;
+}
+
+.heading{
+	font-size: 100%;
+
+}
+
+.staticContent{
+	padding-left: 1em;
+	padding-right: 1em;
+	margin-top: -1em;
+	background: url('righarrow.png');
+}
+
+.staticContent h2{
+	font-family: 'Roboto', Arial, Helvetica, sans-serif;
+	font-weight: 700;
+	letter-spacing: 0.2em;
+	color: #777777;
+	padding-left: 1em;
+	word-spacing: 0.25em;
+}
+
+.staticContent h3{
+	font-family: 'Roboto', Arial, Helvetica, sans-serif;
+	font-weight: 700;
+	letter-spacing: 0.2em;
+	color: #888888;
+	padding-left: 3em;
+	word-spacing: 0.15em;
+}
+
+.staticContent p{
+	margin-left: 180px;
+	width: 700px;
+	padding-bottom: 0.25em;
+	border-bottom: 1px solid #eeeeee;
+	text-align: justify;
+}
+
+.threeColumn{
+	display: block;
+}
+
+.threeColumn h2{
+	letter-spacing: 0.3em;
+	color: #888888;
+}
+
+.column{
+	padding: 0px 10px 0px 10px;
+	margin-top: -10px;
+}
+.staticContent ul{
+	margin-left: 240px;
+    list-style:none;
+    padding-left:0;
+	border-left: 1px solid #dddddd;
+}
+
+.staticContent li{
+	margin-left: 1.5em;
+}
+
+.staticContent strong{
+	padding-left: 160px;
+	color: #555555;
 }
