@@ -1,0 +1,6 @@
+console.log("render Partial")
+$('#itemPosts3').html(" <%= escape_javascript(render(:partial => 'users/userPartial/mailPosts')) %>")
+
+$('#posts3').html(" <%= escape_javascript(render(:partial => 'users/userPartial/mailPostsInfo')) %>")
+
+initialize3()
