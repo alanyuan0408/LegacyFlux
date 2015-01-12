@@ -1,7 +1,12 @@
-<div class="span9 offset1">
-
+<% content_for :head do %>
+  <script type="text/javascript">
+function delayedRedirect(){
+    window.location = "./"
+}
+</script>
+<% end %>
+<% content_for(:body_attributes) do %>
+    onLoad="setTimeout(delayedRedirect(), 2000)"
+<% end %>
     <h2>Thank you for confirming your Email Address</h2>
-    <br>
-    <%= button_to "Home Page", "/home", {:class => "large"} %>
-
-</div>
+	<h3>if it does not redirect automatically, <%= link_to "click here", "./" %></h3>
