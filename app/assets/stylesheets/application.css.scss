@@ -314,6 +314,25 @@ height: 20px;
 	margin-left: 1.5em;
 }
 
+.staticContent form{
+	margin-left: 240px;
+}
+
+.staticContent input{
+	background-color:#ffffff;
+	border:3px solid #dcdcdc;
+	display:inline-block;
+	color:#666666;
+	font-family:Verdana;
+	font-size:16px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+}
+.staticContent input:hover {
+	background-color:#f6f6f6;
+}
+
 .staticContent strong{
 	padding-left: 160px;
 	color: #555555;
