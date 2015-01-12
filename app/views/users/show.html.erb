@@ -49,6 +49,7 @@
 
     <!-- Larger tab -->
     <div class="col-md-8">
+
         <div class="tabbable"> <!-- Only required for left/right tabs -->
           <ul class="nav nav-tabs" role="tablist">
             <li class="active"><a href="#tab1" data-toggle="tab">Mail Settings</a></li>
@@ -72,17 +73,23 @@
             </div>
 
             <div class="tab-pane" id="tab3">
+              <br>
+              <p><b>Note:</b> If the links below are not responsive, ctr+r(reload). We are working on this problem at the moment</p>
               <%= render :partial => "users/userPartial/userFeedbankPosts" %>
             </div>
 
             <% if @current_user.account_setting.news_admin %>
               <div class="tab-pane" id="tab4">
+                <br>
+                <p><b>Note:</b> If the links below are not responsive, ctr+r(reload). We are working on this problem at the moment</p>
                  <%= render :partial => "users/userPartial/mailPanel" %>
               </div>
             <% end %>
 
-            <% if @current_user.account_setting.news_admin %>
+            <% if @current_user.account_setting.admin %>
               <div class="tab-pane" id="tab5">
+                <br>
+                <p><b>Note:</b> If the links below are not responsive, ctr+r(reload). We are working on this problem at the moment</p>
                 <%= render :partial => "users/userPartial/adminPanel" %>
               </div>
             <% end %>
