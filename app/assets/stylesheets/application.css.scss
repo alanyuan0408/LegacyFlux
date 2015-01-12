@@ -90,40 +90,6 @@ a, a:hover, a:focus, a:visited{
 .footer a:hover, a:active{
     color: #7A991A;
 }
-/*
-.nav{
-	width:100%;
-}
-	.nav ul{
-	overflow: hidden;
-	list-style-type: none;
-	}
-	.nav li{
-		display:block;
-		font-size:90%;
-		color: #999999;
-	}
-	.nav a{
-		padding:0.5em 0em 0.5em 1em;
-		margin-left: -1em;
-		width:150px;
-		text-decoration:none;
-		text-transform: uppercase;
-		display:block;
-		border-right: 1px solid #eeeeee;
-	}			
-	.nav a:link, .nav a:visited{
-		color: #191919;
-
-	}
-.nav a:hover, .nav a:active{
-		color: #ff2222;
-	}
-	.nav i{
-	padding-right: 10px;
-	margin-top: 15px;
-	}
-*/
 
 .content{
 	padding-top: 1.5em;
@@ -147,14 +113,29 @@ a, a:hover, a:focus, a:visited{
 
 .list .pages{
 	text-align: center;
+	font-size: 0;
 }
 
-.list .pages a, .list a:link, .list a:visited{
+.list .page, .list .page.current{
+	text-decoration: none;
+	text-align: center;
+}
+
+.list .page a, .list .pages a:link, .list .pages a:visited{
 	color: #04689b;
-}
+	font-size: 12px;
+	line-height: 20px;
+font-size: 12px;
+line-height: 20px;
+border: 1px solid #dddddd;
+margin-right: -1px;
+padding: 4px 12px;
+height: 20px;
+	}
 
-.list .pages a:hover, a:active{
-    color: #7A991A;
+	.list .page a:hover, .list .page .first a:hover, .list .page .last a:hover, .list .page .prev a:hover, .list .page .next a:hover{
+	background-color: #e1e1e1;
+	color: #000000;
 }
 
 .list .pageInfo{
@@ -280,6 +261,7 @@ a, a:hover, a:focus, a:visited{
 	padding-left: 1em;
 	padding-right: 1em;
 	margin-top: -1em;
+	background: url('righarrow.png');
 }
 
 .staticContent h2{

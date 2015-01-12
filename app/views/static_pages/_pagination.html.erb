@@ -1,4 +1,4 @@
-<span class="pages"><%= paginate items %></span>
+<div class="pages"><%= paginate items, :views_prefix => '' %></div>
 
 <% items.each do |items| %>
 <div class="listitem">
@@ -15,5 +15,5 @@
 </div>
 <% end %>
 
-<span class="pages"><%= paginate items %></span>
+<div class="pages"><%= paginate items %></div>
 <span class="pageInfo"><%= page_entries_info items %></span>
