@@ -27,7 +27,7 @@
                 <p><span class="glyphicon glyphicon-ok"></span> Newsletter</p>
               <% end %>
               
-              <% if @current_user.email_confirmation_token != nil %>
+              <% if @current_user.email_confirmation_token != "confirmed" %>
               <hr>
                 <div class="alert alert-danger" role="alert">
                     <p href="#" class="alert-link">You will not recieve any emails until
