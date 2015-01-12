@@ -6,8 +6,6 @@ class UsersController < ApplicationController
 
     if user_signed_in?
 
-      if 
-
       @feedbank_posts = Feedbank.where(user_id: @current_user.id).order("item_date desc")
       @unconfirmed_posts = Feedbank.where(approval_status: false).order("item_date desc")
 
