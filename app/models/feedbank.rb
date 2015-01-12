@@ -6,6 +6,10 @@ class Feedbank < ActiveRecord::Base
   validates :item_text, presence: true
 
   before_save do |feedbank|
-      feedbank.item_url = "http://#{item_url}" unless feedbank.item_url=~/^https?:\/\//
+      if feedbank.item_url.blank?
+		feedbank.item_url = ""
+	  else
+		feedbank.item_url = "http://#{item_url}" unless feedbank.item_url=~/^https?:\/\//
+	  end
   end 
 end
