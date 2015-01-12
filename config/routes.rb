@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   patch '/savechange', to: 'users#modify'
   patch '/addNewsItem', to: 'users#add_newsItem'
   patch '/removeNewsItem', to: 'users#remove_newsItem'
+  patch '/deleteNewsItem', to: 'users#mail_delete_dependencies'
 
   get '/developer',  to: 'static_pages#developer'
   get '/jobs',     to: 'static_pages#jobs'
@@ -35,6 +36,7 @@ Rails.application.routes.draw do
   match '/student_account', to: 'users#student_account', via: [:get, :post]
   match '/creator_account', to: 'users#creator_account', via: [:get, :post]
   get '/user_info', to: 'users#show'
+  post '/generate_newsletter', to: 'users#generate_newsLetter'
 
   get '/approve', to: 'users#approve_creator'
   get '/request', to: 'users#request_creator'

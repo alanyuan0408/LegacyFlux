@@ -108,6 +108,28 @@ class UsersController < ApplicationController
     redirect_to @current_user
   end
 
+  def generate_newsLetter
+    render :layout => false
+
+  end
+
+  def mail_delete_dependencies
+
+    @newsItems = NewsLetterEntry.where(news_letter_mail_id: 
+        @current_user.news_letter_mail.id)
+
+    @newsItems.each do |entry|
+      entry.destroy
+    end
+
+    @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).order("item_date desc")
+
+    respond_to do |format|
+      format.js
+    end
+
+  end
+
   def add_newsItem
     @feedbank = Feedbank.find(params[:id])
 

@@ -3,6 +3,9 @@ $('#itemPosts3').html(" <%= escape_javascript(render(:partial => 'users/userPart
 
 $('#posts3').html(" <%= escape_javascript(render(:partial => 'users/userPartial/mailPostsInfo')) %>")
 
+$('#generateMail').html("<%= escape_javascript(render(:partial => 'users/userPartial/createNewsLetter')) %> ")
+
+
 navdirection3(2)
 
 attach_li()
