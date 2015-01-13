@@ -1,19 +1,11 @@
-<div class="container">
-
-  <div class="row" style="height:20px"></div>
+<div class="usercontent">
   <!-- Provide some top header -->
-
-  <div class="row">
-    <div class="col-md-4">
-
-        <div class="thumbnail">
-
-            <div class="caption">
-              <h3><%= @current_user.name %></h3>
-              <hr>
-              <h4>Account Summary</h4>
-
-              <p><span class="glyphicon glyphicon-envelope"></span> <%= @current_user.email %></p>
+		<div class="threecolumn">
+            <div class="column">
+            <h2><%= @current_user.name %></h2>
+			<p><span class="glyphicon glyphicon-envelope"></span><%= @current_user.email %></p>
+			</div>
+            <div class="column">
 
               <% if @current_user.account_setting.student_account %>
                 <p><span class="glyphicon glyphicon-ok"></span> Subscribed to Weekly Email</p>
@@ -24,32 +16,20 @@
               <% end %>
 
               <% if @current_user.account_setting.news_admin %>
-                <p><span class="glyphicon glyphicon-ok"></span> Newsletter</p>
+                <p><span class="glyphicon glyphicon-ok"></span> Newsletter-Administrator</p>
               <% end %>
-              
+             </div>
+	         <div class="column">		 
               <% if @current_user.email_confirmation_token != "confirmed" %>
-              <hr>
                 <div class="alert alert-danger" role="alert">
                     <p href="#" class="alert-link">You will not recieve any emails until
                       you confirm your email</p>
                 </div>
               <% end %>
-
-              <% if @current_user.account_setting.news_admin %>
-                <div id="generateMail">
-                  <%= render :partial => "users/userPartial/createNewsLetter" %>
-                </div>
-              <% end %>
-
-            </div>
-
-        </div>
-    </div>
-
-
+			</div>
+		</div>
+	<div class="smallwrap">
     <!-- Larger tab -->
-    <div class="col-md-8">
-
         <div class="tabbable"> <!-- Only required for left/right tabs -->
           <ul class="nav nav-tabs" role="tablist">
             <li class="active"><a href="#tab1" data-toggle="tab">Mail Settings</a></li>
@@ -83,6 +63,9 @@
                 <br>
                 <p><b>Note:</b> If the links below are not responsive, ctr+r(reload). We are working on this problem at the moment</p>
                  <%= render :partial => "users/userPartial/mailPanel" %>
+				 <div id="generateMail">
+				 <%= render :partial => "users/userPartial/createNewsLetter" %>
+				 </div>
               </div>
             <% end %>
 
@@ -96,8 +79,5 @@
 
           </div>
         </div>
-    </div>
-
+	</div>
   </div>
-</div>
-
