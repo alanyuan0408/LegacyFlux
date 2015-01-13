@@ -1,3 +1,29 @@
+<div class="twocolumn">
+
+<div class="column">
+            <h2><%= @current_user.name %></h2>
+			<p><span class="glyphicon glyphicon-envelope"></span><%= @current_user.email %></p>
+
+              <% if @current_user.account_setting.student_account %>
+                <p><span class="glyphicon glyphicon-ok"></span> Subscribed to Weekly Email</p>
+              <% end %>
+
+              <% if @current_user.account_setting.admin %>
+                <p><span class="glyphicon glyphicon-ok"></span> Administrator</p>
+              <% end %>
+
+              <% if @current_user.account_setting.news_admin %>
+                <p><span class="glyphicon glyphicon-ok"></span> Newsletter-Administrator</p>
+              <% end %>
+		 
+              <% if @current_user.email_confirmation_token != "confirmed" %>
+                <div class="alert alert-danger" role="alert">
+                    <p href="#" class="alert-link">You will not recieve any emails until
+                      you confirm your email</p>
+              <% end %>
+				</div>
+	</div>
+<div class="column">
 <% if @current_user.account_setting.student_account %>
 
 	<h4>Here are your Mailing Settings</h4>
@@ -58,3 +84,7 @@
 	<%= button_to "Activiate Mailing Account", '/student_account', class: "btn btn-default btn-med" %>
 	
 <% end %>
+
+</div>
+
+</div>
