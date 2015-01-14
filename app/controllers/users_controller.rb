@@ -92,7 +92,7 @@ class UsersController < ApplicationController
 
   def student_account
     @current_user.account_setting.update_attribute(:student_account, true);
-
+    @current_user.mail_setting.update_attribute(:nextsend, Time.now + 7.days);
     redirect_to @current_user
   end
 
@@ -113,11 +113,11 @@ class UsersController < ApplicationController
   end
 
   def generate_newsLetter
-    render :layout => false
-
     @current_user.news_letter_mail.update_attribute(:intro_message, params[:user][:entry_text])
 
     @current_user.save
+
+    render :layout => false
 
   end
 
