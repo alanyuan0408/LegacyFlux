@@ -87,7 +87,7 @@
 
 		<ul id="itemPosts2" class="nav nav-tabs nav-stacked" onload="initialize()">
 	        <% @unconfirmed_posts.each do |post| %>
-	            <li id="<%= post.item_id %>"><a><%= post.item_title %></a></li>
+	            <li data-id="<%= post.item_id %>"><a><%= post.item_title %></a></li>
 	        <% end %>
 	    </ul>
 
@@ -96,7 +96,7 @@
 	<div class="col-xs-6">
 		<div class="panel-content" id= "posts2" >
 			<% @unconfirmed_posts.each do |post| %>
-				<div id="<%= post.item_id %>" class="hidden_class">
+				<div data-id="<%= post.item_id %>" class="hidden_class">
 				    <p><b>Item Title: <%= post.item_title %></b></p>
 				    <p>URL: <%= post.item_url %></p>
 				    <p>Approval Status: <%= post.approval_status %></p>
@@ -106,16 +106,16 @@
 				    <p>Text:</p>
 				    <p><%= Sanitize.fragment(post.item_text)%></p>
 				    
-                    <%= form_for post, :url => url_for(:controller => "feedbanks", 
-                        :action => "approve_content", :id => post.id), :remote => true do |f|%>
+                    <%= form_for post, namespace: "approve", :url => url_for(:controller => "feedbanks",
+                        :action => "approve_content", "data-id" => post.id), :remote => true do |f|%>
 
                         <%= f.submit "Approve Post", class: "btn btn-default" %>
                     <% end %>
 
                     <br>
 
-                    <%= form_for post, :url => url_for(:controller => "feedbanks", 
-                        :action => "disapprove_content", :id => post.id), :remote => true do |f|%>
+                    <%= form_for post, namespace: "disapprove", :url => url_for(:controller => "feedbanks",
+                        :action => "disapprove_content", "data-id" => post.id), :remote => true do |f|%>
 
                         <%= f.submit "Disapprove Post", class: "btn btn-default" %>
                     <% end %>

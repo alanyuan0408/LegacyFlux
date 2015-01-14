@@ -87,7 +87,7 @@
 
 		<ul id="jobPosts" class="nav nav-tabs nav-stacked" onload="initialize()">
 	        <% @feedbank_posts.each do |post| %>
-	            <li><a id="<%= post.item_id %>"><%= post.item_title %></a></li>
+	            <li><a data-id="<%= post.item_id %>"><%= post.item_title %></a></li>
 	        <% end %>
 	    </ul>
 
@@ -105,8 +105,6 @@
 				    <hr>
 				    <p>Text:</p>
 				    <p><%= Sanitize.fragment(post.item_text) %></p>
-				    
-				    
 				</div>
 			<% end %>
 		</div>

@@ -2,7 +2,7 @@
 
 <p>Mail Entries Selected: <%= @current_user.news_letter_mail.news_letter_entries.count %>
 
-<%= form_for @current_user, :url => url_for(:controller => "users", 
+<%= form_for @current_user, namespace: "generator", :url => url_for(:controller => "users",
 	:action => "generate_newsLetter") do |f|%>
 
 	<%= f.label :entry_text, "Greeting Message:" %>
@@ -15,7 +15,7 @@
 
 <br>
 
-<%= form_for @current_user, :url => url_for(:controller => "users", 
+<%= form_for @current_user, namespace: "reset", :url => url_for(:controller => "users",
 	:action => "mail_delete_dependencies"), :remote => true do |f|%>
 
 	<%= f.submit "Reset Selection", class: "btn btn-default" %>
