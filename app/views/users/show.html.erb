@@ -65,7 +65,11 @@
       });
       }
       var top_elementb = 0;
-      var bottom_elementb = <%= @mail_posts.length %> * 2;
+      <% if @current_user.account_setting.news_admin %>
+        var bottom_elementb = <%= @mail_posts.length %> * 2;
+      <% else %>
+        var bottom_elementb = 0;
+      <% end %>
       var iterator_startb = 0;
       var iterator_endb = 21;
       var page_numberb = 1;
@@ -123,7 +127,11 @@
 
       }
       var top_element = 0;
-      var bottom_element = <%= @unconfirmed_posts.length %> * 2;
+      <% if @current_user.account_setting.admin %>
+        var bottom_element = <%= @unconfirmed_posts.length %> * 2;
+      <% else %>
+        var bottom_element = 0;
+      <% end %>
       var iterator_start = 0;
       var iterator_end = 21;
       var page_number = 1;
