@@ -8,9 +8,9 @@ Rails.application.configure do
     :user_name => "alan.yuan@mail.utoronto.ca",
     :password  => "JyGniU35dKb7qyNaQeW-Zw", # SMTP password is any valid API key
     :authentication => 'login', # Mandrill supports 'plain' or 'login'
-    :domain => 'http://mysterious-forest-1199.herokuapp.com/', # your domain to identify your server when connecting
+    :domain => 'http://uoftweb.com/', # your domain to identify your server when connecting
   }
-
+  Rails.application.routes.default_url_options[:host] = 'uoftweb.com'
   # Code is not reloaded between requests.
   config.cache_classes = true
 

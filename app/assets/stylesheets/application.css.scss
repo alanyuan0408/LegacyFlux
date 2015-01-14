@@ -98,6 +98,8 @@ a, a:hover, a:focus, a:visited{
 }
 
 .list{
+	margin-top: 0;
+	
 }
 
 .list h2{
@@ -149,6 +151,9 @@ height: 20px;
 
 .listinner{
 	padding: 0.5em;
+}
+.content h1{
+	margin-top: 0;
 }
 
 .topwrap
@@ -289,19 +294,27 @@ height: 20px;
 	text-align: justify;
 }
 
-.threeColumn{
+.threecolumn{
 	display: block;
+	width: 960px;
+	padding-left: 100px;
+	padding-right: 100px;
+	height: 110px;
+	padding-top: 10px;
+	border-top: 1px solid #dddddd;
+	border-bottom: 1px solid #dddddd;
 }
 
-.threeColumn h2{
-	letter-spacing: 0.3em;
-	color: #888888;
+.threecolumn h2{
+	margin-top: 0px;
 }
 
 .column{
 	padding: 0px 10px 0px 10px;
-	margin-top: -10px;
+	float:left;
+	width: 480px;
 }
+
 .staticContent ul{
 	margin-left: 240px;
     list-style:none;
@@ -335,4 +348,13 @@ height: 20px;
 .staticContent strong{
 	padding-left: 160px;
 	color: #555555;
+}
+
+.usercontent{
+	font-size: 100%;
+}
+
+.smallwrap{
+	margin-top: 20px;
+	width: 960px;
 }
