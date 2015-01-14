@@ -1,69 +1,71 @@
-<script>
-    var top_elementa = 0
-    var bottom_elementa = <%= @feedbank_posts.length %> * 2;
-    var iterator_starta = 0;
-    var iterator_enda = 21;
-    var page_numbera = 1;
-    function navdirection(direction){
+<% content_for :head do %>
+    <script>
+        var top_elementa = 0
+        var bottom_elementa = <%= @feedbank_posts.length %> * 2;
+        var iterator_starta = 0;
+        var iterator_enda = 21;
+        var page_numbera = 1;
+        function navdirection(direction){
 
-        var jobPostsa = document.getElementById("jobPosts").childNodes;
+            var jobPostsa = document.getElementById("jobPosts").childNodes;
 
-        if (direction == 1 && iterator_enda < bottom_elementa){
-            iterator_starta += 10;
-            iterator_enda += 10;
-            page_numbera += 1;
-            document.getElementById("pagenumber").innerHTML = page_numbera
-        } else if (direction == 0 && iterator_starta > top_elementa){
-            iterator_starta -= 10;
-            iterator_enda -= 10;
-            page_numbera -= 1;
-            document.getElementById("pagenumber").innerHTML = page_numbera
-        } else {
-            console.log("Do nothing");
-        }
-                        
-        for (i=0; i<jobPostsa.length; i++){
-            if (i > iterator_starta && i < iterator_enda) {
-                jobPostsa[i].className = ""
+            if (direction == 1 && iterator_enda < bottom_elementa){
+                iterator_starta += 10;
+                iterator_enda += 10;
+                page_numbera += 1;
+                document.getElementById("pagenumber").innerHTML = page_numbera
+            } else if (direction == 0 && iterator_starta > top_elementa){
+                iterator_starta -= 10;
+                iterator_enda -= 10;
+                page_numbera -= 1;
+                document.getElementById("pagenumber").innerHTML = page_numbera
             } else {
-                jobPostsa[i].className = "hidden_class";
+                console.log("Do nothing");
             }
-        }
-    }
-    function initialize(){
 
-        var jobPostsa = document.getElementById("jobPosts").childNodes;
-        var top_elementa = 0;
-        var bottom_elementa = 21;
-        var initalizeda = 0;
-        console.log("loaded");
-        console.log(document.getElementById("jobPosts").childNodes);
-
-        for (i=0; i<jobPostsa.length; i++){
-            if (i > top_elementa && i < bottom_elementa) {
-                jobPostsa[i].className = ""
-            } else {
-                jobPostsa[i].className = "hidden_class";
-            }
-        }
-
-        $("a").click(function(){
-            console.log($(this).attr('id'));
-            var jobPostinga = document.getElementById("posts").childNodes;
-            for(i=0; i<jobPostinga.length; i++){
-                if (jobPostinga[i].className == "selected"){
-                    jobPostinga[i].className = "hidden_class";
-                }
-                if (jobPostinga[i].id == $(this).attr('id')){
-                    jobPostinga[i].className = "selected";
+            for (i=0; i<jobPostsa.length; i++){
+                if (i > iterator_starta && i < iterator_enda) {
+                    jobPostsa[i].className = ""
+                } else {
+                    jobPostsa[i].className = "hidden_class";
                 }
             }
-        });
-    }
-    $(document).ready(initialize);
-    $(document).on('page:load', initialize);
+        }
+        function initialize(){
 
-</script>
+            var jobPostsa = document.getElementById("jobPosts").childNodes;
+            var top_elementa = 0;
+            var bottom_elementa = 21;
+            var initalizeda = 0;
+            console.log("loaded");
+            console.log(document.getElementById("jobPosts").childNodes);
+
+            for (i=0; i<jobPostsa.length; i++){
+                if (i > top_elementa && i < bottom_elementa) {
+                    jobPostsa[i].className = ""
+                } else {
+                    jobPostsa[i].className = "hidden_class";
+                }
+            }
+
+            $("a").click(function(){
+                console.log($(this).attr('id'));
+                var jobPostinga = document.getElementById("posts").childNodes;
+                for(i=0; i<jobPostinga.length; i++){
+                    if (jobPostinga[i].className == "selected"){
+                        jobPostinga[i].className = "hidden_class";
+                    }
+                    if (jobPostinga[i].id == $(this).attr('id')){
+                        jobPostinga[i].className = "selected";
+                    }
+                }
+            });
+        }
+        $(document).ready(initialize);
+        $(document).on('page:load', initialize);
+
+    </script>
+<% end %>
 
 <h4>Current Posts</h4>
 

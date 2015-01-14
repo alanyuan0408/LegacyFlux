@@ -1,3 +1,4 @@
+<% content_for :head do %>
 <script>
     var top_element = 0
     var bottom_element = <%= @unconfirmed_posts.length %> * 2;
@@ -64,6 +65,7 @@
     $(document).on('page:load', initialize2);
 
 </script>
+<% end %>
 
 <h4>Unapproved Posts</h4>
 

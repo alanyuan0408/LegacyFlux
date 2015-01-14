@@ -1,4 +1,5 @@
-<script>
+<% content_for :head do %>
+    <script>
     var top_elementb = 0
     var bottom_elementb = <%= @mail_posts.length %> * 2;
     var iterator_startb = 0;
@@ -70,6 +71,7 @@
     $(document).on('page:load', initialize3);
 
 </script>
+    <% end %>
 
 <h4>Posts from last 30 Days</h4>
 
