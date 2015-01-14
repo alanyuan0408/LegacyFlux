@@ -23,7 +23,6 @@
       page_numbera -= 1;
       document.getElementById("pagenumber").innerHTML = page_numbera
       } else {
-      console.log("Do nothing");
       }
 
       for (i=0; i<jobPostsa.length; i++){
@@ -41,8 +40,6 @@
       var top_elementa = 0;
       var bottom_elementa = 21;
       var initalizeda = 0;
-      console.log("loaded");
-      console.log(document.getElementById("jobPosts").childNodes);
 
       for (i=0; i<jobPostsa.length; i++){
       if (i > top_elementa && i < bottom_elementa) {
@@ -54,12 +51,10 @@
 
       $('.a_userposts').click(function(){
       var jobPostingb_r = document.getElementById("posts").childNodes;
-      console.log(document.getElementById("posts").childNodes);
       for(i=0; i<jobPostingb_r.length; i++){
       if (jobPostingb_r[i].dataset){
       if (jobPostingb_r[i].dataset.id == $(this).attr('data-id')){
       jobPostingb_r[i].className = "selected";
-      console.log(jobPostingb_r[i]);
       }
       else{
       jobPostingb_r[i].className = "hidden_class";
@@ -89,13 +84,11 @@
       page_numberb -= 1;
       document.getElementById("pagenumber3").innerHTML = page_numberb
       } else {
-      console.log("Do nothing");
       }
 
       for (i=0; i<jobPostsb.length; i++){
       if (i > iterator_startb && i < iterator_endb) {
       jobPostsb[i].className = "";
-      console.log(jobPostsb[i]);
       } else {
       jobPostsb[i].className = "hidden_class";
       }
@@ -105,9 +98,6 @@
 
       var jobPostsb = document.getElementById("itemPosts3").childNodes;
       var top_elementb = 0;
-
-      console.log("loaded");
-      console.log(document.getElementById("itemPosts3").childNodes);
 
       for (i=0; i<jobPostsb.length; i++){
       if (i > top_elementb && i < 21) {
@@ -119,12 +109,10 @@
 
       $('.a_mail').click(function(){
       var jobPostingb_r = document.getElementById("posts3").childNodes;
-      console.log(document.getElementById("posts3").childNodes);
       for(i=0; i<jobPostingb_r.length; i++){
       if (jobPostingb_r[i].dataset){
       if (jobPostingb_r[i].dataset.id == $(this).attr('data-id')){
       jobPostingb_r[i].className = "selected";
-      console.log(jobPostingb_r[i]);
       }
       else{
       jobPostingb_r[i].className = "hidden_class";
@@ -154,7 +142,6 @@
       page_number -= 1;
       document.getElementById("pagenumber2").innerHTML = page_number
       } else {
-      console.log("Do nothing");
       }
 
       for (i=0; i<jobPosts.length; i++){
@@ -166,12 +153,10 @@
       }
       }
       function initialize2(){
-      console.log("initializing");
       var jobPosts = document.getElementById("itemPosts2").childNodes;
       var top_element = 0;
       var bottom_element = 21;
       var initalized = 0;
-      console.log(document.getElementById("itemPosts2").childNodes);
 
       for (i=0; i<jobPosts.length; i++){
       if (i > top_element && i < bottom_element) {
@@ -183,12 +168,10 @@
 
       $('.a_admin').click(function(){
       var jobPostingb_r = document.getElementById("posts2").childNodes;
-      console.log(document.getElementById("posts2").childNodes);
       for(i=0; i<jobPostingb_r.length; i++){
       if (jobPostingb_r[i].dataset){
       if (jobPostingb_r[i].dataset.id == $(this).attr('data-id')){
       jobPostingb_r[i].className = "selected";
-      console.log(jobPostingb_r[i]);
       }
       else{
       jobPostingb_r[i].className = "hidden_class";
@@ -221,15 +204,11 @@
             </div>
 
             <div class="tab-pane" id="tab3">
-              <br>
-              <p><b>Note:</b> If the links below are not responsive, ctr+r(reload). We are working on this problem at the moment</p>
               <%= render :partial => "users/userPartial/userFeedbankPosts" %>
             </div>
 
             <% if @current_user.account_setting.news_admin %>
               <div class="tab-pane" id="tab4">
-                <br>
-                <p><b>Note:</b> If the links below are not responsive, ctr+r(reload). We are working on this problem at the moment</p>
                  <%= render :partial => "users/userPartial/mailPanel" %>
 				 <div id="generateMail">
 				 <%= render :partial => "users/userPartial/createNewsLetter" %>
@@ -239,8 +218,6 @@
 
             <% if @current_user.account_setting.admin %>
               <div class="tab-pane" id="tab5">
-                <br>
-                <p><b>Note:</b> If the links below are not responsive, ctr+r(reload). We are working on this problem at the moment</p>
                 <%= render :partial => "users/userPartial/adminPanel" %>
               </div>
             <% end %>
