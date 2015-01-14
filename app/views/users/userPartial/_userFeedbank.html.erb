@@ -10,12 +10,12 @@
 
     <%= f.label :item_title %>
     <br>
-    <%= f.text_field :item_title, placeholder: " Title of Post", :size=>"50",
+    <%= f.text_field :item_title, placeholder: "Title of Post", :size=>"50",
     :class => "form-control"   %>
 
     <br> <br>
 
-    <%= f.label :item_url, " Item URL [Optional]" %>
+    <%= f.label :item_url, "Item URL [Optional]" %>
     <br>
     <%= f.text_field :item_url, :size=>"50", :class => "title_width", placeholder: " Url to the Post", :class => "form-control"   %>
 
@@ -31,7 +31,7 @@
         <%= f.hidden_field :approval_status, :value => :false %>
     <% end %>
 
-    <%= f.label :column_type, " Post Type" %>
+    <%= f.label :column_type, "Post Type" %>
     <br>
     <%= f.select(:column_type, [["Job Post", 1], ["Event Post", 2], ["News Update", 3],
                                         ["Research", 4]]) %>
@@ -58,4 +58,4 @@
 
 <p><b>Embeded HTML:</b> Please do not embed HTML. To prevent JS Injection, we will disable all HTML tags. Please use our own editor for styling</p>
 <br>
-<p><b>Startup Posting:</b> Please be as specific as possible about compensation and the nature of the position. If you are an undergraduate student looking for a cofounder, please indiciate that clearly</p>
+<p><b>Startup Posting:</b> Please be as specific as possible about compensation and the nature of the position. The size and amount of venture backing for your startup must be indidcated very clearly.</p>

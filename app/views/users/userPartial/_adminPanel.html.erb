@@ -40,13 +40,12 @@
 
         var jobPosts = document.getElementById("itemPosts2").childNodes;
         var top_element = 0;
-        var bottom_element = 21;
         var initalized = 0;
         console.log("loaded");
         console.log(document.getElementById("itemPosts2").childNodes);
 
         for (i=0; i<jobPosts.length; i++){
-            if (i > top_element && i < bottom_element) {
+            if (i > top_element && i < 21) {
                 jobPosts[i].className = ""
             } else {
                 jobPosts[i].className = "hidden_class";
