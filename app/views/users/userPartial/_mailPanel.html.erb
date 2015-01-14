@@ -32,7 +32,7 @@
             }
         }
     }
-    function initialize3(){
+    var ready = function initialize3(){
 
         var jobPostsb = document.getElementById("itemPosts3").childNodes;
         var top_elementb = 0;
@@ -66,8 +66,8 @@
 
     }
 
-    $(document).ready(initialize3);
-    $(document).on('page:load', initialize3);
+    $(document).ready(ready);
+    $(document).on('page:load', ready);
 
 </script>
     <% end %>

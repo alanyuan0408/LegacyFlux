@@ -31,7 +31,7 @@
             }
         }
     }
-    function initialize2(){
+    var ready = function initialize2(){
 
         var jobPosts = document.getElementById("itemPosts2").childNodes;
         var top_element = 0;
@@ -64,8 +64,8 @@
             }
         });
     }
-    $(document).ready(initialize2);
-    $(document).on('page:load', initialize2);
+    $(document).ready(ready);
+    $(document).on('page:load', ready);
 
 </script>
 <% end %>
