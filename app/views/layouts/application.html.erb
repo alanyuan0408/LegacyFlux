@@ -24,6 +24,7 @@
 		<%= csrf_meta_tags %>
 
 		<%= yield :head %> 
+		<meta name="viewport" content="width=1024px">
 	</head>
 	<body<% if content_for?(:body_attributes) %><%= yield(:body_attributes) %><% end %>>
 	<div class="wrapper">
