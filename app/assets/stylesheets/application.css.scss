@@ -351,6 +351,8 @@ height: 20px;
 
 .usercontent{
 	font-size: 100%;
+	overflow:scroll;
+    -webkit-overflow-scrolling:touch;
 }
 
 .smallwrap{
