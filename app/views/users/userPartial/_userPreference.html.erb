@@ -1,29 +1,38 @@
 <div class="twocolumn">
 
 <div class="column">
-            <h2><%= @current_user.name %></h2>
-			<p><span class="glyphicon glyphicon-envelope"></span><%= @current_user.email %></p>
+    <h4><%= @current_user.name %></h4>
 
-              <% if @current_user.account_setting.student_account %>
-                <p><span class="glyphicon glyphicon-ok"></span> Subscribed to Weekly Email</p>
-              <% end %>
+    <p>Your Account Summary</p>
+    <br>
+			
+	<p><i class="glyphicon glyphicon-envelope"></i> <%= @current_user.email %></p>
+	<br>
 
-              <% if @current_user.account_setting.admin %>
-                <p><span class="glyphicon glyphicon-ok"></span> Administrator</p>
-              <% end %>
 
-              <% if @current_user.account_setting.news_admin %>
-                <p><span class="glyphicon glyphicon-ok"></span> Newsletter-Administrator</p>
-              <% end %>
+    <% if @current_user.account_setting.student_account %>
+        <p><i class="glyphicon glyphicon-ok"></i> Subscribed to Weekly Email</p>
+        <br>
+    <% end %>
+
+    <% if @current_user.account_setting.admin %>
+        <p><i class="glyphicon glyphicon-ok"></i> Administrator</p>
+        <br>
+    <% end %>
+
+    <% if @current_user.account_setting.news_admin %>
+        <p><i class="glyphicon glyphicon-ok"></i> Newsletter-Administrator</p>
+        <br>
+    <% end %>
 		 
-              <% if @current_user.email_confirmation_token != "confirmed" %>
-                <div class="alert alert-danger" role="alert">
-                    <p class="alert-link">You will not receive any emails until
-                      you confirm your email</p>
-				</div>
-              <% end %>
+    <% if @current_user.email_confirmation_token != "confirmed" %>
+        <div class="alert alert-danger" role="alert">
+        	<p class="alert-link"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>You will not receive any emails until you confirm your email</p>
+		</div>
+    <% end %>
 
-	</div>
+</div>
+
 <div class="column">
 <% if @current_user.account_setting.student_account %>
 
