@@ -14,16 +14,16 @@
 		    <p><%= @current_user.news_letter_mail.news_letter_entries.
 		    find_by(item_id: post.item_id).entry_text.html_safe %><p>
 
-		    <%= form_for @current_user, namespace: post.item_id, :url => url_for(:controller => "users",
-			    :action => "remove_newsItem", "id" => post.item_id, item_id => post.item_id), :remote => true do |f|%>
+		    <%= form_for @current_user, namespace: post.id, :url => url_for(:controller => "users",
+			    :action => "remove_newsItem", :item_id => post.item_id), :remote => true do |f|%>
 
 			    <%= f.submit "Remove from NewsLetter", class: "btn btn-default" %>
 			<% end %>
 
 		<% else %>
 
-			<%= form_for @current_user, namespace: post.item_id, :url => url_for(:controller => "users",
-		        :action => "add_newsItem", :item_id => post.item_id), :remote => true do |f|%>
+			<%= form_for @current_user, namespace: post.id, :url => url_for(:controller => "users",
+		        :action => "add_newsItem", :id => post.id), :remote => true do |f|%>
 
 				<%= f.label :entry_title, "Title of the Entry:" %>
 				<br>
