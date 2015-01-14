@@ -1,13 +1,13 @@
 <% content_for :head do %>
     <script>
-        var top_elementa = 0
-        var bottom_elementa = <%= @feedbank_posts.length %> * 2;
-        var iterator_starta = 0;
-        var iterator_enda = 21;
-        var page_numbera = 1;
+        var top_element_a = 0
+        var bottom_element_a = <%= @feedbank_posts.length %> * 2;
+        var iterator_start_a = 0;
+        var iterator_end_a = 21;
+        var page_number_a = 1;
         function navdirection(direction){
 
-            var jobPostsa = document.getElementById("jobPosts").childNodes;
+            var jobPosts_a = document.getElementById("jobPosts").childNodes;
 
             if (direction == 1 && iterator_enda < bottom_elementa){
                 iterator_starta += 10;
@@ -48,17 +48,21 @@
                 }
             }
 
-            $("a").click(function(){
-                console.log($(this).attr('id'));
-                var jobPostinga = document.getElementById("posts").childNodes;
-                for(i=0; i<jobPostinga.length; i++){
-                    if (jobPostinga[i].className == "selected"){
-                        jobPostinga[i].className = "hidden_class";
-                    }
-                    if (jobPostinga[i].id == $(this).attr('id')){
-                        jobPostinga[i].className = "selected";
+            $('.a_userposts').click(function(){
+                var jobPostingb_r = document.getElementById("posts").childNodes;
+                console.log(document.getElementById("posts").childNodes);
+                for(i=0; i<jobPostingb_r.length; i++){
+                    if (jobPostingb_r[i].dataset){
+                        if (jobPostingb_r[i].dataset.id == $(this).attr('data-id')){
+                            jobPostingb_r[i].className = "selected"
+                            console.log(jobPostingb_r[i]);
+                        }
+                        else{
+                            jobPostingb_r[i].className = "hidden_class";
+                        }
                     }
                 }
+
             });
         }
         $(document).ready(initialize);
@@ -87,7 +91,7 @@
 
 		<ul id="jobPosts" class="nav nav-tabs nav-stacked" onload="initialize()">
 	        <% @feedbank_posts.each do |post| %>
-	            <li><a data-id="<%= post.item_id %>"><%= post.item_title %></a></li>
+	            <li><a data-id="<%= post.item_id %>" class="a_userposts"><%= post.item_title %></a></li>
 	        <% end %>
 	    </ul>
 
@@ -96,7 +100,7 @@
 	<div class="col-xs-6">
 		<div class="panel-content" id= "posts" >
 			<% @feedbank_posts.each do |post| %>
-				<div id="<%= post.item_id %>" class="hidden_class">
+				<div data-id="<%= post.item_id %>" class="hidden_class">
 				    <p><b>Item Title: <%= post.item_title %></b></p>
 				    <p>URL: <%= post.item_url %></p>
 				    <p>Approval Status: <%= post.approval_status %></p>

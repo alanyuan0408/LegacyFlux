@@ -3,9 +3,9 @@
     <% if @current_user.news_letter_mail.news_letter_entries.
         find_by(item_id: post.item_id) %>
 
-		<li data-id="<%= post.item_id %>"><a>
+		<li><a data-id="<%= post.item_id %>" class="a_mail">
         	<span class="glyphicon glyphicon-ok"></span><%= post.item_title %></a></li>
     <% else %> 
-         <li data-id="<%= post.item_id %>"><a><%= post.item_title %></a></li>
+         <li><a data-id="<%= post.item_id %>" class="a_mail"><%= post.item_title %></a></li>
     <% end %>
 <% end %>

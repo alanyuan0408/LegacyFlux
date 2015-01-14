@@ -47,20 +47,20 @@
             }
         }
 
-        attach_li()
-    }
 
-    function attach_li(){
 
-        $("li").click(function(){
-            console.log($(this).attr('id'));
-            var jobPostingb = document.getElementById("posts3").childNodes;
-            for(i=0; i<jobPostingb.length; i++){
-                if (jobPostingb[i].className == "selected"){
-                    jobPostingb[i].className = "hidden_class";
+        $('.a_mail').click(function(){
+            var jobPostingb_r = document.getElementById("posts3").childNodes;
+            console.log(document.getElementById("posts3").childNodes);
+            for(i=0; i<jobPostingb_r.length; i++){
+                if (jobPostingb_r[i].dataset){
+                if (jobPostingb_r[i].dataset.id == $(this).attr('data-id')){
+                    jobPostingb_r[i].className = "selected"
+                    console.log(jobPostingb_r[i]);
                 }
-                if (jobPostingb[i].id == $(this).attr('id')){
-                    jobPostingb[i].className = "selected";
+                else{
+                    jobPostingb_r[i].className = "hidden_class";
+                }
                 }
             }
         });
