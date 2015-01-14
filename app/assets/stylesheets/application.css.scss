@@ -23,7 +23,6 @@
 	margin: 0;
 }
 
-
 html{
 	height: 100%;
 	overflow: auto;
@@ -357,4 +356,8 @@ height: 20px;
 .smallwrap{
 	margin-top: 20px;
 	width: 960px;
+}
+
+.hidden_class {
+  display: none;
 }
