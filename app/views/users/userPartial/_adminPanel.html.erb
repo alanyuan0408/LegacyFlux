@@ -31,7 +31,7 @@
             }
         }
     }
-    var ready = function initialize2(){
+    $(document).on('page:change', function initialize2(){
 
         var jobPosts = document.getElementById("itemPosts2").childNodes;
         var top_element = 0;
@@ -63,7 +63,7 @@
                 }
             }
         });
-    }
+    });
     $(document).ready(ready);
     $(document).on('page:load', ready);
 
