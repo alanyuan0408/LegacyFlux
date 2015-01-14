@@ -6,12 +6,12 @@
           <ul class="nav nav-tabs" role="tablist">
             <li class="active"><a href="#tab1" data-toggle="tab">Mail Settings</a></li>
             <li><a href="#tab2" data-toggle="tab">Post Content</a></li>
-            <li><a href="#tab3" data-toggle="tab">Your Posts</a></li>
+            <li><a href="#tab3" data-toggle="tab" onclick="initialize()">Your Posts</a></li>
             <% if @current_user.account_setting.news_admin %>
-              <li><a href="#tab4" data-toggle="tab">NewsLetter Generator</a></li>
+              <li><a href="#tab4" data-toggle="tab" onclick="initialize3()">NewsLetter Generator</a></li>
             <% end %>
             <% if @current_user.account_setting.admin %>
-              <li><a href="#tab5" data-toggle="tab">Administrator Panel</a></li>
+              <li><a href="#tab5" data-toggle="tab" onclick="initialize2()">Administrator Panel</a></li>
             <% end %>
           </ul>
 
