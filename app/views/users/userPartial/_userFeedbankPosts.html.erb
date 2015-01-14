@@ -1,13 +1,13 @@
 <% content_for :head do %>
     <script>
-        var top_element_a = 0
-        var bottom_element_a = <%= @feedbank_posts.length %> * 2;
-        var iterator_start_a = 0;
-        var iterator_end_a = 21;
-        var page_number_a = 1;
+        var top_elementa = 0
+        var bottom_elementa = <%= @feedbank_posts.length %> * 2;
+        var iterator_starta = 0;
+        var iterator_enda = 21;
+        var page_numbera = 1;
         function navdirection(direction){
 
-            var jobPosts_a = document.getElementById("jobPosts").childNodes;
+            var jobPostsa = document.getElementById("jobPosts").childNodes;
 
             if (direction == 1 && iterator_enda < bottom_elementa){
                 iterator_starta += 10;
