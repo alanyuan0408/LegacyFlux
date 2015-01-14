@@ -26,6 +26,7 @@
         for (i=0; i<jobPostsb.length; i++){
             if (i > iterator_startb && i < iterator_endb) {
                 jobPostsb[i].className = ""
+                console.log(jobPostsb[i]);
             } else {
                 jobPostsb[i].className = "hidden_class";
             }
@@ -53,7 +54,7 @@
             for(i=0; i<jobPostingb_r.length; i++){
                 if (jobPostingb_r[i].dataset){
                 if (jobPostingb_r[i].dataset.id == $(this).attr('data-id')){
-                    jobPostingb_r[i].className = "selected"
+                    jobPostingb_r[i].className = "selected";
                     console.log(jobPostingb_r[i]);
                 }
                 else{
