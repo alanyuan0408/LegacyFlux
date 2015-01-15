@@ -74,7 +74,6 @@
       var iterator_endb = 21;
       var page_numberb = 1;
       function navdirection3(direction){
-
       var jobPostsb = document.getElementById("itemPosts3").childNodes;
 
       if (direction == 1 && iterator_endb < bottom_elementb){
@@ -96,7 +95,7 @@
       } else {
       jobPostsb[i].className = "hidden_class";
       }
-      } initialize3();
+      } subinitialize();
       }
       function initialize3(){
 
@@ -124,7 +123,22 @@
       }
       }
       });
+      }
 
+      function subinitialize(){
+              $('.a_mail').click(function(){
+                  var jobPostingb_r = document.getElementById("posts3").childNodes;
+                  for(i=0; i<jobPostingb_r.length; i++){
+                      if (jobPostingb_r[i].dataset){
+                          if (jobPostingb_r[i].dataset.id == $(this).attr('data-id')){
+                              jobPostingb_r[i].className = "selected";
+                          }
+                          else{
+                              jobPostingb_r[i].className = "hidden_class";
+                          }
+                      }
+                  }
+              });
       }
       var top_element = 0;
       <% if @current_user.account_setting.admin %>
