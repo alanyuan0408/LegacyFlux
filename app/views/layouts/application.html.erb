@@ -18,13 +18,11 @@
 		<meta property="og:image:height" content="200" />
 
 		<meta name="google-site-verification" content="9zyLGCCsP8LpuIAs92t970JXaoePD6RKV6Z7Lghf1zc" />
+		<meta name="viewport" content="width=1024px">
+		<%= csrf_meta_tags %>
 		<%= render 'layouts/cssHook' %>
 		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-		<%= javascript_include_tag 'ckeditor/ckeditor.js' %>
-		<%= csrf_meta_tags %>
-
 		<%= yield :head %> 
-		<meta name="viewport" content="width=1024px">
 	</head>
 	<body<% if content_for?(:body_attributes) %><%= yield(:body_attributes) %><% end %>>
 	<div class="wrapper">
