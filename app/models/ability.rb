@@ -6,7 +6,7 @@ class Ability
 
 	# Performed checks for actions:
 	@current_user ||= User.new
-	if @current_user.account_setting.news_admin?
+	if @current_user.account_setting.news_admin
 		can [:read, :create, :destroy], Ckeditor::Picture
 		can [:read, :create, :destroy], Ckeditor::AttachmentFile
     else
