@@ -5,8 +5,8 @@ class Ability
   can :access, :ckeditor   # needed to access Ckeditor filebrowser
 
 	# Performed checks for actions:
-	user ||= User.new
-	if user.admin?
+	@current_user ||= User.new
+	if @current_user.account_setting.news_admin?
 		can [:read, :create, :destroy], Ckeditor::Picture
 		can [:read, :create, :destroy], Ckeditor::AttachmentFile
     else
