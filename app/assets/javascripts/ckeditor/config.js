@@ -1,7 +1,6 @@
 CKEDITOR.editorConfig = function( config ) {
     config.language = 'en';
     config.uiColor = '#ffffff';
-	config.skin = 'office2013,./office2013/';
     config.toolbar = 'toolbarLight';
    /* Filebrowser routes */
   // The location of an external file browser, that should be launched when "Browse Server" button is pressed.
