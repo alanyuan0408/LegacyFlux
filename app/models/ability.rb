@@ -5,15 +5,14 @@ class Ability
   can :access, :ckeditor   # needed to access Ckeditor filebrowser
 
 	# Performed checks for actions:
-	@current_user ||= User.new
-	if @current_user.account_setting.news_admin
+	user ||= User.new 
+	if user.account_setting.news_admin
 		can [:read, :create, :destroy], Ckeditor::Picture
 		can [:read, :create, :destroy], Ckeditor::AttachmentFile
-    else
+	else
 		can [:read, :create], Ckeditor::Picture
 		can [:read, :create], Ckeditor::AttachmentFile
 	end
-	
 	# Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
