@@ -7,7 +7,7 @@
 
 	<%= f.label :entry_text, "Greeting Message:" %>
 	<br>
-	<%= f.text_area :entry_text, :size => "45x10", 
+	<%= f.text_area :entry_text, :size => "45x10",  placeholder: "Place Header Message Here",
 	:value => @current_user.news_letter_mail.intro_message, :class => "form-control" %>
 	<br>
 	<%= f.submit "Generate NewsLetter", class: "btn btn-default" %>

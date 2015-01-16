@@ -4,21 +4,24 @@
 <p>The Research and Entrepreneur Expo is designed to give startups, new entrepreneurs, graduate students, and professors the opportunity to recruit undergraduate students from computer science department and faculty of engineering.</p><p>The recruiters will each be given a 5 minute interval to pitch their idea to a large lecture hall of computer science students about their project or startup, and interested students will be given an opportunity to network with specific recruiters afterwards. </p>
 <h3>Registration:</h3>
 <% if user_signed_in? %>
-<%= form_for :feedbank, :url => '/feedbanks#create' do |f| %> 
-	<%= f.hidden_field :item_title, :value => "Expo Signup" %>
-	<% if user_signed_in? %>
-		<%= f.hidden_field :user_id, :value => @current_user.id %>
-    <% else %>
-		<%= f.hidden_field :user_id, :value => "" %>
+	<% if @expo_signup.blank? %>
+		<%= form_for :feedbank, :url => '/feedbanks#create' do |f| %> 
+			<%= f.hidden_field :item_title, :value => "Expo Signup" %>
+			<%= f.hidden_field :user_id, :value => @current_user.id %>
+			<%= f.hidden_field :item_date, :value => Time.current %>
+		    <%= f.hidden_field :column_type, :value => 5 %>
+			<%= f.label :item_text, "Send us a message if you would like to present:" %>
+		    <%= f.text_area :item_text, :size => "80x10", :class => "form-expo",
+		     placeholder: "Please provide Contact, Presenation Information and Dates you cannot present",
+		     :class => "form-control" %><br />
+		    <%= f.submit "Send Expo Registration", class: "btn btn-default btn-med" %>
+		<% end %>
+	<% else %>
+		<p><strong>Thank you for Registering for our Expo. We hope to get back to you very soon.
+		</strong></p>
 	<% end %>
-	<%= f.hidden_field :item_date, :value => Time.current %>
-    <%= f.hidden_field :column_type, :value => 5 %>
-	<%= f.label :item_text, "Send us a message if you would like to present:" %>
-    <%= f.text_area :item_text, :size => "80x10", :class => "form-expo" %><br />
-    <%= f.submit "Send Expo Registration", class: "btn btn-default btn-med" %>
-<% end %>
 <% else %>
-<p><strong>You need to <%= link_to("login to register", new_user_session_path) %> </strong></p>
+	<p><strong>You need to <%= link_to("login to register", new_user_session_path) %> </strong></p>
 <% end %>
 </div>
 <h2>Presenters:</h2>
