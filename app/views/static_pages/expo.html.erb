@@ -18,7 +18,8 @@
     <%= f.submit "Send Expo Registration", class: "btn btn-default btn-med" %>
 <% end %>
 <% else %>
-<p><strong>You need to <%= link_to("login", new_user_session_path) %> to register</strong></p>
+<p><strong>You need to <%= link_to("login to register", new_user_session_path) %> </strong></p>
+<% end %>
 </div>
 <h2>Presenters:</h2>
 			<p>The presenters will be required to make their category clear so the potential members have a clear idea
