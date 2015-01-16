@@ -41,7 +41,7 @@
 				    <p><%= Sanitize.fragment(post.item_text)%></p>
 				    
                     <%= form_for post, namespace: "approve", :url => url_for(:controller => "feedbanks",
-                        :action => "approve_content", "data-id" => post.id), :remote => true do |f|%>
+                        :action => "approve_content", :id => post.id), :remote => true do |f|%>
 
                         <%= f.submit "Approve Post", class: "btn btn-default" %>
                     <% end %>
@@ -49,7 +49,7 @@
                     <br>
 
                     <%= form_for post, namespace: "disapprove", :url => url_for(:controller => "feedbanks",
-                        :action => "disapprove_content", "data-id" => post.id), :remote => true do |f|%>
+                        :action => "disapprove_content", :id => post.id), :remote => true do |f|%>
 
                         <%= f.submit "Disapprove Post", class: "btn btn-default" %>
                     <% end %>
