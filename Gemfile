@@ -81,7 +81,7 @@ end
 gem 'mandrill-api'
 
 gem 'bootstrap-sass', '~> 3.3.1'
-gem 'autoprefixer-rails'
+gem 'autoprefixer-rails', '~> 4.0.2.2'
 
 gem 'jquery-turbolinks'
 

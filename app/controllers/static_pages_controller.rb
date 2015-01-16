@@ -13,6 +13,8 @@ class StaticPagesController < ApplicationController
     if user_signed_in?
       @current_user = current_user;
       @account_setting = @current_user.mail_setting.expo_ticket;
+      @expo_signup = Feedbank.where(:column_type => 5).where(:user_id => @current_user.id)
+      #expo_signup is to check if the user already signup.
     else 
       @expo_ticket = "false"
     end

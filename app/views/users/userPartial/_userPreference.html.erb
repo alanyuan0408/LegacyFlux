@@ -1,7 +1,15 @@
 <div class="twocolumn">
 
 <div class="column">
-    <h4><%= @current_user.name %></h4>
+
+    <% if @current_user.email_confirmation_token != "confirmed" %>
+    <br>
+        <div class="alert alert-danger" role="alert">
+        	<p class="alert-link"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>You will not receive any emails until you confirm your email</p>
+		</div>
+    <% end %>
+
+    <h3><%= @current_user.name %></h3>
 
     <p>Your Account Summary</p>
     <br>
@@ -24,19 +32,13 @@
         <p><i class="glyphicon glyphicon-ok"></i> Newsletter-Administrator</p>
         <br>
     <% end %>
-		 
-    <% if @current_user.email_confirmation_token != "confirmed" %>
-        <div class="alert alert-danger" role="alert">
-        	<p class="alert-link"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>You will not receive any emails until you confirm your email</p>
-		</div>
-    <% end %>
 
 </div>
 
 <div class="column">
 <% if @current_user.account_setting.student_account %>
 
-	<h4>Here are your Mailing Settings</h4>
+	<h3>Here are your Mailing Settings</h3>
 
 	<p>Your Email will be sent in a frequency of <%= @mail_setting.email_frequency %> days</p>
 
