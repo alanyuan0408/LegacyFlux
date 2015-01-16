@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       end
 
       if @current_user.account_setting.news_admin
-        @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).order("item_date desc")
+        @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).where('column_type <> ?', 5).order("item_date desc")
       end
 
       @mail_setting = @current_user.mail_setting
