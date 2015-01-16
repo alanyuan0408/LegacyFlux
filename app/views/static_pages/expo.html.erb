@@ -13,7 +13,7 @@
 	<% end %>
 	<%= f.hidden_field :item_date, :value => Time.current %>
     <%= f.hidden_field :column_type, :value => 5 %>
-	<%= f.label :item_text, "Send us a message if you like to present:" %>
+	<%= f.label :item_text, "Send us a message if you would like to present:" %>
     <%= f.text_area :item_text, :size => "80x10", :class => "form-expo" %><br />
     <%= f.submit "Send Expo Registration", class: "btn btn-default btn-med" %>
 <% end %>
