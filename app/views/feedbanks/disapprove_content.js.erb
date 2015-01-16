@@ -1,2 +1,4 @@
-$('#itemPosts2').find("#" + "<%= @feedbank.item_id %>").remove()
-$('#posts2').find("#" + "<%= @feedbank.item_id %>").remove() 
+console.log("Hi Alan")
+
+$('#itemPosts2 > [data-id = "<%= escape_javascript(@feedbank.item_id) %>"]').parent()remove()
+$('#posts2 > [data-id = "<%= escape_javascript(@feedbank.item_id) %>"]').remove() 
