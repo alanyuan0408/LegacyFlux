@@ -21,7 +21,7 @@
 
 		<ul id="itemPosts2" class="nav nav-tabs nav-stacked" onload="initialize()">
 	        <% @unconfirmed_posts.each do |post| %>
-	            <li><a data-id="<%= post.item_id %>" class="a_admin"><%= post.item_title %></a></li>
+	            <li class="list_li"><a data-id="<%= post.item_id %>" class="a_admin"><%= post.item_title %></a></li>
 	        <% end %>
 	    </ul>
 
