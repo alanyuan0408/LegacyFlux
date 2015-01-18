@@ -96,19 +96,9 @@ class UsersController < ApplicationController
     redirect_to @current_user
   end
 
-  def creator_account
-    @current_user.account_setting.update_attribute(:content_creator, true);
-    @current_user.account_setting.update_attribute(:account_selected, true);
-
-    redirect_to @current_user
-  end
-
-  def request_creator
-    @current_user.account_setting.update_attribute(:sent_approval, true);
-    @current_user.update_attribute(:organization, params[:organization]);
-    @current_user.account_setting.update_attribute(:approval_message, 
-                params[:approval_message]);
-
+  def disable_student_account
+    @current_user.account_setting.update_attribute(:student_account, false);
+    @current_user.mail_setting.update_attribute(:nextsend, Time.now + 7.days);
     redirect_to @current_user
   end
 

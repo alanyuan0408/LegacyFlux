@@ -34,13 +34,10 @@ Rails.application.routes.draw do
   post '/unregister_expo', to: 'users#unregister_expo'
 
   match '/student_account', to: 'users#student_account', via: [:get, :post]
-  match '/creator_account', to: 'users#creator_account', via: [:get, :post]
+  match '/disable_student', to: 'users#disable_student_account', via: [:get, :post]
+
   get '/user_info', to: 'users#show'
   patch '/generate_newsletter', to: 'users#generate_newsLetter'
-
-  get '/approve', to: 'users#approve_creator'
-  get '/request', to: 'users#request_creator'
-  get '/certify', to: 'users#certify'
   
   get "/404" => 'users#permissiondenied'
   get "/500" => 'users#permissiondenied'
