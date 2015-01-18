@@ -23,7 +23,8 @@
 		<% else %>
 
 			<%= form_for @current_user, namespace: post.id, :url => url_for(:controller => "users",
-		        :action => "add_newsItem", :id => post.id), :remote => true do |f|%>
+		        :action => "add_newsItem", :id => post.id, 
+		        :item_id => post.item_id), :remote => true do |f|%>
 
 				<%= f.label :entry_title, "Title of the Entry:" %>
 				<br>

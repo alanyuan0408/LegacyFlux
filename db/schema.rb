@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150112034146) do
+ActiveRecord::Schema.define(version: 20150118212029) do
 
   create_table "account_settings", force: :cascade do |t|
     t.integer  "user_id"
@@ -72,10 +72,11 @@ ActiveRecord::Schema.define(version: 20150112034146) do
     t.integer  "news_letter_mail_id"
     t.string   "entry_title"
     t.text     "entry_text"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "item_id"
     t.integer  "ordering"
+    t.boolean  "tibbit_entry",        default: false
   end
 
   add_index "news_letter_entries", ["news_letter_mail_id"], name: "index_news_letter_entries_on_news_letter_mail_id"

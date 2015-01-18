@@ -27,17 +27,18 @@ class UsersController < ApplicationController
 
   end
 
-  def index
-
-  end
-
-  def save_setting
+  def mail_nav
 
     respond_to do |format|
       format.js
     end
 
+  end 
+
+  def index
+
   end
+
 
   def modify
 
@@ -130,14 +131,19 @@ class UsersController < ApplicationController
   def add_newsItem
     @feedbank = Feedbank.find(params[:id])
 
-    puts @current_user.news_letter_mail.inspect
+    #Prevent Mutiple Requests for slow connections
+    if @current_user.news_letter_mail.news_letter_entries.find_by(item_id: params[:item_id])
+      #DO nothing, request already sent
 
-    @newPost = @current_user.news_letter_mail.news_letter_entries.new
+    else 
+      
+      @newPost = @current_user.news_letter_mail.news_letter_entries.new
 
-    @newPost.update_attribute(:entry_title, params[:user][:entry_title])
-    @newPost.update_attribute(:entry_text, params[:user][:entry_text])
-    @newPost.update_attribute(:item_id, @feedbank.item_id)
-    @newPost.save
+      @newPost.update_attribute(:entry_title, params[:user][:entry_title])
+      @newPost.update_attribute(:entry_text, params[:user][:entry_text])
+      @newPost.update_attribute(:item_id, @feedbank.item_id)
+      @newPost.save
+    end
 
     @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).order("item_date desc")
 

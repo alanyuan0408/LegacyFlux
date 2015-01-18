@@ -5,6 +5,5 @@ $('#posts3').html(" <%= escape_javascript(render(:partial => 'users/userPartial/
 
 $('#generateMail').html("<%= escape_javascript(render(:partial => 'users/userPartial/createNewsLetter')) %> ")
 
-navdirection3(2)
-
-attach_li()
+pageObject2.initialize('.a_mail', 'posts3');
+pageObject2.hide_divs();
