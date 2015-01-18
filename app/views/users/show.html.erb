@@ -5,217 +5,53 @@
   <!-- Provide some top header -->
 	<div class="smallwrap">
     <!-- Larger tab -->
-      <script>
-      var top_elementa = 0;
-      var bottom_elementa = <%= @feedbank_posts.length %> * 2;
-      var iterator_starta = 0;
-      var iterator_enda = 21;
-      var page_numbera = 1;
-      function navdirection(direction){
 
-      var jobPostsa = document.getElementById("jobPosts").childNodes;
-
-      if (direction == 1 && iterator_enda < bottom_elementa){
-      iterator_starta += 10;
-      iterator_enda += 10;
-      page_numbera += 1;
-      document.getElementById("pagenumber").innerHTML = page_numbera
-      } else if (direction == 0 && iterator_starta > top_elementa){
-      iterator_starta -= 10;
-      iterator_enda -= 10;
-      page_numbera -= 1;
-      document.getElementById("pagenumber").innerHTML = page_numbera
-      } else {
-      }
-
-      for (i=0; i<jobPostsa.length; i++){
-      if (i > iterator_starta && i < iterator_enda) {
-      jobPostsa[i].className = ""
-      } else {
-      jobPostsa[i].className = "hidden_class";
-      }
-      }
-      }
+    <script>
 
       function initialize(){
-
-      var jobPostsa = document.getElementById("jobPosts").childNodes;
-      var top_elementa = 0;
-      var bottom_elementa = 21;
-      var initalizeda = 0;
-
-      for (i=0; i<jobPostsa.length; i++){
-      if (i > top_elementa && i < bottom_elementa) {
-      jobPostsa[i].className = ""
-      } else {
-      jobPostsa[i].className = "hidden_class";
-      }
+        //Initialize the object defined in Your Posts
+        if (typeof pageObject == "undefined"){
+          pageObject = new pageIndex(<%= @feedbank_posts.length %>, "jobPosts", "pagenumber");
+          pageObject.initialize('.a_userposts', 'posts');
+        } else {
+          pageObject.hide_divs();
+        }
       }
 
-      $('.a_userposts').click(function(){
-      var jobPostingb_r = document.getElementById("posts").childNodes;
-      for(i=0; i<jobPostingb_r.length; i++){
-      if (jobPostingb_r[i].dataset){
-      if (jobPostingb_r[i].dataset.id == $(this).attr('data-id')){
-      jobPostingb_r[i].className = "selected";
-      }
-      else{
-      jobPostingb_r[i].className = "hidden_class";
-      }
-      }
-      }
-
-      });
-      }
-      var top_elementb = 0;
-      <% if @current_user.account_setting.news_admin %>
-        var bottom_elementb = <%= @mail_posts.length %> * 2;
-      <% else %>
-        var bottom_elementb = 0;
-      <% end %>
-      var iterator_startb = 0;
-      var iterator_endb = 21;
-      var page_numberb = 1;
-      function navdirection3(direction){
-      var jobPostsb = document.getElementById("itemPosts3").childNodes;
-
-      if (direction == 1 && iterator_endb < bottom_elementb){
-      iterator_startb += 10;
-      iterator_endb += 10;
-      page_numberb += 1;
-      document.getElementById("pagenumber3").innerHTML = page_numberb
-      } else if (direction == 0 && iterator_startb > top_elementb){
-      iterator_startb -= 10;
-      iterator_endb -= 10;
-      page_numberb -= 1;
-      document.getElementById("pagenumber3").innerHTML = page_numberb
-      } else {
-      }
-
-      for (i=0; i<jobPostsb.length; i++){
-      if (i > iterator_startb && i < iterator_endb) {
-      jobPostsb[i].className = "";
-      } else {
-      jobPostsb[i].className = "hidden_class";
-      }
-      } subinitialize();
-      }
-      function initialize3(){
-
-      var jobPostsb = document.getElementById("itemPosts3").childNodes;
-      var top_elementb = 0;
-
-      for (i=0; i<jobPostsb.length; i++){
-      if (i > top_elementb && i < 21) {
-      jobPostsb[i].className = ""
-      } else {
-      jobPostsb[i].className = "hidden_class";
-      }
-      }
-
-      $('.a_mail').click(function(){
-      var jobPostingb_r = document.getElementById("posts3").childNodes;
-      for(i=0; i<jobPostingb_r.length; i++){
-      if (jobPostingb_r[i].dataset){
-      if (jobPostingb_r[i].dataset.id == $(this).attr('data-id')){
-      jobPostingb_r[i].className = "selected";
-      }
-      else{
-      jobPostingb_r[i].className = "hidden_class";
-      }
-      }
-      }
-      });
-      }
-
-      function subinitialize(){
-              $('.a_mail').click(function(){
-                  var jobPostingb_r = document.getElementById("posts3").childNodes;
-                  for(i=0; i<jobPostingb_r.length; i++){
-                      if (jobPostingb_r[i].dataset){
-                          if (jobPostingb_r[i].dataset.id == $(this).attr('data-id')){
-                              jobPostingb_r[i].className = "selected";
-                          }
-                          else{
-                              jobPostingb_r[i].className = "hidden_class";
-                          }
-                      }
-                  }
-              });
-      }
-      var top_element = 0;
-      <% if @current_user.account_setting.admin %>
-        var bottom_element = <%= @unconfirmed_posts.length %> * 2;
-      <% else %>
-        var bottom_element = 0;
-      <% end %>
-      var iterator_start = 0;
-      var iterator_end = 21;
-      var page_number = 1;
-      function navdirection2(direction){
-
-      var jobPosts = document.getElementById("itemPosts2").childNodes;
-
-      if (direction == 1 && iterator_end < bottom_element){
-      iterator_start += 10;
-      iterator_end += 10;
-      page_number += 1;
-      document.getElementById("pagenumber2").innerHTML = page_number
-      } else if (direction == 0 && iterator_start > top_element){
-      iterator_start -= 10;
-      iterator_end -= 10;
-      page_number -= 1;
-      document.getElementById("pagenumber2").innerHTML = page_number
-      } else {
-      }
-
-      for (i=0; i<jobPosts.length; i++){
-      if (i > iterator_start && i < iterator_end) {
-      jobPosts[i].className = ""
-      } else {
-      jobPosts[i].className = "hidden_class";
-      }
-      }
-      }
       function initialize2(){
-      var jobPosts = document.getElementById("itemPosts2").childNodes;
-      var top_element = 0;
-      var bottom_element = 21;
-      var initalized = 0;
-
-      for (i=0; i<jobPosts.length; i++){
-      if (i > top_element && i < bottom_element) {
-      jobPosts[i].className = ""
-      } else {
-      jobPosts[i].className = "hidden_class";
-      }
+        //Initialize the object defined in NewsLetter Generator
+        if (typeof pageObject2 == "undefined"){
+          pageObject2 = new pageIndex(<%= @mail_posts.length %>, "itemPosts3", "pagenumber2");
+          pageObject2.initialize('.a_mail', 'posts3');
+        } else {
+          pageObject2.hide_divs();
+        }
       }
 
-      $('.a_admin').click(function(){
-      var jobPostingb_r = document.getElementById("posts2").childNodes;
-      for(i=0; i<jobPostingb_r.length; i++){
-      if (jobPostingb_r[i].dataset){
-      if (jobPostingb_r[i].dataset.id == $(this).attr('data-id')){
-      jobPostingb_r[i].className = "selected";
+      function initialize3(){
+        //Initialize the object defined in NewsLetter Generator
+        if (typeof pageObject3 == "undefined"){
+          pageObject3 = new pageIndex(<%= @unconfirmed_posts.length %>, 
+            "itemPosts2", "pagenumber3");
+          pageObject3.initialize('.a_admin', 'posts2');
+        } else {
+          pageObject3.hide_divs();
+        }
       }
-      else{
-      jobPostingb_r[i].className = "hidden_class";
-      }
-      }
-      }
-      });
-      }
-      </script>
+
+    </script>
+
+
         <div class="tabbable"> <!-- Only required for left/right tabs -->
           <ul class="nav nav-tabs" role="tablist">
             <li class="active"><a href="#tab1" data-toggle="tab">Mail Settings</a></li>
             <li><a href="#tab2" data-toggle="tab">Post Content</a></li>
             <li><a href="#tab3" data-toggle="tab" onclick="initialize()">Your Posts</a></li>
             <% if @current_user.account_setting.news_admin %>
-              <li><a href="#tab4" data-toggle="tab" onclick="initialize3()">NewsLetter Generator</a></li>
+              <li><a href="#tab4" data-toggle="tab" onclick="initialize2()">NewsLetter Generator</a></li>
             <% end %>
             <% if @current_user.account_setting.admin %>
-              <li><a href="#tab5" data-toggle="tab" onclick="initialize2()">Administrator Panel</a></li>
+              <li><a href="#tab5" data-toggle="tab" onclick="initialize3()">Administrator Panel</a></li>
             <% end %>
           </ul>
 

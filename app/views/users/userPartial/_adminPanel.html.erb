@@ -10,16 +10,20 @@
 
 		<div class="text-center">
 			<div class="btn-group">
-  			<button type="button" class="btn btn-default" onclick="navdirection2(0)">Prev</button>
- 			<button type="button" class="btn btn-default disabled" id="pagenumber2">1</button>
-  			<button type="button" class="btn btn-default" onclick="navdirection2(1)">Next</button>
+  			<button type="button" class="btn btn-default" 
+  			onclick="pageObject3.decrement()">Prev</button>
+
+ 			<button type="button" class="btn btn-default disabled" id="pagenumber3">1</button>
+
+  			<button type="button" class="btn btn-default" 
+  			onclick="pageObject3.increment()">Next</button>
 			</div>
 		</div>
 
 		<div class="row" style="height:5px"></div>
 
 
-		<ul id="itemPosts2" class="nav nav-tabs nav-stacked" onload="initialize()">
+		<ul id="itemPosts2" class="nav nav-tabs nav-stacked">
 	        <% @unconfirmed_posts.each do |post| %>
 	            <li class="list_li"><a data-id="<%= post.item_id %>" class="a_admin"><%= post.item_title %></a></li>
 	        <% end %>
