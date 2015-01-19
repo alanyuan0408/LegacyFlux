@@ -1,65 +1,49 @@
 <% content_for :head do %>
 <% end %>
 
-<h4>Unapproved Posts</h4>
+<script>
 
-<div class="row">
+	function pave_navgiation2(direction){
 
-	<div class="col-xs-6">
-		<div class="row" style="height:20px"></div>
+		if (direction == 0){
+			$("#Unapproved_posts").removeClass("hidden_class");
+			$("#Mail_admin").addClass("hidden_class");
+			$("#User_accoun").addClass("hidden_class");
+		} else if (direction == 1) {
+			$("#Unapproved_posts").addClass("hidden_class");
+			$("#Mail_admin").removeClass("hidden_class");
+			$("#User_accoun").addClass("hidden_class");
+		} else {
+			$("#Unapproved_posts").addClass("hidden_class");
+			$("#Mail_admin").addClass("hidden_class");
+			$("#User_accoun").removeClass("hidden_class");
+		}
+	}
 
-		<div class="text-center">
-			<div class="btn-group">
-  			<button type="button" class="btn btn-default" onclick="navdirection2(0)">Prev</button>
- 			<button type="button" class="btn btn-default disabled" id="pagenumber2">1</button>
-  			<button type="button" class="btn btn-default" onclick="navdirection2(1)">Next</button>
-			</div>
-		</div>
+</script>
 
-		<div class="row" style="height:5px"></div>
+<hr>
 
-
-		<ul id="itemPosts2" class="nav nav-tabs nav-stacked" onload="initialize()">
-	        <% @unconfirmed_posts.each do |post| %>
-	            <li class="list_li"><a data-id="<%= post.item_id %>" class="a_admin"><%= post.item_title %></a></li>
-	        <% end %>
-	    </ul>
-
-	</div>
-
-	<div class="col-xs-6">
-		<div class="panel-content" id= "posts2" >
-			<% @unconfirmed_posts.each do |post| %>
-				<div data-id="<%= post.item_id %>" class="hidden_class">
-				    <p><b>Item Title: <%= post.item_title %></b></p>
-				    <p>URL: <%= post.item_url %></p>
-				    <p>Approval Status: <%= post.approval_status %></p>
-
-				    <p>Date: <%= post.item_date %></p>
-				    <hr>
-				    <p>Text:</p>
-				    <p><%= Sanitize.fragment(post.item_text)%></p>
-				    
-                    <%= form_for post, namespace: "approve", :url => url_for(:controller => "feedbanks",
-                        :action => "approve_content", :id => post.id), :remote => true do |f|%>
-
-                        <%= f.submit "Approve Post", class: "btn btn-default" %>
-                    <% end %>
-
-                    <br>
-
-                    <%= form_for post, namespace: "disapprove", :url => url_for(:controller => "feedbanks",
-                        :action => "disapprove_content", :id => post.id), :remote => true do |f|%>
-
-                        <%= f.submit "Disapprove Post", class: "btn btn-default" %>
-                    <% end %>
-				    
-				</div>
-			<% end %>
-		</div>
-
-	</div>
+<div class="btn-group" role="group" aria-label="Mail Navigators">
+  <button type="button" class="btn btn-default" onclick="pave_navgiation2(0)">Unapproved Posts</button>
+  <button type="button" class="btn btn-default" onclick="pave_navgiation2(1)">Mail Administration</button>
+  <button type="button" class="btn btn-default" onclick="pave_navgiation2(2)">User Accounts</button>
 </div>
+
+<hr>
+
+<div id="Unapproved_posts">
+	<%= render :partial => "users/userPartial/unapprovedPosts" %>
+</div>
+
+<div id="Mail_admin" class="hidden_class">
+	
+</div>
+
+<div id="User_accoun" class="hidden_class">
+	
+</div>
+
 
 
 

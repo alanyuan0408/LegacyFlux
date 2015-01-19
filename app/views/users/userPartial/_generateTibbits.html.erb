@@ -1,0 +1,45 @@
+<h4>Add Additional Entries</h4>
+
+<hr>
+
+<div class="row">
+
+  <div class="col-xs-4">
+
+  	<p>Please add any additional entries you would like to be included in the newsletter.</p>
+
+  	<p>These new entries will not be posted anywhere else.</p>
+
+
+  </div>
+
+  <div class="col-xs-8">
+
+	<%= form_for @current_user, namespace: @current_user.id, :url => url_for(:controller => "users", :action => "add_tidbit"), :remote => true do |f|%>
+
+		<%= f.fields_for :news_letter_mail do |mail| %>
+
+			<%= mail.fields_for :news_letter_entry do |entry| %>
+
+				<%= entry.label :entry_title, "Title of the Entry:" %>
+				<br>
+				<%= entry.text_field :entry_title, :size=>"35", :class => "form-control" %>
+
+				<br>
+				<%= entry.label :entry_text, "Text of Entry:" %>
+				<br>
+				<%= entry.text_area :entry_text, :size => "45x10", :class => "form-control" %>
+
+			<% end %>
+
+		<% end %>
+
+
+		<br>
+
+		<%= f.submit "Add to NewsLetter", class: "btn btn-default" %>
+	<% end %>
+
+  </div>
+
+</div>

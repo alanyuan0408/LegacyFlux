@@ -31,13 +31,6 @@ class UsersController < ApplicationController
 
   end
 
-  def save_setting
-
-    respond_to do |format|
-      format.js
-    end
-
-  end
 
   def modify
 
@@ -96,19 +89,9 @@ class UsersController < ApplicationController
     redirect_to @current_user
   end
 
-  def creator_account
-    @current_user.account_setting.update_attribute(:content_creator, true);
-    @current_user.account_setting.update_attribute(:account_selected, true);
-
-    redirect_to @current_user
-  end
-
-  def request_creator
-    @current_user.account_setting.update_attribute(:sent_approval, true);
-    @current_user.update_attribute(:organization, params[:organization]);
-    @current_user.account_setting.update_attribute(:approval_message, 
-                params[:approval_message]);
-
+  def disable_student_account
+    @current_user.account_setting.update_attribute(:student_account, false);
+    @current_user.mail_setting.update_attribute(:nextsend, Time.now + 7.days);
     redirect_to @current_user
   end
 
@@ -137,19 +120,40 @@ class UsersController < ApplicationController
 
   end
 
-  def add_newsItem
-    @feedbank = Feedbank.find(params[:id])
-
-    puts @current_user.news_letter_mail.inspect
+  def add_tidbit
 
     @newPost = @current_user.news_letter_mail.news_letter_entries.new
 
     @newPost.update_attribute(:entry_title, params[:user][:entry_title])
     @newPost.update_attribute(:entry_text, params[:user][:entry_text])
-    @newPost.update_attribute(:item_id, @feedbank.item_id)
+    @newPost.update_attribute(:item_id, SecureRandom.urlsafe_base64)
+    @newPost.update_attribute(:tibbit_entry, :true)
     @newPost.save
 
-    @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).order("item_date desc")
+    respond_to do |format|
+      format.js
+    end
+
+  end
+
+  def add_newsItem
+    @feedbank = Feedbank.find(params[:id])
+
+    #Prevent Mutiple Requests for slow connections
+    if @current_user.news_letter_mail.news_letter_entries.find_by(item_id: params[:item_id])
+      #DO nothing, request already sent
+
+    else 
+      
+      @newPost = @current_user.news_letter_mail.news_letter_entries.new
+
+      @newPost.update_attribute(:entry_title, params[:user][:entry_title])
+      @newPost.update_attribute(:entry_text, params[:user][:entry_text])
+      @newPost.update_attribute(:item_id, @feedbank.item_id)
+      @newPost.save
+    end
+
+    @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).where('column_type <> ?', 5).order("item_date desc")
 
     respond_to do |format|
       format.js

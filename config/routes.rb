@@ -14,9 +14,11 @@ Rails.application.routes.draw do
 
     # You can have the root of your site routed with "root"
   root to: 'static_pages#home'
-
+  
   patch '/update', to: 'users#change'
+  patch '/add_tidbit', to: 'users#add_tidbit'
   patch '/savechange', to: 'users#modify'
+  patch '/user_nav', to: 'users#mail_nav'
   patch '/addNewsItem', to: 'users#add_newsItem'
   patch '/removeNewsItem', to: 'users#remove_newsItem'
   patch '/deleteNewsItem', to: 'users#mail_delete_dependencies'
@@ -34,13 +36,10 @@ Rails.application.routes.draw do
   post '/unregister_expo', to: 'users#unregister_expo'
 
   match '/student_account', to: 'users#student_account', via: [:get, :post]
-  match '/creator_account', to: 'users#creator_account', via: [:get, :post]
+  match '/disable_student', to: 'users#disable_student_account', via: [:get, :post]
+
   get '/user_info', to: 'users#show'
   patch '/generate_newsletter', to: 'users#generate_newsLetter'
-
-  get '/approve', to: 'users#approve_creator'
-  get '/request', to: 'users#request_creator'
-  get '/certify', to: 'users#certify'
   
   get "/404" => 'users#permissiondenied'
   get "/500" => 'users#permissiondenied'

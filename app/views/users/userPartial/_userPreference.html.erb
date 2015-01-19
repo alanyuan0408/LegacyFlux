@@ -33,6 +33,10 @@
         <br>
     <% end %>
 
+    <% if @current_user.account_setting.student_account %>
+    	<%= button_to "Disable Student Account", '/disable_student', class: "btn btn-default btn-med" %>
+    <% end %>
+
 </div>
 
 <div class="column">

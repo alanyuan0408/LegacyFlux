@@ -2,6 +2,7 @@
 <% end %>
 <h4>Current Posts</h4>
 
+
 <div class="row">
 
 	<div class="col-xs-6">
@@ -9,16 +10,20 @@
 
 		<div class="text-center">
 			<div class="btn-group">
-  			<button type="button" class="btn btn-default" onclick="navdirection(0)">Prev</button>
- 			<button type="button" class="btn btn-default disabled" id="pagenumber">1</button>
-  			<button type="button" class="btn btn-default" onclick="navdirection(1)">Next</button>
+	  			<button type="button" class="btn btn-default" 
+	  			onclick="pageObject.decrement()">Prev</button>
+
+	 			<button type="button" class="btn btn-default disabled" id="pagenumber">1</button>
+
+	  			<button type="button" class="btn btn-default" 
+	  			onclick="pageObject.increment()">Next</button>
 			</div>
 		</div>
 
 		<div class="row" style="height:5px"></div>
 
 
-		<ul id="jobPosts" class="nav nav-tabs nav-stacked" onload="initialize()">
+		<ul id="jobPosts" class="nav nav-tabs nav-stacked">
 	        <% @feedbank_posts.each do |post| %>
 	            <li><a data-id="<%= post.item_id %>" class="a_userposts"><%= post.item_title %></a></li>
 	        <% end %>
