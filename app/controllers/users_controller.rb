@@ -153,6 +153,8 @@ class UsersController < ApplicationController
       @newPost.save
     end
 
+    @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).where('column_type <> ?', 5).order("item_date desc")
+
     respond_to do |format|
       format.js
     end
