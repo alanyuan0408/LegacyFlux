@@ -75,9 +75,6 @@
             <% if @current_user.account_setting.news_admin %>
               <div class="tab-pane" id="tab4">
                  <%= render :partial => "users/userPartial/mailPanel" %>
-          			 <div id="generateMail">
-          				 <%= render :partial => "users/userPartial/createNewsLetter" %>
-        				 </div>
               </div>
             <% end %>
 
