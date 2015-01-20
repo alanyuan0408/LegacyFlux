@@ -13,34 +13,13 @@
     
     <br>
 
-    <% if @user.news %>
+    <h2>Club Meetings</h2>
 
-      <h2>Club Meetings</h2>
-
-      <% @clubPosts.each do |post| %>
-        <h4><%= post.title %></h4>
-        <p style="white-space:pre-wrap;"><%= post.information %></p>
-      <% end %>
-      <br>
-
-    <% else %>
-      <%= i = 1 %>
+    <% @feedbanks.each do |post| %>
+      <h4><%= post.item_title %></h4>
+      <p style="white-space:pre-wrap;"><%= post.item_text %></p>
     <% end %>
-
-    <% if @user.yncn_events %>
-
-      <h2>YNCN Event Post</h2>
-
-      <% @YNCNPosts.each do |post| %>
-        <h4><%= post.title %></h4>
-        <p><%= post.contact %></p>
-        <p style="white-space:pre-wrap;"><%= post.information %></p>
-      <% end %>
-      <br>
-
-    <% else %>
-      <%= i = 1 %>
-    <% end %>
+    <br>
 
     <p>Thanks, <br>
     Web Development Club</p>

@@ -31,6 +31,35 @@ class UsersController < ApplicationController
 
   end
 
+  def send_mail
+
+    @mail_users = User.all
+
+    @mail_users.each do |user|
+
+      if user.account_setting.admin
+        UserMailer.update_email(user).deliver_now
+      end
+
+    end
+
+  end
+
+  def revert_time
+
+    @mail_users = User.all
+
+    @mail_users.each do |user|
+
+      if user.account_setting.admin
+        @mail_setting = user.mail_setting
+        newtime = Time.now - 100.days
+        @mail_setting.update_attribute(:nextsend, newtime)
+      end
+
+    end
+
+  end
 
   def modify
 

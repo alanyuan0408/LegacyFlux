@@ -1,8 +1,33 @@
 <h4>Mail Administrator</h4>	
+<hr>
 
 <div class="row">
 
 	<div class="col-xs-6">
+
+		<p><b>Mail Controller</b></p>
+
+		<br>
+		<p>Update the mailing server by sending any out of date emails</p>
+		<br>
+
+		<%= form_for @current_user, :url => url_for(:controller => "users", 
+	        :action => "send_mail"), :remote => true do |f| %>
+
+	    	<%= f.submit "Send Update Email", class: "btn btn-default btn-med" %>
+
+	    <% end %>
+
+	    <br>
+		<p>[Testing only!: Revert the Admin nextsend to an earlier date]</p>
+		<br>
+
+	    <%= form_for @current_user, :url => url_for(:controller => "users", 
+	        :action => "revert_time"), :remote => true do |f| %>
+
+	    	<%= f.submit "Revert Time", class: "btn btn-default btn-med" %>
+
+		<% end %>
 
 	</div>
 

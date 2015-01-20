@@ -11,23 +11,21 @@ class UserMailer < ActionMailer::Base
   def update_email(user)
     
     @user = user
-    if @user.nextsend < Time.now
-      newtime = Time.now + @user.email_frequency.days
-      user.update_attribute(:nextsend, newtime)
-      @YNCNPosts = Item.where(created_at: (Time.now - @user.email_frequency.days)..Time.now).where(type_of: "YNCNPost")
-      @clubPosts = Item.where(created_at: (Time.now - @user.email_frequency.days)..Time.now).where(type_of: "ClubPost")
+    @mail_setting = @user.mail_setting
+
+    if @mail_setting.nextsend < Time.now or !@mail_setting.nextsend
+      newtime = Time.now + @mail_setting.email_frequency.days
+      
+
+      @feedbanks = Feedbank.where("created_at >= :last_send",
+        {last_send: @mail_setting.nextsend}).limit(5)
+
+      @mail_setting.update_attribute(:nextsend, newtime)
       mail(to: @user.email, subject: 'Automated Web Club Email')
     else 
       @user = user
     end
   end
 
-  def custom_email(user)
-
-      @user = user
-      @posts = Feedbank.find(:all, :order => "id desc", :limit => 5)
-      mail(to: @user.email, subject: 'Your Customized NewsLetter')
-
-  end
 
 end
