@@ -11,11 +11,10 @@
       function initialize(){
         //Initialize the object defined in Your Posts
         if (typeof pageObject == "undefined"){
-          pageObject = new pageIndex(<%= @feedbank_posts.length %>, "jobPosts", "pagenumber");
-          pageObject.initialize('.a_userposts', 'posts');
-        } else {
-          pageObject.hide_divs();
-        }
+          pageObject = new pageIndex(<%= @feedbank_posts.length %>, "jobPosts", "pagenumber");   
+        } 
+
+        pageObject.initialize('.a_userposts', 'posts');
       }
 
       <% if @current_user.account_setting.news_admin %>
@@ -23,11 +22,10 @@
           //Initialize the object defined in NewsLetter Generator
           if (typeof pageObject2 == "undefined"){
             pageObject2 = new pageIndex(<%= @mail_posts.length %>, "itemPosts3", "pagenumber2");
-            pageObject2.initialize('.a_mail', 'posts3');
-          } else {
-            pageObject2.hide_divs();
-          }
         }
+
+        pageObject2.initialize('.a_mail', 'posts3');
+      }
       <% end %>
 
       <% if @current_user.account_setting.admin %>
@@ -36,10 +34,9 @@
           if (typeof pageObject3 == "undefined"){
             pageObject3 = new pageIndex(<%= @unconfirmed_posts.length %>, 
               "itemPosts2", "pagenumber3");
-            pageObject3.initialize('.a_admin', 'posts2');
-          } else {
-            pageObject3.hide_divs();
           }
+          
+          pageObject3.initialize('.a_admin', 'posts2');
         }
       <% end %>
 
