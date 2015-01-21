@@ -53,7 +53,8 @@ class User < ActiveRecord::Base
       self.news_letter_mail.save
 
       # send user email of confirmation if they haven't confirmed their email yet
-      UserMailer.welcome_email(self).deliver
+      UserMailer.welcome_email(self).deliver_now
+      
     end
   end
  

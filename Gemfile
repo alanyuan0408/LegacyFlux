@@ -86,3 +86,5 @@ gem 'autoprefixer-rails', '~> 4.0.2.2'
 gem 'jquery-turbolinks'
 
 gem 'cancan'
+
+gem 'mail'

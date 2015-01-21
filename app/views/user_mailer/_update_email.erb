@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h2>Hello, <%= @user.name %></h2>
+    <p>Web Club Automated Email System. The content is generated based on your settings</p>
+    <p>To modify your settings, login to www.uoftweb.com</p>
+    <p>Please email the site admin at alan[dot]yuan@mail[dot]utoronto[dot]ca for any complaints</p>
+    
+    <br>
+
+    <% if @mail_setting.news && !@news.blank? %>
+
+      <h2>News Updates</h2>
+
+      <% @news.each do |post| %>
+        <h4><%= post.item_title %></h4>
+        <p style="white-space:pre-wrap;">
+          <%= truncate(Sanitize.fragment(post.item_text).gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca"), length: 500) %></p>
+        <br>
+      <% end %>
+
+    <% end %>
+
+    <br>
+
+    <% if @mail_setting.jobs && !@jobs.blank?%>
+
+      <h2>Job Updates</h2>
+
+      <% @jobs.each do |post| %>
+        <h4><%= post.item_title %></h4>
+        <p style="white-space:pre-wrap;">
+          <%= truncate(Sanitize.fragment(post.item_text).gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca"), length: 500) %></p>
+        <br>
+      <% end %>
+
+    <% end %>
+
+    <% if @mail_setting.research && !@research.blank?%>
+
+      <h2>Research Updates</h2>
+
+      <% @research.each do |post| %>
+        <h4><%= post.item_title %></h4>
+        <p style="white-space:pre-wrap;">
+          <%= truncate(Sanitize.fragment(post.item_text).gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca"), length: 500) %></p>
+        <br>
+      <% end %>
+
+    <% end %>
+
+    <% if @mail_setting.events && !@events.blank? %>
+
+      <h2>Events Updates</h2>
+
+      <% @events.each do |post| %>
+        <h4><%= post.item_title %></h4>
+        <p style="white-space:pre-wrap;">
+          <%= truncate(Sanitize.fragment(post.item_text).gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca"), length: 500) %></p>
+        <br>
+      <% end %>
+
+    <% end %>
+      
+
+    <p>Thanks, <br>
+    Web Development Club</p>
+  </body>
+</html>
