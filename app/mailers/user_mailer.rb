@@ -6,7 +6,7 @@ class UserMailer < ActionMailer::Base
 
     @user = user
     mail(to: @user.email, subject: 'SignUp Email') do |format|
-      format.text { render 'user_mailer/welcome_email_text' }
+      format.text { render 'user_mailer/welcome_email_text'.encode("UTF-8") }
       format.html { render 'user_mailer/welcome_email' }
     end
 
@@ -49,7 +49,7 @@ class UserMailer < ActionMailer::Base
       @mail_setting.update_attribute(:nextsend, newtime)
 
       mail(to: @user.email, subject: 'Automated Web Club Email') do |format|
-        format.text { render 'user_mailer/update_email_text' }
+        format.text { render 'user_mailer/update_email_text'.encode("UTF-8") }
         format.html { render 'user_mailer/update_email' }
       end
 
