@@ -37,9 +37,7 @@ class UsersController < ApplicationController
 
     @mail_users.each do |user|
 
-      if user.account_setting.admin
-        UserMailer.update_email(user).deliver_now
-      end
+      UserMailer.update_email(user).deliver_now
 
     end
 
