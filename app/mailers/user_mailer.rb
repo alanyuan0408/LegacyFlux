@@ -1,11 +1,8 @@
 class UserMailer < ActionMailer::Base
   require 'mail'
-  default from: "sj@fluxcut.com"
+  default from: "alan.yuan@mail.utoronto.ca"
 
   def welcome_email(user)
-
-      mail = Mail.new do
-        from
 
       @user = user
       mail(to: @user.email, subject: 'SignUp Email')

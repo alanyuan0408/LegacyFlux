@@ -17,7 +17,8 @@
 
     <% @feedbanks.each do |post| %>
       <h4><%= post.item_title %></h4>
-      <p style="white-space:pre-wrap;"><%= post.item_text %></p>
+      <p style="white-space:pre-wrap;">
+        <%= post.item_text.gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca") %></p>
     <% end %>
     <br>
 
