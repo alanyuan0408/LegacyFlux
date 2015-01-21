@@ -22,9 +22,8 @@ class UserMailer < ActionMailer::Base
 
       @mail_setting.update_attribute(:nextsend, newtime)
       mail(to: @user.email, subject: 'Automated Web Club Email')
-    else 
-      @user = user
     end
+    
   end
 
 
