@@ -19,7 +19,7 @@ class UserMailer < ActionMailer::Base
     @account_setting = @user.account_setting
 
     #If the Email is out of date + the user wants emails.
-    if (@mail_setting.nextsend < Time.now or !@mail_setting.nextsend) && @account_setting.student_account
+    if (!@mail_setting.nextsend or @mail_setting.nextsend < Time.now) && @account_setting.student_account
 
       if @mail_setting.news
         @news = Feedbank.where(:column_type => 3).where(:approval_status => true).
@@ -49,7 +49,7 @@ class UserMailer < ActionMailer::Base
       @mail_setting.update_attribute(:nextsend, newtime)
 
       mail(to: @user.email, subject: 'Automated Web Club Email') do |format|
-        format.text { render 'user_mailer/update_email_text'.encode("UTF-8") }
+        format.text { render 'user_mailer/update_email_text' }
         format.html { render 'user_mailer/update_email' }
       end
 
