@@ -37,5 +37,3 @@ task :custom_email => :environment do
   end
 
 end
-
-end
