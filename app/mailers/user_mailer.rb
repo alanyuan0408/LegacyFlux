@@ -7,7 +7,7 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail(to: @user.email, subject: 'SignUp Email') do |format|
       format.text { render :partial => "user_mailer/welcome_email_text" }
-      format.html { render :partial => "user_mailer/welcome_email" }
+      format.html { render "user_mailer/welcome_email" }
     end
 
   end
@@ -50,7 +50,7 @@ class UserMailer < ActionMailer::Base
 
       mail(to: @user.email, subject: 'Automated Web Club Email') do |format|
         format.text { render :partial => "user_mailer/update_email_text" }
-        format.html { render :partial => "user_mailer/update_email" }
+        format.html { render "user_mailer/update_email" }
       end
 
     end
