@@ -1,7 +1,11 @@
 class UserMailer < ActionMailer::Base
-  default from: "alan.yuan@mail.utoronto.ca"
+  require 'mail'
+  default from: "sj@fluxcut.com"
 
   def welcome_email(user)
+
+      mail = Mail.new do
+        from
 
       @user = user
       mail(to: @user.email, subject: 'SignUp Email')
@@ -23,7 +27,7 @@ class UserMailer < ActionMailer::Base
       @mail_setting.update_attribute(:nextsend, newtime)
       mail(to: @user.email, subject: 'Automated Web Club Email')
     end
-    
+
   end
 
 
