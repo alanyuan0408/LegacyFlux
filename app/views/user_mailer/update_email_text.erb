@@ -1,0 +1,45 @@
+Hello, <%= @user.name %>
+
+Web Club Automated Email System. The content is generated based on your settings
+To modify your settings, login to your account at www.uoftweb.com
+Please email the site admin at alan[dot]yuan@mail[dot]utoronto[dot]ca for any complaints
+    
+<% if @mail_setting.news && !@news.blank?%>
+
+News Updates
+
+<% @news.each do |post| %>
+<%= post.item_title %>
+<%= truncate(Sanitize.fragment(post.item_text).gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca"), length: 500) %>
+<% end %>
+<% end %>
+<% if @mail_setting.jobs && !@jobs.blank?%>
+
+Jobs Updates
+
+<% @jobs.each do |post| %>
+<%= post.item_title %>
+<%= truncate(Sanitize.fragment(post.item_text).gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca"), length: 500) %>
+<% end %>
+<% end %>
+<% if @mail_setting.research && !@research.blank?%>
+
+Research Updates 
+
+<% @research.each do |post| %>
+<%= post.item_title %>
+<%= truncate(Sanitize.fragment(post.item_text).gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca"), length: 500) %>
+<% end %>
+<% end %>
+<% if @mail_setting.events && !@events.blank?%>
+
+Events Updates
+    
+<% @events.each do |post| %>
+<%= post.item_title %>
+<%= truncate(Sanitize.fragment(post.item_text).gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca"), length: 500) %>
+<% end %>
+<% end %>
+
+Thanks,
+Web Development Club

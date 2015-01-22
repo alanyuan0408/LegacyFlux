@@ -1,0 +1,8 @@
+Hello, <%= @user.name %>
+
+You have successfully signed up with the Web Development Club's Mailing System.
+
+Please enter the link below to confirm your account
+
+<%= url_for controller: "users", action: "confirmation_token", email_confirmation_token: @user.email_confirmation_token,  host: "uoftweb.com" %>
+

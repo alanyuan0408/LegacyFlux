@@ -6,42 +6,67 @@
   <body>
     <h2>Hello, <%= @user.name %></h2>
     <p>Web Club Automated Email System. The content is generated based on your settings</p>
-    <br>
     <p>To modify your settings, login to www.uoftweb.com</p>
-    <br>
-    <p>Please email the site admin at alan.yuan@mail.utoronto.ca for any complaints</p>
-    
+    <p>Please email the site admin at alan[dot]yuan@mail[dot]utoronto[dot]ca for any complaints</p>
     <br>
 
-    <% if @user.news %>
+    <% if @mail_setting.news && !@news.blank? %>
 
-      <h2>Club Meetings</h2>
-
-      <% @clubPosts.each do |post| %>
-        <h4><%= post.title %></h4>
-        <p style="white-space:pre-wrap;"><%= post.information %></p>
-      <% end %>
+      <h2>News Updates</h2>
+      <a href="http://www.uoftweb.com/news">For more News</a>
       <br>
 
-    <% else %>
-      <%= i = 1 %>
+      <% @news.each do |post| %>
+        <h4><%= post.item_title %></h4>
+        <p style="white-space:pre-wrap;">
+          <%= truncate(Sanitize.fragment(post.item_text).gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca"), length: 500) %></p>
+      <% end %>
+
     <% end %>
 
-    <% if @user.yncn_events %>
+    <% if @mail_setting.jobs && !@jobs.blank?%>
 
-      <h2>YNCN Event Post</h2>
-
-      <% @YNCNPosts.each do |post| %>
-        <h4><%= post.title %></h4>
-        <p><%= post.contact %></p>
-        <p style="white-space:pre-wrap;"><%= post.information %></p>
-      <% end %>
+      <h2>Job Updates</h2>
+      <a href="http://www.uoftweb.com/jobs">For more Jobs</a>
       <br>
 
-    <% else %>
-      <%= i = 1 %>
+      <% @jobs.each do |post| %>
+        <h4><%= post.item_title %></h4>
+        <p style="white-space:pre-wrap;">
+          <%= truncate(Sanitize.fragment(post.item_text).gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca"), length: 500) %></p>
+      <% end %>
+
     <% end %>
 
+    <% if @mail_setting.research && !@research.blank?%>
+
+      <h2>Research Updates</h2>
+      <a href="http://www.uoftweb.com/research">For more Research</a>
+      <br>
+
+      <% @research.each do |post| %>
+        <h4><%= post.item_title %></h4>
+        <p style="white-space:pre-wrap;">
+          <%= truncate(Sanitize.fragment(post.item_text).gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca"), length: 500) %></p>
+      <% end %>
+
+    <% end %>
+
+    <% if @mail_setting.events && !@events.blank? %>
+
+      <h2>Events Updates</h2>
+      <a href="http://www.uoftweb.com/event">For more Events</a>
+      <br>
+
+      <% @events.each do |post| %>
+        <h4><%= post.item_title %></h4>
+        <p style="white-space:pre-wrap;">
+          <%= truncate(Sanitize.fragment(post.item_text).gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca"), length: 500) %></p>
+      <% end %>
+
+    <% end %>
+      
+    <br>
     <p>Thanks, <br>
     Web Development Club</p>
   </body>

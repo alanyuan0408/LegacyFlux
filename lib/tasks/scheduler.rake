@@ -37,12 +37,3 @@ task :custom_email => :environment do
   end
 
 end
-
-task :alan_test => :environment do
-  puts "Send test to Alan"
-
-  @user = User.find_by_name("Admin")
-
-  UserMailer.custom_email(user).deliver
-
-end

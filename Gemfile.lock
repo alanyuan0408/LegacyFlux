@@ -258,6 +258,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   kaminari
+  mail
   mandrill-api
   meta-tags
   mini_magick

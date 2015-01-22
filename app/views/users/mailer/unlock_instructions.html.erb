@@ -1,4 +1,4 @@
-<p>Hello <%= @resource.email %>!</p>
+<p>Hello <%= @resource.email.gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca") %>!</p>
 
 <p>Your account has been locked due to an excessive number of unsuccessful sign in attempts.</p>
 

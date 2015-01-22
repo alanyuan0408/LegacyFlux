@@ -3,7 +3,5 @@ $('#itemPosts3').html(" <%= escape_javascript(render(:partial => 'users/userPart
 
 $('#posts3').html(" <%= escape_javascript(render(:partial => 'users/userPartial/mailPostsInfo')) %>")
 
-$('#generateMail').html("<%= escape_javascript(render(:partial => 'users/userPartial/createNewsLetter')) %> ")
 
 pageObject2.initialize('.a_mail', 'posts3');
-pageObject2.hide_divs();

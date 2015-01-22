@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   patch '/addNewsItem', to: 'users#add_newsItem'
   patch '/removeNewsItem', to: 'users#remove_newsItem'
   patch '/deleteNewsItem', to: 'users#mail_delete_dependencies'
+  patch '/send_mail', to: 'users#send_mail'
+  patch '/revert_time', to: 'users#revert_time'
 
   get '/developer',  to: 'static_pages#developer'
   get '/jobs',     to: 'static_pages#jobs'
