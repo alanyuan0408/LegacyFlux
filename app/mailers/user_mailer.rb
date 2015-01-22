@@ -17,6 +17,8 @@ class UserMailer < ActionMailer::Base
     @user = user
     @mail_setting = @user.mail_setting
     @account_setting = @user.account_setting
+    count = 0
+    #If there are no updates, send nothing
 
     #If the Email is out of date + the user wants emails.
     if (!@mail_setting.nextsend or @mail_setting.nextsend < Time.now) && @account_setting.student_account
@@ -25,32 +27,40 @@ class UserMailer < ActionMailer::Base
         @news = Feedbank.where(:column_type => 3).where(:approval_status => true).
           where("created_at >= :last_send",
           {last_send: @mail_setting.nextsend}).order("created_at desc").limit(4)
+          count += @news.length
       end
 
       if @mail_setting.jobs
         @jobs = Feedbank.where(:column_type => 1).where(:approval_status => true).
           where("created_at >= :last_send",
           {last_send: @mail_setting.nextsend}).order("created_at desc").limit(4)
+          count += @jobs.length
       end
 
       if @mail_setting.research
         @research = Feedbank.where(:column_type => 4).where(:approval_status => true).
           where("created_at >= :last_send",
           {last_send: @mail_setting.nextsend}).order("created_at desc").limit(4)
+          count += @research.length
       end
 
       if @mail_setting.events
         @events = Feedbank.where(:column_type => 2).where(:approval_status => true).
           where("created_at >= :last_send",
           {last_send: @mail_setting.nextsend}).order("created_at desc").limit(4)
+          count += @events.length
       end
 
       newtime = Time.now + @mail_setting.email_frequency.days
       @mail_setting.update_attribute(:nextsend, newtime)
 
-      mail(to: @user.email, subject: 'Automated Web Club Email') do |format|
-        format.text { render 'user_mailer/update_email_text' }
-        format.html { render 'user_mailer/update_email' }
+      if (count > 0)
+
+        mail(to: @user.email, subject: 'Automated Web Club Email') do |format|
+          format.text { render 'user_mailer/update_email_text' }
+          format.html { render 'user_mailer/update_email' }
+        end
+
       end
 
     end
