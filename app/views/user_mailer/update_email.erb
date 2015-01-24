@@ -26,9 +26,9 @@
         <% end %>
       <% end %>
 
-    <% end %>
-
     <br><br>
+
+    <% end %>
 
     <% if @mail_setting.jobs && !@jobs.blank?%>
 
@@ -45,9 +45,9 @@
         <% end %>
       <% end %>
 
-    <% end %>
+    <br><br>
 
-    <br> <br>
+    <% end %>
 
     <% if @mail_setting.research && !@research.blank?%>
 
@@ -64,10 +64,10 @@
         <% end %>
       <% end %>
 
-    <% end %>
-
     <br> <br>
 
+    <% end %>
+    
     <% if @mail_setting.events && !@events.blank? %>
 
       <h2>Events Updates</h2>
@@ -83,9 +83,11 @@
         <% end %>
       <% end %>
 
+    <br><br>
+
     <% end %>
       
-    <br><br>
+    
     <p>Thanks, <br>
     Web Development Club</p>
   </body>
