@@ -8,13 +8,14 @@
     <p>Web Club Automated Email System. The content is generated based on your settings</p>
     <p>To modify your settings, login to www.uoftweb.com</p>
     <p>Please email the site admin at alan[dot]yuan@mail[dot]utoronto[dot]ca for any complaints</p>
-    <br>
+    
+    <hr>
 
     <% if @mail_setting.news && !@news.blank? %>
 
       <h2>News Updates</h2>
       <a href="http://www.uoftweb.com/news">For more News</a>
-      <br>
+      <br><br>
 
       <% @news.each do |post| %>
         <h4><%= post.item_title %></h4>
@@ -27,11 +28,13 @@
 
     <% end %>
 
+    <hr>
+
     <% if @mail_setting.jobs && !@jobs.blank?%>
 
       <h2>Job Updates</h2>
       <a href="http://www.uoftweb.com/jobs">For more Jobs</a>
-      <br>
+       <br><br>
 
       <% @jobs.each do |post| %>
         <h4><%= post.item_title %></h4>
@@ -44,11 +47,13 @@
 
     <% end %>
 
+    <hr>
+
     <% if @mail_setting.research && !@research.blank?%>
 
       <h2>Research Updates</h2>
       <a href="http://www.uoftweb.com/research">For more Research</a>
-      <br>
+       <br><br>
 
       <% @research.each do |post| %>
         <h4><%= post.item_title %></h4>
@@ -61,11 +66,13 @@
 
     <% end %>
 
+    <hr>
+
     <% if @mail_setting.events && !@events.blank? %>
 
       <h2>Events Updates</h2>
       <a href="http://www.uoftweb.com/event">For more Events</a>
-      <br>
+       <br><br>
 
       <% @events.each do |post| %>
         <h4><%= post.item_title %></h4>
