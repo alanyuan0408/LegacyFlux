@@ -20,6 +20,9 @@
         <h4><%= post.item_title %></h4>
         <p style="white-space:pre-wrap;">
           <%= truncate(Sanitize.fragment(post.item_text).gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca"), length: 500) %></p>
+        <% if post.item_url %>
+          <a href="<%= post.item_url %>">Link to News</a>
+        <% end %>
       <% end %>
 
     <% end %>
@@ -34,6 +37,9 @@
         <h4><%= post.item_title %></h4>
         <p style="white-space:pre-wrap;">
           <%= truncate(Sanitize.fragment(post.item_text).gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca"), length: 500) %></p>
+        <% if post.item_url %>
+          <a href="<%= post.item_url %>">Link to Job Post</a>
+        <% end %>
       <% end %>
 
     <% end %>
@@ -48,6 +54,9 @@
         <h4><%= post.item_title %></h4>
         <p style="white-space:pre-wrap;">
           <%= truncate(Sanitize.fragment(post.item_text).gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca"), length: 500) %></p>
+        <% if post.item_url %>
+          <a href="<%= post.item_url %>">Link to Research Post</a>
+        <% end %>
       <% end %>
 
     <% end %>
@@ -62,6 +71,9 @@
         <h4><%= post.item_title %></h4>
         <p style="white-space:pre-wrap;">
           <%= truncate(Sanitize.fragment(post.item_text).gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca"), length: 500) %></p>
+        <% if post.item_url %>
+          <a href="<%= post.item_url %>">Link to Event</a>
+        <% end %>
       <% end %>
 
     <% end %>
