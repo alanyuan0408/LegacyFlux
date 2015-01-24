@@ -26,28 +26,32 @@ class UserMailer < ActionMailer::Base
       if @mail_setting.news
         @news = Feedbank.where(:column_type => 3).where(:approval_status => true).
           where("created_at >= :last_send",
-          {last_send: @mail_setting.nextsend}).order("created_at desc").limit(4)
+          {last_send: @mail_setting.nextsend - 
+            @mail_setting.email_frequency.days}).order("created_at desc").limit(4)
           count += @news.length
       end
 
       if @mail_setting.jobs
         @jobs = Feedbank.where(:column_type => 1).where(:approval_status => true).
           where("created_at >= :last_send",
-          {last_send: @mail_setting.nextsend}).order("created_at desc").limit(4)
+          {last_send: @mail_setting.nextsend  - @mail_setting.email_frequency.days
+            }).order("created_at desc").limit(4)
           count += @jobs.length
       end
 
       if @mail_setting.research
         @research = Feedbank.where(:column_type => 4).where(:approval_status => true).
           where("created_at >= :last_send",
-          {last_send: @mail_setting.nextsend}).order("created_at desc").limit(4)
+          {last_send: @mail_setting.nextsend - @mail_setting.email_frequency.days
+            }).order("created_at desc").limit(4)
           count += @research.length
       end
 
       if @mail_setting.events
         @events = Feedbank.where(:column_type => 2).where(:approval_status => true).
           where("created_at >= :last_send",
-          {last_send: @mail_setting.nextsend}).order("created_at desc").limit(4)
+          {last_send: @mail_setting.nextsend - @mail_setting.email_frequency.days
+            }).order("created_at desc").limit(4)
           count += @events.length
       end
 
