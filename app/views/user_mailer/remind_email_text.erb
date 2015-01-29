@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h2>Hello, <%= @user.name %></h2>
+    <p>Hi everyone!<p>
+
+    <% if @user.student_account %>
+
+    <p>Thank you so much for signing up with our automated mailing system. I noticed that your 
+    mailing settings were not modified and set to the default 7 days which would includes all our new content.</p>
+
+    <p>It would be greatly appreciated if you can login to our system and modify your mailing settings so our system can better suit your needs.</p>
+
+    <% else %>
+
+    <p>Thank you so much for signing up with our automated mailing system. I noticed that you have not enabled your account to recieve regular updates.</p>
+
+    <p>If you would like to start recieving mail updates, please login to our system.</p>
+
+    <% end %>
+
+    <p>To modify your settings, Login <a href="http://www.uoftweb.com">here</a></p>
+
+    <p>We are actively working to bring this system for the entire Computer Science Department and needless to say, any feedbanks would be greatly appreciated. I would be more than happy to respond to all your suggestions</p>
+    
+    <p>Thanks, <br>
+    <p>Alan Yuan</p>
+  </body>
+</html>
