@@ -24,6 +24,7 @@ class UserMailer < ActionMailer::Base
           format.text { render 'user_mailer/remind_email' }
         end
     end
+    
   end
 
   def update_email(user)
