@@ -17,13 +17,13 @@ class UserMailer < ActionMailer::Base
     @user = user
     @mail_setting = @user.mail_setting
 
-    if (@mail_setting.jobs && @mail_setting.news && @mail_setting.events && @mail_setting.research
-        && @mail_setting.email_frequency == 7)
+    if (@mail_setting.jobs && @mail_setting.news && @mail_setting.events && @mail_setting.research && @mail_setting.email_frequency == 7)
 
         mail(to: @user.email, subject: 'WebDev Modify Settings') do |format|
           format.html { render 'user_mailer/remind_email_text' }
           format.text { render 'user_mailer/remind_email' }
         end
+    end
   end
 
   def update_email(user)
