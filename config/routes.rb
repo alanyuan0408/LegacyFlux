@@ -30,9 +30,8 @@ Rails.application.routes.draw do
   get '/useraccount',   to: 'static_pages#useraccount'
   get '/expo', to: 'static_pages#expo'
   get '/home',      to: 'static_pages#home'
-  get '/event',      to: 'static_pages#events'
   get '/news',      to: 'static_pages#news'
-  get '/research',      to: 'static_pages#research'
+  get '/mailing',      to: 'static_pages#mailing'
 
   post '/register_expo', to: 'users#register_expo'
   post '/unregister_expo', to: 'users#unregister_expo'
