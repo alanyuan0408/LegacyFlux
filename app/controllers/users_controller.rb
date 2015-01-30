@@ -207,8 +207,8 @@ class UsersController < ApplicationController
     if @user.blank?
       render 'permissiondenied'
     else 
-
       @user.update_column(:email_confirmation_token, "confirmed")
+      sign_in @user
       render 'users/confirmMail'
     end 
   end
