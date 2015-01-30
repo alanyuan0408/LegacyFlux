@@ -2,7 +2,14 @@
 <html>
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
+	  <style type="text/css">
+  p{
+	white-space:pre-line;
+	font-family: Verdana, Helvetica, sans-serif;
+	font-size: 11px;
+}
+  </style>
+ </head>
   <body>
     <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="body">
 	<tr>
@@ -10,12 +17,12 @@
 			<table border="0" cellpadding="10px" cellspacing="0" width="720px" id="emailContainer" background-color="#fafaf8" bgcolor="#fafaf8">
 			<tr>
 				<td align="left" valign="top">
-					<h1 style="font-family: Tahoma, Helvetica, sans-serif; font-size: 16px; line-height: 28px; margin:2px; letter-spacing:3px; text-align: center; color: #fafaf8; background-color: #04689b">Web Development Club Newsletter</h1><br>
+					<h1 style="font-family: Tahoma, Helvetica, sans-serif; font-size: 18px; line-height: 28px; margin:2px; letter-spacing:3px; text-align: center; color: #fafaf8; background-color: #04689b">Web Development Club Newsletter</h1><br>
 					<h2 style="font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 10px">Hello, <%= @user.name %>:</h2>
 					<p style="font-family: Arial, Helvetica, sans-serif; font-size: 10px; color: #aaaaaa; text-align: right">Web Club Automated Email System. <br> The content is automatically generated based on your settings; to <a style="color: #333333" href="http://www.uoftweb.com">modify your settings, login here</a> <br> Please email the site admin at alan[dot]yuan@mail[dot]utoronto[dot]ca for any issues.</p>
 					<p style="font-family: Arial, Helvetica, sans-serif; font-size: 10px; color: #04689b; text-align: right">generated for you at <% Time.now %></p>
 
-					<h3 style="font-family: Georgia, 'Times New Roman', serif; font-size: 13px; margin: 0">Summary</h3>
+					<h3 style="font-family: Georgia, 'Times New Roman', serif; font-size: 15px; margin: 0">Summary</h3>
 						<ul>
 							<% @news.each do |post| %>
 							<li style = "font-family: Verdana, Helvetica, sans-serif; font-size: 11px"><%= post.item_title %></li>
@@ -32,10 +39,10 @@
 						</ul>
 
 						<% if @mail_setting.news && !@news.blank? %>
-						<h3 style="font-family: Georgia, 'Times New Roman', serif; font-size: 13px">News Updates</h3>
+						<h3 style="font-family: Georgia, 'Times New Roman', serif; font-size: 15px">News Updates</h3>
 						  <% @news.each do |post| %>
 							<h4 style="font-family: Verdana, Helvetica, sans-serif; font-size: 12px"><%= post.item_title %></h4>
-							<p style="white-space:pre-line; font-family: Verdana, Helvetica, sans-serif; font-size: 11px"><%= simple_format(HTML_Truncator.truncate(Sanitize.fragment(post.item_text.strip.gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca").gsub(/\<br\s*\/?\>/, "")), 100, :ellipsis => "<a style='color: #333333' href='http://www.uoftweb.com/news'>... read more</a>")) %></p>
+							<%= simple_format(HTML_Truncator.truncate(Sanitize.fragment(post.item_text.strip.gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca").gsub(/\<br\s*\/?\>/, "")), 100, :ellipsis => "<a style='color: #333333' href='http://www.uoftweb.com/news'>... read more</a>")) %></p>
 							<% if post.item_url %>
 							  <p style="text-align:left; font-size: 10px; font-family: Arial, Helvetica, sans-serif"><a style="color: #333333" href="<%= post.item_url %>">relevant link</a></p>
 							<% end %>
@@ -44,10 +51,10 @@
 						<% end %>
 
 						<% if @mail_setting.jobs && !@jobs.blank?%>
-						<h3 style="font-family: Georgia, 'Times New Roman', serif; font-size: 13px">Job Updates</h3>
+						<h3 style="font-family: Georgia, 'Times New Roman', serif; font-size: 15px">Job Updates</h3>
 						  <% @jobs.each do |post| %>
 							<h4 style="font-family: Verdana, Helvetica, sans-serif; font-size: 12px"><%= post.item_title %></h4>
-							<p style="white-space:pre-line; font-family: Verdana, Helvetica, sans-serif; font-size: 11px"><%= simple_format(HTML_Truncator.truncate(Sanitize.fragment(post.item_text.strip.gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca").gsub(/\<br\s*\/?\>/, "")), 100, :ellipsis => "<a style='color: #333333' href='http://www.uoftweb.com/jobs'>... read more</a>")) %></p>
+							<%= simple_format(HTML_Truncator.truncate(Sanitize.fragment(post.item_text.strip.gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca").gsub(/\<br\s*\/?\>/, "")), 100, :ellipsis => "<a style='color: #333333' href='http://www.uoftweb.com/jobs'>... read more</a>")) %>
 							<% if post.item_url %>
 							  <p style="text-align:left; font-size: 10px; font-family: Arial, Helvetica, sans-serif"><a style="color: #333333" href="<%= post.item_url %>">relevant link</a></p>
 							<% end %>
@@ -56,10 +63,10 @@
 						<% end %>
 
 						<% if @mail_setting.research && !@research.blank?%>
-						<h3 style="font-family: Georgia, 'Times New Roman', serif; font-size: 13px">Research Items</h3>
+						<h3 style="font-family: Georgia, 'Times New Roman', serif; font-size: 15px">Research Items</h3>
 						  <% @research.each do |post| %>
 							<h4 style="font-family: Verdana, Helvetica, sans-serif; font-size: 12px"><%= post.item_title %></h4>
-							<p style="white-space:pre-line; font-family: Verdana, Helvetica, sans-serif; font-size: 11px"><%= simple_format(HTML_Truncator.truncate(Sanitize.fragment(post.item_text.strip.gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca").gsub(/\<br\s*\/?\>/, "")), 100, :ellipsis => "<a style='color: #333333' href='http://www.uoftweb.com/research'>... read more</a>")) %></p>
+							<%= simple_format(HTML_Truncator.truncate(Sanitize.fragment(post.item_text.strip.gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca").gsub(/\<br\s*\/?\>/, "")), 100, :ellipsis => "<a style='color: #333333' href='http://www.uoftweb.com/research'>... read more</a>")) %>
 							<% if post.item_url %>
 							  <p style="text-align:left; font-size: 10px; font-family: Arial, Helvetica, sans-serif"><a style="color: #333333" href="<%= post.item_url %>">relevant link</a></p>
 							<% end %>
@@ -68,18 +75,20 @@
 						<% end %>
 						
 						<% if @mail_setting.events && !@events.blank? %>
-						<h3 style="font-family: Georgia, 'Times New Roman', serif; font-size: 13px">Events</h3>
+						<h3 style="font-family: Georgia, 'Times New Roman', serif; font-size: 15px">Events</h3>
 						  <% @events.each do |post| %>
 							<h4 style="font-family: Verdana, Helvetica, sans-serif; font-size: 12px"><%= post.item_title %></h4>
-							<p style="white-space:pre-line; font-family: Verdana, Helvetica, sans-serif; font-size: 11px"><%= simple_format(HTML_Truncator.truncate(Sanitize.fragment(post.item_text.strip.gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca").gsub(/\<br\s*\/?\>/, "")), 100, :ellipsis => "<a style='color: #333333' href='http://www.uoftweb.com/event'>... read more</a>")) %></p>
+							<%= simple_format(HTML_Truncator.truncate(Sanitize.fragment(post.item_text.strip.gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca").gsub(/\<br\s*\/?\>/, "")), 100, :ellipsis => "<a style='color: #333333' href='http://www.uoftweb.com/event'>... read more</a>")) %>
 							<% if post.item_url %>
 							  <p style="text-align:left; font-size: 10px; font-family: Arial, Helvetica, sans-serif"><a style="color: #333333" href="<%= post.item_url %>">relevant link</a></p>
 							<% end %>
 						  <% end %>
 						  <p style="text-align: center; font-size: 10px; font-family: Arial, Helvetica, sans-serif"><a style="color: #333333" href="http://www.uoftweb.com/event">read more events</a></p>
 						<% end %>
-						
-						<p style="font-family: Georgia, 'Times New Roman', serif; font-size: 12px; text-align:center">From: Web Development Club</p>
+						</td>
+						<td align="center" valign="bottom">
+						<p style="font-family: Georgia, 'Times New Roman', serif; font-size: 15px; text-align:center">from: Web Development Club</p>
+						</td>
 				</td>
 			</tr>
 		</table>
