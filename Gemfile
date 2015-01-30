@@ -88,3 +88,4 @@ gem 'jquery-turbolinks'
 gem 'cancan'
 
 gem 'mail'
+gem "html_truncator", "~>0.2"
