@@ -32,26 +32,8 @@ class UsersController < ApplicationController
   end
 
   def usersetting
-      if user_signed_in?
-
-      @feedbank_posts = Feedbank.where(user_id: @current_user.id).order("item_date desc")
-
-      if @current_user.account_setting.admin
-        @unconfirmed_posts = Feedbank.where(approval_status: false).order("item_date desc")
-      end
-
-      if @current_user.account_setting.news_admin
-        @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).where('column_type <> ?', 5).order("item_date desc")
-      end
-
-      @mail_setting = @current_user.mail_setting
-      @account_setting = @current_user.account_setting
-
-      #Render the User Page
-
-    else
-      render 'permissiondenied'
-    end
+      @mail_setting = current_user.mail_setting
+      @account_setting = current_user.account_setting
   end
   
   def send_mail
@@ -87,13 +69,13 @@ class UsersController < ApplicationController
     param = params[:user][:mail_setting_attributes]
 
     #Update User Settings [No Mass- Assignment]
-    @current_user.mail_setting.update_attribute(:news, 
+    current_user.mail_setting.update_attribute(:news, 
       param[:news])
-    @current_user.mail_setting.update_attribute(:research, 
+    current_user.mail_setting.update_attribute(:research, 
       param[:research])
-    @current_user.mail_setting.update_attribute(:jobs, 
+    current_user.mail_setting.update_attribute(:jobs, 
       param[:jobs])
-    @current_user.mail_setting.update_attribute(:events, 
+    current_user.mail_setting.update_attribute(:events, 
       param[:events])
 
     if (param[:email_frequency].to_i < 1)
@@ -104,12 +86,12 @@ class UsersController < ApplicationController
       email_frequency = param[:email_frequency].to_i
     end
 
-    @current_user.mail_setting.update_attribute(:email_frequency, 
+    current_user.mail_setting.update_attribute(:email_frequency, 
         email_frequency)
 
-    @current_user.mail_setting.update_attribute(:nextsend, Time.now + email_frequency.days)
+    current_user.mail_setting.update_attribute(:nextsend, Time.now + email_frequency.days)
 
-    @mail_setting = @current_user.mail_setting
+    @mail_setting = current_user.mail_setting
 
     respond_to do |format|
       format.js
@@ -134,15 +116,15 @@ class UsersController < ApplicationController
   end 
 
   def student_account
-    @current_user.account_setting.update_attribute(:student_account, true);
-    @current_user.mail_setting.update_attribute(:nextsend, Time.now + 7.days);
-    redirect_to @current_user
+    current_user.account_setting.update_attribute(:student_account, true);
+    current_user.mail_setting.update_attribute(:nextsend, Time.now + 7.days);
+    redirect_to(:back)
   end
 
   def disable_student_account
-    @current_user.account_setting.update_attribute(:student_account, false);
-    @current_user.mail_setting.update_attribute(:nextsend, Time.now + 7.days);
-    redirect_to @current_user
+    current_user.account_setting.update_attribute(:student_account, false);
+    current_user.mail_setting.update_attribute(:nextsend, Time.now + 7.days);
+    redirect_to(:back)
   end
 
   def generate_newsLetter
