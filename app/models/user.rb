@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  devise :omniauthable, :omniauth_providers => [:facebook]
+
   has_one :mail_setting, dependent: :destroy
   accepts_nested_attributes_for :mail_setting
   has_one :account_setting, dependent: :destroy
