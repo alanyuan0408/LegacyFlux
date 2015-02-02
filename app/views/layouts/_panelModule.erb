@@ -1,14 +1,18 @@
 <% if user_signed_in? %>
-Your Account <br>
-<%= link_to "MY ACCOUNT".html_safe, "/useraccount" %> <br>
+<strong>Hello, <%= current_user.name %>:</strong><br>
+<%= link_to "Preference", "/usersetting" %> <br>
+<%= link_to "Post", "/post" %> <br>
+<% if current_user.account_setting.admin? || current_user.account_setting.news_admin? %>
+<%= link_to "Admin Panel", "/user_info" %> <br> <br>
+<% end %>
 Sign out! <br>
-<%= link_to('LOGOUT', destroy_user_session_path, :method => :delete) %>
+<%= link_to('Log Out', destroy_user_session_path, :method => :delete) %>
 <% else %>
 Sign In!
-<%= form_for(:user, :url => session_path(:user)) do |f| %>
-  <%= f.text_field :email %>
-  <%= f.password_field :password %>
-  <%= f.submit 'Sign in', class: 'panelButton' %> <br>
-  <%= link_to "Forgot your password?", new_password_path(:user) %>
+	<%= form_for(:user, :url => session_path(:user)) do |f| %>
+	  <%= f.text_field :email %>
+	  <%= f.password_field :password %>
+	  <%= f.submit 'Sign in', class: 'panelButton' %> <br>
+	  <%= link_to "Forgot your password?", new_password_path(:user) %>
+	<% end %>
 <% end %>
-<% end  %>

@@ -27,12 +27,14 @@ Rails.application.routes.draw do
 
   get '/developer',  to: 'static_pages#developer'
   get '/jobs',     to: 'static_pages#jobs'
-  get '/useraccount',   to: 'static_pages#useraccount'
   get '/expo', to: 'static_pages#expo'
   get '/home',      to: 'static_pages#home'
   get '/news',      to: 'static_pages#news'
   get '/mailing',      to: 'static_pages#mailing'
-
+  
+  get '/usersetting',   to: 'users#usersetting'
+  get '/post',			to: 'users#post'
+  
   post '/register_expo', to: 'users#register_expo'
   post '/unregister_expo', to: 'users#unregister_expo'
 

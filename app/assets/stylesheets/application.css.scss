@@ -113,7 +113,7 @@ a, a:hover, a:focus, a:visited{
 .content{
 	padding-top: 1.5em;
 	font-size: 75%;
-	padding-bottom: 1.5em;
+	padding-bottom: 3em;
 	width: 760px;
 	float: right;
 }
@@ -261,7 +261,6 @@ a, a:hover, a:focus, a:visited{
 }
 
 .staticContent{
-	padding-left: 1em;
 	padding-right: 1em;
 	margin-top: -1em;
 }
@@ -310,7 +309,7 @@ a, a:hover, a:focus, a:visited{
 .column{
 	padding: 0px 10px 0px 10px;
 	float:left;
-	width: 480px;
+	width: 380px;
 }
 
 .staticContent ul{
@@ -353,13 +352,6 @@ a, a:hover, a:focus, a:visited{
     height: 100%;  
 }
 
-.smallwrap{
-	margin-top: 20px;
-	width: 960px;
-}
-
 .hidden_class {
   display: none !important;
 }
-
-

@@ -9,7 +9,7 @@ class StaticPagesController < ApplicationController
   end
 
   def expo
-
+	
     if user_signed_in?
       @current_user = current_user;
       @account_setting = @current_user.mail_setting.expo_ticket;

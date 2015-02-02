@@ -1,0 +1,39 @@
+<h3>Add New Post</h3>
+
+<p>We warmly welcome any Job Offers, Research Offers, Event Posts and News Updates that may be relevant to the Computer Science Department. Your post will be listed as soon as it is approved by the DCS administrator.</p>
+
+<% if current_user.account_setting.admin or current_user.account_setting.news_admin %>
+    <p><b>Note:</b> As Admin, your posts will be automatically approved</p>
+<% end %>
+
+<%= form_for :feedbank, :url => '/feedbanks#create' do |f| %> 
+
+    <%= f.text_field :item_title, placeholder: "Title of Post", :size=>"50", :class => "form-control"   %>
+    <br>
+    <%= f.text_field :item_url, :size=>"50", :class => "title_width", placeholder: "Url to the Post", :class => "form-control" %>
+    <br>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+
+    <%= f.hidden_field :item_date, :value => Time.current %>
+
+    <% if current_user.account_setting.admin or current_user.account_setting.news_admin %>
+        <%= f.hidden_field :approval_status, :value => :true %>
+    <% else  %>
+        <%= f.hidden_field :approval_status, :value => :false %>
+    <% end %>
+
+    <%= f.label :column_type, "Post Type: " %>
+    <%= f.select(:column_type, [["Job Post", 1], ["Event Post", 2], ["News Update", 3],
+                                        ["Research", 4]]) %>
+
+    <!-- #1 is Jobs, #2 is Events, #3 is News, #4 is Research-->
+
+    <br>
+
+    <%= f.cktext_area :item_text, :class => 'ckeditor' %>
+
+    <br>
+
+    <%= f.submit "Add New Post", class: "panelButton" %>
+
+<% end %>

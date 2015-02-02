@@ -1,0 +1,106 @@
+<div class="twocolumn">
+
+<div class="column">
+
+    <% if @current_user.email_confirmation_token != "confirmed" %>
+    <br>
+        <div class="alert alert-danger" role="alert">
+        	<p class="alert-link">You will not receive any emails until you confirm your email</p>
+		</div>
+    <% end %>
+
+    <h3><%= @current_user.name %></h3>
+
+    <p>Your Account Summary</p>
+    <br>
+			
+	<p><span style="font-size:16px">&#9993;</span> <%= @current_user.email %></p>
+	<br>
+
+
+    <% if @current_user.account_setting.student_account %>
+        <p><span style="font-size:16px">&#9745;</span>  Subscribed to Weekly Email</p>
+        <br>
+    <% end %>
+
+    <% if @current_user.account_setting.admin %>
+        <p><span style="font-size:16px">&#9745;</span> Administrator</p>
+        <br>
+    <% end %>
+
+    <% if @current_user.account_setting.news_admin %>
+        <p><span style="font-size:16px">&#9745;</span> Newsletter-Administrator</p>
+        <br>
+    <% end %>
+
+    <% if @current_user.account_setting.student_account %>
+    	<%= button_to "Disable Student Account", '/disable_student', class: "btn btn-default btn-med" %>
+    <% end %>
+
+</div>
+
+<div class="column">
+<% if @current_user.account_setting.student_account %>
+
+	<h3>Here are your Mailing Settings</h3>
+
+	<p>Your Email will be sent in a frequency of <%= @mail_setting.email_frequency %> days</p>
+
+	<br>
+
+	<% if @mail_setting.news %>
+		<p><span style="font-size:16px">&#9745;</span>  Your Email <b>will</b> include News Updates</p>
+	<% else %> 
+		<p><span style="font-size:16px">&#9746;</span>  Your Email <b>will not</b> include News Updates</p>
+	<% end %>
+				
+	<br>
+
+	<% if @mail_setting.research %>
+		<p><span style="font-size:16px">&#9745;</span>  Your Email <b>will</b> include Research Opportunities</p>
+	<% else %> 
+		<p><span style="font-size:16px">&#9746;</span>  Your Email <b>will not</b> include Research Opportunities</p>
+	<% end %>
+
+	<br>
+
+	<% if @mail_setting.jobs %>
+		<p><span style="font-size:16px">&#9745;</span>  Your Email <b>will</b> include Job Updates</p>
+	<% else %> 
+		<p><span style="font-size:16px">&#9746;</span>  Your Email <b>will not</b> include Job Updates</p>
+	<% end %>
+
+	<br>
+
+	<% if @mail_setting.events %>
+		<p><span style="font-size:16px">&#9745;</span>  Your Email <b>will</b> include Events</p>
+	<% else %> 
+		<p><span style="font-size:16px">&#9746;</span>  Your Email <b>will not</b> include Events</p>
+	<% end %>
+
+	<br>
+
+	<p><span style="font-size:16px">&#9993;</span><b>	Next Email:</b> <%= @mail_setting.nextsend %></p>
+	<br>
+
+	<%= form_for @current_user, :url => url_for(:controller => "users", 
+	        :action => "change"), :remote => true do |f| %>
+
+	    <%= f.submit "Update Settings", class: "btn btn-default btn-med" %>
+	<% end %>
+
+<% else %>
+
+	<h4>Signup for Regular Email Updates</h4>
+
+	<p>If you would like our server to update your inbox with regular email updates, please activiate your Mailing account</p>
+
+	<br>
+
+	<%= button_to "Activate Mailing Account", '/student_account', class: "btn btn-default btn-med" %>
+	
+<% end %>
+
+</div>
+
+</div>
