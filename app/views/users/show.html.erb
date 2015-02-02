@@ -1,11 +1,4 @@
-<% content_for :head do %>
-		<%#= javascript_include_tag 'ckeditor/ckeditor.js' %>
-<% end %>
-<div class="usercontent">
-  <!-- Provide some top header -->
-	<div class="smallwrap">
-    <!-- Larger tab -->
-
+<div class="content">
     <script>
 
       function initialize(){
@@ -45,38 +38,27 @@
 
         <div class="tabbable"> <!-- Only required for left/right tabs -->
           <ul class="nav nav-tabs" role="tablist">
-            <li class="active"><a href="#tab1" data-toggle="tab">Mail Settings</a></li>
-            <li><a href="#tab2" data-toggle="tab">Post Content</a></li>
-            <li><a href="#tab3" data-toggle="tab" onclick="initialize()">Your Posts</a></li>
+            <li class="active"><a href="#tab" data-toggle="tab" onclick="initialize()">Your Posts</a></li>
             <% if @current_user.account_setting.news_admin %>
-              <li><a href="#tab4" data-toggle="tab" onclick="initialize2()">NewsLetter Generator</a></li>
+              <li><a href="#tab2" data-toggle="tab" onclick="initialize2()">NewsLetter Generator</a></li>
             <% end %>
             <% if @current_user.account_setting.admin %>
-              <li><a href="#tab5" data-toggle="tab" onclick="initialize3()">Administrator Panel</a></li>
+              <li><a href="#tab3" data-toggle="tab" onclick="initialize3()">Administrator Panel</a></li>
             <% end %>
           </ul>
-
           <div class="tab-content">
-            <div class="tab-pane active" id="tab1">
-              <%= render :partial => "users/userPartial/userPreference" %>
-            </div>
-
-            <div class="tab-pane" id="tab2">
-              <%= render :partial => "users/userPartial/userFeedbank" %>
-            </div>
-
-            <div class="tab-pane" id="tab3">
+		  <div class="tab-pane active" id="tab">
               <%= render :partial => "users/userPartial/userFeedbankPosts" %>
-            </div>
+           </div>
 
             <% if @current_user.account_setting.news_admin %>
-              <div class="tab-pane" id="tab4">
+              <div class="tab-pane" id="tab2">
                  <%= render :partial => "users/userPartial/mailPanel" %>
               </div>
             <% end %>
 
             <% if @current_user.account_setting.admin %>
-              <div class="tab-pane" id="tab5">
+              <div class="tab-pane" id="tab3">
                 <%= render :partial => "users/userPartial/adminPanel" %>
               </div>
             <% end %>
@@ -84,4 +66,3 @@
           </div>
         </div>
 	</div>
-  </div>

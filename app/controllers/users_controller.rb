@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :find_user
+  before_action :authenticate_user!
 
   def show
 
@@ -31,6 +31,29 @@ class UsersController < ApplicationController
 
   end
 
+  def usersetting
+      if user_signed_in?
+
+      @feedbank_posts = Feedbank.where(user_id: @current_user.id).order("item_date desc")
+
+      if @current_user.account_setting.admin
+        @unconfirmed_posts = Feedbank.where(approval_status: false).order("item_date desc")
+      end
+
+      if @current_user.account_setting.news_admin
+        @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).where('column_type <> ?', 5).order("item_date desc")
+      end
+
+      @mail_setting = @current_user.mail_setting
+      @account_setting = @current_user.account_setting
+
+      #Render the User Page
+
+    else
+      render 'permissiondenied'
+    end
+  end
+  
   def send_mail
 
     @mail_users = User.all

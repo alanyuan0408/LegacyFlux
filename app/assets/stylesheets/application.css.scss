@@ -10,7 +10,6 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require webhostinghub-glyphs
  *= require_self
  */
 
@@ -56,26 +55,42 @@ a, a:hover, a:focus, a:visited{
 	overflow: auto;
 	-webkit-overflow-scrolling:touch;
 }
+
 .wrapper:after {
   content: "";
   display: block;
   height: 36px;
 }
+
 .fixedWrapper{
 	width: 960px;
 	margin: 0 auto;
 }
-.mainMenu{
+
+.panelModule{
+	font-family: Arial, Tahoma, sans-serif;
 	float: left;
-	width:160px;
+	width: 200px;
 	margin: 0;
 	padding: 1em 0 0 0;
-	height:100%;
-	font-family: 'Roboto', sans-serif;
-	font-weight: 500;
-	visibility: hidden;
+	font-size: 86%;
 }
-
+.panelButton{
+	background-color:#ffffff;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#666666;
+	font-family:Arial;
+	padding:3px 50px;
+	text-decoration:none;
+}
+.panelButton:hover {
+	background-color:#f6f6f6;
+}
+.panelButton:active {
+	position:relative;
+	top:1px;
+}
 .footer{
 	clear:both;
 	background-color: #04689b;
@@ -98,7 +113,9 @@ a, a:hover, a:focus, a:visited{
 .content{
 	padding-top: 1.5em;
 	font-size: 75%;
-	padding-bottom: 1.5em;
+	padding-bottom: 3em;
+	width: 760px;
+	float: right;
 }
 
 .list{
@@ -131,15 +148,15 @@ a, a:hover, a:focus, a:visited{
 	color: #04689b;
 	font-size: 12px;
 	line-height: 20px;
-font-size: 12px;
-line-height: 20px;
-border: 1px solid #dddddd;
-margin-right: -1px;
-padding: 4px 12px;
-height: 20px;
-	}
+	font-size: 12px;
+	line-height: 20px;
+	border: 1px solid #dddddd;
+	margin-right: -1px;
+	padding: 4px 12px;
+	height: 20px;
+}
 
-	.list .page a:hover, .list .page .first a:hover, .list .page .last a:hover, .list .page .prev a:hover, .list .page .next a:hover{
+.list .page a:hover, .list .page .first a:hover, .list .page .last a:hover, .list .page .prev a:hover, .list .page .next a:hover{
 	background-color: #e1e1e1;
 	color: #000000;
 }
@@ -223,12 +240,11 @@ height: 20px;
 .loginform{
 	float:right;
 		padding-right: 0.5em;
+	visibility: hidden;
 }
 
 .loginform div{
 	overflow: hidden;
-	display: inline-flex;
-
 }
 
 .loginform a{
@@ -245,7 +261,6 @@ height: 20px;
 }
 
 .staticContent{
-	padding-left: 1em;
 	padding-right: 1em;
 	margin-top: -1em;
 }
@@ -270,7 +285,7 @@ height: 20px;
 
 .staticContent p{
 	margin-left: 180px;
-	width: 700px;
+	width: 560px;
 	padding-bottom: 0.25em;
 	border-bottom: 1px solid #eeeeee;
 	text-align: justify;
@@ -278,7 +293,7 @@ height: 20px;
 
 .threecolumn{
 	display: block;
-	width: 960px;
+	width: 700px;
 	padding-left: 100px;
 	padding-right: 100px;
 	height: 110px;
@@ -294,7 +309,7 @@ height: 20px;
 .column{
 	padding: 0px 10px 0px 10px;
 	float:left;
-	width: 480px;
+	width: 380px;
 }
 
 .staticContent ul{
@@ -328,7 +343,6 @@ height: 20px;
 }
 
 .staticContent strong{
-	padding-left: 160px;
 	color: #555555;
 }
 
@@ -338,13 +352,6 @@ height: 20px;
     height: 100%;  
 }
 
-.smallwrap{
-	margin-top: 20px;
-	width: 960px;
-}
-
 .hidden_class {
   display: none !important;
 }
-
-
