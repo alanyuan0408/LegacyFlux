@@ -2,45 +2,45 @@
 
 <div class="column">
 
-    <% if @current_user.email_confirmation_token != "confirmed" %>
+    <% if current_user.email_confirmation_token != "confirmed" %>
     <br>
         <div class="alert alert-danger" role="alert">
         	<p class="alert-link">You will not receive any emails until you confirm your email</p>
 		</div>
     <% end %>
 
-    <h3><%= @current_user.name %></h3>
+    <h3><%= current_user.name %></h3>
 
     <p>Your Account Summary</p>
     <br>
 			
-	<p><span style="font-size:16px">&#9993;</span> <%= @current_user.email %></p>
+	<p><span style="font-size:16px">&#9993;</span> <%= current_user.email %></p>
 	<br>
 
 
-    <% if @current_user.account_setting.student_account %>
+    <% if current_user.account_setting.student_account %>
         <p><span style="font-size:16px">&#9745;</span>  Subscribed to Weekly Email</p>
         <br>
     <% end %>
 
-    <% if @current_user.account_setting.admin %>
+    <% if current_user.account_setting.admin %>
         <p><span style="font-size:16px">&#9745;</span> Administrator</p>
         <br>
     <% end %>
 
-    <% if @current_user.account_setting.news_admin %>
+    <% if current_user.account_setting.news_admin %>
         <p><span style="font-size:16px">&#9745;</span> Newsletter-Administrator</p>
         <br>
     <% end %>
 
-    <% if @current_user.account_setting.student_account %>
+    <% if current_user.account_setting.student_account %>
     	<%= button_to "Disable Student Account", '/disable_student', class: "btn btn-default btn-med" %>
     <% end %>
 
 </div>
 
 <div class="column">
-<% if @current_user.account_setting.student_account %>
+<% if current_user.account_setting.student_account %>
 
 	<h3>Here are your Mailing Settings</h3>
 
@@ -83,7 +83,7 @@
 	<p><span style="font-size:16px">&#9993;</span><b>	Next Email:</b> <%= @mail_setting.nextsend %></p>
 	<br>
 
-	<%= form_for @current_user, :url => url_for(:controller => "users", 
+	<%= form_for current_user, :url => url_for(:controller => "users", 
 	        :action => "change"), :remote => true do |f| %>
 
 	    <%= f.submit "Update Settings", class: "btn btn-default btn-med" %>
