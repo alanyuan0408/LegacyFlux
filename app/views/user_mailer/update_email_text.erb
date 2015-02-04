@@ -4,7 +4,7 @@ Web Club Automated Email System. The content is generated based on your settings
 To modify your settings, login to your account at www.uoftweb.com
 Please email the site admin at alan[dot]yuan@mail[dot]utoronto[dot]ca for any complaints
     
-<% if @mail_setting.news && !@news.blank?%>
+<% if @mail_setting.jobs && !@jobs.blank?%>
 
 Jobs Updates
 
@@ -15,18 +15,18 @@ Jobs Updates
 <% end %>
 <% if @mail_setting.research && !@research.blank?%>
 
-News Updates
+Research Updates
 
-<% @news.each do |post| %>
+<% @research.each do |post| %>
 <%= post.item_title %>
 <%= truncate(Sanitize.fragment(post.item_text).gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca"), length: 200) %>
 <% end %>
 <% end %>
-<% if @mail_setting.jobs && !@jobs.blank?%>
+<% if @mail_setting.news && !@news.blank?%>
 
-Research Updates 
+News Updates 
 
-<% @research.each do |post| %>
+<% @news.each do |post| %>
 <%= post.item_title %>
 <%= truncate(Sanitize.fragment(post.item_text).gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca"), length: 200) %>
 <% end %>
