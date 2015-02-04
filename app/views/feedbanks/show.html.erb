@@ -1,16 +1,23 @@
 <div class="span9 offset1">
+
+    <% if @feedbank %>
 		
-    <h2><%= @feedbank.item_title %></h2>
+        <h2><%= @feedbank.item_title %></h2>
 
-    <span class="date"><%= @feedbank.item_date %></span>
-    <div class="listinner">
-      <%= simple_format(Sanitize.fragment(@feedbank.item_text.strip.gsub(/\<br\s*\/?\>/, ""), Sanitize::Config::BASIC)) %>
-        <% if !@feedbank.item_url.blank? %>
-        <%= link_to "link to external resource", @feedbank.item_url %>
-        <% end %>
+        <span class="date"><%= @feedbank.item_date %></span>
+        <div class="listinner">
+          <%= simple_format(Sanitize.fragment(@feedbank.item_text.strip.gsub(/\<br\s*\/?\>/, ""), Sanitize::Config::BASIC)) %>
+            <% if !@feedbank.item_url.blank? %>
+            <%= link_to "link to external resource", @feedbank.item_url %>
+            <% end %>
 
-    </div>
-    </div>
+        </div>
+        </div>
+    <% else %>
+
+        <h2>The entry is not found </h2>
+    <% end %>
+
 
 </div>
 
