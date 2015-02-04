@@ -24,17 +24,25 @@
 
 					<h3 style="font-family: Georgia, 'Times New Roman', serif; font-size: 15px; margin: 0">Summary</h3>
 						<ul>
-							<% @jobs.each do |post| %>
-							<li style = "font-family: Verdana, Helvetica, sans-serif; font-size: 11px"><%= post.item_title %></li>
+							<% if @mail_setting.jobs && !@jobs.blank?%>
+								<% @jobs.each do |post| %>
+								<li style = "font-family: Verdana, Helvetica, sans-serif; font-size: 11px"><%= post.item_title %></li>
+								<% end %>
 							<% end %>
-							<% @research.each do |post| %>
-							<li style = "font-family: Verdana, Helvetica, sans-serif; font-size: 11px"><%= post.item_title %></li>
+							<% if @mail_setting.research && !@research.blank?%>
+								<% @research.each do |post| %>
+								<li style = "font-family: Verdana, Helvetica, sans-serif; font-size: 11px"><%= post.item_title %></li>
+								<% end %>
 							<% end %>
-							<% @news.each do |post| %>
-							<li style = "font-family: Verdana, Helvetica, sans-serif; font-size: 11px"><%= post.item_title %></li>
+							<% if @mail_setting.news && !@news.blank?%>
+								<% @news.each do |post| %>
+								<li style = "font-family: Verdana, Helvetica, sans-serif; font-size: 11px"><%= post.item_title %></li>
+								<% end %>
 							<% end %>
-							<% @events.each do |post| %>
-							<li style = "font-family: Verdana, Helvetica, sans-serif; font-size: 11px"><%= post.item_title %></li>
+							<% if @mail_setting.events && !@events.blank?%>
+								<% @events.each do |post| %>
+								<li style = "font-family: Verdana, Helvetica, sans-serif; font-size: 11px"><%= post.item_title %></li>
+								<% end %>
 							<% end %>
 						</ul>
 
