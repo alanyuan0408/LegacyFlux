@@ -1,14 +1,14 @@
 <div id="ajax">
 <div class="twocolumn">
 
-<div class="column">
-
-    <% if current_user.email_confirmation_token != "confirmed" %>
+	<% if current_user.email_confirmation_token != "confirmed" %>
     <br>
         <div class="alert alert-danger" role="alert">
-        	<p class="alert-link">You will not receive any emails until you confirm your email</p>
+        	<p class="alert-link">You have not confirmed your email.</p>
 		</div>
     <% end %>
+
+<div class="column">
 
     <h3><%= current_user.name %></h3>
 
@@ -35,7 +35,7 @@
     <% end %>
 
     <% if current_user.account_setting.student_account %>
-    	<%= button_to "Disable Student Account", '/disable_student', class: "btn btn-default btn-med" %>
+    	<%= button_to "Unsubscribe Automated Mailing", '/disable_student', class: "btn btn-default btn-med" %>
     <% end %>
 
 </div>
@@ -44,7 +44,7 @@
 
 <% if current_user.account_setting.student_account %>
 
-	<h3>Here are your Mailing Settings</h3>
+	<h3>Mailing Settings</h3>
 
 	<p>Your Email will be sent in a frequency of <%= @mail_setting.email_frequency %> days</p>
 
@@ -93,13 +93,22 @@
 
 <% else %>
 
-	<h4>Signup for Regular Email Updates</h4>
+	<h3>Subscribe to Email Updates</h3>
 
-	<p>If you would like our server to update your inbox with regular email updates, please activiate your Mailing account</p>
+	<% if current_user.email_confirmation_token != "confirmed" %>
 
-	<br>
+			<p>If you would like to recieve regular email updates, please confirm your email and subscribe. The subscribe feature will be available after you confirm your email</p>
+			<br>
 
-	<%= button_to "Activate Mailing Account", '/student_account', class: "btn btn-default btn-med" %>
+		<%= button_to "Subscribe to Automated Mailing", '/student_account', class: "btn btn-default btn-med", disabled: true %>
+	<% else %>
+
+			<p>If you would like to recieve regular email updates, click Subscribe to Automated Mailing. We'll do our best to keep you informed about all the jobs, events and news that goes on in the Computer Science Department</p>
+			<br>
+
+		<%= button_to "Subscribe to Automated Mailing", '/student_account', class: "btn btn-default btn-med"%>
+
+	<% end %>
 	
 <% end %>
 </div>
