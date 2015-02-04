@@ -50,6 +50,7 @@ Rails.application.routes.draw do
   get "/feedcreate" => 'feedbanks#create'
   patch "/feedapprove" => 'feedbanks#approve_content'
   patch "/feeddisapprove" => 'feedbanks#disapprove_content'
+  get '/feedbanks/:id', to: 'feedbanks#show'
 
   match '/confirmation_token', to: 'users#confirmation_token', via: [:get, :post]
 

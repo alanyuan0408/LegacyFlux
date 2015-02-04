@@ -10,7 +10,7 @@ Jobs Updates
 
 <% @jobs.each do |post| %>
 <%= post.item_title %>
-<%= truncate(Sanitize.fragment(post.item_text).gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca"), length: 500) %>
+<%= truncate(Sanitize.fragment(post.item_text).gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca"), length: 200) %>
 <% end %>
 <% end %>
 <% if @mail_setting.research && !@research.blank?%>
@@ -19,7 +19,7 @@ News Updates
 
 <% @news.each do |post| %>
 <%= post.item_title %>
-<%= truncate(Sanitize.fragment(post.item_text).gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca"), length: 500) %>
+<%= truncate(Sanitize.fragment(post.item_text).gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca"), length: 200) %>
 <% end %>
 <% end %>
 <% if @mail_setting.jobs && !@jobs.blank?%>
@@ -28,7 +28,7 @@ Research Updates
 
 <% @research.each do |post| %>
 <%= post.item_title %>
-<%= truncate(Sanitize.fragment(post.item_text).gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca"), length: 500) %>
+<%= truncate(Sanitize.fragment(post.item_text).gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca"), length: 200) %>
 <% end %>
 <% end %>
 <% if @mail_setting.events && !@events.blank?%>
@@ -37,7 +37,7 @@ Events Updates
     
 <% @events.each do |post| %>
 <%= post.item_title %>
-<%= truncate(Sanitize.fragment(post.item_text).gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca"), length: 500) %>
+<%= truncate(Sanitize.fragment(post.item_text).gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca"), length: 200) %>
 <% end %>
 <% end %>
 

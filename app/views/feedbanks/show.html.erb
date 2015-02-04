@@ -1,19 +1,16 @@
 <div class="span9 offset1">
 		
-	<h2>FeedBank Posts</h2>
+    <h2><%= @feedbank.item_title %></h2>
 
-	<div class="panel-content">
-        <% if !(@feedbanks.empty?) %>
-            <% @feedbanks.each do |feedbank| %>
-                
-                	<b><p><%= feedbank.item_id %></p></b>
-        			<p><%= feedbank.item_url %></p>
-        			<p><%= feedbank.item_date %></p> 
-                    <br>
-
-        	<% end %>
+    <span class="date"><%= @feedbank.item_date %></span>
+    <div class="listinner">
+      <%= simple_format(Sanitize.fragment(@feedbank.item_text.strip.gsub(/\<br\s*\/?\>/, ""), Sanitize::Config::BASIC)) %>
+        <% if !@feedbank.item_url.blank? %>
+        <%= link_to "link to external resource", @feedbank.item_url %>
         <% end %>
-
+    </div>
     </div>
 
 </div>
+
+
