@@ -15,7 +15,7 @@ class FeedbanksController < ApplicationController
 
   def show
     #@feedbanks = Feedbank.all
-    @feedbank = Feedbank.find_by_item_id(params[:id])
+    @feedbank = Feedbank.find_by_id(params[:id])
   end 
 
   def approve_content
