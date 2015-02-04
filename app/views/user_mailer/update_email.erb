@@ -44,7 +44,7 @@
 							<h4 style="font-family: Verdana, Helvetica, sans-serif; font-size: 12px"><%= post.item_title %></h4>
 							<%= simple_format(HTML_Truncator.truncate(Sanitize.fragment(post.item_text.strip.gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca").gsub(/\<br\s*\/?\>/, "")), 60, :ellipsis => "<a style='color: #333333' href='http://www.uoftweb.com/jobs'>... read more</a>")) %>
 							<% if post.item_url %>
-							  <p style="text-align:left; font-size: 10px; font-family: Arial, Helvetica, sans-serif"><a style="color: #333333" href="<%= post.item_url %>">relevant link</a></p>
+							  <p style="text-align:left; font-size: 10px; font-family: Arial, Helvetica, sans-serif"><a style="color: #333333" href="<%= url_for controller: "post", action: "show", item_id: post.item_id,  host: "uoftweb.com" %>">relevant link</a></p>
 							<% end %>
 						  <% end %>
 						  <p style="text-align: center; font-size: 10px; font-family: Arial, Helvetica, sans-serif"><a style="color: #333333" href="http://www.uoftweb.com/jobs">read more jobs listings</a></p>
