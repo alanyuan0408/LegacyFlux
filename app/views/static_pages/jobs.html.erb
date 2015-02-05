@@ -1,4 +1,16 @@
-<h1>Jobs</h1>
+<h1>Jobs and Research Projects</h1>
+<%if user_signed_in? %>
+
+	<p>Would you like us to share a job offer?<p>
+	<%= link_to "Click here to post", "/post" %>
+
+<% else %>
+
+	<p>Would you like us to share a Job offer?<p>
+	<%= link_to "Login to post", new_user_session_path %>
+
+<% end %>
+
 <div class="list">
 <%= render "pagination", :items => @jobs %>
 </div>

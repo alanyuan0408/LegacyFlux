@@ -1,18 +1,36 @@
 <% if user_signed_in? %>
-<strong>Hello, <%= current_user.name %>:</strong><br>
-<%= link_to "Preference", "/usersetting" %> <br>
-<%= link_to "Post", "/post" %> <br>
-<% if current_user.account_setting.admin? || current_user.account_setting.news_admin? %>
-<%= link_to "Admin Panel", "/user_info" %> <br> <br>
-<% end %>
-Sign out! <br>
-<%= link_to('Log Out', destroy_user_session_path, :method => :delete) %>
+	<strong>Hello, <%= current_user.name %>:</strong><br>
+	<%= link_to "Preference", "/usersetting" %> <br>
+	<%= link_to "Post", "/post" %> <br>
+	<% if current_user.account_setting.admin? || current_user.account_setting.news_admin? %>
+		<%= link_to "Admin Panel", "/user_info" %> <br> <br>
+	<% end %>
+	Sign out! <br>
+	<%= link_to('Log Out', destroy_user_session_path, :method => :delete) %>
 <% else %>
-Sign In!
+	<strong>Sign In!</strong><br><br>
 	<%= form_for(:user, :url => session_path(:user)) do |f| %>
-	  <%= f.text_field :email %>
-	  <%= f.password_field :password %>
-	  <%= f.submit 'Sign in', class: 'panelButton' %> <br>
+	    <div class="field">
+    		<%= f.label :email %><br />
+   	 		<%= f.email_field :email%>
+  		</div>
+	    <div class="field">
+		    <%= f.label :password %>
+		    <% if @validatable %>
+		    <em>(<%= @minimum_password_length %> characters minimum)</em>
+		    <% end %><br />
+		    <%= f.password_field :password, autocomplete: "off" %>
+  		</div>
+
+		   <div class="field">
+		     <%= f.check_box :remember_me %>
+		     <%= f.label :remember_me %>
+		   </div>
+
+  		<div class="actions">
+    		<%= f.submit "Login", class: "btn btn-default btn-med"  %>
+  		</div>
+
 	  <%= link_to "Forgot your password?", new_password_path(:user) %> <br>
 	  <%= link_to "Sign up for an account?", "/users/sign_up" %>
 	<% end %>

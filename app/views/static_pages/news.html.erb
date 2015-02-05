@@ -1,6 +1,19 @@
-<h1>News</h1>
+<h1>Events/ News</h1>
+
+<%if user_signed_in? %>
+
+	<p>Would you like us to share an event or news update?<p>
+	<%= link_to "Click here to post", "/post" %>
+
+<% else %>
+
+	<p>Would you like us to share an event or news update?<p>
+	<%= link_to "Login to post", new_user_session_path %>
+
+<% end %>
+
 <div class="list_description">
-Here are all the News Updates, reminders submitted by the department and various Computer Science Leaders.
+
 </div>
 <div class="list">
 <%= render "pagination", :items => @news %>
