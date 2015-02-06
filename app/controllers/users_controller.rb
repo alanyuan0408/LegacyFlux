@@ -4,27 +4,19 @@ class UsersController < ApplicationController
 
   def show
 
-    if user_signed_in?
+      @feedbank_posts = Feedbank.where(user_id: current_user.id).order("item_date desc")
 
-      @feedbank_posts = Feedbank.where(user_id: @current_user.id).order("item_date desc")
+      @mail_setting = current_user.mail_setting
+      @account_setting = current_user.account_setting
 
-      if @current_user.account_setting.admin
-        @unconfirmed_posts = Feedbank.where(approval_status: false).order("item_date desc")
-      end
+  end
 
-      if @current_user.account_setting.news_admin
-        @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).where('column_type <> ?', 5).order("item_date desc")
-      end
+  def adminPanel
+      @unconfirmed_posts = Feedbank.where(approval_status: false).order("item_date desc")
+  end
 
-      @mail_setting = @current_user.mail_setting
-      @account_setting = @current_user.account_setting
-
-      #Render the User Page
-
-    else
-      render 'permissiondenied'
-    end
-
+  def mailPanel
+      @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).where(approval_status: true).where('column_type <> ?', 5).order("item_date desc")
   end
 
   def index

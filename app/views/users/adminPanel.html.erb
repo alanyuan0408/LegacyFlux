@@ -1,0 +1,21 @@
+<div class="content">
+    <script>
+
+        function initialize3(){
+          //Initialize the object defined in NewsLetter Generator
+          if (typeof pageObject3 == "undefined"){
+            pageObject3 = new pageIndex(<%= @unconfirmed_posts.length %>, 
+              "itemPosts2", "pagenumber3");
+          }
+          
+          pageObject3.initialize('.a_admin', 'posts2');
+        }
+
+              $(document).ready(initialize3);
+      $(document).on('page:load', initialize3);
+
+    </script>
+
+    <%= render :partial => "users/userPartial/adminPanel" %>
+
+</div>

@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   match '/disable_student', to: 'users#disable_student_account', via: [:get, :post]
 
   get '/user_info', to: 'users#show'
+  get '/user_info', to: 'users#show'
   patch '/generate_newsletter', to: 'users#generate_newsLetter'
   
   get "/404" => 'users#permissiondenied'
