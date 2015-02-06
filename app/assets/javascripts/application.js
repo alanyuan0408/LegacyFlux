@@ -19,7 +19,7 @@
 
 function pageIndex(length, listID, pageID){
 
-    this.max_element = length - 1;
+    this.max_element = length/2;
    	this.iterator_start = 0;
     this.page_number = 1;
     this.listID = listID;
