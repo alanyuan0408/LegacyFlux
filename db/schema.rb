@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130231656) do
+ActiveRecord::Schema.define(version: 20150206224946) do
 
   create_table "account_settings", force: :cascade do |t|
     t.integer  "user_id"
@@ -56,10 +56,10 @@ ActiveRecord::Schema.define(version: 20150130231656) do
   create_table "mail_settings", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "email_frequency", default: 7
-    t.boolean  "news",            default: true
+    t.boolean  "news",            default: false
     t.boolean  "research",        default: true
     t.boolean  "jobs",            default: true
-    t.boolean  "events",          default: true
+    t.boolean  "events",          default: false
     t.boolean  "expo_ticket",     default: false
     t.datetime "nextsend"
     t.datetime "created_at",                      null: false
