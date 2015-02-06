@@ -3,37 +3,29 @@
 
 <div class="row">
 
-	<div class="col-xs-6">
+	<p><b>Mail Controller</b></p>
 
-		<p><b>Mail Controller</b></p>
+	<br>
+	<p>Update the mailing server by sending any out of date emails</p>
+	<br>
+	<p>The number of people who will recieve email is: </p>
 
-		<br>
-		<p>Update the mailing server by sending any out of date emails</p>
-		<br>
-		<p>The number of people who will recieve email is: </p>
+	<%= form_for @current_user, :url => url_for(:controller => "users", 
+	    :action => "send_mail"), :remote => true do |f| %>
 
-		<%= form_for @current_user, :url => url_for(:controller => "users", 
-	        :action => "send_mail"), :remote => true do |f| %>
+	    <%= f.submit "Send Update Email", class: "btn btn-default btn-med" %>
 
-	    	<%= f.submit "Send Update Email", class: "btn btn-default btn-med" %>
+	<% end %>
 
-	    <% end %>
+	<br>
+	<p>[Testing only!: Revert the Admin nextsend to an earlier date]</p>
+	<br>
 
-	    <br>
-		<p>[Testing only!: Revert the Admin nextsend to an earlier date]</p>
-		<br>
+	<%= form_for @current_user, :url => url_for(:controller => "users", 
+	    :action => "revert_time"), :remote => true do |f| %>
 
-	    <%= form_for @current_user, :url => url_for(:controller => "users", 
-	        :action => "revert_time"), :remote => true do |f| %>
+	    <%= f.submit "Revert Time", class: "btn btn-default btn-med" %>
 
-	    	<%= f.submit "Revert Time", class: "btn btn-default btn-med" %>
-
-		<% end %>
-
-	</div>
-
-	<div class="col-xs-6">
-	
-	</div>	
+	<% end %>
 
 </div>
