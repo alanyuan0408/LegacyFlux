@@ -48,6 +48,8 @@ class User < ActiveRecord::Base
       self.mail_setting = MailSetting.new
       self.mail_setting.update_column(:nextsend, Time.now + 7.days)
       self.mail_setting.update_column(:user_id, self.id)
+      self.mail_setting.update_column(:news, true)
+      self.mail_setting.update_column(:events, true)
       self.mail_setting.save
 
       #IMPORTANT! ONLY USED DURING TESTING STAGE// SEED IT FOR THE RELEASE
