@@ -3,8 +3,8 @@
 	<%= link_to "Preference", "/usersetting" %> <br>
 	<%= link_to "Post Content", "/post" %> <br>
 	<%= link_to "Current Posts", "/user_info" %> <br>
-	<% if current_user.account_setting.admin?%>
-		<%= link_to "Admin Panel", "/user_admin" %> <br> <br>
+	<% if current_user.account_setting.admin? %>
+		<%= link_to "Admin Panel", "/user_admin" %> <br>
 	<% end %>
 	<% if current_user.account_setting.news_admin? %>
 		<%= link_to "Mail Panel", "/user_mail" %> <br> <br>
