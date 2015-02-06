@@ -12,10 +12,16 @@ class UsersController < ApplicationController
   end
 
   def adminPanel
+          @mail_setting = current_user.mail_setting
+      @account_setting = current_user.account_setting
       @unconfirmed_posts = Feedbank.where(approval_status: false).order("item_date desc")
   end
 
   def mailPanel
+
+          @mail_setting = current_user.mail_setting
+      @account_setting = current_user.account_setting
+      
       @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).where(approval_status: true).where('column_type <> ?', 5).order("item_date desc")
   end
 
