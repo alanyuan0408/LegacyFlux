@@ -22,7 +22,7 @@ class UsersController < ApplicationController
           @mail_setting = current_user.mail_setting
       @account_setting = current_user.account_setting
       
-      @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).where(approval_status: true).where('column_type <> ?', 5).order("item_date desc")
+      @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).where('column_type <> ?', 5).order("item_date desc")
   end
 
   def index
@@ -152,7 +152,7 @@ class UsersController < ApplicationController
 
   def add_tidbit
 
-    @newPost = @current_user.news_letter_mail.news_letter_entries.new
+    @newPost = current_user.news_letter_mail.news_letter_entries.new
 
     @newPost.update_attribute(:entry_title, params[:user][:entry_title])
     @newPost.update_attribute(:entry_text, params[:user][:entry_text])
@@ -170,7 +170,7 @@ class UsersController < ApplicationController
     @feedbank = Feedbank.find(params[:id])
 
     #Prevent Mutiple Requests for slow connections
-    if @current_user.news_letter_mail.news_letter_entries.find_by(item_id: params[:item_id])
+    if current_user.news_letter_mail.news_letter_entries.find_by(item_id: params[:item_id])
       #DO nothing, request already sent
 
     else 
@@ -192,7 +192,7 @@ class UsersController < ApplicationController
   end
 
   def remove_newsItem
-    @newPost = @current_user.news_letter_mail.news_letter_entries.
+    @newPost = current_user.news_letter_mail.news_letter_entries.
                         find_by(item_id: params[:item_id])
     @newPost.destroy
 
