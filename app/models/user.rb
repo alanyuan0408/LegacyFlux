@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
 
   def self.from_omniauth(auth)
   if self.where(email: auth.info.email).exists?
-    user = self.where(email: email).first
+    user = self.where(email: auth.info.email).first
     user.provider = auth.provider
     user.uid = auth.uid
   else
