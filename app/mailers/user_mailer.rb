@@ -76,7 +76,7 @@ class UserMailer < ActionMailer::Base
 
       if (count > 0)
 
-        mail(to: @user.email, subject: 'Automated Web Club Email') do |format|
+        mail(to: @user.email, subject: '<%= Time.now.strftime("%d %b %y") %> Email Update') do |format|
           format.text { render 'user_mailer/update_email_text' }
           format.html { render 'user_mailer/update_email' }
         end
