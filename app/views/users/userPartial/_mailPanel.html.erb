@@ -1,44 +1,31 @@
-<script>
+<h4>Mail Generator Panel</h4>
+<br>
 
-	function pave_navgiation(direction){
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+    <ul class="nav nav-tabs">
+       <li class="active"><a href="#Generate_Items" data-toggle="tab">Select Posts</a></li>
+       <li><a href="#Generate_Tibbits" data-toggle="tab">Add Additional Entries</a></li>
+       <li><a href="#Generate_Ordering" data-toggle="tab">Select Ordering</a></li>
+    </ul>
 
-		if (direction == 0){
-			$("#Generate_Items").removeClass("hidden_class");
-			$("#Generate_Tibbits").addClass("hidden_class");
-			$("#Generate_Ordering").addClass("hidden_class");
-		} else if (direction == 1) {
-			$("#Generate_Items").addClass("hidden_class");
-			$("#Generate_Tibbits").removeClass("hidden_class");
-			$("#Generate_Ordering").addClass("hidden_class");
-		} else {
-			$("#Generate_Items").addClass("hidden_class");
-			$("#Generate_Tibbits").addClass("hidden_class");
-			$("#Generate_Ordering").removeClass("hidden_class");
-		}
-	}
+    <div class="tab-content">
+      	<div class="tab-pane active" id="Generate_Items">
+            <div class="panel-content">
+            	<%= render :partial => "users/userPartial/generateItems" %>
+            </div>
+        </div>
 
-</script>
+        <div class="tab-pane" id="Generate_Tibbits">
+            <div class="panel-content">
+            	<%= render :partial => "users/userPartial/generateTibbits" %>
+            </div>
+        </div>
 
-<hr>
+        <div class="tab-pane" id="Generate_Ordering">
+            <div class="panel-content">
+            	<%= render :partial => "users/userPartial/generateOrdering" %>
+            </div>
+        </div>
 
-<div class="btn-group" role="group" aria-label="Mail Navigators">
-  <button type="button" class="btn btn-default" onclick="pave_navgiation(0)">Select Posts</button>
-  <button type="button" class="btn btn-default" onclick="pave_navgiation(1)">Additional Entries</button>
-  <button type="button" class="btn btn-default" onclick="pave_navgiation(2)">Select Ordering</button>
+    </div>
 </div>
-
-<hr>
-
-<div id="Generate_Items">
-	<%= render :partial => "users/userPartial/generateItems" %>
-</div>
-
-<div id="Generate_Tibbits" class="hidden_class">
-	<%= render :partial => "users/userPartial/generateTibbits" %>
-</div>
-
-<div id="Generate_Ordering" class="hidden_class">
-	<%= render :partial => "users/userPartial/generateOrdering" %>
-</div>
-
-

@@ -1,49 +1,28 @@
 <% content_for :head do %>
 <% end %>
 
-<script>
+<h4>Administrator Panel</h4>
 
-	function pave_navgiation2(direction){
+<br>
 
-		if (direction == 0){
-			$("#Unapproved_posts").removeClass("hidden_class");
-			$("#Mail_admin").addClass("hidden_class");
-			$("#User_accoun").addClass("hidden_class");
-		} else if (direction == 1) {
-			$("#Unapproved_posts").addClass("hidden_class");
-			$("#Mail_admin").removeClass("hidden_class");
-			$("#User_accoun").addClass("hidden_class");
-		} else {
-			$("#Unapproved_posts").addClass("hidden_class");
-			$("#Mail_admin").addClass("hidden_class");
-			$("#User_accoun").removeClass("hidden_class");
-		}
-	}
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+    <ul class="nav nav-tabs">
+       <li class="active"><a href="#Unapproved_posts" data-toggle="tab">Unapproved Posts</a></li>
+       <li><a href="#Mail_admin" data-toggle="tab">Mail Administrator</a></li>
+    </ul>
 
-</script>
+    <div class="tab-content" > 
+      	<div class="tab-pane active" id="Unapproved_posts">
+            <div class="panel-content">
+            	<%= render :partial => "users/userPartial/unapprovedPosts" %>
+            </div>
+        </div>
 
-<hr>
+        <div class="tab-pane" id="Mail_admin">
+            <div class="panel-content">
+            	<%= render :partial => "users/userPartial/mailAdmin" %>
+            </div>
+        </div>
 
-<div class="btn-group" role="group" aria-label="Mail Navigators">
-  <button type="button" class="btn btn-default" onclick="pave_navgiation2(0)">Unapproved Posts</button>
-  <button type="button" class="btn btn-default" onclick="pave_navgiation2(1)">Mail Administration</button>
-  <button type="button" class="btn btn-default" onclick="pave_navgiation2(2)">User Accounts</button>
+    </div>
 </div>
-
-<hr>
-
-<div id="Unapproved_posts">
-	<%= render :partial => "users/userPartial/unapprovedPosts" %>
-</div>
-
-<div id="Mail_admin" class="hidden_class">
-	<%= render :partial => "users/userPartial/mailAdmin" %>
-</div>
-
-<div id="User_accoun" class="hidden_class">
-	
-</div>
-
-
-
-
