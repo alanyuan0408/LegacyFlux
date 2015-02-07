@@ -179,6 +179,7 @@ class UsersController < ApplicationController
 
       @newPost.update_attribute(:entry_title, params[:user][:entry_title])
       @newPost.update_attribute(:entry_text, params[:user][:entry_text])
+      @newPost.update_attribute(:entry_text_md, params[:user][:entry_text_md])
       @newPost.update_attribute(:item_id, @feedbank.item_id)
       @newPost.save
     end
