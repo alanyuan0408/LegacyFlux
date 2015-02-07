@@ -12,14 +12,14 @@ class UsersController < ApplicationController
   end
 
   def adminPanel
-          @mail_setting = current_user.mail_setting
+      @mail_setting = current_user.mail_setting
       @account_setting = current_user.account_setting
       @unconfirmed_posts = Feedbank.where(approval_status: false).order("item_date desc")
   end
 
   def mailPanel
 
-          @mail_setting = current_user.mail_setting
+      @mail_setting = current_user.mail_setting
       @account_setting = current_user.account_setting
       
       @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).where('column_type <> ?', 5).order("item_date desc")
@@ -126,9 +126,9 @@ class UsersController < ApplicationController
   end
 
   def generate_newsLetter
-    @current_user.news_letter_mail.update_attribute(:intro_message, params[:user][:entry_text])
+    current_user.news_letter_mail.update_attribute(:intro_message, params[:user][:entry_text])
 
-    @current_user.save
+    current_user.save
 
     render :layout => false
 
@@ -136,7 +136,7 @@ class UsersController < ApplicationController
 
   def mail_delete_dependencies
 
-    @newsItems = @current_user.news_letter_mail.news_letter_entries.all
+    @newsItems = current_user.news_letter_mail.news_letter_entries.all
 
     @newsItems.each do |entry|
       entry.destroy
