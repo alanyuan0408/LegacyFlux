@@ -39,6 +39,7 @@
   		</div>
 
 	  <%= link_to "Forgot your password?", new_password_path(:user) %> <br>
-	  <%= link_to "Sign up for an account?", "/users/sign_up" %>
+	  <%= link_to "Sign up for an account?", "/users/sign_up" %><br>
+	  <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
 	<% end %>
 <% end %>
