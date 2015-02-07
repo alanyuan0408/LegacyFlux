@@ -1,0 +1,17 @@
+    <script>
+
+      function initialize2(){
+          //Initialize the object defined in NewsLetter Generator
+          if (typeof pageObject2 == "undefined"){
+            pageObject2 = new pageIndex(<%= @mail_posts.length %>, "itemPosts3", "pagenumber2");
+        }
+
+        pageObject2.initialize('.a_mail', 'posts3');
+      }
+
+      $(document).ready(initialize2);
+      $(document).on('page:load', initialize2);
+
+    </script>
+
+    <%= render :partial => "users/userPartial/mailPanel" %>

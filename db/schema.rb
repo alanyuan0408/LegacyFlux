@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150118212029) do
+ActiveRecord::Schema.define(version: 20150207175736) do
 
   create_table "account_settings", force: :cascade do |t|
     t.integer  "user_id"
@@ -56,10 +56,10 @@ ActiveRecord::Schema.define(version: 20150118212029) do
   create_table "mail_settings", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "email_frequency", default: 7
-    t.boolean  "news",            default: true
+    t.boolean  "news",            default: false
     t.boolean  "research",        default: true
     t.boolean  "jobs",            default: true
-    t.boolean  "events",          default: true
+    t.boolean  "events",          default: false
     t.boolean  "expo_ticket",     default: false
     t.datetime "nextsend"
     t.datetime "created_at",                      null: false
@@ -77,15 +77,17 @@ ActiveRecord::Schema.define(version: 20150118212029) do
     t.string   "item_id"
     t.integer  "ordering"
     t.boolean  "tibbit_entry",        default: false
+    t.string   "entry_text_md"
   end
 
   add_index "news_letter_entries", ["news_letter_mail_id"], name: "index_news_letter_entries_on_news_letter_mail_id"
 
   create_table "news_letter_mails", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.text     "intro_message"
+    t.string   "intro_message_md"
   end
 
   add_index "news_letter_mails", ["user_id"], name: "index_news_letter_mails_on_user_id"
@@ -107,6 +109,8 @@ ActiveRecord::Schema.define(version: 20150118212029) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

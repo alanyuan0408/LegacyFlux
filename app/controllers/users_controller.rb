@@ -1,36 +1,39 @@
 class UsersController < ApplicationController
 
-  before_action :find_user
+  before_action :authenticate_user!
 
   def show
 
-    if user_signed_in?
+      @feedbank_posts = Feedbank.where(user_id: current_user.id).order("item_date desc")
 
-      @feedbank_posts = Feedbank.where(user_id: @current_user.id).order("item_date desc")
+      @mail_setting = current_user.mail_setting
+      @account_setting = current_user.account_setting
 
-      if @current_user.account_setting.admin
-        @unconfirmed_posts = Feedbank.where(approval_status: false).order("item_date desc")
-      end
+  end
 
-      if @current_user.account_setting.news_admin
-        @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).where('column_type <> ?', 5).order("item_date desc")
-      end
+  def adminPanel
+      @mail_setting = current_user.mail_setting
+      @account_setting = current_user.account_setting
+      @unconfirmed_posts = Feedbank.where(approval_status: false).order("item_date desc")
+  end
 
-      @mail_setting = @current_user.mail_setting
-      @account_setting = @current_user.account_setting
+  def mailPanel
 
-      #Render the User Page
-
-    else
-      render 'permissiondenied'
-    end
-
+      @mail_setting = current_user.mail_setting
+      @account_setting = current_user.account_setting
+      
+      @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).where('column_type <> ?', 5).order("item_date desc")
   end
 
   def index
 
   end
 
+  def usersetting
+      @mail_setting = current_user.mail_setting
+      @account_setting = current_user.account_setting
+  end
+  
   def send_mail
 
     @mail_users = User.all
@@ -64,13 +67,13 @@ class UsersController < ApplicationController
     param = params[:user][:mail_setting_attributes]
 
     #Update User Settings [No Mass- Assignment]
-    @current_user.mail_setting.update_attribute(:news, 
+    current_user.mail_setting.update_attribute(:news, 
       param[:news])
-    @current_user.mail_setting.update_attribute(:research, 
+    current_user.mail_setting.update_attribute(:research, 
       param[:research])
-    @current_user.mail_setting.update_attribute(:jobs, 
+    current_user.mail_setting.update_attribute(:jobs, 
       param[:jobs])
-    @current_user.mail_setting.update_attribute(:events, 
+    current_user.mail_setting.update_attribute(:events, 
       param[:events])
 
     if (param[:email_frequency].to_i < 1)
@@ -81,12 +84,12 @@ class UsersController < ApplicationController
       email_frequency = param[:email_frequency].to_i
     end
 
-    @current_user.mail_setting.update_attribute(:email_frequency, 
+    current_user.mail_setting.update_attribute(:email_frequency, 
         email_frequency)
 
-    @current_user.mail_setting.update_attribute(:nextsend, Time.now + email_frequency.days)
+    current_user.mail_setting.update_attribute(:nextsend, Time.now + email_frequency.days)
 
-    @mail_setting = @current_user.mail_setting
+    @mail_setting = current_user.mail_setting
 
     respond_to do |format|
       format.js
@@ -111,21 +114,21 @@ class UsersController < ApplicationController
   end 
 
   def student_account
-    @current_user.account_setting.update_attribute(:student_account, true);
-    @current_user.mail_setting.update_attribute(:nextsend, Time.now + 7.days);
-    redirect_to @current_user
+    current_user.account_setting.update_attribute(:student_account, true);
+    current_user.mail_setting.update_attribute(:nextsend, Time.now + 7.days);
+    redirect_to(:back)
   end
 
   def disable_student_account
-    @current_user.account_setting.update_attribute(:student_account, false);
-    @current_user.mail_setting.update_attribute(:nextsend, Time.now + 7.days);
-    redirect_to @current_user
+    current_user.account_setting.update_attribute(:student_account, false);
+    current_user.mail_setting.update_attribute(:nextsend, Time.now + 7.days);
+    redirect_to(:back)
   end
 
   def generate_newsLetter
-    @current_user.news_letter_mail.update_attribute(:intro_message, params[:user][:entry_text])
+    current_user.news_letter_mail.update_attribute(:intro_message, params[:user][:entry_text])
 
-    @current_user.save
+    current_user.save
 
     render :layout => false
 
@@ -133,7 +136,7 @@ class UsersController < ApplicationController
 
   def mail_delete_dependencies
 
-    @newsItems = @current_user.news_letter_mail.news_letter_entries.all
+    @newsItems = current_user.news_letter_mail.news_letter_entries.all
 
     @newsItems.each do |entry|
       entry.destroy
@@ -149,7 +152,7 @@ class UsersController < ApplicationController
 
   def add_tidbit
 
-    @newPost = @current_user.news_letter_mail.news_letter_entries.new
+    @newPost = current_user.news_letter_mail.news_letter_entries.new
 
     @newPost.update_attribute(:entry_title, params[:user][:entry_title])
     @newPost.update_attribute(:entry_text, params[:user][:entry_text])
@@ -167,7 +170,7 @@ class UsersController < ApplicationController
     @feedbank = Feedbank.find(params[:id])
 
     #Prevent Mutiple Requests for slow connections
-    if @current_user.news_letter_mail.news_letter_entries.find_by(item_id: params[:item_id])
+    if current_user.news_letter_mail.news_letter_entries.find_by(item_id: params[:item_id])
       #DO nothing, request already sent
 
     else 
@@ -176,6 +179,7 @@ class UsersController < ApplicationController
 
       @newPost.update_attribute(:entry_title, params[:user][:entry_title])
       @newPost.update_attribute(:entry_text, params[:user][:entry_text])
+      @newPost.update_attribute(:entry_text_md, params[:user][:entry_text_md])
       @newPost.update_attribute(:item_id, @feedbank.item_id)
       @newPost.save
     end
@@ -189,7 +193,7 @@ class UsersController < ApplicationController
   end
 
   def remove_newsItem
-    @newPost = @current_user.news_letter_mail.news_letter_entries.
+    @newPost = current_user.news_letter_mail.news_letter_entries.
                         find_by(item_id: params[:item_id])
     @newPost.destroy
 
@@ -207,8 +211,8 @@ class UsersController < ApplicationController
     if @user.blank?
       render 'permissiondenied'
     else 
-
       @user.update_column(:email_confirmation_token, "confirmed")
+      sign_in @user
       render 'users/confirmMail'
     end 
   end

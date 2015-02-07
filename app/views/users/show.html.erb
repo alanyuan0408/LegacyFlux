@@ -1,11 +1,3 @@
-<% content_for :head do %>
-		<%#= javascript_include_tag 'ckeditor/ckeditor.js' %>
-<% end %>
-<div class="usercontent">
-  <!-- Provide some top header -->
-	<div class="smallwrap">
-    <!-- Larger tab -->
-
     <script>
 
       function initialize(){
@@ -17,71 +9,9 @@
         pageObject.initialize('.a_userposts', 'posts');
       }
 
-      <% if @current_user.account_setting.news_admin %>
-        function initialize2(){
-          //Initialize the object defined in NewsLetter Generator
-          if (typeof pageObject2 == "undefined"){
-            pageObject2 = new pageIndex(<%= @mail_posts.length %>, "itemPosts3", "pagenumber2");
-        }
-
-        pageObject2.initialize('.a_mail', 'posts3');
-      }
-      <% end %>
-
-      <% if @current_user.account_setting.admin %>
-        function initialize3(){
-          //Initialize the object defined in NewsLetter Generator
-          if (typeof pageObject3 == "undefined"){
-            pageObject3 = new pageIndex(<%= @unconfirmed_posts.length %>, 
-              "itemPosts2", "pagenumber3");
-          }
-          
-          pageObject3.initialize('.a_admin', 'posts2');
-        }
-      <% end %>
+      $(document).ready(initialize);
+      $(document).on('page:load', initialize);
 
     </script>
 
-
-        <div class="tabbable"> <!-- Only required for left/right tabs -->
-          <ul class="nav nav-tabs" role="tablist">
-            <li class="active"><a href="#tab1" data-toggle="tab">Mail Settings</a></li>
-            <li><a href="#tab2" data-toggle="tab">Post Content</a></li>
-            <li><a href="#tab3" data-toggle="tab" onclick="initialize()">Your Posts</a></li>
-            <% if @current_user.account_setting.news_admin %>
-              <li><a href="#tab4" data-toggle="tab" onclick="initialize2()">NewsLetter Generator</a></li>
-            <% end %>
-            <% if @current_user.account_setting.admin %>
-              <li><a href="#tab5" data-toggle="tab" onclick="initialize3()">Administrator Panel</a></li>
-            <% end %>
-          </ul>
-
-          <div class="tab-content">
-            <div class="tab-pane active" id="tab1">
-              <%= render :partial => "users/userPartial/userPreference" %>
-            </div>
-
-            <div class="tab-pane" id="tab2">
-              <%= render :partial => "users/userPartial/userFeedbank" %>
-            </div>
-
-            <div class="tab-pane" id="tab3">
-              <%= render :partial => "users/userPartial/userFeedbankPosts" %>
-            </div>
-
-            <% if @current_user.account_setting.news_admin %>
-              <div class="tab-pane" id="tab4">
-                 <%= render :partial => "users/userPartial/mailPanel" %>
-              </div>
-            <% end %>
-
-            <% if @current_user.account_setting.admin %>
-              <div class="tab-pane" id="tab5">
-                <%= render :partial => "users/userPartial/adminPanel" %>
-              </div>
-            <% end %>
-
-          </div>
-        </div>
-	</div>
-  </div>
+    <%= render :partial => "users/userPartial/userFeedbankPosts" %>

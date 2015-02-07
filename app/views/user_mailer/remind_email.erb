@@ -1,0 +1,22 @@
+Hello, <%= @user.name %>
+Hi everyone!
+<% if @account_setting.student_account %>
+
+Thank you so much for signing up with our automated mailing system. I noticed that your 
+mailing settings were not modified and set to the default 7 days and includes all contents.
+
+It would be greatly appreciated if you can login to our system and modify your mailing settings so our system can better suit your needs
+
+<% else %>
+
+Thank you so much for signing up with our automated mailing system. I noticed that you have not enabled your account to recieve regular updates.
+
+If you would like to start recieving mail updates, please login to our system.
+
+<% end %>
+To modify your settings, Login to http://www.uoftweb.com
+
+We are actively working to bring this system for the entire Computer Science Department and needless to say, any feedbanks would be greatly appreciated. I would be more than happy to respond to all your suggestions
+    
+Thanks,
+Alan Yuan

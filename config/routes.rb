@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
-  devise_for :users, :controllers => { :registration => "registrations" }
+  devise_for :users, :controllers => { :registration => "registrations", :omniauth_callbacks => "users/omniauth_callbacks"}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -27,13 +27,14 @@ Rails.application.routes.draw do
 
   get '/developer',  to: 'static_pages#developer'
   get '/jobs',     to: 'static_pages#jobs'
-  get '/useraccount',   to: 'static_pages#useraccount'
   get '/expo', to: 'static_pages#expo'
   get '/home',      to: 'static_pages#home'
-  get '/event',      to: 'static_pages#events'
   get '/news',      to: 'static_pages#news'
-  get '/research',      to: 'static_pages#research'
-
+  get '/mailing',      to: 'static_pages#mailing'
+  
+  get '/usersetting',   to: 'users#usersetting'
+  get '/post',			to: 'users#post'
+  
   post '/register_expo', to: 'users#register_expo'
   post '/unregister_expo', to: 'users#unregister_expo'
 
@@ -41,6 +42,8 @@ Rails.application.routes.draw do
   match '/disable_student', to: 'users#disable_student_account', via: [:get, :post]
 
   get '/user_info', to: 'users#show'
+  get '/user_admin', to: 'users#adminPanel'
+  get '/user_mail', to: 'users#mailPanel'
   patch '/generate_newsletter', to: 'users#generate_newsLetter'
   
   get "/404" => 'users#permissiondenied'
@@ -49,6 +52,7 @@ Rails.application.routes.draw do
   get "/feedcreate" => 'feedbanks#create'
   patch "/feedapprove" => 'feedbanks#approve_content'
   patch "/feeddisapprove" => 'feedbanks#disapprove_content'
+  get '/feedbanks/:id', to: 'feedbanks#show'
 
   match '/confirmation_token', to: 'users#confirmation_token', via: [:get, :post]
 

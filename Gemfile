@@ -26,9 +26,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-#Glyphs-rails gem
-gem 'webhostinghub-glyphs-rails'
-
 # Use Unicorn as the app server
 #gem 'unicorn'
 
@@ -88,3 +85,4 @@ gem 'jquery-turbolinks'
 gem 'cancan'
 
 gem 'mail'
+gem "html_truncator", "~>0.2"

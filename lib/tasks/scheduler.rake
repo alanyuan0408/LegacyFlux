@@ -14,26 +14,14 @@ task :send_emails => :environment do
 
 end
 
-task :update_time => :environment do
-  puts "updateTime emails"
-
-  @user = User.where(:email_confirmation_token, "confirmed")
-
-  @user.each do |user|
-    n = user.email_frequency
-    newtime = Time.now + n.days
-  	user.update_attribute(:nextsend, newtime)
-  end
-
-end
-
-task :custom_email => :environment do
-  puts "updateTime emails"
+task :send_reminder => :environment do
+  puts "send reminders to users"
 
   @user = User.all
 
   @user.each do |user|
-    UserMailer.custom_email(user).deliver
+    UserMailer.remind_email(user).deliver
   end
+
 
 end
