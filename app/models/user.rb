@@ -36,14 +36,13 @@ class User < ActiveRecord::Base
     user = self.where(email: auth.info.email).first
     user.provider = auth.provider
     user.uid = auth.uid
-	return model
+	return user
   else
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
        user.name = auth.info.name
        user.email = auth.info.email
        user.password = Devise.friendly_token[0,20]
 	end
-	return model
   end
 end
 
