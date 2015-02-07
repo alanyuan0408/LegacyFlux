@@ -1,17 +1,19 @@
 <% if user_signed_in? %>
-	<strong>Hello, <%= current_user.name %>:</strong><br>
-	<%= link_to "Preference", "/usersetting" %> <br>
-	<%= link_to "Post Content", "/post" %> <br>
-	<%= link_to "Current Posts", "/user_info" %> <br>
-	<% if current_user.account_setting.admin? %>
-		<%= link_to "Admin Panel", "/user_admin" %> <br>
-	<% end %>
-	<% if current_user.account_setting.news_admin? %>
-		<%= link_to "Mail Panel", "/user_mail" %> <br> <br>
-	<% end %>
-	<br>
-	Sign out! <br>
-	<%= link_to('Log Out', destroy_user_session_path, :method => :delete) %>
+	<div class="list-group">
+		<strong>Hello, <%= current_user.name %>:</strong><br>
+		<a><%= link_to "Preference", "/usersetting" %> <br>
+		<%= link_to "Post Content", "/post" %> <br>
+		<%= link_to "Current Posts", "/user_info" %> <br>
+		<% if current_user.account_setting.admin? %>
+			<%= link_to "Admin Panel", "/user_admin" %> <br>
+		<% end %>
+		<% if current_user.account_setting.news_admin? %>
+			<%= link_to "Mail Panel", "/user_mail" %> <br> <br>
+		<% end %>
+		<br>
+		Sign out! <br>
+		<%= link_to('Log Out', destroy_user_session_path, :method => :delete) %>
+	</div>
 <% else %>
 	<strong>Sign In!</strong><br><br>
 	<%= form_for(:user, :url => session_path(:user)) do |f| %>
