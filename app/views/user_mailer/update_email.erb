@@ -54,9 +54,9 @@
 						  <% @jobs.each do |post| %>
 							<h4 style="font-family: Verdana, Helvetica, sans-serif; font-size: 12px; margin: 0"><%= post.item_title %></h4>
 							<span><%= HTML_Truncator.truncate(Sanitize.fragment(post.item_text.strip.gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca").gsub(/\<br\s*\/?\>/, ""), Sanitize::Config::RESTRICTED), 60, :ellipsis => "<a style='color: #333333' href='http://www.uoftweb.com/feedbanks/" + post.id.to_s + "'>... read more</a>").html_safe %>
-							</span>
+							</span><br>
 							<% if !post.item_url.blank? %>
-							  <span style="text-align:left; font-size: 10px; font-family: Arial, Helvetica, sans-serif"><a style="color: #333333" href="<%= post.item_url %>">relevant link</a></span>
+							  <div style="text-align:right; font-size: 10px; font-family: Arial, Helvetica, sans-serif"><a style="color: #333333" href="<%= post.item_url %>">relevant link</a></div>
 							<% end %>
 						  <% end %>
 						  <p style="text-align: center; font-size: 10px; font-family: Arial, Helvetica, sans-serif"><a style="color: #333333" href="http://www.uoftweb.com/jobs">read more jobs listings</a></p>
@@ -67,9 +67,9 @@
 						  <% @research.each do |post| %>
 							<h4 style="font-family: Verdana, Helvetica, sans-serif; font-size: 12px; margin: 0"><%= post.item_title %></h4>
 							<span><%= HTML_Truncator.truncate(Sanitize.fragment(post.item_text.strip.gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca").gsub(/\<br\s*\/?\>/, ""), Sanitize::Config::RESTRICTED), 60, :ellipsis => "<a style='color: #333333' href='http://www.uoftweb.com/feedbanks/" + post.id.to_s + "'>... read more</a>").html_safe %>
-							</span>
+							</span><br>
 							<% if !post.item_url.blank? %>
-								<span style="text-align:left; font-size: 10px; font-family: Arial, Helvetica, sans-serif"><a style="color: #333333" href="<%= post.item_url %>">relevant link</a></span>
+							  <div style="text-align:right; font-size: 10px; font-family: Arial, Helvetica, sans-serif"><a style="color: #333333" href="<%= post.item_url %>">relevant link</a></div>
 							<% end %>
 						  <% end %>
 						  <p style="text-align: center; font-size: 10px; font-family: Arial, Helvetica, sans-serif"><a style="color: #333333" href="http://www.uoftweb.com/research">read more research items</a></p>
@@ -80,9 +80,9 @@
 						  <% @news.each do |post| %>
 							<h4 style="font-family: Verdana, Helvetica, sans-serif; font-size: 12px; margin: 0"><%= post.item_title %></h4>
 							<span><%= HTML_Truncator.truncate(Sanitize.fragment(post.item_text.strip.gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca").gsub(/\<br\s*\/?\>/, ""), Sanitize::Config::RESTRICTED), 60, :ellipsis => "<a style='color: #333333' href='http://www.uoftweb.com/feedbanks/" + post.id.to_s + "'>... read more</a>").html_safe %>
-							</span>
+							</span><br>
 							<% if !post.item_url.blank? %>
-							  <span style="text-align:left; font-size: 10px; font-family: Arial, Helvetica, sans-serif"><a style="color: #333333" href="<%= post.item_url %>">relevant link</a></span>
+							  <div style="text-align:right; font-size: 10px; font-family: Arial, Helvetica, sans-serif"><a style="color: #333333" href="<%= post.item_url %>">relevant link</a></div>
 							<% end %>
 						  <% end %>
 						  <p style="text-align: center; font-size: 10px; font-family: Arial, Helvetica, sans-serif"><a style="color: #333333" href="http://www.uoftweb.com/news">read more news items</a></p>
@@ -93,9 +93,9 @@
 						  <% @events.each do |post| %>
 							<h4 style="font-family: Verdana, Helvetica, sans-serif; font-size: 12px; margin: 0"><%= post.item_title %></h4>
 							<span><%= HTML_Truncator.truncate(Sanitize.fragment(post.item_text.strip.gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca").gsub(/\<br\s*\/?\>/, ""), Sanitize::Config::RESTRICTED), 60, :ellipsis => "<a style='color: #333333' href='http://www.uoftweb.com/feedbanks/" + post.id.to_s + "'>... read more</a>").html_safe %>
-							</span>
+							</span><br>
 							<% if !post.item_url.blank? %>
-							  <span style="text-align:left; font-size: 10px; font-family: Arial, Helvetica, sans-serif"><a style="color: #333333" href="<%= post.item_url %>">relevant link</a></span>
+							  <div style="text-align:right; font-size: 10px; font-family: Arial, Helvetica, sans-serif"><a style="color: #333333" href="<%= post.item_url %>">relevant link</a></div>
 							<% end %>
 						  <% end %>
 						  <p style="text-align: center; font-size: 10px; font-family: Arial, Helvetica, sans-serif"><a style="color: #333333" href="http://www.uoftweb.com/event">read more events</a></p>
