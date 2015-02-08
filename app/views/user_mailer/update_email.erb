@@ -4,9 +4,9 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
 	  <style type="text/css">
   span{
-	white-space:pre-line;
 	font-family: Verdana, Helvetica, sans-serif;
 	font-size: 11px;
+	margin: 0;
 }
   </style>
  </head>
@@ -52,7 +52,7 @@
 						<% if @mail_setting.jobs && !@jobs.blank?%>
 						<h3 style="font-family: Georgia, 'Times New Roman', serif; font-size: 15px">Job Updates</h3>
 						  <% @jobs.each do |post| %>
-							<h4 style="font-family: Verdana, Helvetica, sans-serif; font-size: 12px"><%= post.item_title %></h4>
+							<h4 style="font-family: Verdana, Helvetica, sans-serif; font-size: 12px; margin: 0"><%= post.item_title %></h4>
 							<span>
 							<%= HTML_Truncator.truncate(Sanitize.fragment(post.item_text.strip.gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca").gsub(/\<br\s*\/?\>/, ""), Sanitize::Config::RESTRICTED), 60, :ellipsis => "<a style='color: #333333' href='http://www.uoftweb.com/feedbanks/" + post.id.to_s + "'>... read more</a>").html_safe %>
 							</span>
@@ -66,7 +66,7 @@
 						<% if @mail_setting.research && !@research.blank?%>
 						<h3 style="font-family: Georgia, 'Times New Roman', serif; font-size: 15px">Research Items</h3>
 						  <% @research.each do |post| %>
-							<h4 style="font-family: Verdana, Helvetica, sans-serif; font-size: 12px"><%= post.item_title %></h4>
+							<h4 style="font-family: Verdana, Helvetica, sans-serif; font-size: 12px; margin: 0"><%= post.item_title %></h4>
 							<span>
 							<%= HTML_Truncator.truncate(Sanitize.fragment(post.item_text.strip.gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca").gsub(/\<br\s*\/?\>/, ""), Sanitize::Config::RESTRICTED), 60, :ellipsis => "<a style='color: #333333' href='http://www.uoftweb.com/feedbanks/" + post.id.to_s + "'>... read more</a>").html_safe %>
 							</span>
@@ -80,7 +80,7 @@
 						<% if @mail_setting.news && !@news.blank? %>
 						<h3 style="font-family: Georgia, 'Times New Roman', serif; font-size: 15px">News Updates</h3>
 						  <% @news.each do |post| %>
-							<h4 style="font-family: Verdana, Helvetica, sans-serif; font-size: 12px"><%= post.item_title %></h4>
+							<h4 style="font-family: Verdana, Helvetica, sans-serif; font-size: 12px; margin: 0"><%= post.item_title %></h4>
 							<span>
 							<%= HTML_Truncator.truncate(Sanitize.fragment(post.item_text.strip.gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca").gsub(/\<br\s*\/?\>/, ""), Sanitize::Config::RESTRICTED), 60, :ellipsis => "<a style='color: #333333' href='http://www.uoftweb.com/feedbanks/" + post.id.to_s + "'>... read more</a>").html_safe %>
 							</span>
@@ -94,7 +94,7 @@
 						<% if @mail_setting.events && !@events.blank? %>
 						<h3 style="font-family: Georgia, 'Times New Roman', serif; font-size: 15px">Events</h3>
 						  <% @events.each do |post| %>
-							<h4 style="font-family: Verdana, Helvetica, sans-serif; font-size: 12px"><%= post.item_title %></h4>
+							<h4 style="font-family: Verdana, Helvetica, sans-serif; font-size: 12px; margin: 0"><%= post.item_title %></h4>
 							<span>
 							<%= HTML_Truncator.truncate(Sanitize.fragment(post.item_text.strip.gsub("mail.utoronto.ca", "mail[dot]utoronto[dot]ca").gsub(/\<br\s*\/?\>/, ""), Sanitize::Config::RESTRICTED), 60, :ellipsis => "<a style='color: #333333' href='http://www.uoftweb.com/feedbanks/" + post.id.to_s + "'>... read more</a>").html_safe %>
 							</span>
