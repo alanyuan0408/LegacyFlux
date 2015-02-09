@@ -1,0 +1,6 @@
+console.log("render Partial")
+$('#Generate_Ordering').html(" <%= escape_javascript(render(:partial => 'users/userPartial/generateOrdering')) %>")
+
+$('#Generate_Tibbits').html(" <%= escape_javascript(render(:partial => 'users/userPartial/generateTibbits')) %>")
+
+pageObject2.initialize('.a_mail', 'posts3');

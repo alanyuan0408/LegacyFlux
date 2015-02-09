@@ -154,8 +154,10 @@ class UsersController < ApplicationController
 
     @newPost = current_user.news_letter_mail.news_letter_entries.new
 
-    @newPost.update_attribute(:entry_title, params[:user][:entry_title])
-    @newPost.update_attribute(:entry_text, params[:user][:entry_text])
+    param = params[:user][:news_letter_mail_attributes][:news_letter_entry]
+
+    @newPost.update_attribute(:entry_title, param[:entry_title])
+    @newPost.update_attribute(:entry_text, param[:entry_text])
     @newPost.update_attribute(:item_id, SecureRandom.urlsafe_base64)
     @newPost.update_attribute(:tibbit_entry, :true)
     @newPost.save

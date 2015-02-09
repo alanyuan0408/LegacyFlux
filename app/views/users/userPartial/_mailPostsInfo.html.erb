@@ -9,7 +9,7 @@
 
 		    <p>Date: <%= post.item_date %></p>
 		    <hr>
-		    <p>Text [HTML Rendered]:</p>
+		    <p>Text:</p>
 
 		    <p><%= @current_user.news_letter_mail.news_letter_entries.
 		    find_by(item_id: post.item_id).entry_text.html_safe %><p>
