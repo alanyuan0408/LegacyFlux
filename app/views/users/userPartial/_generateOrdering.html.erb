@@ -35,7 +35,7 @@
 
   <div class="col-xs-8">
 
-	<p>Mail Entries Selected: <%= @current_user.news_letter_mail.news_letter_entries.count %>
+	<p id ="entry_count">Mail Entries Selected: <%= @current_user.news_letter_mail.news_letter_entries.count %></p>
 
 	<%= form_for @current_user, namespace: "generator", :url => url_for(:controller => "users",
 		:action => "generate_newsLetter") do |f|%>

@@ -3,5 +3,7 @@ $('#itemPosts3').html(" <%= escape_javascript(render(:partial => 'users/userPart
 
 $('#posts3').html(" <%= escape_javascript(render(:partial => 'users/userPartial/mailPostsInfo')) %>")
 
+$('#Generate_Ordering').html(
+	"<%= escape_javascript(render(:partial => 'users/userPartial/generateOrdering'))  %>")
 
 pageObject2.initialize('.a_mail', 'posts3');
