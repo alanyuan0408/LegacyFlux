@@ -159,7 +159,7 @@ class UsersController < ApplicationController
     @newPost.update_attribute(:entry_title, param[:entry_title])
     @newPost.update_attribute(:entry_text, param[:entry_text])
     @newPost.update_attribute(:item_id, SecureRandom.urlsafe_base64)
-    @newPost.update_attribute(:tibbit_entry, :true)
+    @newPost.update_attribute(:tibbit_entry, true)
     @newPost.save
 
     respond_to do |format|

@@ -5,11 +5,13 @@
 <div class="row">
 
   <div class="col-xs-4">
-
-  	<p>Please add any additional entries you would like to be included in the newsletter.</p>
-
-  	<p>These new entries will not be posted anywhere else.</p>
-
+  	<ul id="itemPosts3" class="nav nav-tabs nav-stacked">
+		<%  @current_user.news_letter_mail.news_letter_entries.each do |post| %>
+			<% if post.tibbit_entry %>
+		    	<li><a><%= post.entry_title %></a></li>
+		    <% end %>
+		<% end %>
+	</ul>
 
   </div>
 
