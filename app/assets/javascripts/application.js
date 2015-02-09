@@ -49,7 +49,7 @@ function pageIndex(length, listID, pageID){
 
         //Hide the divs of the Posts
         for (i=0; i<Posts.length; i++){
-          if (i > this.iterator_start*2 && i < this.iterator_start + 21) {
+          if (i > this.iterator_start*2 && i < this.iterator_start*2 + 21) {
             Posts[i].className = ""
           } else {
             Posts[i].className = "hidden_class";
