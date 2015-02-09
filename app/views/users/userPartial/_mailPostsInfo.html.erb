@@ -36,9 +36,9 @@
 				<p>URL: <%= post.item_url %></p>
 
 				<br>
-				<%= f.label :entry_text, "Text of Entry[HTML]:" %>
+				<%= f.label :entry_text, "Text of Entry:" %>
 				<br>
-				<%= f.text_area :entry_text, :size => "45x10", :value => Sanitize.fragment(post.item_text), 
+				<%= f.text_area :entry_text, :size => "45x14", :value => Sanitize.fragment(post.item_text), 
 				:class => "form-control", "data-id" => post.item_id %>
 				<br>
 
