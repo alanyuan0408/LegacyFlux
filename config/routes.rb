@@ -33,7 +33,6 @@ Rails.application.routes.draw do
   get '/mailing',      to: 'static_pages#mailing'
   
   get '/usersetting',   to: 'users#usersetting'
-  get '/post',			to: 'users#post'
   
   post '/register_expo', to: 'users#register_expo'
   post '/unregister_expo', to: 'users#unregister_expo'

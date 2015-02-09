@@ -9,8 +9,8 @@ class FeedbanksController < ApplicationController
     @Feedbank.update_attribute(:item_id, SecureRandom.urlsafe_base64)
 
   	@Feedbank.save
-    @current_user = current_user
-	redirect_to :back
+
+	  redirect_to :back
   end
 
   def show

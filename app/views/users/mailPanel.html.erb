@@ -1,17 +1,49 @@
-    <script>
+<script>
 
-      function initialize2(){
-          //Initialize the object defined in NewsLetter Generator
-          if (typeof pageObject2 == "undefined"){
-            pageObject2 = new pageIndex(<%= @mail_posts.length %>, "itemPosts3", "pagenumber2");
+    function initialize2(){
+        //Initialize the object defined in NewsLetter Generator
+        if (typeof pageObject2 == "undefined"){
+          pageObject2 = new pageIndex(<%= @mail_posts.length %>, "itemPosts3", "pagenumber2");
         }
 
-        pageObject2.initialize('.a_mail', 'posts3');
-      }
+      pageObject2.initialize('.a_mail', 'posts3');
+    }
 
-      $(document).ready(initialize2);
-      $(document).on('page:load', initialize2);
+    $(document).ready(initialize2);
+    $(document).on('page:load', initialize2);
 
-    </script>
+</script>
 
-    <%= render :partial => "users/userPartial/mailPanel" %>
+<h4>Mail Generator Panel</h4>
+<br>
+
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+    <ul class="nav nav-tabs">
+    <li class="active"><a href="#Generate_Ordering" data-toggle="tab">Export NewsLetter</a></li>
+       <li><a href="#Generate_Items" data-toggle="tab">Select Posts</a></li>
+       <li><a href="#Generate_Tibbits" data-toggle="tab">Additional Entries</a></li>
+    </ul>
+
+    <div class="tab-content">
+
+        <div class="tab-pane active" id="Generate_Ordering">
+            <div class="panel-content">
+                <%= render :partial => "users/userPartial/generateOrdering" %>
+            </div>
+        </div>
+
+      	<div class="tab-pane" id="Generate_Items" onclick="initialize2()">
+            <div class="panel-content">
+            	<%= render :partial => "users/userPartial/generateItems" %>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="Generate_Tibbits">
+            <div class="panel-content">
+            	<%= render :partial => "users/userPartial/generateTibbits" %>
+            </div>
+        </div>
+
+    </div>
+</div>
+

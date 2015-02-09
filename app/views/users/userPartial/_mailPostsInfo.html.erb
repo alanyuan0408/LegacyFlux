@@ -14,12 +14,6 @@
 		    <p><%= @current_user.news_letter_mail.news_letter_entries.
 		    find_by(item_id: post.item_id).entry_text.html_safe %><p>
 
-		    <hr>
-		    <p>Text [MD Rendered]:</p>
-
-		    <p><%= @current_user.news_letter_mail.news_letter_entries.
-		    find_by(item_id: post.item_id).entry_text_md %><p>
-
 		    <%= form_for @current_user, namespace: post.id, :url => url_for(:controller => "users",
 			    :action => "remove_newsItem", :item_id => post.item_id), :remote => true do |f|%>
 
@@ -46,12 +40,6 @@
 				<br>
 				<%= f.text_area :entry_text, :size => "45x10", :value => Sanitize.fragment(post.item_text), 
 				:class => "form-control", "data-id" => post.item_id %>
-				<br>
-
-				<%= f.label :entry_text_md, "Text of Entry[MD]:" %>
-				<br>
-				<%= f.text_area :entry_text_md, :size => "45x10", :value => Sanitize.fragment(post.item_text),
-				:class => "form-control", "data-id" => post.item_id  %>
 				<br>
 
 		        <%= f.submit "Add to NewsLetter", class: "btn btn-default" %>

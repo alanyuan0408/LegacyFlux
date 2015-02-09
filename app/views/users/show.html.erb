@@ -2,6 +2,7 @@
 
       function initialize(){
         //Initialize the object defined in Your Posts
+        console.log("Initalize")
         if (typeof pageObject == "undefined"){
           pageObject = new pageIndex(<%= @feedbank_posts.length %>, "jobPosts", "pagenumber");   
         } 
@@ -14,4 +15,29 @@
 
     </script>
 
-    <%= render :partial => "users/userPartial/userFeedbankPosts" %>
+   
+<h4>Posting Panel</h4>
+<br>
+
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#Mail_admin" data-toggle="tab">Add New Post</a></li>
+       <li><a href="#Unapproved_posts" data-toggle="tab">Your Posts</a></li>
+    </ul>
+
+    <div class="tab-content" > 
+
+        <div class="tab-pane active" id="Mail_admin">
+            <div class="panel-content">
+                <%= render :partial => "users/userPartial/postPanel" %>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="Unapproved_posts" onclick="initialize()">
+            <div class="panel-content">
+               <%= render :partial => "users/userPartial/userFeedbankPosts" %>
+            </div>
+        </div>
+
+    </div>
+</div>
