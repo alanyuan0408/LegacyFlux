@@ -80,7 +80,7 @@ function pageIndex(length, listID, pageID){
 
 }
 
-  function pageIndex(){
+  function addClick(){
     $(".tidbits").click(function(){
         var Posts = document.getElementById("listedPosts").childNodes;
 
