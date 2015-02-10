@@ -129,7 +129,9 @@ class UsersController < ApplicationController
     current_user.news_letter_mail.update_attribute(:intro_message, params[:user][:entry_text])
 
     current_user.save
-
+    
+    
+    
     render :layout => false
 
   end

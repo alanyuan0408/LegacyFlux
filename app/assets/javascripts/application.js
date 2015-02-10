@@ -97,6 +97,32 @@ function addClick(){
     })
 }
 
+function updateItems(){
+
+    var Posts = document.getElementById("sortable").childNodes;
+
+    //generator_user_ordering
+    var return_string = ""
+    iterator = 0
+    console.log("newcall")
+
+    //Iterate over the items
+    for(i=0; i<Posts.length; i++){
+        if (Posts[i].dataset){
+                    
+            //Append the information to the string
+            if (Posts[i].dataset.id){
+                return_string += " " + Posts[i].dataset.id
+                return_string += " " + iterator
+                iterator += 1
+            }
+        }
+    }
+
+    document.getElementById("generator_user_ordering").value = return_string
+    console.log(return_string)
+}
+
 function orderRelease(){
 
     console.log("Called")
@@ -105,30 +131,10 @@ function orderRelease(){
     $( "#sortable" ).disableSelection();
 
     $(".entries").mouseup(function(){
-        var Posts = document.getElementById("sortable").childNodes;
-
-        var return_string = ""
-
-        iterator = 0
-
-        console.log("newcall")
-
-        //Iterate over the items
-        for(i=0; i<Posts.length; i++){
-            if (Posts[i].dataset){
-                    
-                //Append the information to the string
-                if (Posts[i].dataset.id){
-                    return_string += " " + Posts[i].dataset.id
-                    return_string += " " + iterator
-                    iterator += 1
-                }
-
-            }
-        }
-
-        console.log(return_string)
-
+        window.setTimeout(updateItems,50);
+        //timeout to have it drop first
     })
+
+
 }
 
