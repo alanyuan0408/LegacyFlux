@@ -12,6 +12,8 @@
     $( "#sortable" ).sortable();
     $( "#sortable" ).disableSelection();
   });
+
+
   </script>
 
   <div class="col-xs-4">
@@ -20,7 +22,7 @@
 
 	  	<ul id="sortable" class="list-group">
 		 	<% @current_user.news_letter_mail.news_letter_entries.order("ordering asc").each do |post| %>
-				<li class="list-group-item entries"><%= post.entry_title %></li>
+				<li class="list-group-item entries" data-id="<%= post.item_id %>"><%= post.entry_title %></li>
 			<% end %>
 		</ul>
 
