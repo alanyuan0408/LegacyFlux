@@ -99,6 +99,8 @@ function addClick(){
 
 function orderRelease(){
 
+    console.log("Called")
+
     $( "#sortable" ).sortable();
     $( "#sortable" ).disableSelection();
 
@@ -109,7 +111,23 @@ function orderRelease(){
 
         iterator = 0
 
+        console.log("newcall")
 
+        //Iterate over the items
+        for(i=0; i<Posts.length; i++){
+            if (Posts[i].dataset){
+                    
+                //Append the information to the string
+                if (Posts[i].dataset.id){
+                    return_string += " " + Posts[i].dataset.id
+                    return_string += " " + iterator
+                    iterator += 1
+                }
+
+            }
+        }
+
+        console.log(return_string)
 
     })
 }
