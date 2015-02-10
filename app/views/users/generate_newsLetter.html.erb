@@ -33,13 +33,13 @@ BA 4252 / 4254 / 4256<br>
 <h2 style="color:#182E64">In this Edition </h2>
 <ul>	
 
- <% @current_user.news_letter_mail.news_letter_entries.all.each do |entry| %>
+ <% @current_user.news_letter_mail.news_letter_entries.all.order("ordering asc").each do |entry| %>
       <li><%= entry.entry_title %></li>
  <% end %>
 
 </ul>
 
-<% @current_user.news_letter_mail.news_letter_entries.all.each do |entry| %>
+<% @current_user.news_letter_mail.news_letter_entries.all.order("ordering asc").each do |entry| %>
 <hr style="border:0; color:#F7941E; background-color:#F7941E; height:2px; width:100%">
 	<h3><%= entry.entry_title %></h3>
     <%= entry.entry_text.html_safe %>

@@ -103,7 +103,6 @@ function updateItems(){
 
     //generator_user_ordering
     var return_string = ""
-    iterator = 0
     console.log("newcall")
 
     //Iterate over the items
@@ -113,8 +112,6 @@ function updateItems(){
             //Append the information to the string
             if (Posts[i].dataset.id){
                 return_string += " " + Posts[i].dataset.id
-                return_string += " " + iterator
-                iterator += 1
             }
         }
     }

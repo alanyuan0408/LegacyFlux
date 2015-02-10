@@ -129,9 +129,20 @@ class UsersController < ApplicationController
     current_user.news_letter_mail.update_attribute(:intro_message, params[:user][:entry_text])
 
     current_user.save
+
+    id_list = params[:user][:ordering].split(" ")
+    puts id_list
+    iterator = 0
     
-    
-    
+    id_list.each do |id_entry|
+      puts id_entry
+      @var = current_user.news_letter_mail.news_letter_entries.find_by(item_id: id_entry)
+
+      @var.update_attribute(:ordering, iterator)
+      iterator += 1
+      @var.save
+    end
+
     render :layout => false
 
   end
