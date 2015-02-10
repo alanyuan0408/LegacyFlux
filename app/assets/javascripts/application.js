@@ -80,7 +80,7 @@ function pageIndex(length, listID, pageID){
 
 }
 
-  function addClick(){
+function addClick(){
     $(".tidbits").click(function(){
         var Posts = document.getElementById("listedPosts").childNodes;
 
@@ -95,4 +95,5 @@ function pageIndex(length, listID, pageID){
             }
         }
     })
-  }
+}
+
