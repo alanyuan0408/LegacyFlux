@@ -79,3 +79,20 @@ function pageIndex(length, listID, pageID){
     }
 
 }
+
+  function pageIndex(){
+    $(".tidbits").click(function(){
+        var Posts = document.getElementById("listedPosts").childNodes;
+
+        //Initialize the click
+        for(i=0; i<Posts.length; i++){
+            if (Posts[i].dataset){
+                if (Posts[i].dataset.id == $(this).attr('data-id')){
+                   Posts[i].className = "selected";
+                } else {
+                    Posts[i].className = "hidden_class";
+                }
+            }
+        }
+    })
+  }
