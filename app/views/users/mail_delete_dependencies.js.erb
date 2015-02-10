@@ -1,7 +1,14 @@
 console.log("render Partial")
 
+//Reset the Posting/ Yes or No
 $('#itemPosts3').html(" <%= escape_javascript(render(:partial => 'users/userPartial/mailPosts')) %>")
 
 $('#posts3').html(" <%= escape_javascript(render(:partial => 'users/userPartial/mailPostsInfo')) %>")
+
+//Reset the Select Posting and the Additional Entries
+$('#Generate_Ordering').html(" <%= escape_javascript(render(:partial => 'users/userPartial/generateOrdering')) %>")
+
+$('#Generate_Tibbits').html(" <%= escape_javascript(render(:partial => 'users/userPartial/generateTibbits')) %>")
+
 
 pageObject2.initialize('.a_mail', 'posts3');
