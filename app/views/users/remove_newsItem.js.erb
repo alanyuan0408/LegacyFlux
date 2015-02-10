@@ -3,5 +3,8 @@ console.log("render Partial")
 $('#Generate_Ordering').html(
 	"<%= escape_javascript(render(:partial => 'users/userPartial/generateOrdering'))  %>")
 
-$('#Generate_Tibbits').html(
-	"<%= escape_javascript(render(:partial => 'users/userPartial/generateTibbits'))  %>")
+$('#itemPosts3').html(" <%= escape_javascript(render(:partial => 'users/userPartial/mailPosts')) %>")
+
+$('#posts3').html(" <%= escape_javascript(render(:partial => 'users/userPartial/mailPostsInfo')) %>")
+
+pageObject2.initialize('.a_mail', 'posts3');
