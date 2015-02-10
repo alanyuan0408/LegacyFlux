@@ -98,19 +98,19 @@ function addClick(){
 }
 
 function orderRelease(){
-    $(".tidbits").click(function(){
+
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
+
+    $(".entries").mouseup(function(){
         var Posts = document.getElementById("sortable").childNodes;
 
-        //Initialize the click
-        for(i=0; i<Posts.length; i++){
-            if (Posts[i].dataset){
-                if (Posts[i].dataset.id == $(this).attr('data-id')){
-                   Posts[i].className = "selected";
-                } else {
-                    Posts[i].className = "hidden_class";
-                }
-            }
-        }
+        var return_string = ""
+
+        iterator = 0
+
+
+
     })
 }
 

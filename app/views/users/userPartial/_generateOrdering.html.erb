@@ -4,18 +4,6 @@
 
 <div class="row">
 
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-
-  <script>
-  $(function() {
-    $( "#sortable" ).sortable();
-    $( "#sortable" ).disableSelection();
-  });
-
-
-  </script>
-
   <div class="col-xs-4">
 
   	<% if @current_user.news_letter_mail.news_letter_entries.count != 0 %>
