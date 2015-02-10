@@ -19,7 +19,7 @@
   	<% if @current_user.news_letter_mail.news_letter_entries.count != 0 %>
 
 	  	<ul id="sortable" class="list-group">
-		 	<% @current_user.news_letter_mail.news_letter_entries.each do |post| %>
+		 	<% @current_user.news_letter_mail.news_letter_entries.order("ordering asc").each do |post| %>
 				<li class="list-group-item"><%= post.entry_title %></li>
 			<% end %>
 		</ul>
