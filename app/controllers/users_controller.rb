@@ -18,7 +18,6 @@ class UsersController < ApplicationController
   end
 
   def mailPanel
-
       do_not_cache
 
       @mail_setting = current_user.mail_setting
