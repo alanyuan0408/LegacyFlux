@@ -84,6 +84,8 @@ function addClick(){
     $(".tidbits").click(function(){
         var Posts = document.getElementById("listedPosts").childNodes;
 
+        console.log("Clicked")
+
         //Initialize the click
         for(i=0; i<Posts.length; i++){
             if (Posts[i].dataset){
