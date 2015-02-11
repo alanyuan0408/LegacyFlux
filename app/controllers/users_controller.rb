@@ -19,6 +19,8 @@ class UsersController < ApplicationController
 
   def mailPanel
 
+      do_not_cache
+
       @mail_setting = current_user.mail_setting
       @account_setting = current_user.account_setting
       
@@ -240,6 +242,12 @@ class UsersController < ApplicationController
 
     def news_entry_params
       params.required(:person).permit(:name, :age)
+    end
+
+    def do_not_cache
+      response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+      response.headers["Pragma"] = "no-cache"
+      response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
     end
 
 end
