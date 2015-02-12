@@ -127,6 +127,33 @@ class UsersController < ApplicationController
   end
 
   def generate_newsLetter
+  current_user.news_letter_mail.update_attribute(:intro_message, params[:user][:entry_text])
+
+    current_user.save
+
+    id_list = params[:user][:ordering].split(" ")
+    puts id_list
+    iterator = 0
+    
+    id_list.each do |id_entry|
+      puts id_entry
+      @var = current_user.news_letter_mail.news_letter_entries.find_by(item_id: id_entry)
+
+      @var.update_attribute(:ordering, iterator)
+      iterator += 1
+      @var.save
+    end
+  if params[:commit] == 'Generate NewsLetter'
+    render :layout => false
+   elsif params[:commit] == 'Generate NewsLetter .MD'
+   render file: "users/generate_newsLetter_md.html.erb", content_type: "text/x-markdown", :layout => false
+   else
+    render :layout => false
+   end
+	
+  end
+  
+  def generate_newsLetter_md
     current_user.news_letter_mail.update_attribute(:intro_message, params[:user][:entry_text])
 
     current_user.save

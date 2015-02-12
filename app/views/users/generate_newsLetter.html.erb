@@ -42,7 +42,7 @@ BA 4252 / 4254 / 4256<br>
 <% @current_user.news_letter_mail.news_letter_entries.all.order("ordering asc").each do |entry| %>
 <hr style="border:0; color:#F7941E; background-color:#F7941E; height:2px; width:100%">
 	<h3><%= entry.entry_title %></h3>
-    <%= entry.entry_text.html_safe %>
+    <%= simple_format(entry.entry_text) %>
 <% end %>
 
 <!-- Footer of the Email -->

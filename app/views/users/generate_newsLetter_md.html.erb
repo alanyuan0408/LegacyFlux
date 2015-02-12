@@ -1,0 +1,48 @@
+DCS Undergraduate Newsletter  --- <%= Time.now.strftime("%d %b %y") %>
+=============================================
+To unsubscribe, please follow the [unsubscribe
+instructions](https://ugo.cdf.toronto.edu/ugn/unsubscribe.txt).
+
+<%= strip_tags(@current_user.news_letter_mail.intro_message.strip.gsub("\r", "")) %>
+
+In this Edition
+---------------
+
+<% @current_user.news_letter_mail.news_letter_entries.all.order("ordering asc").each do |entry| %>
+- <%= entry.entry_title %>
+<% end %>
+
+<% @current_user.news_letter_mail.news_letter_entries.all.order("ordering asc").each do |entry| %>
+<%= entry.entry_title %>
+<%= "-" * entry.entry_title.length %>
+<%= strip_tags(entry.entry_text.strip.gsub("\r", "")) %>
+
+<% end %>
+
+Events in the Department of Computer Science
+--------------------------------------------
+<http://web.cs.toronto.edu/news/events.htm>
+
+Computer Science Community Boards
+---------------------------------
+<https://csc.cdf.toronto.edu>
+
+Jobs
+----
+We post ads for jobs from companies and individuals on the [Jobs and
+Professional Experience
+board](https://csc.cdf.toronto.edu/mybb/forumdisplay.php?fid=10). We do not
+vet the items, so treat these as you would a commercial job advertisement.
+
+Career Centre Events and Postings
+---------------------------------
+The [UofT Career Centre](http://www.careers.utoronto.ca) posts job openings,
+helps employers set up information sessions, and offers career-related
+training sessions.
+
+
+These messages contain official information from the [Department of Computer
+Science](http://web.cs.toronto.edu/home.htm). Subscription is automatic, based
+on daily course and program enrolment information. For mailing list commands
+e-mail: <ugstudents-help@cdf.toronto.edu>. To unsubscribe please follow the
+[instructions](https://ugo.cdf.toronto.edu/ugn/unsubscribe.txt).

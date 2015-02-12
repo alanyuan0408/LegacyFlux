@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   get '/user_admin', to: 'users#adminPanel'
   get '/user_mail', to: 'users#mailPanel'
   patch '/generate_newsletter', to: 'users#generate_newsLetter'
+  patch '/generate_newsletter_md', to: 'users#generate_newsLetter_md'
   
   get "/404" => 'users#permissiondenied'
   get "/500" => 'users#permissiondenied'
