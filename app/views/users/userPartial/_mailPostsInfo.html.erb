@@ -36,10 +36,7 @@
 				<p>URL: <%= post.item_url %></p>
 
 				<br>
-				<%= f.label :entry_text, "Text of Entry:" %>
-				<br>
-				<%= f.text_area :entry_text, :size => "45x14", :value => Sanitize.fragment(post.item_text), 
-				:class => "form-control", "data-id" => post.item_id %>
+				<%= f.cktext_area :entry_text, :input_html => { :value => "post.item_text" }, :value => post.item_text, :size => "45x14", :class => "form-control", "contenteditable" => true, "data-id" => post.item_id %>
 				<br>
 
 		        <%= f.submit "Add to NewsLetter", class: "btn btn-default" %>
