@@ -3,19 +3,19 @@ DCS Undergraduate Newsletter  --- <%= Time.now.strftime("%d %b %y") %>
 To unsubscribe, please follow the [unsubscribe
 instructions](https://ugo.cdf.toronto.edu/ugn/unsubscribe.txt).
 
-<%= strip_tags(@current_user.news_letter_mail.intro_message.strip.gsub("\r", "")) %>
+<%= word_wrap(strip_tags(@current_user.news_letter_mail.intro_message.strip.gsub("\r", "")).html_safe) %>
 
 In this Edition
 ---------------
 
 <% @current_user.news_letter_mail.news_letter_entries.all.order("ordering asc").each do |entry| %>
-- <%= entry.entry_title %>
+- <%= entry.entry_title.html_safe %>
 <% end %>
 
 <% @current_user.news_letter_mail.news_letter_entries.all.order("ordering asc").each do |entry| %>
 <%= entry.entry_title %>
 <%= "-" * entry.entry_title.length %>
-<%= strip_tags(entry.entry_text.strip.gsub("\r", "")) %>
+<%= word_wrap(strip_tags(entry.entry_text.strip.gsub("\r", "")).html_safe) %>
 
 <% end %>
 
