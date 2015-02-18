@@ -1,6 +1,6 @@
 class Feedbank < ActiveRecord::Base
 
-  attr_accessible :item_date, :item_url, :item_title, :item_text, :user_id, :approval_status, :column_type
+  attr_accessible :item_url, :item_title, :item_text, :column_type
 
   validates :item_title, presence: true, allow_blank: false
   validates :item_text, presence: true, allow_blank: false
@@ -13,6 +13,6 @@ class Feedbank < ActiveRecord::Base
 	   end
 
     feedbank.item_date = Time.current
-  end 
+  end
 
 end
