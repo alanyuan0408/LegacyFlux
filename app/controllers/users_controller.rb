@@ -2,15 +2,6 @@ class UsersController < ApplicationController
 
   before_action :authenticate_user!
 
-  def show
-
-      @feedbank_posts = Feedbank.where(user_id: current_user.id).order("item_date desc")
-
-      @mail_setting = current_user.mail_setting
-      @account_setting = current_user.account_setting
-
-  end
-
   def adminPanel
       @mail_setting = current_user.mail_setting
       @account_setting = current_user.account_setting

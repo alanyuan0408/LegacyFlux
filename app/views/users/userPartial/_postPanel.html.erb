@@ -1,18 +1,24 @@
 <h4>Add New Post</h4>
 
+<% if @Feedbank and @Feedbank.errors.any? %>
+    <div class="alert alert-danger">
+        The form contains <%= pluralize(@Feedbank.errors.count, "error") %>.
+    </div>
+
+    <% @Feedbank.errors.full_messages.each do |error| %>
+        <p>*<%= error %></p>
+    <% end %>
+
+<% end %>
+
+
 <p>We warmly welcome any Job Offers, Research Offers, Event Posts and News Updates that may be relevant to the Computer Science Department. Your post will be listed as soon as it is approved by the DCS administrator.</p>
 
 <% if current_user.account_setting.admin or current_user.account_setting.news_admin %>
     <p><b>Note:</b> As Admin, your posts will be automatically approved</p>
 <% end %>
 
-<% if @Feedbank and @Feedbank.errors.any? %>
-    
-    <% @Feedbank.errors.full_messages.each do |error| %>
-        <p>error</p>
-    <% end %>
 
-<% end %>
 
 <%= form_for :feedbank, :url => '/feedbanks#create' do |f| %> 
 

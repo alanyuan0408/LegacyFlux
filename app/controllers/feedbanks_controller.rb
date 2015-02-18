@@ -19,9 +19,18 @@ class FeedbanksController < ApplicationController
 
     end
 
-    redirect_to :back
-	  
+    @feedbank_posts = Feedbank.where(user_id: current_user.id).order("item_date desc")
+
+    render 'feedbanks/add_post'
+
   end
+
+  def add_post
+
+    @feedbank_posts = Feedbank.where(user_id: current_user.id).order("item_date desc")
+
+  end
+
 
   def show
     #@feedbanks = Feedbank.all
