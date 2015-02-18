@@ -74,7 +74,7 @@ end
       self.mail_setting.update_column(:events, true)
       self.mail_setting.save
 
-      #IMPORTANT! ONLY USED DURING TESTING STAGE// SEED IT FOR THE RELEASE
+      #IMPORTANT! ONLY USED DURING TESTING STAGE
       self.news_letter_mail = NewsLetterMail.new
       self.news_letter_mail.save
 

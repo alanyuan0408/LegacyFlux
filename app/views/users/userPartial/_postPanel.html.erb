@@ -12,15 +12,9 @@
     <br>
     <%= f.text_field :item_url, :size=>"50", :class => "title_width", placeholder: "Url to the Post", :class => "form-control" %>
     <br>
+
     <%= f.hidden_field :user_id, :value => current_user.id %>
-
-    <%= f.hidden_field :item_date, :value => Time.current %>
-
-    <% if current_user.account_setting.admin or current_user.account_setting.news_admin %>
-        <%= f.hidden_field :approval_status, :value => :true %>
-    <% else  %>
-        <%= f.hidden_field :approval_status, :value => :false %>
-    <% end %>
+     <!-- Tempering measure is added server side-->
 
     <%= f.label :column_type, "Post Type: " %>
     <%= f.select(:column_type, [["Job Post", 1], ["Event Post", 2], ["News Update", 3],

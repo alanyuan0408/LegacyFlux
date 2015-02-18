@@ -31,6 +31,7 @@
 		<div class="panel-content" id= "posts2" >
 			<% @unconfirmed_posts.each do |post| %>
 				<div data-id="<%= post.item_id %>" class="hidden_class">
+					<br>
 				    <p><b>Item Title: <%= post.item_title %></b></p>
 				    <p>URL: <%= post.item_url %></p>
 				    <p>Approval Status: <%= post.approval_status %></p>
