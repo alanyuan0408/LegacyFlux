@@ -5,10 +5,18 @@ class FeedbanksController < ApplicationController
 	end
 
 	def create
+    logger.info("Hi Alan")
   	@Feedbank = Feedbank.new(params[:feedbank])
     @Feedbank.update_attribute(:item_id, SecureRandom.urlsafe_base64)
+    @Feedbank.update_attribute(:user_id, current_user.id)
 
-  	@Feedbank.save
+    if current_user.account_setting.admin or current_user.account_setting.news_admin
+      @Feedbank.update_column(:approval_status, true)
+    else
+      @Feedbank.update_column(:approval_status, false)
+    end
+
+  	@Feedbank.save  
 
 	  redirect_to :back
   end

@@ -218,7 +218,7 @@ class UsersController < ApplicationController
 
     else 
       
-      @newPost = @current_user.news_letter_mail.news_letter_entries.new
+      @newPost = current_user.news_letter_mail.news_letter_entries.new
 
       @newPost.update_attribute(:entry_title, params[:user][:entry_title])
       @newPost.update_attribute(:entry_text, params[:user][:entry_text])
@@ -261,10 +261,6 @@ class UsersController < ApplicationController
   end
 
   private 
-
-    def find_user
-      @current_user = current_user
-    end
 
     def news_entry_params
       params.required(:person).permit(:name, :age)

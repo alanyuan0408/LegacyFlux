@@ -15,14 +15,4 @@ class Feedbank < ActiveRecord::Base
     feedbank.item_date = Time.current
   end 
 
-  after_save do |feedbank|
-    
-    user_setting = User.find_by_id(feedbank.user_id)
-
-    if user_setting.account_setting.admin or user_setting.account_setting.news_admin
-      feedbank.update_column(:approval_status, true)
-    else
-      feedbank.update_column(:approval_status, false)
-    end
-  end
 end
