@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     # You can have the root of your site routed with "root"
   root to: 'static_pages#home'
   
+  patch '/change', to: 'users#change'
   patch '/add_tidbit', to: 'users#add_tidbit'
   patch '/savechange', to: 'users#modify'
   patch '/user_nav', to: 'users#mail_nav'
