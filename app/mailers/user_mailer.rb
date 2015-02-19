@@ -51,7 +51,7 @@ class UserMailer < ActionMailer::Base
         @jobs = Feedbank.where(:column_type => 1).where(:approval_status => true).
           where("created_at >= :last_send",
           {last_send: @mail_setting.nextsend  - @mail_setting.email_frequency.days
-            }).order("created_at desc").limit(3)
+            }).order("created_at desc").limit(4)
           count += @jobs.length
       end
 
