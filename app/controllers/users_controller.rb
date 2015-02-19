@@ -81,6 +81,7 @@ class UsersController < ApplicationController
 
   def disable_student_account
     current_user.account_setting.update_attribute(:student_account, false);
+    current_user.mail_setting.update_attribute(:nextsend, Time.now + 7.days);
     redirect_to(:back)
   end
 
