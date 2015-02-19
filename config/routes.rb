@@ -33,8 +33,6 @@ Rails.application.routes.draw do
   
   get '/usersetting',   to: 'users#usersetting'
 
-  match '/logpreference', to: 'user#update_settings', via: [:get, :post]
-  
   post '/register_expo', to: 'users#register_expo'
   post '/unregister_expo', to: 'users#unregister_expo'
 
