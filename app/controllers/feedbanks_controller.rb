@@ -19,6 +19,8 @@ class FeedbanksController < ApplicationController
 
     end
 
+    @feedbank_posts = Feedbank.where(user_id: current_user.id).order("item_date desc")
+
     #Debug/ Display the Errors
     @Feedbank.errors.full_messages.each do |msg|
       puts msg
