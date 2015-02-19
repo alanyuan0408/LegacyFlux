@@ -8,7 +8,7 @@ class FeedbanksController < ApplicationController
   	@Feedbank = Feedbank.new(params[:feedbank])
 
   	if @Feedbank.save
-      @Feedbank.update_attribute(:item_id, SecureRandom.urlsafe_base64)
+     
       @Feedbank.update_attribute(:user_id, current_user.id)
 
       if current_user.account_setting.admin or current_user.account_setting.news_admin
@@ -19,9 +19,14 @@ class FeedbanksController < ApplicationController
 
     end
 
-    @feedbank_posts = Feedbank.where(user_id: current_user.id).order("item_date desc")
+    #Debug/ Display the Errors
+    @Feedbank.errors.full_messages.each do |msg|
+      puts msg
+    end
 
-    render 'feedbanks/add_post'
+    respond_to do |format|
+      format.js
+    end
 
   end
 

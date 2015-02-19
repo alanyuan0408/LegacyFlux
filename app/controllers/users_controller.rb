@@ -38,22 +38,6 @@ class UsersController < ApplicationController
 
   end
 
-  def revert_time
-
-    @mail_users = User.all
-
-    @mail_users.each do |user|
-
-      if user.account_setting.admin
-        @mail_setting = user.mail_setting
-        newtime = Time.now - 100.days
-        @mail_setting.update_attribute(:nextsend, newtime)
-      end
-
-    end
-
-  end
-
   def modify
 
     param = params[:user][:mail_setting_attributes]
@@ -89,31 +73,14 @@ class UsersController < ApplicationController
 
   end
 
-  def register_expo
-    @current_user.mail_setting.update_attribute(:expo_ticket, true);
-    @account_setting = "true";
-
-    @number_of_participants = MailSetting.where(:expo_ticket => true).length;
-    render 'static_pages/expo'
-  end 
-
-  def unregister_expo
-    @current_user.mail_setting.update_attribute(:expo_ticket, false);
-    @account_setting = "false";
-
-    @number_of_participants = MailSetting.where(:expo_ticket => true).length;
-    render 'static_pages/expo'
-  end 
-
   def student_account
     current_user.account_setting.update_attribute(:student_account, true);
-    current_user.mail_setting.update_attribute(:nextsend, Time.now + 7.days);
+    current_user.mail_setting.update_attribute(:nextsend, Time.now + 1.days);
     redirect_to(:back)
   end
 
   def disable_student_account
     current_user.account_setting.update_attribute(:student_account, false);
-    current_user.mail_setting.update_attribute(:nextsend, Time.now + 7.days);
     redirect_to(:back)
   end
 
@@ -208,7 +175,6 @@ class UsersController < ApplicationController
       #DO nothing, request already sent
 
     else 
-      
       @newPost = current_user.news_letter_mail.news_letter_entries.new
 
       @newPost.update_attribute(:entry_title, params[:user][:entry_title])

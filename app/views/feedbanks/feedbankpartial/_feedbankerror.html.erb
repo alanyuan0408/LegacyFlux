@@ -1,0 +1,18 @@
+<% if @Feedbank and @Feedbank.errors.any? %>
+    <div class="alert alert-danger">
+        The form contains <%= pluralize(@Feedbank.errors.count, "error") %>.
+    </div>
+
+    <% @Feedbank.errors.full_messages.each do |error| %>
+        <p>*<%= error %></p>
+    <% end %>
+
+<% elsif @Feedbank %>
+
+	<% if current_user.account_setting.admin or current_user.account_setting.news_admin %>
+	    <div class="alert alert-success" role="alert">Your post has been added</div>
+	<% else %>
+		<div class="alert alert-success" role="alert">Your post is submitted for review.</div>
+	<% end %>
+
+<% end %>

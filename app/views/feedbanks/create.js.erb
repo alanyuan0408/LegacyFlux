@@ -1,0 +1,6 @@
+console.log("HII")
+$('#panel-error').html(" <%= escape_javascript(render(:partial => 'feedbanks/feedbankpartial/feedbankerror')) %>")
+
+<% if !@Feedbank.errors.any? %>
+	document.getElementById("input_form").reset()
+<% end %>

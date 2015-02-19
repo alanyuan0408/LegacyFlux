@@ -1,0 +1,22 @@
+<%= form_for :feedbank, :url => '/feedbanks#create', :remote => true, 
+    :html => {:id => "input_form"} do |f| %> 
+
+    <%= f.text_field :item_title, placeholder: "Title of Post", :size=>"50", :class => "form-control"   %>
+    <br>
+    <%= f.text_field :item_url, :size=>"50", :class => "title_width", placeholder: "Url to the Post", :class => "form-control" %>
+    <br>
+
+    <%= f.label :column_type, "Post Type: " %>
+    <%= f.select(:column_type, [["Job Post", 1], ["Event Post", 2], ["News Update", 3],
+                                        ["Research", 4]]) %>
+    <!-- #1 is Jobs, #2 is Events, #3 is News, #4 is Research-->
+
+    <br>
+
+    <%= f.cktext_area :item_text, :class => 'ckeditor' %>
+
+    <br>
+
+    <%= f.submit "Add New Post", class: "panelButton" %>
+
+<% end %>

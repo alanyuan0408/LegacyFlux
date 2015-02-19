@@ -14,15 +14,5 @@
 
 	<% end %>
 
-	<br>
-	<p>[Testing only!: Revert the Admin nextsend to an earlier date]</p>
-	<br>
-
-	<%= form_for @current_user, :url => url_for(:controller => "users", 
-	    :action => "revert_time"), :remote => true do |f| %>
-
-	    <%= f.submit "Revert Time", class: "btn btn-default btn-med" %>
-
-	<% end %>
 
 </div>
