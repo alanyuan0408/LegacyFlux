@@ -218,6 +218,17 @@ class UsersController < ApplicationController
     end 
   end
 
+  def update_settings
+    @user = User.find_by_email_confirmation_token(params[:email_confirmation_token]);
+
+    if @user.blank?
+      render 'permissiondenied'
+    else 
+      sign_in @user
+      render 'users/usersetting'
+    end 
+  end
+
   private 
 
     def news_entry_params

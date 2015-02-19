@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   get '/mailing',      to: 'static_pages#mailing'
   
   get '/usersetting',   to: 'users#usersetting'
+
+  get '/logpreference', to: 'user#update_settings'
   
   post '/register_expo', to: 'users#register_expo'
   post '/unregister_expo', to: 'users#unregister_expo'
