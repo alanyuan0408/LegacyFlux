@@ -19,11 +19,7 @@
 				<td align="left" valign="top">
 					<h1 style="font-family: Tahoma, Helvetica, sans-serif; font-size: 18px; line-height: 28px; margin:2px; letter-spacing:3px; text-align: center; color: #fafaf8; background-color: #04689b"><%= Time.now.strftime("%d %b %y") %> Email Update</h1><br>
 					<h2 style="font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 10px">Hello, <%= @user.name %>:</h2>
-					<p style="font-family: Arial, Helvetica, sans-serif; font-size: 10px; color: #aaaaaa; text-align: right">Web Club Automated Email System. <br> The content is automatically generated based on your settings; to 
-
-					<a style="color: #333333" href ="<%= url_for controller: "users", action: "update_settings", email_confirmation_token: @user.email_confirmation_token,  host: "uoftweb.com" %>">modify your settings, login here</a> 
-
-					<br> Please email the site admin at alan[dot]yuan@mail[dot]utoronto[dot]ca for any issues.</p>
+					<p style="font-family: Arial, Helvetica, sans-serif; font-size: 10px; color: #aaaaaa; text-align: right">Web Club Automated Email System. <br> The content is automatically generated based on your settings; to <a style="color: #333333" href="http://www.uoftweb.com">modify your settings, login here</a> <br> Please email the site admin at alan[dot]yuan@mail[dot]utoronto[dot]ca for any issues.</p>
 					<p style="font-family: Arial, Helvetica, sans-serif; font-size: 10px; color: #04689b; text-align: right">generated for you at <%= Time.now %></p>
 
 					<h3 style="font-family: Georgia, 'Times New Roman', serif; font-size: 15px; margin: 0">Summary</h3>
