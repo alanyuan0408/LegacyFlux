@@ -14,7 +14,7 @@ class FeedbanksController < ApplicationController
       if current_user.account_setting.admin or current_user.account_setting.news_admin
         @Feedbank.update_column(:approval_status, true)
       else
-        @Feedbank.update_column(:approval_status, false)
+        @Feedbank.update_column(:approval_status, nil)
       end
 
     end
@@ -33,9 +33,7 @@ class FeedbanksController < ApplicationController
   end
 
   def add_post
-
     @feedbank_posts = Feedbank.where(user_id: current_user.id).order("item_date desc")
-
   end
 
 
@@ -46,7 +44,7 @@ class FeedbanksController < ApplicationController
 
   def approve_content
     @feedbank  = Feedbank.find(params[:id])
-    @feedbank.update_attribute(:approval_status, 'true');
+    @feedbank.update_column(:approval_status, true);
 
     respond_to do |format|
       format.js
@@ -56,7 +54,7 @@ class FeedbanksController < ApplicationController
 
   def disapprove_content
     @feedbank  = Feedbank.find(params[:id])
-    @feedbank.destroy
+    @feedbank.update_column(:approval_status, false);
 
     respond_to do |format|
       format.js

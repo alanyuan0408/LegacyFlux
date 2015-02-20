@@ -1,21 +1,19 @@
-    <script>
+<script>
 
-      function initialize(){
-        //Initialize the object defined in Your Posts
-        console.log("Initalize")
-        if (typeof pageObject == "undefined"){
-          pageObject = new pageIndex(<%= @feedbank_posts.length %>, "jobPosts", "pagenumber");   
-        } 
+  function initialize(){
+      //Initialize the object defined in Your Posts
+    console.log("Initalize")
+    if (typeof pageObject == "undefined"){
+      pageObject = new pageIndex(<%= @feedbank_posts.length %>, "jobPosts", "pagenumber");   
+    } 
+    pageObject.initialize('.a_userposts', 'posts');
+ }
 
-        pageObject.initialize('.a_userposts', 'posts');
-      }
+  $(document).ready(initialize);
+  $(document).on('page:load', initialize);
 
-      $(document).ready(initialize);
-      $(document).on('page:load', initialize);
+</script>
 
-    </script>
-
-   
 <h4>Posting Panel</h4>
 <br>
 

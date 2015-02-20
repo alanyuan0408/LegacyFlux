@@ -36,7 +36,12 @@
 				<div data-id="<%= post.item_id %>" class="hidden_class">
 				    <p><b>Item Title: <%= post.item_title %></b></p>
 				    <p>URL: <%= post.item_url %></p>
-				    <p>Approval Status: <%= post.approval_status %></p>
+
+				    <% if post.approval_status %>
+				    	<p>Approval Status: <%= post.approval_status %></p>
+				    <% else %>
+				    	<p>Approval Status: Pending </p>
+				    <% end %>
 
 				    <p>Date: <%= post.item_date %></p>
 				    <hr>

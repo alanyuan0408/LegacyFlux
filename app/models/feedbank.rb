@@ -14,6 +14,7 @@ class Feedbank < ActiveRecord::Base
 
     feedbank.item_date = Time.current
     feedbank.item_id = SecureRandom.urlsafe_base64
+
   end
 
 end

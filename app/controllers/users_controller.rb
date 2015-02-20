@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def adminPanel
       @mail_setting = current_user.mail_setting
       @account_setting = current_user.account_setting
-      @unconfirmed_posts = Feedbank.where(approval_status: false).order("item_date desc")
+      @unconfirmed_posts = Feedbank.where(approval_status: nil).order("item_date desc")
   end
 
   def mailPanel
@@ -27,13 +27,10 @@ class UsersController < ApplicationController
   end
   
   def send_mail
-
     @mail_users = User.all
 
     @mail_users.each do |user|
-
       UserMailer.update_email(user).deliver_now
-
     end
 
   end
@@ -62,9 +59,7 @@ class UsersController < ApplicationController
 
     current_user.mail_setting.update_attribute(:email_frequency, 
         email_frequency)
-
     current_user.mail_setting.update_attribute(:nextsend, Time.now + email_frequency.days)
-
     @mail_setting = current_user.mail_setting
 
     respond_to do |format|
