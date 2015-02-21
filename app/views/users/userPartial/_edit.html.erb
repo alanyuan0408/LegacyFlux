@@ -1,4 +1,5 @@
-<h4>Modifiy your selections</h4>
+<h3>Mail Settings</h3>
+<hr>
 
 	<%= form_for current_user, :url => url_for(:controller => "users", 
         :action => "modify"), :remote => true do |f| %>
@@ -7,24 +8,24 @@
 
 		 	<%= account_form.check_box :news %>
 			<%= account_form.label :news, "News Items" %>
-			<br>
+			<br><br>
 
 			<%= account_form.check_box :research %>
 			<%= account_form.label :research, "Research Offers" %>
-			<br>
+			<br><br>
 
 			<%= account_form.check_box :jobs %>
 			<%= account_form.label :jobs, "Job Offers" %>
-			<br>
+			<br><br>
 
 			<%= account_form.check_box :events %>
 			<%= account_form.label :events, "Events" %>
 			
-			<br>
+			<br><br>
 
-			<div style="width:40%">
+			<div style="width:70%">
 
-				<%= account_form.label :email_frequency, "Days between emails [1-7]" %>
+				<%= account_form.label :email_frequency, "Days between emails [1-7]" %><br>
 				<%= account_form.text_field :email_frequency %>
 			</div>
 

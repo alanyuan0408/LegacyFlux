@@ -1,4 +1,3 @@
-<div id="ajax">
 <div class="twocolumn">
 
 	<% if current_user.email_confirmation_token != "confirmed" %>
@@ -11,9 +10,9 @@
 <div class="column">
 
     <h3><%= current_user.name %></h3>
-
-    <b>Your Account Summary</b>
     <hr>
+    <p><b>Account Summary:</b></p>
+    <br>
 			
 	<p><span style="font-size:16px">&#9993;</span> <%= current_user.email %></p>
 	<br>
@@ -39,78 +38,8 @@
 
 </div>
 
-<div class="column">
+<div class="column" id="ajax">
+	<%= render :partial => 'users/userPartial/userPreference' %>
 
-<% if current_user.account_setting.student_account %>
-
-	<h3>Mailing Settings</h3>
-
-	<p>Your Email will be sent in a frequency of <%= @mail_setting.email_frequency %> days</p>
-
-	<hr>
-
-	<% if @mail_setting.news %>
-		<p><span style="font-size:16px">&#9745;</span>  Your Email <b>will</b> include News Updates</p>
-	<% else %> 
-		<p><span style="font-size:16px">&#9746;</span>  Your Email <b>will not</b> include News Updates</p>
-	<% end %>
-				
-	<br>
-
-	<% if @mail_setting.research %>
-		<p><span style="font-size:16px">&#9745;</span>  Your Email <b>will</b> include Research Opportunities</p>
-	<% else %> 
-		<p><span style="font-size:16px">&#9746;</span>  Your Email <b>will not</b> include Research Opportunities</p>
-	<% end %>
-
-	<br>
-
-	<% if @mail_setting.jobs %>
-		<p><span style="font-size:16px">&#9745;</span>  Your Email <b>will</b> include Job Updates</p>
-	<% else %> 
-		<p><span style="font-size:16px">&#9746;</span>  Your Email <b>will not</b> include Job Updates</p>
-	<% end %>
-
-	<br>
-
-	<% if @mail_setting.events %>
-		<p><span style="font-size:16px">&#9745;</span>  Your Email <b>will</b> include Events</p>
-	<% else %> 
-		<p><span style="font-size:16px">&#9746;</span>  Your Email <b>will not</b> include Events</p>
-	<% end %>
-
-	<br>
-
-	<p><span style="font-size:16px">&#9993;</span><b>	Next Email:</b> <%= @mail_setting.nextsend %></p>
-	<br>
-
-	<%= form_for current_user, :url => url_for(:controller => "users", 
-	        :action => "change"), :remote => true do |f| %>
-
-	    <%= f.submit "Update Settings", class: "btn btn-default btn-med" %>
-	<% end %>
-
-<% else %>
-
-	<h3>Subscribe to Email Updates</h3>
-
-	<% if current_user.email_confirmation_token != "confirmed" %>
-
-			<p>If you would like to recieve regular email updates, please confirm your email and subscribe. The subscribe feature will be available after you confirm your email</p>
-			<br>
-
-		<%= button_to "Subscribe to Automated Mailing", '/student_account', class: "btn btn-default btn-med", disabled: true %>
-	<% else %>
-
-			<p>If you would like to recieve regular email updates, click Subscribe to Automated Mailing. We'll do our best to keep you informed about all the jobs, events and news that goes on in the Computer Science Department</p>
-			<br>
-
-		<%= button_to "Subscribe to Automated Mailing", '/student_account', class: "btn btn-default btn-med"%>
-
-	<% end %>
-	
-<% end %>
 </div>
-</div>
-
 </div>

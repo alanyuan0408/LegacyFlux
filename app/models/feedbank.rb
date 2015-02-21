@@ -1,6 +1,6 @@
 class Feedbank < ActiveRecord::Base
 
-  attr_accessible :item_url, :item_title, :item_text, :column_type
+  attr_accessible :item_url, :item_title, :item_text, :column_type, :important, :cs_grad, :undergrad
 
   validates :item_title, presence: true, allow_blank: false
   validates :item_text, presence: true, allow_blank: false

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150220065717) do
+ActiveRecord::Schema.define(version: 20150221070718) do
 
   create_table "account_settings", force: :cascade do |t|
     t.integer  "user_id"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20150220065717) do
     t.text     "disapproval_reason"
     t.boolean  "important",          default: false
     t.boolean  "cs_grad",            default: false
-    t.boolean  "formal_job",         default: false
+    t.boolean  "cs_undergrad",       default: false
   end
 
   create_table "mail_settings", force: :cascade do |t|
