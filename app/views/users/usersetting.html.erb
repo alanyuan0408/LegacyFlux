@@ -12,12 +12,11 @@
 
     <h3><%= current_user.name %></h3>
 
-    <p>Your Account Summary</p>
-    <br>
+    <b>Your Account Summary</b>
+    <hr>
 			
 	<p><span style="font-size:16px">&#9993;</span> <%= current_user.email %></p>
 	<br>
-
 
     <% if current_user.account_setting.student_account %>
         <p><span style="font-size:16px">&#9745;</span>  Subscribed to Weekly Email</p>
@@ -48,7 +47,7 @@
 
 	<p>Your Email will be sent in a frequency of <%= @mail_setting.email_frequency %> days</p>
 
-	<br>
+	<hr>
 
 	<% if @mail_setting.news %>
 		<p><span style="font-size:16px">&#9745;</span>  Your Email <b>will</b> include News Updates</p>

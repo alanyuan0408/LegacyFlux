@@ -11,6 +11,9 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui/slider
+//= require jquery-ui/draggable
+//= require jquery-ui/droppable
 //= require jquery_ujs
 //= require ckeditor/init
 //= require turbolinks

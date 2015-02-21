@@ -5,30 +5,26 @@
 
 		 <%= f.fields_for :mail_setting do |account_form| %>
 
+		 	<%= account_form.check_box :news %>
 			<%= account_form.label :news, "News Items" %>
 			<br>
-			<%= account_form.check_box :news %>
-			<br>
 
+			<%= account_form.check_box :research %>
 			<%= account_form.label :research, "Research Offers" %>
 			<br>
-			<%= account_form.check_box :research %>
-			<br>
 
+			<%= account_form.check_box :jobs %>
 			<%= account_form.label :jobs, "Job Offers" %>
 			<br>
-			<%= account_form.check_box :jobs %>
-			<br>
 
-			<%= account_form.label :events, "Events" %>
-			<br>
 			<%= account_form.check_box :events %>
+			<%= account_form.label :events, "Events" %>
+			
 			<br>
 
 			<div style="width:40%">
 
 				<%= account_form.label :email_frequency, "Days between emails [1-7]" %>
-				<br>
 				<%= account_form.text_field :email_frequency %>
 			</div>
 

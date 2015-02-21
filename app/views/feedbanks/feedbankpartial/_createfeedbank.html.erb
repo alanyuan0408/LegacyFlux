@@ -6,12 +6,24 @@
     <%= f.text_field :item_url, :size=>"50", :class => "title_width", placeholder: "Url to the Post", :class => "form-control" %>
     <br>
 
-    <%= f.label :column_type, "Post Type: " %>
-    <%= f.select(:column_type, [["Job Post", 1], ["Event Post", 2], ["News Update", 3],
-                                        ["Research", 4]]) %>
-    <!-- #1 is Jobs, #2 is Events, #3 is News, #4 is Research-->
+    <div class="select">
+        <%= f.label :column_type, "Post Type: " %>
+        <%= f.select(:column_type, [["Job Post", 1], ["Event Post", 2], ["News Update", 3]]) %>
+        <!-- #1 is Jobs, #2 is Events, #3 is News, #4 is Research-->
+    </div>
 
-    <br>
+    <div class="jobBlock">
+        <br>
+        <%= radio_button_tag(:jobtype, "Full-Time") %>
+        <%= label_tag(:full_term, "Full-Time Position") %><br>
+        <%= radio_button_tag(:jobtype, "Internship") %>
+        <%= label_tag(:internship, "Internship") %><br>
+        <%= radio_button_tag(:jobtype, "Research") %>
+        <%= label_tag(:research, "Research") %><br>
+        <%= radio_button_tag(:jobtype, "Part-Time") %>
+        <%= label_tag(:internship, "Part-Time/Informal Job") %>
+    </div>
+
     <br>
 
     <%= f.cktext_area :item_text, :class => 'ckeditor' %>
