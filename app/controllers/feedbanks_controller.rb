@@ -36,7 +36,6 @@ class FeedbanksController < ApplicationController
     @feedbank_posts = Feedbank.where(user_id: current_user.id).order("item_date desc")
   end
 
-
   def show
     #@feedbanks = Feedbank.all
     @feedbank = Feedbank.find_by_id(params[:id])

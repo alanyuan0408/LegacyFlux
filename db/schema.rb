@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150207175736) do
+ActiveRecord::Schema.define(version: 20150220065717) do
 
   create_table "account_settings", force: :cascade do |t|
     t.integer  "user_id"
@@ -48,9 +48,13 @@ ActiveRecord::Schema.define(version: 20150207175736) do
     t.text     "item_text"
     t.integer  "column_type"
     t.integer  "user_id"
-    t.boolean  "approval_status", default: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.boolean  "approval_status",    default: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.text     "disapproval_reason"
+    t.boolean  "important",          default: false
+    t.boolean  "cs_grad",            default: false
+    t.boolean  "formal_job",         default: false
   end
 
   create_table "mail_settings", force: :cascade do |t|
@@ -77,7 +81,7 @@ ActiveRecord::Schema.define(version: 20150207175736) do
     t.string   "item_id"
     t.integer  "ordering"
     t.boolean  "tibbit_entry",        default: false
-    t.string   "entry_text_md"
+    t.text     "entry_text_md"
   end
 
   add_index "news_letter_entries", ["news_letter_mail_id"], name: "index_news_letter_entries_on_news_letter_mail_id"
@@ -87,7 +91,7 @@ ActiveRecord::Schema.define(version: 20150207175736) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.text     "intro_message"
-    t.string   "intro_message_md"
+    t.text     "intro_message_md"
   end
 
   add_index "news_letter_mails", ["user_id"], name: "index_news_letter_mails_on_user_id"
