@@ -86,4 +86,5 @@ gem 'cancan'
 
 gem 'mail'
 gem "html_truncator", "~>0.2"
-gem 'jquery-ui-rails'
+gem 'form_slider'
+gem 'jquery-ui-rails', '~> 5.0.3'

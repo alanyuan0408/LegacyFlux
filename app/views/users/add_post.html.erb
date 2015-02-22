@@ -7,6 +7,37 @@
       pageObject = new pageIndex(<%= @feedbank_posts.length %>, "jobPosts", "pagenumber");   
     } 
     pageObject.initialize('.a_userposts', 'posts');
+
+    var selected = "Job Post"
+
+    $( "#selectType" ).change(function() {
+        if (selected == "Job Post") {
+          console.log(selected)
+          $( "#eventBlock" ).removeClass("hidden_class")
+
+        } else if (selected == "Event Post") {
+          console.log(selected)
+          $( "#jobBlock" ).removeClass("hidden_class")
+        } else {
+          $( "#jobBlock" ).removeClass("hidden_class")
+          $( "#eventBlock" ).removeClass("hidden_class")
+        }
+
+        selected = $(this).find('option:selected').text()
+
+        if (selected == "Job Post") {
+          $( "#eventBlock" ).addClass("hidden_class")
+        }
+
+        else if (selected == "Event Post") {
+          $( "#jobBlock" ).addClass("hidden_class")
+        } 
+
+        else {
+          $( "#jobBlock" ).addClass("hidden_class")
+          $( "#eventBlock" ).addClass("hidden_class")
+        }
+    });
  }
 
   $(document).ready(initialize);
