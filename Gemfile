@@ -88,3 +88,5 @@ gem 'mail'
 gem "html_truncator", "~>0.2"
 gem 'form_slider'
 gem 'jquery-ui-rails', '~> 5.0.3'
+gem "formtastic"
+gem "formtastic-epiceditor", :git => 'git://github.com/sjatfluxcut/formtastic-epiceditor.git'

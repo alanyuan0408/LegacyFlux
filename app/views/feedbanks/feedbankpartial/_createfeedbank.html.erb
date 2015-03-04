@@ -1,4 +1,4 @@
-<%= form_for :feedbank, :url => '/feedbanks#create', :remote => true, 
+<%= semantic_form_for :feedbank, :url => '/feedbanks#create', :remote => true, 
     :html => {:id => "input_form"} do |f| %> 
 
     <%= f.text_field :item_title, placeholder: "Title of Post", :size=>"50", :class => "form-control"   %>
@@ -43,7 +43,7 @@
 
     <br><br>
 
-    <%= f.cktext_area :item_text, :class => 'ckeditor' %>
+    <%= f.input :item_text, :as => :epic_editor %>
 
     <br>
 

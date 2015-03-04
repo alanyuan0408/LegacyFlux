@@ -18,6 +18,7 @@
 //= require ckeditor/init
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require epiceditor/epiceditor
 //= require_tree .
 
 function pageIndex(length, listID, pageID){
