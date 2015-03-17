@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       @mail_setting = current_user.mail_setting
       @account_setting = current_user.account_setting
       
-      @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).where('column_type <> ?', 5).order("item_date desc")
+      @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).order("item_date desc")
   end
 
   def index
@@ -209,10 +209,11 @@ class UsersController < ApplicationController
   def remove_newsItem
     @newPost = current_user.news_letter_mail.news_letter_entries.
                         find_by(item_id: params[:item_id])
+
     @newPost.destroy
 
     @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).order("item_date desc")
-
+    
     respond_to do |format|
       format.js
     end

@@ -1,4 +1,4 @@
-console.log("render Partial")
+console.log("remove something")
 
 //Reset the Select Posting and the Additional Entries
 $('#Generate_Ordering').html(" <%= escape_javascript(render(:partial => 'users/userPartial/generateOrdering')) %>")
@@ -8,6 +8,8 @@ $('#Generate_Tibbits').html(" <%= escape_javascript(render(:partial => 'users/us
 $('#itemPosts3').html(" <%= escape_javascript(render(:partial => 'users/userPartial/mailPosts')) %>")
 
 $('#posts3').html(" <%= escape_javascript(render(:partial => 'users/userPartial/mailPostsInfo')) %>")
+
+
 
 pageObject2.initialize('.a_mail', 'posts3');
 
