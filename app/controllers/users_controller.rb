@@ -207,10 +207,21 @@ class UsersController < ApplicationController
   end
 
   def remove_newsItem
-    @newPost = current_user.news_letter_mail.news_letter_entries.
-                        find_by(item_id: params[:item_id])
 
-    @newPost.destroy
+    @newPost = current_user.news_letter_mail.news_letter_entries.
+                            find_by(item_id: params[:item_id])
+
+    if params[:commit] == 'Modify Entry'
+      markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+
+      @newPost.update_attribute(:entry_title, params[:user][:entry_title])
+      @newPost.update_attribute(:entry_text, markdown.render(params[:user][:entry_text]))
+      @newPost.update_attribute(:entry_text_md, params[:user][:entry_text])
+      
+    elsif params[:commit] == 'Remove from NewsLetter'
+
+      @newPost.destroy
+    end
 
     @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).order("item_date desc")
     
