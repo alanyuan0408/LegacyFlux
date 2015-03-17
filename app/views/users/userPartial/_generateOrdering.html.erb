@@ -44,7 +44,7 @@
 
 		<br>
 		<%= f.text_area :entry_text, :size => "45x14",  placeholder: "Place Header Message Here",
-		:value => @current_user.news_letter_mail.intro_message_md, :class => "form-control" %>
+		:value => @current_user.news_letter_mail.intro_message_md, :class => "form-control", :required => true %>
 		<br>
 		<%= f.submit 'View .HTML', class: "btn btn-default" %>
 		<%= f.submit 'Generate .MD', class: "btn btn-default" %>
@@ -53,7 +53,7 @@
 	<br>
 
 	<%= form_for @current_user, namespace: "reset", :url => url_for(:controller => "users",
-		:action => "mail_delete_dependencies"), :remote => true do |f|%>
+		:action => "mail_delete_dependencies", :required => true), :remote => true do |f|%>
 
 		<%= f.submit "Reset Selection", class: "btn btn-default" %>
 	<% end %>

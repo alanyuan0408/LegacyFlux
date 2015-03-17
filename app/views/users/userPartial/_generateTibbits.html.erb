@@ -35,13 +35,13 @@
 					<%= entry.label :entry_title, "Title of the Entry:" %>
 					<br>
 					<%= entry.text_field :entry_title, :size=>"35", :class => "form-control",
-					placeholder: "Title of Entry"%>
+					placeholder: "Title of Entry", :required => true%>
 
 					<br>
 					<%= entry.label :entry_text, "Text of Entry:" %>
 					<br>
 					<%= entry.text_area :entry_text, :size => "45x10", :class => "form-control",
-					placeholder: "Posting Content" %>
+					placeholder: "Posting Content", :required => true %>
 
 				<% end %>
 

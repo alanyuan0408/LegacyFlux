@@ -85,12 +85,8 @@ class UsersController < ApplicationController
   end
 
   def generate_newsLetter
-  markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
   
-  current_user.news_letter_mail.update_attribute(:intro_message, 
-      markdown.render(params[:user][:entry_text]))
-  current_user.news_letter_mail.update_attribute(:intro_message_md, 
-      params[:user][:entry_text])
+    generate_header
 
     current_user.save
 
@@ -117,12 +113,8 @@ class UsersController < ApplicationController
   end
   
   def generate_newsLetter_md
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
-      
-    current_user.news_letter_mail.update_attribute(:intro_message, 
-        markdown.render(params[:user][:entry_text]))
-    current_user.news_letter_mail.update_attribute(:intro_message_md, 
-        params[:user][:entry_text])
+
+    generate_header
 
     current_user.save
 
@@ -161,9 +153,9 @@ class UsersController < ApplicationController
 
   def add_tidbit
 
-    @newPost = current_user.news_letter_mail.news_letter_entries.new
-
     param = params[:user][:news_letter_mail_attributes][:news_letter_entry]
+
+    @newPost = current_user.news_letter_mail.news_letter_entries.new
 
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
 
@@ -235,6 +227,15 @@ class UsersController < ApplicationController
 
     def news_entry_params
       params.required(:person).permit(:name, :age)
+    end
+
+    def generate_header 
+      markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+      
+      current_user.news_letter_mail.update_attribute(:intro_message, 
+        markdown.render(params[:user][:entry_text]))
+      current_user.news_letter_mail.update_attribute(:intro_message_md, 
+        params[:user][:entry_text])
     end
 
     def do_not_cache

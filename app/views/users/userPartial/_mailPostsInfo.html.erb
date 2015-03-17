@@ -30,7 +30,7 @@
 				<%= f.label :entry_title, "Title of the Entry:" %>
 				<br>
 				<%= f.text_field :entry_title, :value => post.item_title, :size=>"35",
-				:class => "form-control" %>
+				:class => "form-control", :required => true %>
 				<br><br>
 
 				<p><b>Item Title: <%= post.item_title %></b></p>
@@ -40,7 +40,7 @@
 				<%= f.label :entry_text, "Text of Entry:" %>
 				<br>
 				<%= f.text_area :entry_text, :size => "45x14", :value => Sanitize.fragment(post.item_text), 
-				:class => "form-control", "data-id" => post.item_id %>
+				:class => "form-control", "data-id" => post.item_id, :required => true %>
 				<br>
 
 		        <%= f.submit "Add to NewsLetter", class: "btn btn-default" %>
