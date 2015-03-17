@@ -20,7 +20,7 @@
 				<p><b>URL:</b> <%= post.item_url %></p>
 
 				<br>
-				<%= f.label :entry_text, "Text of Entry:" %>
+				<%= f.label :entry_text, "Text of Entry [.MD]:" %>
 				<br>
 				<%= f.text_area :entry_text, :size => "45x14", :value => h_post.entry_text_md, 
 				:class => "form-control", "data-id" => h_post.entry_title, :required => true %>
@@ -45,7 +45,7 @@
 				<p><b>URL:</b> <%= post.item_url %></p>
 
 				<br>
-				<%= f.label :entry_text, "Text of Entry:" %>
+				<%= f.label :entry_text, "Text of Entry [.MD]:" %>
 				<br>
 				<%= f.text_area :entry_text, :size => "45x14", :value => Sanitize.fragment(post.item_text), 
 				:class => "form-control", "data-id" => post.item_id, :required => true %>

@@ -38,7 +38,7 @@
 	<%= form_for @current_user, namespace: "generator", :url => url_for(:controller => "users",
 		:action => "generate_newsLetter") do |f|%>
 
-		<%= f.label :entry_text, "Greeting Message:" %>
+		<%= f.label :entry_text, "Greeting Message [.MD]:" %>
 
 		<%= f.hidden_field :ordering, :value => "" %>
 
