@@ -86,6 +86,7 @@ class UsersController < ApplicationController
 
   def generate_newsLetter
   markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+  
   current_user.news_letter_mail.update_attribute(:intro_message, 
       markdown.render(params[:user][:entry_text]))
   current_user.news_letter_mail.update_attribute(:intro_message_md, 
@@ -105,9 +106,9 @@ class UsersController < ApplicationController
       iterator += 1
       @var.save
     end
-  if params[:commit] == 'Generate NewsLetter'
+  if params[:commit] == 'View .HTML'
     render :layout => false
-   elsif params[:commit] == 'Generate NewsLetter .MD'
+  elsif params[:commit] == 'Generate .MD'
    render file: "users/generate_newsLetter_md.html.erb", content_type: "text/x-markdown", :layout => false
    else
     render :layout => false
@@ -188,10 +189,11 @@ class UsersController < ApplicationController
 
     else 
       @newPost = current_user.news_letter_mail.news_letter_entries.new
+      markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
 
       @newPost.update_attribute(:entry_title, params[:user][:entry_title])
-      @newPost.update_attribute(:entry_text, params[:user][:entry_text])
-      @newPost.update_attribute(:entry_text_md, params[:user][:entry_text_md])
+      @newPost.update_attribute(:entry_text, markdown.render(params[:user][:entry_text]))
+      @newPost.update_attribute(:entry_text_md, params[:user][:entry_text])
       @newPost.update_attribute(:item_id, @feedbank.item_id)
       @newPost.save
     end

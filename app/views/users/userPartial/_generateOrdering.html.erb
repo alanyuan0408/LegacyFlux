@@ -46,8 +46,8 @@
 		<%= f.text_area :entry_text, :size => "45x14",  placeholder: "Place Header Message Here",
 		:value => @current_user.news_letter_mail.intro_message_md, :class => "form-control" %>
 		<br>
-		<%= f.submit 'Generate NewsLetter', class: "btn btn-default" %>
-		<%= f.submit 'Generate NewsLetter .MD', class: "btn btn-default" %>
+		<%= f.submit 'View .HTML', class: "btn btn-default" %>
+		<%= f.submit 'Generate .MD', class: "btn btn-default" %>
 	<% end %>
 
 	<br>
