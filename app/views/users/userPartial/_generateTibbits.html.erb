@@ -61,10 +61,10 @@
 			    <p><b>Item Title: <%= @current_user.news_letter_mail.news_letter_entries.
 			    find_by(item_id: post.item_id).entry_title %></b></p>
 
-			    <p>Text:</p>
+			    <p>Text [Markdown]:</p>
 
 			    <p><%= @current_user.news_letter_mail.news_letter_entries.
-			    find_by(item_id: post.item_id).entry_text.html_safe %><p>
+			    find_by(item_id: post.item_id).entry_text_md %><p>
 
 			    <%= form_for @current_user, namespace: post.id, :url => url_for(:controller => "users",
 				    :action => "remove_newsItem", :item_id => post.item_id), :remote => true do |f|%>

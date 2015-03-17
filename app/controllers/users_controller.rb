@@ -85,7 +85,11 @@ class UsersController < ApplicationController
   end
 
   def generate_newsLetter
-  current_user.news_letter_mail.update_attribute(:intro_message, params[:user][:entry_text])
+  markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+  current_user.news_letter_mail.update_attribute(:intro_message, 
+      markdown.render(params[:user][:entry_text]))
+  current_user.news_letter_mail.update_attribute(:intro_message_md, 
+      params[:user][:entry_text])
 
     current_user.save
 
@@ -112,7 +116,12 @@ class UsersController < ApplicationController
   end
   
   def generate_newsLetter_md
-    current_user.news_letter_mail.update_attribute(:intro_message, params[:user][:entry_text])
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+      
+    current_user.news_letter_mail.update_attribute(:intro_message, 
+        markdown.render(params[:user][:entry_text]))
+    current_user.news_letter_mail.update_attribute(:intro_message_md, 
+        params[:user][:entry_text])
 
     current_user.save
 
@@ -155,8 +164,11 @@ class UsersController < ApplicationController
 
     param = params[:user][:news_letter_mail_attributes][:news_letter_entry]
 
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+
     @newPost.update_attribute(:entry_title, param[:entry_title])
-    @newPost.update_attribute(:entry_text, param[:entry_text])
+    @newPost.update_attribute(:entry_text, markdown.render(param[:entry_text]))
+    @newPost.update_attribute(:entry_text_md, param[:entry_text])
     @newPost.update_attribute(:item_id, SecureRandom.urlsafe_base64)
     @newPost.update_attribute(:tibbit_entry, true)
     @newPost.save
