@@ -153,18 +153,26 @@ class UsersController < ApplicationController
 
   def add_tidbit
 
-    param = params[:user][:news_letter_mail_attributes][:news_letter_entry]
 
-    @newPost = current_user.news_letter_mail.news_letter_entries.new
+    #Prevent Mutiple Requests for slow connections
+    if current_user.news_letter_mail.news_letter_entries.find_by(item_id: params[:item_id])
+      #DO nothing, request already sent
 
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+    else 
 
-    @newPost.update_attribute(:entry_title, param[:entry_title])
-    @newPost.update_attribute(:entry_text, markdown.render(param[:entry_text]))
-    @newPost.update_attribute(:entry_text_md, param[:entry_text])
-    @newPost.update_attribute(:item_id, SecureRandom.urlsafe_base64)
-    @newPost.update_attribute(:tibbit_entry, true)
-    @newPost.save
+      param = params[:user][:news_letter_mail_attributes][:news_letter_entry]
+
+      @newPost = current_user.news_letter_mail.news_letter_entries.new
+
+      markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+
+      @newPost.update_attribute(:entry_title, param[:entry_title])
+      @newPost.update_attribute(:entry_text, markdown.render(param[:entry_text]))
+      @newPost.update_attribute(:entry_text_md, param[:entry_text])
+      @newPost.update_attribute(:item_id, SecureRandom.urlsafe_base64)
+      @newPost.update_attribute(:tibbit_entry, true)
+      @newPost.save
+    end
 
     respond_to do |format|
       format.js
