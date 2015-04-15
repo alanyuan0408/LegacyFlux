@@ -15,7 +15,6 @@
 //= require jquery-ui/draggable
 //= require jquery-ui/droppable
 //= require jquery_ujs
-//= require ckeditor/init
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require epiceditor/epiceditor
