@@ -37,7 +37,7 @@ class UsersController < ApplicationController
       UserMailer.update_email(user).deliver_now
     end
     respond_to do |format|
-      format.html { redirect_to(:back), notice: 'Task was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Task was successfully destroyed.' }
     end
   end
 
