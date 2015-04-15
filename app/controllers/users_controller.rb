@@ -36,7 +36,9 @@ class UsersController < ApplicationController
     @mail_users.each do |user|
       UserMailer.update_email(user).deliver_now
     end
-
+    respond_to do |format|
+      format.js
+    end
   end
 
   def modify
