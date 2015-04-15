@@ -1,7 +1,7 @@
 <%= semantic_form_for :feedbank, :url => '/feedbanks#create', :remote => true, 
     :html => {:id => "input_form"} do |f| %> 
 
-    <%= f.text_field :item_title, placeholder: "Title of Post", :size=>"50", :class => "form-control"   %>
+    <%= f.text_field :item_title, placeholder: "Title of Post", :size=>"50", :class => "form-control"  %>
     <br>
     <%= f.text_field :item_url, :size=>"50", :class => "title_width", placeholder: "Url to the Post", :class => "form-control" %>
     <br>

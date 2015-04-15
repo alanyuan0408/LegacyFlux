@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       @mail_setting = current_user.mail_setting
       @account_setting = current_user.account_setting
       
-      @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).where('column_type <> ?', 5).order("item_date desc")
+      @mail_posts = Feedbank.where('created_at >= ?', 5.weeks.ago).where('column_type <> ?', 5).order("item_date desc")
   end
 
   def index
@@ -85,7 +85,8 @@ class UsersController < ApplicationController
   end
 
   def generate_newsLetter
-  current_user.news_letter_mail.update_attribute(:intro_message, params[:user][:entry_text])
+  
+    generate_header
 
     current_user.save
 
@@ -101,9 +102,9 @@ class UsersController < ApplicationController
       iterator += 1
       @var.save
     end
-  if params[:commit] == 'Generate NewsLetter'
+  if params[:commit] == 'View .HTML'
     render :layout => false
-   elsif params[:commit] == 'Generate NewsLetter .MD'
+  elsif params[:commit] == 'Generate .MD'
    render file: "users/generate_newsLetter_md.html.erb", content_type: "text/x-markdown", :layout => false
    else
     render :layout => false
@@ -112,7 +113,8 @@ class UsersController < ApplicationController
   end
   
   def generate_newsLetter_md
-    current_user.news_letter_mail.update_attribute(:intro_message, params[:user][:entry_text])
+
+    generate_header
 
     current_user.save
 
@@ -141,7 +143,7 @@ class UsersController < ApplicationController
       entry.destroy
     end
 
-    @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).order("item_date desc")
+    @mail_posts = Feedbank.where('created_at >= ?', 5.weeks.ago).where('column_type <> ?', 5).order("item_date desc")
 
     respond_to do |format|
       format.js
@@ -151,15 +153,26 @@ class UsersController < ApplicationController
 
   def add_tidbit
 
-    @newPost = current_user.news_letter_mail.news_letter_entries.new
 
-    param = params[:user][:news_letter_mail_attributes][:news_letter_entry]
+    #Prevent Mutiple Requests for slow connections
+    if current_user.news_letter_mail.news_letter_entries.find_by(item_id: params[:item_id])
+      #DO nothing, request already sent
 
-    @newPost.update_attribute(:entry_title, param[:entry_title])
-    @newPost.update_attribute(:entry_text, param[:entry_text])
-    @newPost.update_attribute(:item_id, SecureRandom.urlsafe_base64)
-    @newPost.update_attribute(:tibbit_entry, true)
-    @newPost.save
+    else 
+
+      param = params[:user][:news_letter_mail_attributes][:news_letter_entry]
+
+      @newPost = current_user.news_letter_mail.news_letter_entries.new
+
+      markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+
+      @newPost.update_attribute(:entry_title, param[:entry_title])
+      @newPost.update_attribute(:entry_text, markdown.render(param[:entry_text]))
+      @newPost.update_attribute(:entry_text_md, param[:entry_text])
+      @newPost.update_attribute(:item_id, SecureRandom.urlsafe_base64)
+      @newPost.update_attribute(:tibbit_entry, true)
+      @newPost.save
+    end
 
     respond_to do |format|
       format.js
@@ -176,15 +189,16 @@ class UsersController < ApplicationController
 
     else 
       @newPost = current_user.news_letter_mail.news_letter_entries.new
+      markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
 
       @newPost.update_attribute(:entry_title, params[:user][:entry_title])
-      @newPost.update_attribute(:entry_text, params[:user][:entry_text])
-      @newPost.update_attribute(:entry_text_md, params[:user][:entry_text_md])
+      @newPost.update_attribute(:entry_text, markdown.render(params[:user][:entry_text]))
+      @newPost.update_attribute(:entry_text_md, params[:user][:entry_text])
       @newPost.update_attribute(:item_id, @feedbank.item_id)
       @newPost.save
     end
 
-    @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).where('column_type <> ?', 5).order("item_date desc")
+    @mail_posts = Feedbank.where('created_at >= ?', 5.weeks.ago).where('column_type <> ?', 5).order("item_date desc")
 
     respond_to do |format|
       format.js
@@ -193,12 +207,24 @@ class UsersController < ApplicationController
   end
 
   def remove_newsItem
+
     @newPost = current_user.news_letter_mail.news_letter_entries.
-                        find_by(item_id: params[:item_id])
-    @newPost.destroy
+                            find_by(item_id: params[:item_id])
 
-    @mail_posts = Feedbank.where('created_at >= ?', 3.weeks.ago).order("item_date desc")
+    if params[:commit] == 'Modify Entry'
+      markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
 
+      @newPost.update_attribute(:entry_title, params[:user][:entry_title])
+      @newPost.update_attribute(:entry_text, markdown.render(params[:user][:entry_text]))
+      @newPost.update_attribute(:entry_text_md, params[:user][:entry_text])
+      
+    elsif params[:commit] == 'Remove from NewsLetter'
+
+      @newPost.destroy
+    end
+
+    @mail_posts = Feedbank.where('created_at >= ?', 5.weeks.ago).where('column_type <> ?', 5).order("item_date desc")
+    
     respond_to do |format|
       format.js
     end
@@ -221,6 +247,15 @@ class UsersController < ApplicationController
 
     def news_entry_params
       params.required(:person).permit(:name, :age)
+    end
+
+    def generate_header 
+      markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+      
+      current_user.news_letter_mail.update_attribute(:intro_message, 
+        markdown.render(params[:user][:entry_text]))
+      current_user.news_letter_mail.update_attribute(:intro_message_md, 
+        params[:user][:entry_text])
     end
 
     def do_not_cache

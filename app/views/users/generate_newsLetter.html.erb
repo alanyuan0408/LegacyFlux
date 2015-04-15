@@ -38,9 +38,7 @@
             </p>
         </div>
         <div style="margin-left: 22%; width: 70%;">
-            <p>
-               <%= @current_user.news_letter_mail.intro_message %>
-            </p>
+            <%= @current_user.news_letter_mail.intro_message.html_safe %>
             <p>
                 <em>Paul Gries - Associate Chair for Undergraduate Studies</em>
             </p>
@@ -59,7 +57,9 @@
             <% @current_user.news_letter_mail.news_letter_entries.all.order("ordering asc").each do |entry| %>
             <hr style="border:0; color:#F7941E; background-color:#F7941E; height:2px; width:100%">
                 <h3><%= entry.entry_title %></h3>
-                <%= simple_format(entry.entry_text) %>
+                <% if entry.entry_text %>
+                    <%= entry.entry_text.html_safe %>
+                <% end %>
             <% end %>
             
             <hr style="align:center; border:0; color:#F7941E; background-color:#F7941E; height:5px; width:100%;">

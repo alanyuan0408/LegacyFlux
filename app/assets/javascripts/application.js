@@ -105,25 +105,28 @@ function addClick(){
 
 function updateItems(){
 
-    var Posts = document.getElementById("sortable").childNodes;
+    if (document.getElementById("sortable")){
 
-    //generator_user_ordering
-    var return_string = ""
-    console.log("newcall")
+        var Posts = document.getElementById("sortable").childNodes;
 
-    //Iterate over the items
-    for(i=0; i<Posts.length; i++){
-        if (Posts[i].dataset){
-                    
-            //Append the information to the string
-            if (Posts[i].dataset.id){
-                return_string += " " + Posts[i].dataset.id
+        //generator_user_ordering
+        var return_string = ""
+        console.log("newcall")
+
+        //Iterate over the items
+        for(i=0; i<Posts.length; i++){
+            if (Posts[i].dataset){
+                        
+                //Append the information to the string
+                if (Posts[i].dataset.id){
+                    return_string += " " + Posts[i].dataset.id
+                }
             }
         }
-    }
 
-    document.getElementById("generator_user_ordering").value = return_string
-    console.log(return_string)
+        document.getElementById("generator_user_ordering").value = return_string
+        console.log(return_string)
+    }
 }
 
 function orderRelease(){

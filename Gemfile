@@ -90,3 +90,5 @@ gem 'form_slider'
 gem 'jquery-ui-rails', '~> 5.0.3'
 gem "formtastic"
 gem "formtastic-epiceditor", :git => 'git://github.com/sjatfluxcut/formtastic-epiceditor.git'
+
+gem 'redcarpet'
