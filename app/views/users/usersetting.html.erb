@@ -1,45 +1,44 @@
-<div class="twocolumn">
+<div class="row">
 
-	<% if current_user.email_confirmation_token != "confirmed" %>
-    <br>
+    <% if current_user.email_confirmation_token != "confirmed" %>
         <div class="alert alert-danger" role="alert">
-        	<p class="alert-link">You have not confirmed your email.</p>
-		</div>
+            <p class="alert-link">You have not confirmed your email.</p>
+        </div>
     <% end %>
-
-<div class="column">
-
-    <h3><%= current_user.name %></h3>
     <hr>
-    <p><b>Account Summary:</b></p>
-    <br>
-			
-	<p><span style="font-size:16px">&#9993;</span> <%= current_user.email %></p>
-	<br>
 
-    <% if current_user.account_setting.student_account %>
-        <p><span style="font-size:16px">&#9745;</span>  Subscribed to Weekly Email</p>
-        <br>
-    <% end %>
+  <div class="col-md-4">
+    <div class="thumbnail">
+        <%= image_tag("WebDevLogo.jpg", :alt => "WebDevLogo") %>
+      <div class="caption">
+        <h3><%= current_user.name %></h3>
+        <hr>
+        <p><span style="font-size:16px">&#9993;</span> <%= current_user.email %></p>
 
-    <% if current_user.account_setting.admin %>
-        <p><span style="font-size:16px">&#9745;</span> Administrator</p>
-        <br>
-    <% end %>
+        <% if current_user.account_setting.student_account %>
+            <p><span style="font-size:16px">&#9745;</span>  Subscribed to Weekly Email</p>
+        <% end %>
 
-    <% if current_user.account_setting.news_admin %>
-        <p><span style="font-size:16px">&#9745;</span> Newsletter-Administrator</p>
-        <br>
-    <% end %>
+        <% if current_user.account_setting.admin %>
+            <p><span style="font-size:16px">&#9745;</span> Administrator</p>
+        <% end %>
 
-    <% if current_user.account_setting.student_account %>
-    	<%= button_to "Unsubscribe Automated Mailing", '/disable_student', class: "btn btn-default btn-med" %>
-    <% end %>
+        <% if current_user.account_setting.news_admin %>
+            <p><span style="font-size:16px">&#9745;</span> Newsletter-Administrator</p>
+        <% end %>
 
-</div>
+        <hr>
+        <div>
+            <% if current_user.account_setting.student_account %>
+                <%= button_to "Unsubscribe Mailing", '/disable_student', class: "btn btn-default btn-med" %>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<div class="column" id="ajax">
-	<%= render :partial => 'users/userPartial/userPreference' %>
+  <div class="col-md-8" id="ajax">
+    <%= render :partial => 'users/userPartial/userPreference' %>
+  </div>
 
-</div>
 </div>

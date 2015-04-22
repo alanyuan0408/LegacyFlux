@@ -15,7 +15,7 @@
 					
 		<br>
 
-		<% if @mail_setting.research %>
+		<% if @mail_setting.Research_job %>
 			<p><span style="font-size:16px">&#9745;</span>  Your Email <b>will</b> include Research Opportunities</p>
 		<% else %> 
 			<p><span style="font-size:16px">&#9746;</span>  Your Email <b>will not</b> include Research Opportunities</p>
@@ -23,10 +23,26 @@
 
 		<br>
 
-		<% if @mail_setting.jobs %>
-			<p><span style="font-size:16px">&#9745;</span>  Your Email <b>will</b> include Job Updates</p>
+		<% if @mail_setting.full_time_job %>
+			<p><span style="font-size:16px">&#9745;</span>  Your Email <b>will</b> include Full-Time </p>
 		<% else %> 
-			<p><span style="font-size:16px">&#9746;</span>  Your Email <b>will not</b> include Job Updates</p>
+			<p><span style="font-size:16px">&#9746;</span>  Your Email <b>will not</b> include Full-Time Jobs</p>
+		<% end %>
+
+		<br>
+
+		<% if @mail_setting.Internship_job %>
+			<p><span style="font-size:16px">&#9745;</span>  Your Email <b>will</b> include Internships</p>
+		<% else %> 
+			<p><span style="font-size:16px">&#9746;</span>  Your Email <b>will not</b> include Internships</p>
+		<% end %>
+
+		<br>
+
+		<% if @mail_setting.Part_time_job %>
+			<p><span style="font-size:16px">&#9745;</span>  Your Email <b>will</b> include Part-Time Jobs or Contracts</p>
+		<% else %> 
+			<p><span style="font-size:16px">&#9746;</span>  Your Email <b>will not</b> include Part-Time Jobs or Contracts</p>
 		<% end %>
 
 		<br>

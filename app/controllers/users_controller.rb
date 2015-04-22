@@ -48,10 +48,14 @@ class UsersController < ApplicationController
     #Update User Settings [No Mass- Assignment]
     current_user.mail_setting.update_attribute(:news, 
       param[:news])
-    current_user.mail_setting.update_attribute(:research, 
-      param[:research])
-    current_user.mail_setting.update_attribute(:jobs, 
-      param[:jobs])
+    current_user.mail_setting.update_attribute(:Research_job, 
+      param[:Research_job])
+    current_user.mail_setting.update_attribute(:full_time_job, 
+      param[:full_time_job])
+    current_user.mail_setting.update_attribute(:Internship_job, 
+      param[:Internship_job])
+    current_user.mail_setting.update_attribute(:Part_time_job, 
+      param[:Part_time_job])
     current_user.mail_setting.update_attribute(:events, 
       param[:events])
 

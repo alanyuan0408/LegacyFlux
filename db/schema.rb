@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150221070718) do
+ActiveRecord::Schema.define(version: 20150421032120) do
 
   create_table "account_settings", force: :cascade do |t|
     t.integer  "user_id"
@@ -48,26 +48,31 @@ ActiveRecord::Schema.define(version: 20150221070718) do
     t.text     "item_text"
     t.integer  "column_type"
     t.integer  "user_id"
-    t.boolean  "approval_status",    default: false
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.boolean  "approval_status",      default: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.text     "disapproval_reason"
-    t.boolean  "important",          default: false
-    t.boolean  "cs_grad",            default: false
-    t.boolean  "cs_undergrad",       default: false
+    t.boolean  "important",            default: false
+    t.boolean  "cs_grad",              default: false
+    t.boolean  "cs_undergrad",         default: false
+    t.boolean  "content_modification", default: false
+    t.datetime "event_date"
   end
 
   create_table "mail_settings", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "email_frequency", default: 7
     t.boolean  "news",            default: false
-    t.boolean  "research",        default: true
-    t.boolean  "jobs",            default: true
     t.boolean  "events",          default: false
-    t.boolean  "expo_ticket",     default: false
     t.datetime "nextsend"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.boolean  "full_time_job",   default: false
+    t.boolean  "Internship_job",  default: false
+    t.boolean  "Research_job",    default: false
+    t.boolean  "Part_time_job",   default: false
+    t.boolean  "cs_undergrad",    default: false
+    t.boolean  "cs_grad",         default: false
   end
 
   add_index "mail_settings", ["user_id"], name: "index_mail_settings_on_user_id"
