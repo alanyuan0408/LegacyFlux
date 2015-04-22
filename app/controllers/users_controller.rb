@@ -46,20 +46,14 @@ class UsersController < ApplicationController
     param = params[:user][:mail_setting_attributes]
 
     #Update User Settings [No Mass- Assignment]
-    current_user.mail_setting.update_attribute(:news, 
-      param[:news])
-    current_user.mail_setting.update_attribute(:Research_job, 
-      param[:Research_job])
-    current_user.mail_setting.update_attribute(:full_time_job, 
-      param[:full_time_job])
-    current_user.mail_setting.update_attribute(:Internship_job, 
-      param[:Internship_job])
-    current_user.mail_setting.update_attribute(:Part_time_job, 
-      param[:Part_time_job])
-    current_user.mail_setting.update_attribute(:events, 
-      param[:events])
-    current_user.mail_setting.update_attribute(:email_frequency, 
-      param[:email_frequency])
+    current_user.mail_setting.update_attributes(
+      :news => param[:news],
+      :Research_job => param[:Research_job], 
+      :full_time_job => param[:full_time_job],
+      :Internship_job => param[:Internship_job],
+      :Part_time_job => param[:Part_time_job],
+      :events => param[:events],
+      :email_frequency => param[:email_frequency])
 
     @mail_setting = current_user.mail_setting
 
