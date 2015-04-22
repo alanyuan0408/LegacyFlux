@@ -5,10 +5,12 @@
         :action => "modify"), :remote => true do |f| %>
 
 		 <%= f.fields_for :mail_setting do |account_form| %>
-
-		 	<%= account_form.check_box :news %>
-			<%= account_form.label :news, "News Items" %>
-			<br><br>
+ 
+			<!-- Slide THREE -->
+			<div class="slideThree">	
+				<input type="checkbox" value="None" id="slideThree" name="check" />
+				<label for="slideThree"></label>
+			</div>
 
 			<%= account_form.check_box :Research_job %>
 			<%= account_form.label :Research_job, "Research Offers" %>
