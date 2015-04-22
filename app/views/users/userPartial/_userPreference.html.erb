@@ -1,4 +1,4 @@
-	<% if current_user.account_setting.student_account %>
+<% if current_user.account_setting.student_account %>
 
 		<h3>Mailing Settings</h3>
 
@@ -64,7 +64,7 @@
 		    <%= f.submit "Update Settings", class: "btn btn-default btn-med" %>
 		<% end %>
 
-	<% else %>
+<% else %>
 
 		<h3>Subscribe to Email Updates</h3>
 		<hr>
@@ -84,4 +84,4 @@
 
 		<% end %>
 		
-	<% end %>
+<% end %>

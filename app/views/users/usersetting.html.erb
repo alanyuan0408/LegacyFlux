@@ -16,7 +16,7 @@
         <p><span style="font-size:16px">&#9993;</span> <%= current_user.email %></p>
 
         <% if current_user.account_setting.student_account %>
-            <p><span style="font-size:16px">&#9745;</span>  Subscribed to Weekly Email</p>
+            <p><span style="font-size:16px">&#9745;</span>  Subscribed to Mail Updates</p>
         <% end %>
 
         <% if current_user.account_setting.admin %>
@@ -30,7 +30,18 @@
         <hr>
         <div>
             <% if current_user.account_setting.student_account %>
-                <%= button_to "Unsubscribe Mailing", '/disable_student', class: "btn btn-default btn-med" %>
+                <%= button_to "Unsubscribe to Mailing", '/disable_student', class: "btn btn-default btn-med" %>
+            <% else %>
+                <% if current_user.email_confirmation_token != "confirmed" %>
+                    <b>Your Email is not confirmed</b>
+                    <hr>
+
+                    <%= button_to "Subscribe to Mailing", '/student_account', class: "btn btn-default btn-med", disabled: true %>
+                <% else %>
+
+                    <%= button_to "Subscribe to Mailing", '/student_account', class: "btn btn-default btn-med"%>
+                <% end %>
+
             <% end %>
         </div>
       </div>

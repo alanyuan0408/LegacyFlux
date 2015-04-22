@@ -38,11 +38,8 @@
 			<%= account_form.label :cs_undergrad, "Computer Science Undergrad" %>
 			<br><br>
 
-			<div style="width:70%">
-
-				<%= account_form.label :email_frequency, "Days between emails [1-7]" %><br>
-				<%= account_form.text_field :email_frequency %>
-			</div>
+			<%= account_form.label :email_frequency, "Days between emails [1-7]" %><br>
+			<%= account_form.number_field(:email_frequency, in: 1..7, step: 1) %><br>
 
 		<% end %>
 

@@ -58,18 +58,9 @@ class UsersController < ApplicationController
       param[:Part_time_job])
     current_user.mail_setting.update_attribute(:events, 
       param[:events])
-
-    if (param[:email_frequency].to_i < 1)
-      email_frequency = 1
-    elsif (param[:email_frequency].to_i > 7)
-      email_frequency = 7
-    else
-      email_frequency = param[:email_frequency].to_i
-    end
-
     current_user.mail_setting.update_attribute(:email_frequency, 
-        email_frequency)
-    current_user.mail_setting.update_attribute(:nextsend, Time.now + email_frequency.days)
+      param[:email_frequency])
+
     @mail_setting = current_user.mail_setting
 
     respond_to do |format|
