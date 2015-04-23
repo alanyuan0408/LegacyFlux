@@ -26,9 +26,9 @@
 
 	<hr>
 
-	<p>Your next email will be delivered on: <b id="newDate"><%= current_user.mail_setting.nextsend %></b></p>
+	<p>Your next email will be delivered on: <b><span id="newDate"><%= current_user.mail_setting.nextsend %></span></b></p>
 
-	<b>Email Frequency:</b>
+	<b>Email Frequency: <span id="emailfrequency"><%= current_user.mail_setting.email_frequency %></span></b>
 
 	<div class="row" style="margin: 10px;">
 
