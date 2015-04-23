@@ -1,2 +1,2 @@
 console.log("render Partial")
-$('#ajax').html(" <%= escape_javascript(render(:partial => 'users/userPartial/userPreference')) %>")
+$('#newDate').html(" <%= current_user.mail_setting.nextsend %>")

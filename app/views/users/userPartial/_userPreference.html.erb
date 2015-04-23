@@ -1,87 +1,97 @@
 <% if current_user.account_setting.student_account %>
 
-		<h3>Mailing Settings</h3>
+	<h3>Mailing Settings</h3>
+	<hr>
+	<p>Please indicate if you would like Undergrad and/or Graduate Updates. </p>
+	<p><b>Note:</b> If neither is selected, you will not recieve any Email Updates</p>
+	<hr>
 
-		<hr>
+	<div class="row">
+		<div class="slideThree">	
+			<input type="checkbox" value="None" id="slide0" name="check" />
+			<label for="slide0"></label>
+		</div>
 
-		<p>Your Email will be sent in a frequency of <b><%= @mail_setting.email_frequency %></b> days</p>
-		<br>
-		
-		<% if @mail_setting.news %>
-			<p><span style="font-size:16px">&#9745;</span>  Your Email <b>will</b> include News Updates</p>
-		<% else %> 
-			<p><span style="font-size:16px">&#9746;</span>  Your Email <b>will not</b> include News Updates</p>
-		<% end %>
-					
-		<br>
+		<span class="userpagefloat">Undergrad Posts</span>
+	</div>
 
-		<% if @mail_setting.Research_job %>
-			<p><span style="font-size:16px">&#9745;</span>  Your Email <b>will</b> include Research Opportunities</p>
-		<% else %> 
-			<p><span style="font-size:16px">&#9746;</span>  Your Email <b>will not</b> include Research Opportunities</p>
-		<% end %>
+	<div class="row">
+		<div class="slideThree">	
+			<input type="checkbox" value="None" id="slide1" name="check" />
+			<label for="slide1"></label>
+		</div>
 
-		<br>
+		<span class="userpagefloat">Graduate Posts</span>
+	</div>
 
-		<% if @mail_setting.full_time_job %>
-			<p><span style="font-size:16px">&#9745;</span>  Your Email <b>will</b> include Full-Time </p>
-		<% else %> 
-			<p><span style="font-size:16px">&#9746;</span>  Your Email <b>will not</b> include Full-Time Jobs</p>
-		<% end %>
+	<hr>
 
-		<br>
+	<p>Your next email will be delivered on: <b id="newDate"><%= current_user.mail_setting.nextsend %></b></p>
 
-		<% if @mail_setting.Internship_job %>
-			<p><span style="font-size:16px">&#9745;</span>  Your Email <b>will</b> include Internships</p>
-		<% else %> 
-			<p><span style="font-size:16px">&#9746;</span>  Your Email <b>will not</b> include Internships</p>
-		<% end %>
+	<b>Email Frequency:</b>
 
-		<br>
+	<div class="row" style="margin: 10px;">
 
-		<% if @mail_setting.Part_time_job %>
-			<p><span style="font-size:16px">&#9745;</span>  Your Email <b>will</b> include Part-Time Jobs or Contracts</p>
-		<% else %> 
-			<p><span style="font-size:16px">&#9746;</span>  Your Email <b>will not</b> include Part-Time Jobs or Contracts</p>
-		<% end %>
+		<input step="1" min="1" max="7" type="range" value="<%= current_user.mail_setting.email_frequency %>" name="email_frequency" id="email_frequency" class="inputfloat">
+	</div>
 
-		<br>
+	<hr>
 
-		<% if @mail_setting.events %>
-			<p><span style="font-size:16px">&#9745;</span>  Your Email <b>will</b> include Events</p>
-		<% else %> 
-			<p><span style="font-size:16px">&#9746;</span>  Your Email <b>will not</b> include Events</p>
-		<% end %>
+	<div class="row">
+		<div class="slideThree">	
+			<input type="checkbox" value="None" id="slideThree0" name="check" />
+			<label for="slideThree0"></label>
+		</div>
 
-		<br>
+		<span class="userpagefloat">News (Important Updates Only)</span>
+	</div>
 
-		<p><span style="font-size:16px">&#9993;</span><b>	Next Email:</b> <%= @mail_setting.nextsend %></p>
-		<br>
+	<div class="row">
+		<div class="slideThree">	
+			<input type="checkbox" value="None" id="slideThree" name="check" />
+			<label for="slideThree"></label>
+		</div>
 
-		<%= form_for current_user, :url => url_for(:controller => "users", 
-		        :action => "change"), :remote => true do |f| %>
+		<span class="userpagefloat">Internship</span>
+	</div>
 
-		    <%= f.submit "Update Settings", class: "btn btn-default btn-med" %>
-		<% end %>
+	<div class="row">
+		<div class="slideThree">	
+			<input type="checkbox" value="None" id="slideThree2" name="check" />
+			<label for="slideThree2"></label>
+		</div>
+
+		<span class="userpagefloat">Research Opportunities</span>
+	</div>
+
+	<div class="row">
+		<div class="slideThree">	
+			<input type="checkbox" value="None" id="slideThree3" name="check" />
+			<label for="slideThree3"></label>
+		</div>
+
+		<span class="userpagefloat">Full-Time Jobs</span>
+	</div>
+
+	<div class="row">
+		<div class="slideThree">	
+			<input type="checkbox" value="None" id="slideThree4" name="check" />
+			<label for="slideThree4"></label>
+		</div>
+
+		<span class="userpagefloat">Part-Time or Contract or Volunteer</span>
+	</div>
+
+	<div class="row">
+		<div class="slideThree">	
+			<input type="checkbox" value="None" id="slideThree5" name="check" />
+			<label for="slideThree5"></label>
+		</div>
+
+		<span class="userpagefloat">Events (Only Computer Science Related)</span>
+	</div>
+
 
 <% else %>
 
-		<h3>Subscribe to Email Updates</h3>
-		<hr>
-
-		<% if current_user.email_confirmation_token != "confirmed" %>
-
-				<p>You need to confirm your email to subscribe to our Automated Mailing</p>
-				<br>
-
-			<%= button_to "Subscribe to Automated Mailing", '/student_account', class: "btn btn-default btn-med", disabled: true %>
-		<% else %>
-
-				<p>Subscribe to Automated Mailing to keep up-to-date with all the events, news and jobs at the Computer Science Department</p>
-				<br>
-
-			<%= button_to "Subscribe to Automated Mailing", '/student_account', class: "btn btn-default btn-med"%>
-
-		<% end %>
-		
 <% end %>

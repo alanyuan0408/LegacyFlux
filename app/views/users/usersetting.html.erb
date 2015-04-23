@@ -17,6 +17,8 @@
 
         <% if current_user.account_setting.student_account %>
             <p><span style="font-size:16px">&#9745;</span>  Subscribed to Mail Updates</p>
+        <% else %>
+            <p><span style="font-size:16px">&#9746;</span>  Subscribed to Mail Updates</p>
         <% end %>
 
         <% if current_user.account_setting.admin %>
@@ -48,7 +50,7 @@
     </div>
   </div>
 
-  <div class="col-md-8" id="ajax">
+  <div class="col-md-8">
     <%= render :partial => 'users/userPartial/userPreference' %>
   </div>
 
