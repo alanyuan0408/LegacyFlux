@@ -26,8 +26,8 @@ class UsersController < ApplicationController
   end
 
   def usersetting
-      @mail_setting = current_user.mail_setting
-      @account_setting = current_user.account_setting
+    @mail_setting = current_user.mail_setting
+    @account_setting = current_user.account_setting
   end
   
   def send_mail

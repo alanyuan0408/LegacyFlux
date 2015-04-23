@@ -96,10 +96,17 @@
 	<h3>Automated Emailing System</h3>
 	<hr>
 	<h4>For Students:</h4>
-	<p>Our automated mailing system works to collect all the jobs, events and news updates within the Computer Science Department. We will package these updates into weekly newsletters for your mailbox. You can Unsubscribe any time.</p><br>
+	<p>Our automated mailing system works to collect all the jobs, events and news updates within the Computer Science Department. We will package these updates into weekly newsletters for your mailbox. You can Unsubscribe any time.</p>
 
-	<%= button_to "Subscribe to Mailing", '/student_account', class: "btn btn-default btn-med"%>
+    <% if current_user.email_confirmation_token != "confirmed" %>
+        <b>Your Email is not confirmed</b>
+        <br><br>
 
+        <%= button_to "Subscribe to Mailing", '/student_account', class: "btn btn-default btn-med", disabled: true %>
+    <% else %>
+
+        <%= button_to "Subscribe to Mailing", '/student_account', class: "btn btn-default btn-med"%>
+    <% end %>
 	<hr>
 
 	<h4>For Professors, Recruiters and Club Leaders:</h4>
