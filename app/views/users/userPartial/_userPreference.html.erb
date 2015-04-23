@@ -4,6 +4,23 @@
 		$( ".slideThree" ).change(function() {
 		  	console.log($(this).attr('value'));
 		  	console.log($(this).find("input").is(":checked"));
+
+		  	var update = {
+            	attribute: $(this).attr('value'),
+            	value: $(this).find("input").is(":checked")
+        	}
+
+		  	$.ajax({
+				  url: '/modify_user_setting',
+				  type: "post",
+				  beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+				  dataType: "json",
+				  success: function(data) {
+				    console.log("Sent Ajax Request") 
+				 },
+				 data: update
+			})
+
 		});
 	});
 
@@ -18,18 +35,26 @@
 	<hr>
 
 	<div class="row">
-		<div class="slideThree" value="undergradPost">	
-			<input type="checkbox" value="None" id="undergradPost" name="check" />
-			<label for="undergradPost"></label>
+		<div class="slideThree" value="cs_undergrad">	
+			<input type="checkbox" value="None" id="cs_undergrad" name="check" 
+			<% if current_user.mail_setting.cs_undergrad %>
+				<%= "checked" %>
+			<% end %>
+			/>
+			<label for="cs_undergrad"></label>
 		</div>
 
 		<span class="userpagefloat">Undergrad Posts</span>
 	</div>
 
 	<div class="row">
-		<div class="slideThree" value="graduatePost">	
-			<input type="checkbox" value="None" id="graduatePost" name="check" />
-			<label for="graduatePost"></label>
+		<div class="slideThree" value="cs_grad">	
+			<input type="checkbox" value="None" id="cs_grad" name="check" 
+			<% if current_user.mail_setting.cs_grad %>
+				<%= "checked" %>
+			<% end %>
+			/>
+			<label for="cs_grad"></label>
 		</div>
 
 		<span class="userpagefloat">Graduate Posts</span>
@@ -49,54 +74,78 @@
 	<hr>
 
 	<div class="row">
-		<div class="slideThree" value="newsPost">	
-			<input type="checkbox" value="None" id="newsPost" name="check" />
-			<label for="newsPost"></label>
+		<div class="slideThree" value="news">	
+			<input type="checkbox" value="None" id="news" name="check"
+			<% if current_user.mail_setting.news %>
+				<%= "checked" %>
+			<% end %>
+			/>
+			<label for="news"></label>
 		</div>
 
 		<span class="userpagefloat">News (Important Updates Only)</span>
 	</div>
 
 	<div class="row">
-		<div class="slideThree" value="internshipPost">	
-			<input type="checkbox" value="None" id="internshipPost" name="check" />
-			<label for="internshipPost"></label>
+		<div class="slideThree" value="Internship_job">	
+			<input type="checkbox" value="None" id="Internship_job" name="check"
+			<% if current_user.mail_setting.Internship_job %>
+				<%= "checked" %>
+			<% end %>
+			/>
+			<label for="Internship_job"></label>
 		</div>
 
 		<span class="userpagefloat">Internship</span>
 	</div>
 
 	<div class="row">
-		<div class="slideThree" value="researchPost">	
-			<input type="checkbox" value="None" id="researchPost" name="check" />
-			<label for="researchPost"></label>
+		<div class="slideThree" value="Research_job">	
+			<input type="checkbox" value="None" id="Research_job" name="check"
+			<% if current_user.mail_setting.Research_job %>
+				<%= "checked" %>
+			<% end %>
+			/>
+			<label for="Research_job"></label>
 		</div>
 
 		<span class="userpagefloat">Research Opportunities</span>
 	</div>
 
 	<div class="row">
-		<div class="slideThree" value="fulltimePost">		
-			<input type="checkbox" value="None" id="fulltimePost" name="check" />
-			<label for="fulltimePost"></label>
+		<div class="slideThree" value="full_time_job">		
+			<input type="checkbox" value="None" id="full_time_job" name="check"
+			<% if current_user.mail_setting.full_time_job %>
+				<%= "checked" %>
+			<% end %>
+			/>
+			<label for="full_time_job"></label>
 		</div>
 
 		<span class="userpagefloat">Full-Time Jobs</span>
 	</div>
 
 	<div class="row">
-		<div class="slideThree" value="parttimePost">	
-			<input type="checkbox" value="None" id="parttimePost" name="check" />
-			<label for="parttimePost"></label>
+		<div class="slideThree" value="Part_time_job">	
+			<input type="checkbox" value="None" id="Part_time_job" name="check"
+			<% if current_user.mail_setting.Part_time_job %>
+				<%= "checked" %>
+			<% end %>
+			/>
+			<label for="Part_time_job"></label>
 		</div>
 
 		<span class="userpagefloat">Part-Time or Contract or Volunteer</span>
 	</div>
 
 	<div class="row">
-		<div class="slideThree" value="eventPost">	
-			<input type="checkbox" value="None" id="eventPost" name="check" />
-			<label for="eventPost"></label>
+		<div class="slideThree" value="events">	
+			<input type="checkbox" value="None" id="events" name="check"
+			<% if current_user.mail_setting.events %>
+				<%= "checked" %>
+			<% end %>
+			/>
+			<label for="events"></label>
 		</div>
 
 		<span class="userpagefloat">Events (Only Computer Science Related)</span>

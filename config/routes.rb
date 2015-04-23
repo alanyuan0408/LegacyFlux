@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   get '/home',      to: 'static_pages#home'
   get '/news',      to: 'static_pages#news'
   match '/mailing',      to: 'static_pages#mailing', via: [:get, :post]
+
+  post '/modify_user_setting', to: 'users#user_update'
   
   get '/usersetting',   to: 'users#usersetting'
 

@@ -41,6 +41,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def user_update
+
+    respond_to do |format|
+      format.json {
+        puts params[:attribute]
+        puts params[:value]
+
+        current_user.mail_setting.update_attribute(params[:attribute], params[:value]);
+
+        render :text => "Update Accepted", :status => 200
+      }
+    end
+
+  end
+
   def modify
 
     param = params[:user][:mail_setting_attributes]
