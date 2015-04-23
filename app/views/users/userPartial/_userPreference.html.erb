@@ -1,3 +1,14 @@
+<script>
+
+	$( document ).ready(function() {
+		$( ".slideThree" ).change(function() {
+		  	console.log($(this).attr('value'));
+		  	console.log($(this).find("input").is(":checked"));
+		});
+	});
+
+</script>
+
 <% if current_user.account_setting.student_account %>
 
 	<h3>Mailing Settings</h3>
@@ -7,18 +18,18 @@
 	<hr>
 
 	<div class="row">
-		<div class="slideThree">	
-			<input type="checkbox" value="None" id="slide0" name="check" />
-			<label for="slide0"></label>
+		<div class="slideThree" value="undergradPost">	
+			<input type="checkbox" value="None" id="undergradPost" name="check" />
+			<label for="undergradPost"></label>
 		</div>
 
 		<span class="userpagefloat">Undergrad Posts</span>
 	</div>
 
 	<div class="row">
-		<div class="slideThree">	
-			<input type="checkbox" value="None" id="slide1" name="check" />
-			<label for="slide1"></label>
+		<div class="slideThree" value="graduatePost">	
+			<input type="checkbox" value="None" id="graduatePost" name="check" />
+			<label for="graduatePost"></label>
 		</div>
 
 		<span class="userpagefloat">Graduate Posts</span>
@@ -38,58 +49,60 @@
 	<hr>
 
 	<div class="row">
-		<div class="slideThree">	
-			<input type="checkbox" value="None" id="slideThree0" name="check" />
-			<label for="slideThree0"></label>
+		<div class="slideThree" value="newsPost">	
+			<input type="checkbox" value="None" id="newsPost" name="check" />
+			<label for="newsPost"></label>
 		</div>
 
 		<span class="userpagefloat">News (Important Updates Only)</span>
 	</div>
 
 	<div class="row">
-		<div class="slideThree">	
-			<input type="checkbox" value="None" id="slideThree" name="check" />
-			<label for="slideThree"></label>
+		<div class="slideThree" value="internshipPost">	
+			<input type="checkbox" value="None" id="internshipPost" name="check" />
+			<label for="internshipPost"></label>
 		</div>
 
 		<span class="userpagefloat">Internship</span>
 	</div>
 
 	<div class="row">
-		<div class="slideThree">	
-			<input type="checkbox" value="None" id="slideThree2" name="check" />
-			<label for="slideThree2"></label>
+		<div class="slideThree" value="researchPost">	
+			<input type="checkbox" value="None" id="researchPost" name="check" />
+			<label for="researchPost"></label>
 		</div>
 
 		<span class="userpagefloat">Research Opportunities</span>
 	</div>
 
 	<div class="row">
-		<div class="slideThree">	
-			<input type="checkbox" value="None" id="slideThree3" name="check" />
-			<label for="slideThree3"></label>
+		<div class="slideThree" value="fulltimePost">		
+			<input type="checkbox" value="None" id="fulltimePost" name="check" />
+			<label for="fulltimePost"></label>
 		</div>
 
 		<span class="userpagefloat">Full-Time Jobs</span>
 	</div>
 
 	<div class="row">
-		<div class="slideThree">	
-			<input type="checkbox" value="None" id="slideThree4" name="check" />
-			<label for="slideThree4"></label>
+		<div class="slideThree" value="parttimePost">	
+			<input type="checkbox" value="None" id="parttimePost" name="check" />
+			<label for="parttimePost"></label>
 		</div>
 
 		<span class="userpagefloat">Part-Time or Contract or Volunteer</span>
 	</div>
 
 	<div class="row">
-		<div class="slideThree">	
-			<input type="checkbox" value="None" id="slideThree5" name="check" />
-			<label for="slideThree5"></label>
+		<div class="slideThree" value="eventPost">	
+			<input type="checkbox" value="None" id="eventPost" name="check" />
+			<label for="eventPost"></label>
 		</div>
 
 		<span class="userpagefloat">Events (Only Computer Science Related)</span>
 	</div>
+
+	<hr>
 
 <% else %>
 
@@ -104,7 +117,7 @@
 
         <%= button_to "Subscribe to Mailing", '/student_account', class: "btn btn-default btn-med", disabled: true %>
     <% else %>
-
+    	<br>	
         <%= button_to "Subscribe to Mailing", '/student_account', class: "btn btn-default btn-med"%>
     <% end %>
 	<hr>
@@ -122,4 +135,6 @@
 	<br>
 
 	<%= button_to "About our Mailing System", "/mailing", class: "btn btn-default btn-med" %>
+
+	<hr>
 <% end %>
