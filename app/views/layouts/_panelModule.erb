@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
 	<div class="list-group">
 		<strong>Hello, <%= current_user.name %>:</strong><br>
-		<a><%= link_to "Preference", "/usersetting" %> <br>
+		<a><%= link_to "My Account", "/usersetting" %> <br>
 		<%= link_to "Posting Panel", "/user_info" %> <br>
 		<% if current_user.account_setting.admin? %>
 			<%= link_to "Admin Panel", "/user_admin" %> <br>
