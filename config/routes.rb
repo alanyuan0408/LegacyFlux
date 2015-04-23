@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   match '/student_account', to: 'users#student_account', via: [:get, :post]
   match '/disable_student', to: 'users#disable_student_account', via: [:get, :post]
 
-  get '/user_info', to: 'users#add_post'
+  match '/user_info', to: 'users#add_post', via: [:get, :post]
   get '/user_admin', to: 'users#adminPanel'
   get '/user_mail', to: 'users#mailPanel'
   patch '/generate_newsletter', to: 'users#generate_newsLetter'

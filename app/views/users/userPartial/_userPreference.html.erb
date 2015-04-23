@@ -91,7 +91,20 @@
 		<span class="userpagefloat">Events (Only Computer Science Related)</span>
 	</div>
 
-
 <% else %>
+
+	<h3>Automated Emailing System</h3>
+	<hr>
+	<h4>For Students:</h4>
+	<p>Our automated mailing system works to collect all the jobs, events and news updates within the Computer Science Department. We will package these updates into weekly newsletters for your mailbox. You can Unsubscribe any time.</p><br>
+
+	<%= button_to "Subscribe to Mailing", '/student_account', class: "btn btn-default btn-med"%>
+
+	<hr>
+
+	<h4>For Professors, Recruiters and Club Leaders:</h4>
+	<p>Creating an account with our Automated Mailig System will allow you to make posts for all Computer Science Students. If you also would like customized newsletters, please subscribe, but otherwise, we promise not to send you anything so you can keep your mailbox a bit cleaner.</p><br>
+
+	<%= button_to "Click here to post", "/user_info", class: "btn btn-default btn-med" %>
 
 <% end %>
