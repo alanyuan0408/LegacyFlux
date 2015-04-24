@@ -14,9 +14,7 @@ Rails.application.routes.draw do
     # You can have the root of your site routed with "root"
   root to: 'static_pages#home'
   
-  patch '/change', to: 'users#change'
   patch '/add_tidbit', to: 'users#add_tidbit'
-  patch '/user_nav', to: 'users#mail_nav'
   patch '/addNewsItem', to: 'users#add_newsItem'
   patch '/removeNewsItem', to: 'users#remove_newsItem'
   patch '/deleteNewsItem', to: 'users#mail_delete_dependencies'
@@ -33,9 +31,6 @@ Rails.application.routes.draw do
   post '/modify_date', to: 'users#user_date'
   
   get '/usersetting',   to: 'users#usersetting'
-
-  post '/register_expo', to: 'users#register_expo'
-  post '/unregister_expo', to: 'users#unregister_expo'
 
   match '/student_account', to: 'users#student_account', via: [:get, :post]
   match '/disable_student', to: 'users#disable_student_account', via: [:get, :post]
