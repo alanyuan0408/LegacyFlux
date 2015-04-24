@@ -6,7 +6,7 @@
 
 		<div class="panel-body">
 
-			<span class="date"><%=items.item_date %></span>
+			<span class="date"><%=items.item_date.to_formatted_s(:long) %></span>
 
 
 			<%= simple_format(Sanitize.fragment(items.item_text.strip.gsub(/\<br\s*\/?\>/, ""), Sanitize::Config::BASIC)) %>
