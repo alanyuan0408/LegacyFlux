@@ -48,9 +48,32 @@ class UsersController < ApplicationController
         puts params[:attribute]
         puts params[:value]
 
-        current_user.mail_setting.update_attribute(params[:attribute], params[:value]);
+        if (params[:attribute] != "check" and params[:value] != "check")
 
-        render :text => "Update Accepted", :status => 200
+          current_user.mail_setting.update_attribute(params[:attribute], params[:value]);
+
+        end
+
+        if (!current_user.mail_setting.cs_grad and !current_user.mail_setting.cs_undergrad)
+          @update_status = {:status => "nograd",
+            :html => "<p><b>Warning!</b> Please your preference as Undergrad and/or Graduate posts</p>",
+            :class => "alert alert-warning"}.to_json;
+
+        elsif (!current_user.mail_setting.news and !current_user.mail_setting.events and
+          !current_user.mail_setting.full_time_job and !current_user.mail_setting.Internship_job and 
+          !current_user.mail_setting.Research_job and !current_user.mail_setting.Part_time_job)
+          
+          @update_status = {:status => "noPreference",
+              :html => "<p><b>Warning!</b> You need to select a category to get emails</p>",
+              :class => "alert alert-warning"}.to_json;
+
+        else
+          @update_status = {:status => "good",
+            :html => "<p><b>Good!</b> You will start to recieve our regular emails</p>",
+            :class => "alert alert-success"}.to_json;
+        end
+
+        render json: @update_status;
       }
     end
 

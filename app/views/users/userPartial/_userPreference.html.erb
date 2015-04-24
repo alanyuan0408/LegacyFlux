@@ -1,34 +1,51 @@
 <script>
 
 	$( document ).ready(function() {
-		$( ".slideThree" ).change(function() {
-		  	console.log($(this).attr('value'));
-		  	console.log($(this).find("input").is(":checked"));
+
+		//send Initial Request to server to get mailing State
+		var update = {
+	        attribute: "check",
+	        value: "check"
+	    }
+
+	    $.ajax({
+			url: '/modify_user_setting',
+			type: "post",
+			beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+			dataType: "json",
+			success: function(data) {
+				$("#warningLabel").html(data.html);
+			},
+			data: update
+		})
+
+
+		$(".slideThree").change(function() {
 
 		  	var update = {
             	attribute: $(this).attr('value'),
             	value: $(this).find("input").is(":checked")
         	}
 
-		  	$.ajax({
-				  url: '/modify_user_setting',
-				  type: "post",
-				  beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-				  dataType: "json",
-				  success: function(data) {
-				    console.log("Sent Ajax Request") 
-				 },
-				 data: update
+        	$.ajax({
+				url: '/modify_user_setting',
+				type: "post",
+				beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+				dataType: "json",
+				success: function(data) {
+					$("#warningLabel").html(data.html);
+					$("#warningLabel").removeClass().addClass(data.class);
+				},
+				data: update
 			})
 
 		});
 
 		$(".freqSlider").change(function(){
 
-			console.log($(this).find("input").val());
 			$("#emailfrequency").text($(this).find("input").val());
 
-			var update = {
+			var update_number = {
             	attribute: "email_frequency",
             	value: $(this).find("input").val()
         	};
@@ -41,7 +58,7 @@
 				  success: function(data) {
 				    $("#newDate").text(data.date);
 				 },
-				 data: update
+				 data: update_number
 			})
 
 		});
@@ -53,9 +70,14 @@
 
 	<h3>Mailing Settings</h3>
 	<hr>
-	<p>Please indicate if you would like Undergrad and/or Graduate Updates. </p>
-	<p><b>Note:</b> If neither is selected, you will not recieve any Email Updates</p>
-	<hr>
+
+	<div>
+		<div class="alert alert-info" role="alert" id="warningLabel">
+
+		</div>
+		<hr>
+	</div>
+
 
 	<div class="row">
 		<div class="slideThree" value="cs_undergrad">	
