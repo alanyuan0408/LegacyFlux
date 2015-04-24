@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   
   patch '/change', to: 'users#change'
   patch '/add_tidbit', to: 'users#add_tidbit'
-  patch '/savechange', to: 'users#modify'
   patch '/user_nav', to: 'users#mail_nav'
   patch '/addNewsItem', to: 'users#add_newsItem'
   patch '/removeNewsItem', to: 'users#remove_newsItem'
@@ -31,6 +30,7 @@ Rails.application.routes.draw do
   match '/mailing',      to: 'static_pages#mailing', via: [:get, :post]
 
   post '/modify_user_setting', to: 'users#user_update'
+  post '/modify_date', to: 'users#user_date'
   
   get '/usersetting',   to: 'users#usersetting'
 

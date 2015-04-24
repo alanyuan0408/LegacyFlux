@@ -22,6 +22,29 @@
 			})
 
 		});
+
+		$(".freqSlider").change(function(){
+
+			console.log($(this).find("input").val());
+			$("#emailfrequency").text($(this).find("input").val());
+
+			var update = {
+            	attribute: "email_frequency",
+            	value: $(this).find("input").val()
+        	};
+
+		  	$.ajax({
+				  url: '/modify_date',
+				  type: "post",
+				  beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+				  dataType: "json",
+				  success: function(data) {
+				    $("#newDate").text(data.date);
+				 },
+				 data: update
+			})
+
+		});
 	});
 
 </script>
@@ -62,13 +85,16 @@
 
 	<hr>
 
-	<p>Your next email will be delivered on: <b><span id="newDate"><%= current_user.mail_setting.nextsend %></span></b></p>
+	<p>Your next email will be delivered on: <b><span id="newDate"><%= current_user.mail_setting.nextsend.to_formatted_s(:long)  %></span></b></p>
 
 	<b>Email Frequency: <span id="emailfrequency"><%= current_user.mail_setting.email_frequency %></span></b>
 
 	<div class="row" style="margin: 10px;">
 
-		<input step="1" min="1" max="7" type="range" value="<%= current_user.mail_setting.email_frequency %>" name="email_frequency" id="email_frequency" class="inputfloat">
+		<div class="freqSlider" value="email_frequency">
+			<input step="1" min="1" max="7" type="range" value="<%= current_user.mail_setting.email_frequency %>" name="email_frequency" id="email_frequency" class="inputfloat">
+		</div>
+
 	</div>
 
 	<hr>

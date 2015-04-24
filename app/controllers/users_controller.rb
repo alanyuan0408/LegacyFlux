@@ -56,20 +56,29 @@ class UsersController < ApplicationController
 
   end
 
-  def modify
-
-    param = params[:user][:mail_setting_attributes]
-
-    #Update User Settings [No Mass- Assignment]
-    current_user.mail_setting.update_attribute(:email_frequency, param[:email_frequency])
-
-    new_date = param[:email_frequency].to_i
-    current_user.mail_setting.update_attribute(:nextsend, Time.now + new_date.days);
-
-    @mail_setting = current_user.mail_setting
+  def user_date
 
     respond_to do |format|
-      format.js
+      format.json {
+        puts params[:attribute]
+        puts params[:value]
+
+        #We need to test if the JSON post has been tampered with
+        if params[:value].to_i > 7
+          value = 7
+        elsif params[:value].to_i < 0
+          value = 1;
+        else 
+          value = params[:value].to_i;
+        end
+
+        current_user.mail_setting.update_attribute(:email_frequency, value);
+        current_user.mail_setting.update_attribute(:nextsend, Time.now + value.days);
+
+        @date = {:date => current_user.mail_setting.nextsend.to_formatted_s(:long)}.to_json;
+
+        render json: @date;
+      }
     end
 
   end
