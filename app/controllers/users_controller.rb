@@ -41,6 +41,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def request_info
+
+    respond_to do |format|
+      format.json {
+        puts params[:id]
+
+        @feedbank = Feedbank.where(item_id: params[:id])
+
+        render :json => @feedbank
+      }
+    end
+
+  end
+
   def admin_updates
 
     respond_to do |format|
@@ -213,17 +227,13 @@ class UsersController < ApplicationController
 
   def add_tidbit
 
-
     #Prevent Mutiple Requests for slow connections
     if current_user.news_letter_mail.news_letter_entries.find_by(item_id: params[:item_id])
       #DO nothing, request already sent
-
     else 
 
       param = params[:user][:news_letter_mail_attributes][:news_letter_entry]
-
       @newPost = current_user.news_letter_mail.news_letter_entries.new
-
       markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
 
       @newPost.update_attribute(:entry_title, param[:entry_title])

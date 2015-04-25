@@ -1,5 +1,38 @@
 <script>
 
+  function addClick(){
+
+    console.log("Click: Request AJAX Information");
+
+    $(".a_admin").click(function(){
+
+      var feedbank_id = $(this).attr('data-id');
+      var request = {
+        id: feedbank_id,
+      }
+
+      $.ajax({
+        url: '/request_information',
+        type: "post",
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        dataType: "json",
+        success: function(data) {
+
+          data = data[0];
+
+          $("#postTitle").html(data.item_title);
+          $("#postURL").html(data.item_url);
+          $("#postDate").html(data.item_date);
+          $("#postText").html(data.item_text);
+
+        },
+        data: request
+      })
+
+    });
+
+  };
+
   function ajaxRequest(){
 
       console.log("Send AJAX Request");
@@ -40,6 +73,8 @@
       handle = window.setInterval(function(){
         ajaxRequest();
       }, 10000);
+
+      addClick();
 
   };
 
