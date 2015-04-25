@@ -1,57 +1,22 @@
-<div class="staticContent">
-<div class="heading">
-<h2>Entrepreneur and Research Expo</h2>
-<p>The Research and Entrepreneur Expo is designed to give startups, new entrepreneurs, graduate students, and professors the opportunity to recruit undergraduate students from computer science department and faculty of engineering.</p><p>The recruiters will each be given a 5 minute interval to pitch their idea to a large lecture hall of computer science students about their project or startup, and interested students will be given an opportunity to network with specific recruiters afterwards. </p>
-<h3>Registration:</h3>
+<div class="row">
+	<div class="col-md-8">
+		<h2>WDC Leadership</h2>
+		<hr>
+		    <p>The Web Development Club is lead by students from the Department of Computer Science at the University of Toronto. Our leadership team is commited to helpping both our members and the Computer Science community with Academic and Career</p>
+	</div>
 
-</div>
-<h2>Presenters:</h2>
-			<p>The presenters will be required to make their category clear so the potential members have a clear idea
-of what type of projects they are signing up for.</p>
-<p>1) Startups, small technology based companies. These groups are established with products already
-earning revenue and are looking for new members to join their team.</p>
-<p>2) Established undergraduate lead startups, startups lead by graduate students or graduated student
-lead startups. These startups will be lead by either a member with a very strong technical background or
-the startup has already completed a large portion of their development.</p>
-<p>3) Professors and Graduate Research Projects. The last category are research based projects lead by
-graduate students or professors who need research assistants for their various topics.</p>
-<h3>Presentation Guidelines</h3>
-<p>As discussed above, presenters will be allocated 5 minutes of presentation time. This time may be
-extended to up to 10 minutes if the presenter is looking for multiple people. This must be arranged with
-us ahead of time [please send us an email at the contact information]. We're not going to be strict about
-the presentation time, but we really want to keep the total presentation time of all the presenters
-within a reasonable amount of time. If you need help setting up, please let us know, as we will be more
-than happy to help. If you would like to have Question and Answer segment, please arrange for it within
-the allocated time. [This is not recommended]</p>
-<h2>Next Expo:</h2>
-<h3>Expo Date/Location:</h3>
-<p>TBA, Bahen Center, Room 1130, University of Toronto</p>
-<h3>Schedule:</h3>
-<p><strong>4PM - 6PM: Scheduled Presentations</strong></p>
-<p>Each presenter will be scheduled for 5 minutes of presentation time in front of the audience. The order
-of the presentation will be determined by the order the presenters have signed up for the event.</p>
-<p><strong>6PM - 8PM: Networking Session</strong></p>
-<p>The presenters and participants will meet at the Great Hall of the Bahen Center (third floor) where interested members of the audience will meet the presenters they want to work.</p>
-<h3>Contact:</h3>
-<p>For any inquires, message uoftwebdev.president@gmail.com. For any accommodations for the
-presenters other than a project, please let us know ahead of time. If anyone has any allergies or dietary
-restrictions, please email us for dietary alternatives.</p>
-<p>If anything is unclear, please contact Alan Yuan at 647-409-7355</p>
+	<div class="col-md-4">
+		<div class="row" style="height:50px"></div>
+
+    	<div class="thumbnail">
+	      <div class="caption">
+	        <h3>Past Leaders:</h3>
+	        <hr>
 
 
 
-<% 
-=begin %>
-				<% if user_signed_in? %>
-				  <% if !@account_setting %>
-					  <%= button_to "Register for the Expo", '/register_expo', :form_class => "form-p" %>
-				  <% else %>
-					  <p>Thank you for registering.</p>
-					  <%= button_to "Unregister", '/unregister_expo', :form_class => "form-p" %>
-				  <% end %>
-				<% else %>
-							  <p>You need to <%= link_to("login", new_user_session_path) %> to register</p>
-				<% end %>
-<% 
-=end %>
+	      </div>
+	    </div>
+  </div>
+
 </div>

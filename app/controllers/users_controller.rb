@@ -41,6 +41,32 @@ class UsersController < ApplicationController
     end
   end
 
+  def admin_updates
+
+    respond_to do |format|
+      format.json {
+        puts params[:lastcheck].to_time
+
+        @unapproved_post = Feedbank.where('created_at >= ?', params[:lastcheck].to_time)
+
+        @unconfirmed_id = []
+        @unconfirmed_title = []
+
+        @unapproved_post.each do |post|
+          @unconfirmed_id.append(post.item_id)
+          @unconfirmed_title.append(post.item_title)
+        end
+
+        @return_http = {:last_timestamp => Time.now, 
+          :unconfirmed_id => @unconfirmed_id,
+          :unconfirmed_titled => @unconfirmed_title }.to_json
+
+        render json: @return_http;
+      }
+    end
+
+  end
+
   def user_update
 
     respond_to do |format|

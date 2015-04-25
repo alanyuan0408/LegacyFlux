@@ -1,17 +1,47 @@
 <script>
 
-  function initialize3(){
-      //Initialize the object defined in NewsLetter Generator
-      if (typeof pageObject3 == "undefined"){
-          pageObject3 = new pageIndex(<%= @unconfirmed_posts.length %>, 
-          "itemPosts2", "pagenumber3");
-      }
-          
-      pageObject3.initialize('.a_admin', 'posts2');
-  }
+  function ajaxRequest(){
 
-  $(document).ready(initialize3);
-  $(document).on('page:load', initialize3);
+      console.log("Send AJAX Request");
+
+      var update = {
+          lastcheck: last_timestamp
+      }
+
+      $.ajax({
+        url: '/check_admin_updates',
+        type: "post",
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        dataType: "json",
+        success: function(data) {
+          last_timestamp = data.last_timestamp;
+          for (var i=0; i < data.unconfirmed_titled.length; i++){
+            $("#itemPosts2").prepend("<li class='list_li'><a id='Unitialized' class='a_admin'>Uninitialized</a></li>");
+
+            $('#Unitialized').html(data.unconfirmed_titled[i]).attr("data-id", data.unconfirmed_id[i]).removeAttr('id');
+          }
+
+        },
+        data: update
+      })
+
+  };
+
+  $(document).ready(setupHTTP);
+  $(document).on('page:load', setupHTTP);
+
+  var handle;
+  var last_timestamp = new Date();
+
+  function setupHTTP() {
+    //Turbo links, we want to ensure the handle is designed
+      clearInterval(handle);
+
+      handle = window.setInterval(function(){
+        ajaxRequest();
+      }, 10000);
+
+  };
 
 </script>
 
@@ -24,7 +54,7 @@
        <li><a href="#Unapproved_posts" data-toggle="tab">Unapproved Posts</a></li>
     </ul>
 
-    <div class="tab-content" > 
+    <div class="tab-content"> 
 
         <div class="tab-pane active" id="Mail_admin">
             <div class="panel-content">
@@ -32,7 +62,7 @@
             </div>
         </div>
 
-        <div class="tab-pane" id="Unapproved_posts" onclick="initialize3()">
+        <div class="tab-pane" id="Unapproved_posts">
             <div class="panel-content">
               <%= render :partial => "users/userPartial/unapprovedPosts" %>
             </div>
