@@ -1,15 +1,45 @@
 <script>
 
+  function buttonApprove(){
+
+    $(".approval").click(function(){
+
+      var status = $(this).attr('data-id');
+      var request = {
+        feedbank_id: current_id,
+        approval_status: status
+      }
+
+      $.ajax({
+        url: '/approve_post',
+        type: "post",
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        dataType: "json",
+        success: function(data) {
+
+          console.log("hi")
+          $("#panel_content").addClass("hidden_class");
+          $(".Clicked").remove();
+
+        },
+        data: request
+      })
+
+    });
+
+  }
+
   function addClick(){
 
     console.log("Click: Request AJAX Information");
 
     $(".a_admin").click(function(){
 
-      var feedbank_id = $(this).attr('data-id');
+      current_id = $(this).attr('data-id');
       var request = {
-        id: feedbank_id,
+        id: current_id,
       }
+      $(this).addClass("Clicked");
 
       $.ajax({
         url: '/request_information',
@@ -20,6 +50,7 @@
 
           data = data[0];
 
+          $("#panel_content").removeClass("hidden_class");
           $("#postTitle").html(data.item_title);
           $("#postURL").html(data.item_url);
           $("#postDate").html(data.item_date);
@@ -52,6 +83,7 @@
             $("#itemPosts2").prepend("<li class='list_li'><a id='Unitialized' class='a_admin'>Uninitialized</a></li>");
 
             $('#Unitialized').html(data.unconfirmed_titled[i]).attr("data-id", data.unconfirmed_id[i]).removeAttr('id');
+
           }
 
         },
@@ -65,6 +97,7 @@
 
   var handle;
   var last_timestamp = new Date();
+  var current_id;
 
   function setupHTTP() {
     //Turbo links, we want to ensure the handle is designed
@@ -75,6 +108,7 @@
       }, 10000);
 
       addClick();
+      buttonApprove();
 
   };
 

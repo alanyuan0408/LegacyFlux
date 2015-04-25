@@ -41,6 +41,27 @@ class UsersController < ApplicationController
     end
   end
 
+  def post_approval
+
+    respond_to do |format|
+      format.json {
+        puts params[:approval_status]
+        puts params[:feedbank_id]
+
+        @feedbank = Feedbank.find_by_item_id(params[:feedbank_id])
+
+        if params[:approval_status ] == "Approve"
+          @feedbank.update_attribute(:approval_status, true)
+        else 
+          @feedbank.update_attribute(:approval_status, false)
+        end
+
+        render :json => @feedbank
+      }
+    end
+
+  end
+
   def request_info
 
     respond_to do |format|

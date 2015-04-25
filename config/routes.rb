@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   post '/modify_date', to: 'users#user_date'
   post '/check_admin_updates', to: 'users#admin_updates'
   post '/request_information', to: 'users#request_info'
+  post '/approve_post', to: 'users#post_approval'
   
   get '/usersetting',   to: 'users#usersetting'
 
