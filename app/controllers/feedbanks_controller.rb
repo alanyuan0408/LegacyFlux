@@ -17,7 +17,7 @@ class FeedbanksController < ApplicationController
 
           search_condition = "%" + params[:search_params] + "%"
           @feedbank = Feedbank.where('item_title LIKE :title1 OR item_text LIKE :title2', 
-            {:title1 => search_condition, :title2 => search_condition})
+            {:title1 => search_condition, :title2 => search_condition}).limit(5)
 
           render :partial => "feedbanks/feedbankpartial/searchresultpartial"
         end 
