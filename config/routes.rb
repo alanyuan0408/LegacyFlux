@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   post '/check_admin_updates', to: 'users#admin_updates'
   post '/request_information', to: 'users#request_info'
   post '/approve_post', to: 'users#post_approval'
+
+  post '/search_feedbank', to: 'feedbanks#search_feedbank'
   
   get '/usersetting',   to: 'users#usersetting'
 

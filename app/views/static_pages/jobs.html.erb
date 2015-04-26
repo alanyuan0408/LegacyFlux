@@ -1,22 +1,76 @@
+<script>
+
+	function addSearch(){
+
+	    $("#search").click(function(){
+
+	      var search = $(".form-control").val();
+
+		   var request = {
+		      search_params: search
+		    }
+
+		    $.ajax({
+		        url: '/search_feedbank',
+		        type: "post",
+		        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+		        dataType: "html",
+		        success: function(data) {
+		        	$(".search_results").html(data);
+		        	$(".list").addClass("hidden_class");
+		        },
+		        data: request
+		      })
+
+		    });
+
+
+  	}
+
+  	$(document).ready(addSearch);
+  	$(document).on('page:load', addSearch);
+
+</script>
+
 <div class="row">
 	<div class="col-md-12">
 		<h2>Jobs and Research Opportunities</h2>
 		<hr>
 	</div>
 </div>
+<div class="row">
+	<div class="col-md-7">
+		<%if user_signed_in? %>
 
-<%if user_signed_in? %>
+			<p>Would you like us to share a job offer?<p>
+			<%= link_to "Click here to post", "/user_info" %>
 
-	<p>Would you like us to share a job offer?<p>
-	<%= link_to "Click here to post", "/user_info" %>
+		<% else %>
 
-<% else %>
+			<p>Would you like us to share a Job offer?<p>
+			<%= link_to "Login to post", new_user_session_path %>
 
-	<p>Would you like us to share a Job offer?<p>
-	<%= link_to "Login to post", new_user_session_path %>
+		<% end %>
+	</div>
 
-<% end %>
+	<div class="col-md-5">
+
+	    <div class="input-group">
+	      <input type="text" class="form-control has-error" placeholder="Search for...">
+	      <span class="input-group-btn">
+	        <button class="btn btn-default" type="button" id="search">Search</button>
+	      </span>
+	    </div>
+
+    </div>
+
+
+</div>
 
 <div class="list">
-<%= render "pagination", :items => @jobs %>
+	<%= render "pagination", :items => @jobs %>
+</div>
+
+<div class="search_results">
+
 </div>

@@ -1,0 +1,25 @@
+<hr>
+<h4>Search Results:</h4>
+<hr>
+
+<% if @feedbank.empty? %>
+	<p>There are no matches</p>
+<% end %>
+
+<% @feedbank.each do |items| %>
+	<div class="panel panel-default">
+		<div class="panel-heading"><b><%= items.item_title %></b></div>
+
+		<div class="panel-body">
+
+			<span class="date"><%=items.item_date.to_formatted_s(:long) %></span>
+
+
+			<%= simple_format(Sanitize.fragment(items.item_text.strip.gsub(/\<br\s*\/?\>/, ""), Sanitize::Config::BASIC)) %>
+			<% if !items.item_url.blank? %>
+				<%= link_to "link to external resource", items.item_url %>
+			<% end %>
+		</div>
+
+	</div>
+<% end %>

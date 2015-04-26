@@ -4,6 +4,29 @@ class FeedbanksController < ApplicationController
 		@feedbanks = Feedbank.all
 	end
 
+  def search_feedbank
+
+    respond_to do |format|
+      format.html {
+
+        puts params[:search_params]
+
+        if params[:search_params].blank?
+            render :nothing => true, :status => 200, :content_type => 'text/html'
+        else
+
+          search_condition = "%" + params[:search_params] + "%"
+          @feedbank = Feedbank.where('item_title LIKE :title1 OR item_text LIKE :title2', 
+            {:title1 => search_condition, :title2 => search_condition})
+
+          render :partial => "feedbanks/feedbankpartial/searchresultpartial"
+        end 
+
+      }
+    end
+
+  end
+
 	def create
   	@Feedbank = Feedbank.new(params[:feedbank])
 
