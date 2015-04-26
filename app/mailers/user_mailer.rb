@@ -47,7 +47,7 @@ class UserMailer < ActionMailer::Base
           count += @news.length
       end
 
-      if @mail_setting.jobs
+      if @mail_setting.full_time_job
         @jobs = Feedbank.where(:column_type => 1).where(:approval_status => true).
           where("created_at >= :last_send",
           {last_send: @mail_setting.nextsend  - @mail_setting.email_frequency.days
@@ -55,7 +55,7 @@ class UserMailer < ActionMailer::Base
           count += @jobs.length
       end
 
-      if @mail_setting.research
+      if @mail_setting.Research_job
         @research = Feedbank.where(:column_type => 4).where(:approval_status => true).
           where("created_at >= :last_send",
           {last_send: @mail_setting.nextsend - @mail_setting.email_frequency.days
