@@ -40,6 +40,10 @@
 		    }
 		});
 
+		$("#input_s").click(function(){
+			$("#suggestions").removeClass("hidden_class")
+		});
+
 	    $("#search").click(function(){
 			sendAJAX()
 		});
@@ -89,8 +93,6 @@
 	    <div class="input-group">
 
 	      	<input type="text" class="form-control has-error" placeholder="Search for..." id="input_s">
-	      	
-
 
 	      	<span class="input-group-btn">
 	        <button class="btn btn-default" type="button" id="search">Search</button>
