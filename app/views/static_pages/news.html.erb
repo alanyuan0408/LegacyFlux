@@ -34,13 +34,24 @@
 		$("#input_s").keyup(function (e) {
 		    if (e.keyCode == 13) {
 		    	sendAJAX()
+		    	$("#suggestions").addClass("hidden_class")
+		    } else {
+		    	$("#suggestions").removeClass("hidden_class")
 		    }
 		});
 
 	    $("#search").click(function(){
-
 			sendAJAX()
+		});
 
+		$('html').click(function() {
+			if (!($("#suggestions").hasClass("hidden_class"))){
+				$("#suggestions").addClass("hidden_class")
+			}
+		});
+
+		$('#stop_propagation').click(function(event){
+		    event.stopPropagation();
 		});
 
 
@@ -73,7 +84,7 @@
 		<% end %>
 	</div>
 
-	<div class="col-md-5">
+	<div class="col-md-5" id = "stop_propagation">
 
 	    <div class="input-group">
 
@@ -86,7 +97,7 @@
 	      </span>
 	    </div>
 
-	    <div class="list-group">
+	    <div class="list-group hidden_class" id="suggestions">
 			<a href="#" class="list-group-item">
 			  Cras justo odio
 			 </a>
