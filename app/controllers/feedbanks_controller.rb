@@ -4,6 +4,33 @@ class FeedbanksController < ApplicationController
 		@feedbanks = Feedbank.all
 	end
 
+  def search_suggestion
+
+    respond_to do |format|
+      format.html {
+
+        puts params[:search_params]
+
+        if params[:search_params].blank?
+
+            render :nothing => true, :status => 200, :content_type => 'text/html'
+
+        else
+
+          search_condition = params[:search_params] + "%"
+          @feedbank = Feedbank.where('item_title LIKE :title1', 
+            {:title1 => search_condition}).limit(3).order('created_at DESC')
+
+          puts @feedbank
+
+            render :partial => "feedbanks/feedbankpartial/searchsuggestion"
+        end 
+
+      }
+    end
+
+  end
+
   def search_feedbank
 
     respond_to do |format|
@@ -12,7 +39,7 @@ class FeedbanksController < ApplicationController
         puts params[:search_params]
 
         if params[:search_params].blank?
-          
+
             render :nothing => true, :status => 200, :content_type => 'text/html'
 
         else

@@ -34,7 +34,8 @@ Rails.application.routes.draw do
   post '/approve_post', to: 'users#post_approval'
 
   post '/search_feedbank', to: 'feedbanks#search_feedbank'
-  
+  post '/search_suggestion', to: 'feedbanks#search_suggestion' 
+   
   get '/usersetting',   to: 'users#usersetting'
 
   match '/student_account', to: 'users#student_account', via: [:get, :post]
