@@ -19,7 +19,7 @@ class FeedbanksController < ApplicationController
 
           search_condition = params[:search_params] + "%"
           @feedbank = Feedbank.where('item_title LIKE :title1', 
-            {:title1 => search_condition}).limit(3).order('created_at DESC')
+            {:title1 => search_condition}).limit(5).order('created_at DESC')
 
           puts @feedbank
 

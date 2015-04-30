@@ -1,3 +1,5 @@
 <% @feedbank.each do |items| %>
-	<a href="#" class="list-group-item"><%= items.item_title %></a>
+	<% link = "feedbanks/" + items.id.to_s %>
+	
+	<a href="<%= link %>" class="list-group-item"><%= items.item_title %></a>
 <% end %>

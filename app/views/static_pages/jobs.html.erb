@@ -25,23 +25,64 @@
 		})
 	}
 
+	function sendSuggestion(){
+		var search = $(".form-control").val();
+
+		var request = {
+		    search_params: search
+		}
+
+		$.ajax({
+			url: '/search_suggestion',
+			type: "post",
+			beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+			dataType: "html",
+			success: function(data) {
+
+				console.log(data);
+				$("#suggestions").html(data)
+			},
+			data: request
+		})
+
+	}
+
 
 	function addSearch(){
 
 		$('#input_s').unbind('keyup');
 		$('#search').unbind('click');
-
+		$('#input_s').unbind('click');
+		$('#html').unbind('click');
 
 		$("#input_s").keyup(function (e) {
 		    if (e.keyCode == 13) {
 		    	sendAJAX()
+		    	$("#suggestions").addClass("hidden_class")
+		    } else {
+		    	sendSuggestion()
+		    	$("#suggestions").removeClass("hidden_class")
 		    }
 		});
 
+		$("#input_s").click(function(){
+			sendSuggestion()
+			$("#suggestions").removeClass("hidden_class")
+		});
+
 	    $("#search").click(function(){
-
 			sendAJAX()
+			$("#suggestions").addClass("hidden_class")
+		});
 
+		$('html').click(function() {
+			if (!($("#suggestions").hasClass("hidden_class"))){
+				$("#suggestions").addClass("hidden_class")
+			}
+		});
+
+		$('#stop_propagation').click(function(event){
+		    event.stopPropagation();
 		});
 
 
@@ -81,6 +122,10 @@
 	        <button class="btn btn-default" type="button" id="search">Search</button>
 	      </span>
 	    </div>
+
+	    <div class="list-group hidden_class" id="suggestions">
+
+		</div>
 
     </div>
 
