@@ -28,6 +28,9 @@
 
 	function addSearch(){
 
+		$('#input_s').unbind('keyup');
+		$('#search').unbind('click');
+
 		$("#input_s").keyup(function (e) {
 		    if (e.keyCode == 13) {
 		    	sendAJAX()
