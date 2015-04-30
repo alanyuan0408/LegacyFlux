@@ -12,12 +12,14 @@ class FeedbanksController < ApplicationController
         puts params[:search_params]
 
         if params[:search_params].blank?
+          
             render :nothing => true, :status => 200, :content_type => 'text/html'
+
         else
 
           search_condition = "%" + params[:search_params] + "%"
           @feedbank = Feedbank.where('item_title LIKE :title1 OR item_text LIKE :title2', 
-            {:title1 => search_condition, :title2 => search_condition}).limit(5)
+            {:title1 => search_condition, :title2 => search_condition}).limit(7).order('created_at DESC')
 
           render :partial => "feedbanks/feedbankpartial/searchresultpartial"
         end 

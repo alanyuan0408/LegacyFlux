@@ -1,28 +1,44 @@
 <script>
+	function sendAJAX(){
+		var search = $(".form-control").val();
+
+		var request = {
+		    search_params: search
+		  }
+
+		$.ajax({
+			url: '/search_feedbank',
+			type: "post",
+			beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+			dataType: "html",
+			success: function(data) {
+
+			    if (data){
+			       	$("#search_results").html(data);
+			        	$("#pagination").addClass("hidden_class");
+			        } else {
+			        	$("#search_results").addClass("hidden_class");
+			        	$("#pagination").removeClass("hidden_class");
+			        }
+			},
+			    data: request
+		})
+	}
+
 
 	function addSearch(){
 
+		$("#input_s").keyup(function (e) {
+		    if (e.keyCode == 13) {
+		    	sendAJAX()
+		    }
+		});
+
 	    $("#search").click(function(){
 
-	      var search = $(".form-control").val();
+			sendAJAX()
 
-		   var request = {
-		      search_params: search
-		    }
-
-		    $.ajax({
-		        url: '/search_feedbank',
-		        type: "post",
-		        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-		        dataType: "html",
-		        success: function(data) {
-		        	$(".search_results").html(data);
-		        	$(".list").addClass("hidden_class");
-		        },
-		        data: request
-		      })
-
-		    });
+		});
 
 
   	}
@@ -56,7 +72,7 @@
 	<div class="col-md-5">
 
 	    <div class="input-group">
-	      <input type="text" class="form-control has-error" placeholder="Search for...">
+	      <input type="text" class="form-control has-error" placeholder="Search for..." id="input_s">
 	      <span class="input-group-btn">
 	        <button class="btn btn-default" type="button" id="search">Search</button>
 	      </span>
@@ -67,10 +83,11 @@
 
 </div>
 
-<div class="list">
+<div class="list" id="pagination">
+	<hr>
 	<%= render "pagination", :items => @jobs %>
 </div>
 
-<div class="search_results">
+<div id="search_results" class="list">
 
 </div>

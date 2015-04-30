@@ -1,3 +1,53 @@
+<script>
+	function sendAJAX(){
+		var search = $(".form-control").val();
+
+		var request = {
+		    search_params: search
+		  }
+
+		$.ajax({
+			url: '/search_feedbank',
+			type: "post",
+			beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+			dataType: "html",
+			success: function(data) {
+
+			    if (data){
+			       	$("#search_results").html(data);
+			        	$("#pagination").addClass("hidden_class");
+			        } else {
+			        	$("#search_results").addClass("hidden_class");
+			        	$("#pagination").removeClass("hidden_class");
+			        }
+			},
+			    data: request
+		})
+	}
+
+
+	function addSearch(){
+
+		$("#input_s").keyup(function (e) {
+		    if (e.keyCode == 13) {
+		    	sendAJAX()
+		    }
+		});
+
+	    $("#search").click(function(){
+
+			sendAJAX()
+
+		});
+
+
+  	}
+
+  	$(document).ready(addSearch);
+  	$(document).on('page:load', addSearch);
+
+</script>
+
 <div class="row">
 	<div class="col-md-12">
 		<h2>Events and News Updates</h2>
@@ -5,21 +55,40 @@
 	</div>
 </div>
 
-<%if user_signed_in? %>
+<div class="row">
+	<div class="col-md-7">
+		<%if user_signed_in? %>
 
-	<p>Would you like us to share an event or news update?<p>
-	<%= link_to "Click here to post", "/user_info" %>
+			<p>Would you like us to share an event or news updat<p>
+			<%= link_to "Click here to post", "/user_info" %>
 
-<% else %>
+		<% else %>
 
-	<p>Would you like us to share an event or news update?<p>
-	<%= link_to "Login to post", new_user_session_path %>
+			<p>Would you like us to share an event or news update?<p>
+			<%= link_to "Login to post", new_user_session_path %>
 
-<% end %>
+		<% end %>
+	</div>
 
-<div class="list_description">
+	<div class="col-md-5">
+
+	    <div class="input-group">
+	      <input type="text" class="form-control has-error" placeholder="Search for..." id="input_s">
+	      <span class="input-group-btn">
+	        <button class="btn btn-default" type="button" id="search">Search</button>
+	      </span>
+	    </div>
+
+    </div>
+
 
 </div>
-<div class="list">
-<%= render "pagination", :items => @news %>
+
+<div class="list" id="pagination">
+	<hr>
+	<%= render "pagination", :items => @news %>
+</div>
+
+<div id="search_results" class="list">
+
 </div>
