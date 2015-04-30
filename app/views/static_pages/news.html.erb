@@ -62,12 +62,12 @@
 	<div class="col-md-7">
 		<%if user_signed_in? %>
 
-			<p>Would you like us to share an event or news updat<p>
+			<p>Would you like us to share a news or event?_<p>
 			<%= link_to "Click here to post", "/user_info" %>
 
 		<% else %>
 
-			<p>Would you like us to share an event or news update?<p>
+			<p>Would you like us to share a news?<p>
 			<%= link_to "Login to post", new_user_session_path %>
 
 		<% end %>
@@ -76,11 +76,25 @@
 	<div class="col-md-5">
 
 	    <div class="input-group">
-	      <input type="text" class="form-control has-error" placeholder="Search for..." id="input_s">
-	      <span class="input-group-btn">
+
+	      	<input type="text" class="form-control has-error" placeholder="Search for..." id="input_s">
+	      	
+
+
+	      	<span class="input-group-btn">
 	        <button class="btn btn-default" type="button" id="search">Search</button>
 	      </span>
 	    </div>
+
+	    <div class="list-group">
+			<a href="#" class="list-group-item">
+			  Cras justo odio
+			 </a>
+			<a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+			<a href="#" class="list-group-item">Morbi leo risus</a>
+			<a href="#" class="list-group-item">Porta ac consectetur ac</a>
+			<a href="#" class="list-group-item">Vestibulum at eros</a>
+		</div>
 
     </div>
 
