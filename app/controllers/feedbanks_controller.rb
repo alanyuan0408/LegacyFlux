@@ -18,7 +18,7 @@ class FeedbanksController < ApplicationController
         else
 
           search_condition = "%" + params[:search_params].downcase + "%"
-          @feedbank = Feedbank.where('item_title LIKE :title1', 
+          @feedbank = Feedbank.where('lower(item_title) LIKE :title1', 
             {:title1 => search_condition}).limit(5).order('created_at DESC')
 
           puts @feedbank
@@ -45,7 +45,7 @@ class FeedbanksController < ApplicationController
         else
 
           search_condition = "%" + params[:search_params].downcase + "%"
-          @feedbank = Feedbank.where('item_title LIKE :title1 OR item_text LIKE :title2', 
+          @feedbank = Feedbank.where('lower(item_title) LIKE :title1 OR lower(item_text) LIKE :title2', 
             {:title1 => search_condition, :title2 => search_condition}).limit(7).order('created_at DESC')
 
           render :partial => "feedbanks/feedbankpartial/searchresultpartial"
