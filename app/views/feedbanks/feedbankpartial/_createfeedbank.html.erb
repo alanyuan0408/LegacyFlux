@@ -12,6 +12,20 @@
         <!-- #1 is Jobs, #2 is Events, #3 is News, #4 is Research-->
     </div>
 
+ <!-- Single button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+    Post Type <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
     <div id="jobBlock">
         <br>
         <%= radio_button_tag(:jobtype, "Full-Time") %>
@@ -32,14 +46,13 @@
 
     <br>
 
-    <%= check_box_tag(:important) %>
-    <%= label_tag(:important, "Important") %>
+    <!-- Rounded ONE -->
+    <div class="roundedOne">
+        <input type="checkbox" value="None" id="roundedOne" name="check" />
+        <label for="roundedOne"></label>
+    </div>
 
-    <%= check_box_tag(:cs_grad) %>
-    <%= label_tag(:cs_grad, "Graduate") %>
-
-    <%= check_box_tag(:undergrad) %>
-    <%= label_tag(:undergrad, "Undergrad") %>
+    <span class="userpagetop">Important</span>
 
     <br><br>
 
