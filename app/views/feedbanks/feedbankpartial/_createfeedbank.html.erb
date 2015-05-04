@@ -1,3 +1,28 @@
+<script>
+
+    function selectjob(){
+        $("#postType").html("Job Post");
+
+        $("#eventBlock").addClass("hidden_class");
+        $("#jobBlock").removeClass("hidden_class");
+    }
+
+    function selectevent(){
+        $("#postType").html("Event Post");
+
+        $("#eventBlock").removeClass("hidden_class");
+        $("#jobBlock").addClass("hidden_class");
+    }
+
+    function selectnews(){
+        $("#postType").html("News Post");
+
+        $("#eventBlock").addClass("hidden_class");
+        $("#jobBlock").addClass("hidden_class");
+    }
+
+</script>
+
 <%= semantic_form_for :feedbank, :url => '/feedbanks#create', :remote => true, 
     :html => {:id => "input_form"} do |f| %> 
 
@@ -7,25 +32,8 @@
     <br>
 
     <div class="row">
-         <!-- Single button -->
-        <div class="col-xs-9">
-            <div class="btn-group">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                Post Type <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Event Post</a></li>
-                <li><a href="#">Job Post</a></li>
-                <li><a href="#">News Post</a></li>
-              </ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
         <!-- Rounded ONE -->
         <div class="col-xs-9">
-            <hr>
             <div class="roundedOne userpagetop">
                 <input type="checkbox" value="None" id="roundedOne" name="check" />
                 <label for="roundedOne"></label>
@@ -38,17 +46,99 @@
                 <label for="roundedOne2"></label>
             </div>
 
-            <span class="userpagetop marginright">Important</span>
+            <span class="userpagetop marginright">CS Undergrad</span>
 
-            <!-- Squared ONE -->
-            <div class="squaredOne userpagetop">
-                <input type="checkbox" value="None" id="squaredOne" name="check" />
-                <label for="squaredOne"></label>
+            <div class="roundedOne userpagetop">
+                <input type="checkbox" value="None" id="roundedOne3" name="check" />
+                <label for="roundedOne3"></label>
             </div>
 
-            <span class="userpagetop marginright">Important</span>
+            <span class="userpagetop marginright">CS Graduate</span>
 
         </div>
+    </div>
+    <hr>
+
+    <div class="row">
+         <!-- Single button -->
+        <div class="col-xs-2">
+            <div class="btn-group">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                Post Type <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#" onclick="selectevent()">Event Post</a></li>
+                <li><a href="#" onclick="selectjob()">Job Post</a></li>
+                <li><a href="#" onclick="selectnews()">News Post</a></li>
+              </ul>
+            </div>
+        </div>
+        <div class="col-xs-8">
+            <h4 id="postType">Job Post</h4>
+        </div>
+    </div>
+ <hr>
+
+<div id="jobBlock">
+    <div class="row">
+        <!-- Rounded ONE -->
+        <div class="col-xs-9">
+           
+            <div class="roundedOne userpagetop">
+                <input type="checkbox" value="None" id="roundedOne4" name="check" />
+                <label for="roundedOne4"></label>
+            </div>
+
+            <span class="userpagetop marginright">Part-Time/ Informal Job</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Rounded ONE -->
+        <div class="col-xs-9"> 
+
+            <div class="roundedOne userpagetop">
+                <input type="checkbox" value="None" id="roundedOne5" name="check" />
+                <label for="roundedOne5"></label>
+            </div>
+
+            <span class="userpagetop marginright">Research Opportunity</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Rounded ONE -->
+        <div class="col-xs-9">
+
+            <div class="roundedOne userpagetop">
+                <input type="checkbox" value="None" id="roundedOne6" name="check" />
+                <label for="roundedOne6"></label>
+            </div>
+
+            <span class="userpagetop marginright">Full-Time Job</span>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Rounded ONE -->
+        <div class="col-xs-9">
+
+            <div class="roundedOne userpagetop">
+                <input type="checkbox" value="None" id="roundedOne7" name="check" />
+                <label for="roundedOne7"></label>
+            </div>
+
+            <span class="userpagetop marginright">Internship</span>
+
+        </div>
+    </div>
+</div>
+
+    <div id="eventBlock" class="hidden_class">
+        <br>
+        <%= f.label :select_date, "Event Date: " %><br>
+        <%= select_date Date.today, prefix: :start_date %>
     </div>
 
    
