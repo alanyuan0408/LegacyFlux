@@ -1,3 +1,5 @@
+<div class="sidepanel">
+
 <% if user_signed_in? %>
 	<div class="list-group">
 		<strong>Hello, <%= current_user.name %>:</strong><br>
@@ -28,10 +30,17 @@
 		    <%= f.password_field :password, autocomplete: "off" %>
   		</div>
 
-		   <div class="field">
-		     <%= f.check_box :remember_me %>
-		     <%= f.label :remember_me %>
-		   </div>
+        <!-- Squared ONE -->
+        <div class="field">
+	        <div class="squaredOne userpagetop">
+	            <input type="checkbox" value="None" id="squaredOne" name="check" />
+	            <label for="squaredOne"></label>
+	        </div>
+	            
+	        <span class="userpagetop marginright">Remember me</span>
+	        <br>
+	    </div>
+	    <br>
 
   		<div class="actions">
     		<%= f.submit "Login", class: "btn btn-default btn-med"  %>
@@ -42,3 +51,5 @@
 	  <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
 	<% end %>
 <% end %>
+
+</div>
