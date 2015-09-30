@@ -8,7 +8,7 @@
         </title>
     </head>
     <body>
-        <div style="width:94%;background-color:#182E64;color:#FFFFFF;border-top-left-radius:20px;border-top-right-radius:20px">
+        <div style="width:97%;background-color:#182E64;color:#FFFFFF;border-top-left-radius:20px;border-top-right-radius:20px">
             <h1 style="font-weight:normal;text-align:right;vertical-align:middle;padding-right:1em;padding-left:1em;padding-top:1ex;padding-bottom:0.5ex;min-height:70px;">
                 <img style="float:left;vertical-align:middle;" src="http://www.cdf.toronto.edu/~pgries/dcs_logo_275px.jpg" alt="Computer Science Logo"><span style="font-size:100%">DCS Undergraduate Newsletter</span><br>
                 <span style="font-size:75%"><%= Time.now.strftime("%d %b %Y") %></span>
@@ -37,7 +37,7 @@
                 <span style="font-size:75%">This message best viewed in a non-Microsoft email program.</span>
             </p>
         </div>
-        <div style="margin-left: 22%; width: 70%;">
+        <div style="margin-left: 25%; width: 70%;">
             <%= @current_user.news_letter_mail.intro_message.html_safe %>
             <p>
                 <em>François Pitt – Associate Chair for Undergraduate Studies</em>
@@ -103,7 +103,7 @@
                 </tr>
             </table>
         </div>
-        <div style="text-align:center; font-size:75%; color:#182E64; margin-left: 22%; width: 70%;">
+        <div style="text-align:center; font-size:75%; color:#182E64; margin-left: 25%; width: 70%;">
             <p>
                 These messages contain official information from the <a target="_blank" href="http://web.cs.toronto.edu/home.htm">Department of Computer Science</a>. Subscription is automatic, based on daily course and program enrolment information. For mailing list commands e-mail: <a target="_blank" href="mailto:ugstudents-help@cdf.toronto.edu">ugstudents-help@cdf.toronto.edu</a>. To unsubscribe please follow the <a href="https://ugo.cdf.toronto.edu/ugn/unsubscribe.txt">instructions.</a>
             </p>
